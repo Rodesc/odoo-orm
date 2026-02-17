@@ -1,22 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* mail_bot
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# 
+# Daye Jeong, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2023\n"
+"Last-Translator: Daye Jeong, 2024\n"
 "Language-Team: Korean (https://app.transifex.com/odoo/teams/41243/ko/)\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mail_bot
@@ -26,7 +27,9 @@ msgstr ""
 msgid ""
 "Aaaaaw that's really cute but, you know, bots don't work that way. You're "
 "too human for me! Let's keep it professional ❤️"
-msgstr "오호 정말 귀엽지만 알다시피 봇은 그런 식으로 작동하지 않아요. 날 너무 인간적으로 대하시네요! 프로답게 행동하자구요 ❤️"
+msgstr ""
+"오호 정말 귀엽지만 알다시피 봇은 그런 식으로 작동하지 않아요. 날 너무 인간적"
+"으로 대하시네요! 프로답게 행동하자구요 ❤️"
 
 #. module: mail_bot
 #: model:ir.model.fields.selection,name:mail_bot.selection__res_users__odoobot_state__disabled
@@ -51,8 +54,8 @@ msgid ""
 "Great! 👍<br/>To access special commands, <b>start your sentence with</b> "
 "<span class=\"o_odoobot_command\">/</span>. Try getting help."
 msgstr ""
-"잘하셨어요! 👍<br/>특수 명령어를 사용하려면 <span class=\"o_odoobot_command\">/</span><b>를 "
-"입력하세요</b>. 아주 편리하답니다."
+"잘하셨어요! 👍<br/>특수 명령어를 사용하려면 <span "
+"class=\"o_odoobot_command\">/</span><b>를 입력하세요</b>. 아주 편리하답니다."
 
 #. module: mail_bot
 #: model:ir.model,name:mail_bot.model_ir_http
@@ -78,11 +81,14 @@ msgstr "음..."
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"I am a simple bot, but if that's a dog, he is the cutest 😊 "
-"<br/>Congratulations, you finished this tour. You can now <b>close this "
+"I am a simple bot, but if that's a dog, he is the cutest 😊 <br/"
+">Congratulations, you finished this tour. You can now <b>close this "
 "conversation</b> or start the tour again with typing <span "
 "class=\"o_odoobot_command\">start the tour</span>. Enjoy discovering Odoo!"
 msgstr ""
+"저는 채팅 봇이지만, 사랑스럽답니다 😊 <br/> 투어를 완료하셨습니다. 이제 이 "
+"<b>대화를 종료</b>하거나 <span class=\"o_odoobot_command\">투어 시작</span>"
+"을 입력하여 투어를 다시 시작하실 수 있습니다. Odoo를 즐겨보세요!"
 
 #. module: mail_bot
 #. odoo-python
@@ -99,8 +105,9 @@ msgid ""
 "I'm not smart enough to answer your question.<br/>To follow my guide, ask: "
 "<span class=\"o_odoobot_command\">start the tour</span>."
 msgstr ""
-"해당 질문에 대답할 수 있을 정도로 제가 똑똑하지는 않습니다.<br/>제 안내를 따르시려면, 이렇게 질문해주세요: <span "
-"class=\"o_odoobot_command\">투어 시작하기</span>."
+"해당 질문에 대답할 수 있을 정도로 제가 똑똑하지는 않습니다.<br/>제 안내를 따"
+"르시려면, 이렇게 질문해주세요: <span class=\"o_odoobot_command\">투어 시작하"
+"기</span>."
 
 #. module: mail_bot
 #: model:ir.model.fields.selection,name:mail_bot.selection__res_users__odoobot_state__idle
@@ -120,8 +127,9 @@ msgid ""
 "Not exactly. To continue the tour, send an emoji: <b>type</b> <span "
 "class=\"o_odoobot_command\">:)</span> and press enter."
 msgstr ""
-"꼭 그렇지만은 않습니다. 투어를 계속하시려면 이모티콘을 입력해주세요. <b>이렇게 입력하시고:</b><span "
-"class=\"o_odoobot_command\">:)</span> 엔터를 누르세요."
+"꼭 그렇지만은 않습니다. 투어를 계속하시려면 이모티콘을 입력해주세요. <b>이렇"
+"게 입력하시고:</b><span class=\"o_odoobot_command\">:)</span> 엔터를 누르세"
+"요."
 
 #. module: mail_bot
 #: model:ir.model.fields.selection,name:mail_bot.selection__res_users__odoobot_state__not_initialized
@@ -133,12 +141,13 @@ msgstr "초기화되지 않음"
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"Not sure what you are doing. Please, type <span "
-"class=\"o_odoobot_command\">/</span> and wait for the propositions. Select "
-"<span class=\"o_odoobot_command\">help</span> and press enter"
+"Not sure what you are doing. Please, type <span class=\"o_odoobot_command\">/"
+"</span> and wait for the propositions. Select <span "
+"class=\"o_odoobot_command\">help</span> and press enter"
 msgstr ""
-"잘 이해하지 못했습니다. <span class=\"o_odoobot_command\">/</span> 입력 후 잠시만 제안을 "
-"기다려주세요. <span class=\"o_odoobot_command\">도움 요청</span> 선택 후 엔터를 누르세요."
+"잘 이해하지 못했습니다. <span class=\"o_odoobot_command\">/</span> 입력 후 잠"
+"시만 제안을 기다려주세요. <span class=\"o_odoobot_command\">도움 요청</span> "
+"선택 후 엔터를 누르세요."
 
 #. module: mail_bot
 #. odoo-python
@@ -147,7 +156,9 @@ msgstr ""
 msgid ""
 "Odoo's chat helps employees collaborate efficiently. I'm here to help you "
 "discover its features."
-msgstr "Odoo 채팅을 이용하시면 직원들간에 효율적인 협업이 가능합니다. 어떤 기능들이 있는지 확인하실 수 있도록 도와드리겠습니다."
+msgstr ""
+"Odoo 채팅을 이용하시면 직원들간에 효율적인 협업이 가능합니다. 어떤 기능들이 "
+"있는지 확인하실 수 있도록 도와드리겠습니다."
 
 #. module: mail_bot
 #: model:ir.model.fields,field_description:mail_bot.field_res_users__odoobot_state
@@ -188,8 +199,9 @@ msgid ""
 "human language...<br/>I can show you features if you write: <span "
 "class=\"o_odoobot_command\">start the tour</span>."
 msgstr ""
-"죄송하지만 잘 못 알아들었습니다 사실 사람들이 사용하는 언어는 잘 모른답니다. 대신 <br/><span "
-"class=\"o_odoobot_command\">투어 시작하기</span>를 입력하시면 각종 기능에 대해 안내해 드릴게요."
+"죄송하지만 잘 못 알아들었습니다 사실 사람들이 사용하는 언어는 잘 모른답니다. "
+"대신 <br/><span class=\"o_odoobot_command\">투어 시작하기</span>를 입력하시"
+"면 각종 기능에 대해 안내해 드릴게요."
 
 #. module: mail_bot
 #. odoo-python
@@ -199,8 +211,9 @@ msgid ""
 "Sorry, I am not listening. To get someone's attention, <b>ping him</b>. "
 "Write <span class=\"o_odoobot_command\">@OdooBot</span> and select me."
 msgstr ""
-"죄송하지만 잘 못 들었어요. 다른 사용자에게 전달할 메시지가 있으면 <b>연락해 보세요</b>. <span "
-"class=\"o_odoobot_command\">@OdooBot</span>을 입력한 후 저를 선택하세요."
+"죄송하지만 잘 못 들었어요. 다른 사용자에게 전달할 메시지가 있으면 <b>연락해 "
+"보세요</b>. <span class=\"o_odoobot_command\">@OdooBot</span>을 입력한 후 저"
+"를 선택하세요."
 
 #. module: mail_bot
 #. odoo-python
@@ -214,11 +227,11 @@ msgstr "좋지 않아요! 봇이라도 감정은 있답니다... 💔"
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"To <b>send an attachment</b>, click on the <i class=\"fa fa-paperclip\" "
-"aria-hidden=\"true\"></i> icon and select a file."
+"To <b>send an attachment</b>, click on the <i class=\"fa fa-paperclip\" aria-"
+"hidden=\"true\"></i> icon and select a file."
 msgstr ""
-"<b>첨부 파일을 전송</b>하려면, <i class=\"fa fa-paperclip\" aria-hidden=\"true\"></i> "
-"아이콘 클릭 후 파일을 선택하세요."
+"<b>첨부 파일을 전송</b>하려면, <i class=\"fa fa-paperclip\" aria-"
+"hidden=\"true\"></i> 아이콘 클릭 후 파일을 선택하세요."
 
 #. module: mail_bot
 #. odoo-python
@@ -240,14 +253,14 @@ msgstr "저에게 이 이모티콘을 전송해 보세요."
 #, python-format
 msgid ""
 "Unfortunately, I'm just a bot 😞 I don't understand! If you need help "
-"discovering our product, please check <a "
-"href=\"https://www.odoo.com/documentation\" target=\"_blank\">our "
-"documentation</a> or <a href=\"https://www.odoo.com/slides\" "
-"target=\"_blank\">our videos</a>."
+"discovering our product, please check <a href=\"https://www.odoo.com/"
+"documentation\" target=\"_blank\">our documentation</a> or <a href=\"https://"
+"www.odoo.com/slides\" target=\"_blank\">our videos</a>."
 msgstr ""
-"안타깝지만, 저는 그냥 봇이랍니다. 😞 잘 이해하지 못했어요. 저희 제품에 대해 안내를 받으시려면, <a "
-"href=\"https://www.odoo.com/documentation\" target=\"_blank\">관련 문서</a> 또는 "
-"<a href=\"https://www.odoo.com/slides\" target=\"_blank\">동영상</a>을 확인해 주세요."
+"안타깝지만, 저는 그냥 봇이랍니다. 😞 잘 이해하지 못했어요. 저희 제품에 대해 "
+"안내를 받으시려면, <a href=\"https://www.odoo.com/documentation\" "
+"target=\"_blank\">관련 문서</a> 또는 <a href=\"https://www.odoo.com/slides\" "
+"target=\"_blank\">동영상</a>을 확인해 주세요."
 
 #. module: mail_bot
 #: model:ir.model,name:mail_bot.model_res_users
@@ -263,7 +276,8 @@ msgid ""
 "attention. <b>Try to ping me using</b> <span "
 "class=\"o_odoobot_command\">@OdooBot</span> in a sentence."
 msgstr ""
-"벌써 잘 하시네요!<br/>특정 사용자의 @사용자이름 을 넣으면 연락할 수 있습니다. <b>저에게 연락하는 메시지</b>를 <span "
+"벌써 잘 하시네요!<br/>특정 사용자의 @사용자이름 을 넣으면 연락할 수 있습니"
+"다. <b>저에게 연락하는 메시지</b>를 <span "
 "class=\"o_odoobot_command\">@OdooBot</span>을 넣어서 입력해 보세요."
 
 #. module: mail_bot
@@ -271,10 +285,11 @@ msgstr ""
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"Yep, I am here! 🎉 <br/>Now, try <b>sending an attachment</b>, like a picture"
-" of your cute dog..."
+"Yep, I am here! 🎉 <br/>Now, try <b>sending an attachment</b>, like a "
+"picture of your cute dog..."
 msgstr ""
-"그러면 제가 응답합니다! 🎉 <br/>이제 <b>첨부 파일 보내기</b>를 해 보겠습니다. 테스트용 이미지 파일을 준비해 주세요."
+"그러면 제가 응답합니다! 🎉 <br/>이제 <b>첨부 파일 보내기</b>를 해 보겠습니"
+"다. 테스트용 이미지 파일을 준비해 주세요."
 
 #. module: mail_bot
 #. odoo-python

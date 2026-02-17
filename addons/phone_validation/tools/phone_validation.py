@@ -15,7 +15,12 @@ try:
 
     def phone_parse(number, country_code):
         try:
+            # Parse a first time to obtain an initial PhoneNumber object
             phone_nbr = phonenumbers.parse(number, region=country_code or None, keep_raw_input=True)
+            # Force format to international to apply metadata patches
+            formatted_intl = phonenumbers.format_number(phone_nbr, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+            # Parse a second time with the number now formatted internationally
+            phone_nbr = phonenumbers.parse(formatted_intl, region=country_code or None, keep_raw_input=True)
         except phonenumbers.phonenumberutil.NumberParseException as e:
             raise UserError(
                 _('Unable to parse %(phone)s: %(error)s', phone=number, error=str(e))
@@ -84,6 +89,10 @@ try:
             phone_fmt = phonenumbers.PhoneNumberFormat.NATIONAL
         return phonenumbers.format_number(phone_nbr, phone_fmt)
 
+    def phone_get_country_code_for_number(number):
+        region_data = phone_get_region_data_for_number(number)
+        return region_data['code']
+
     def phone_get_region_data_for_number(number):
         try:
             phone_obj = phone_parse(number, None)
@@ -113,6 +122,9 @@ except ImportError:
             )
             _phonenumbers_lib_warning = True
         return number
+
+    def phone_get_country_code_for_number(number):
+        return ''
 
     def phone_get_region_code_for_number(number):
         return {

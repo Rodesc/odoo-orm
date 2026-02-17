@@ -1,31 +1,32 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* spreadsheet_dashboard_website_sale_slides
-# 
+#
 # Translators:
 # Martin Trigaux, 2024
 # Foldi Robert <foldirobert@nexterp.ro>, 2024
 # Hongu Cosmin <cosmin513@gmail.com>, 2024
 # Dorin Hongu <dhongu@gmail.com>, 2024
 # Cozmin Candea <office@terrabit.ro>, 2024
-# 
+# Alin Miclea, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Cozmin Candea <office@terrabit.ro>, 2024\n"
+"Last-Translator: Alin Miclea, 2024\n"
 "Language-Team: Romanian (https://app.transifex.com/odoo/teams/41243/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Attendees"
@@ -36,11 +37,10 @@ msgstr "Participanți"
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Attendees by Course"
-msgstr ""
+msgstr "Participanți în funcție de Curs"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Content"
@@ -49,14 +49,12 @@ msgstr "Conținut"
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Courses"
 msgstr "Cursuri"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Current"
@@ -72,7 +70,6 @@ msgstr "Perioadă"
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Previous"
 msgstr "Anterior"
@@ -80,14 +77,12 @@ msgstr "Anterior"
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Rating"
 msgstr "Evaluare"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Revenue"
@@ -105,21 +100,21 @@ msgstr "Venituri"
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "Views by Course"
-msgstr ""
+msgstr "Vizualizări după curs"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "attendees - current"
-msgstr ""
+msgstr "participanți - actuali"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "attendees - previous"
-msgstr ""
+msgstr "participanți - anteriori"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
@@ -133,7 +128,7 @@ msgstr "conţinut"
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "courses"
-msgstr ""
+msgstr "cursuri"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #: model:spreadsheet.dashboard,name:spreadsheet_dashboard_website_sale_slides.spreadsheet_dashboard_elearning
@@ -145,25 +140,24 @@ msgstr "eLearning"
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "rating"
-msgstr ""
+msgstr "evaluare"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "revenue - current"
-msgstr ""
+msgstr "venituri - curente"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "revenue - previous"
-msgstr ""
+msgstr "venituri - anterioare"
 
 #. module: spreadsheet_dashboard_website_sale_slides
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_website_sale_slides/data/files/elearning_dashboard.json:0
 #, python-format
 msgid "since last period"

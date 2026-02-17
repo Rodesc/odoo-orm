@@ -58,15 +58,14 @@
         <a href="#" class="nav-link o_default_snippet_text rounded text-wrap text-center p-3">
             <img t-att-src="_img_src" class="mb-3 rounded shadow img-fluid" alt=""/>
             <h4 t-esc="_title"/>
-            <p class="o_default_snippet_text mb-0 small"><t t-esc="_text"/></p>
+            <span class="o_default_snippet_text mb-0 small"><t t-esc="_text"/></span>
         </a>
     </div>
 </template>
 
-<record id="website.s_mega_menu_cards_000_scss" model="ir.asset">
-    <field name="name">Menu - Cards 000 SCSS</field>
-    <field name="bundle">web.assets_frontend</field>
-    <field name="path">website/static/src/snippets/s_mega_menu_cards/000.scss</field>
-</record>
+<asset id="website.s_mega_menu_cards_000_scss" name="Menu - Cards 000 SCSS">
+    <bundle>web.assets_frontend</bundle>
+    <path>website/static/src/snippets/s_mega_menu_cards/000.scss</path>
+</asset>
 
 </odoo>

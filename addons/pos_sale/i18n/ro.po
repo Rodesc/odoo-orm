@@ -1,34 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* pos_sale
-# 
+#
 # Translators:
 # Hongu Cosmin <cosmin513@gmail.com>, 2024
 # Cozmin Candea <office@terrabit.ro>, 2024
 # Foldi Robert <foldirobert@nexterp.ro>, 2024
 # Dorin Hongu <dhongu@gmail.com>, 2024
 # Martin Trigaux, 2024
-# 
+# Betty Keresztesi, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Martin Trigaux, 2024\n"
+"Last-Translator: Betty Keresztesi, 2024\n"
 "Language-Team: Romanian (https://app.transifex.com/odoo/teams/41243/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_row/sale_order_row.xml:0
 #, python-format
 msgid "(left:"
-msgstr ""
+msgstr "(left:"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -40,28 +42,28 @@ msgstr "(tva incl.)"
 #. module: pos_sale
 #: model_terms:ir.ui.view,arch_db:pos_sale.report_invoice_document
 msgid "<span style=\"margin: 0px 5px;\">:</span>"
-msgstr ""
+msgstr "<span style=\"margin: 0px 5px;\">:</span>"
 
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "A new order has been created."
-msgstr ""
+msgstr "A fost creată o nouă comandă."
 
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Apply a down payment (fixed amount)"
-msgstr ""
+msgstr "Aplicați un avans (sumă fixă)"
 
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Apply a down payment (percentage)"
-msgstr ""
+msgstr "Aplicați un avans (procent)"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -100,7 +102,7 @@ msgstr "Client"
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Customer loading error"
-msgstr ""
+msgstr "Eroare de încărcare a clientului"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -120,11 +122,10 @@ msgstr "Livrat din"
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Do you want to load the SN/Lots linked to the Sales Order?"
-msgstr ""
+msgstr "Doriți să încărcați SN/Loturile legate de comanda de vânzare?"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Down Payment"
@@ -152,7 +153,7 @@ msgstr "Produs cu plata în avans"
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Due balance: %s"
-msgstr ""
+msgstr "Sold datorat: %s"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -160,6 +161,13 @@ msgstr ""
 #, python-format
 msgid "E.g. customer: Steward, date: 2020-05-09"
 msgstr "De exemplu. client: Steward, data: 2020-05-09"
+
+#. module: pos_sale
+#. odoo-javascript
+#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
+#, python-format
+msgid "Error amount too high"
+msgstr "Valoarea erorii este prea mare"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -182,25 +190,27 @@ msgid ""
 "It seems that you didn't configure a down payment product in your point of "
 "sale. You can go to your point of sale configuration to choose one."
 msgstr ""
+"Se pare că nu ați configurat un produs  Avans în punctul de vânzare. Puteți "
+"merge la configurarea punctului de vânzare pentru a crea unul."
 
 #. module: pos_sale
 #. odoo-python
 #: code:addons/pos_sale/models/sale_order.py:0
 #, python-format
 msgid "Linked POS Orders"
-msgstr ""
+msgstr "Comenzi POS asociate"
 
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_pos_order_line__sale_order_origin_id
 msgid "Linked Sale Order"
-msgstr ""
+msgstr "Comanda de vânzare asociată"
 
 #. module: pos_sale
 #. odoo-python
 #: code:addons/pos_sale/models/pos_order.py:0
 #, python-format
 msgid "Linked Sale Orders"
-msgstr ""
+msgstr "Comenzi de vânzare asociate"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -212,14 +222,12 @@ msgstr "Închisă"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
 #, python-format
 msgid "Next Order List"
 msgstr "Următoarea listă de comenzi"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "No"
@@ -299,7 +307,6 @@ msgstr "Număr comenzi POS"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
 #, python-format
 msgid "Previous Order List"
 msgstr "Lista de comenzi anterioare"
@@ -335,22 +342,21 @@ msgstr "Oferte/Comenzi vânzare"
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_sale_report__order_reference
 msgid "Related Order"
-msgstr ""
+msgstr "Comandă asociată"
 
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "SN/Lots Loading"
-msgstr ""
+msgstr "SN/Lots Încărcare"
 
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/overrides/components/product_screen/product_screen.xml:0
-#: code:addons/pos_sale/static/src/overrides/components/product_screen/product_screen.xml:0
 #, python-format
 msgid "SO"
-msgstr ""
+msgstr "SO"
 
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_pos_order__sale_order_count
@@ -392,7 +398,7 @@ msgstr "Echipa de vânzări"
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_res_config_settings__pos_crm_team_id
 msgid "Sales Team (PoS)"
-msgstr ""
+msgstr "Echipa de vânzări (PoS)"
 
 #. module: pos_sale
 #: model_terms:ir.ui.view,arch_db:pos_sale.res_config_settings_view_form
@@ -431,10 +437,9 @@ msgstr "Sesiuni în curs"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/set_sale_order_button/set_sale_order_button.xml:0
-#: code:addons/pos_sale/static/src/app/set_sale_order_button/set_sale_order_button.xml:0
 #, python-format
 msgid "Set Sale Order"
-msgstr ""
+msgstr "Setați comanda de vânzare"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -457,7 +462,7 @@ msgstr ""
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_pos_order_line__sale_order_line_id
 msgid "Source Sale Order Line"
-msgstr ""
+msgstr "Sursă Vânzare Linia comandă"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -475,7 +480,7 @@ msgstr "Stare"
 #. module: pos_sale
 #: model:ir.model.fields,help:pos_sale.field_sale_order__amount_unpaid
 msgid "The amount due from the sale order."
-msgstr ""
+msgstr "Suma datorată din comanda de vânzare."
 
 #. module: pos_sale
 #: model:ir.model.fields,help:pos_sale.field_pos_order__currency_rate
@@ -489,7 +494,7 @@ msgstr "Rata monedei la moneda de curs aplicabilă la data comenzii"
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "There was a problem in loading the %s customer."
-msgstr ""
+msgstr "A apărut o problemă în încărcarea clientului %s."
 
 #. module: pos_sale
 #: model:ir.model.fields,help:pos_sale.field_pos_config__crm_team_id
@@ -509,7 +514,7 @@ msgstr "Acest produs va fi utilizat la încasarea avansului"
 #: model:ir.model.fields,help:pos_sale.field_pos_config__down_payment_product_id
 #: model:ir.model.fields,help:pos_sale.field_res_config_settings__pos_down_payment_product_id
 msgid "This product will be used as down payment on a sale order."
-msgstr ""
+msgstr "Acest produs va fi utilizat ca avans pentru comandă de vânzare."
 
 #. module: pos_sale
 #. odoo-javascript
@@ -545,7 +550,7 @@ msgstr ""
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_sale_order__amount_unpaid
 msgid "Unpaid Amount"
-msgstr ""
+msgstr "Suma neachitată"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -556,7 +561,6 @@ msgstr "Ce dorești să faci?"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Yes"
@@ -570,3 +574,5 @@ msgid ""
 "You have tried to charge a down payment of %s but only %s remains to be "
 "paid, %s will be applied to the purchase order line."
 msgstr ""
+"Ați încercat să percepeți un avans de %s, dar mai rămâne de plătit doar %s, "
+"%s va fi aplicat la linia comenzii."

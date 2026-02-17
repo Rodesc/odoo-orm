@@ -6,6 +6,7 @@ from markupsafe import Markup
 from odoo import api, fields, models, _
 from odoo.addons.mail.tools.parser import parse_res_ids
 from odoo.exceptions import ValidationError
+from odoo.tools import html2plaintext
 from odoo.tools.misc import clean_context, format_date
 
 
@@ -133,7 +134,7 @@ class MailActivitySchedule(models.TransientModel):
     @api.depends('company_id', 'res_model_id')
     def _compute_plan_available_ids(self):
         for scheduler in self:
-            scheduler.plan_available_ids = self.env['mail.activity.plan'].search(self._get_plan_available_base_domain())
+            scheduler.plan_available_ids = self.env['mail.activity.plan'].search(scheduler._get_plan_available_base_domain())
 
     @api.depends_context('plan_mode')
     @api.depends('plan_available_ids')
@@ -189,7 +190,7 @@ class MailActivitySchedule(models.TransientModel):
                     'activity_type_id', 'activity_user_id')  # activity specific
     def _check_consistency(self):
         for scheduler in self.filtered('error'):
-            raise ValidationError(scheduler.error)
+            raise ValidationError(html2plaintext(scheduler.error))
 
     @api.constrains('res_ids')
     def _check_res_ids(self):
@@ -233,14 +234,7 @@ class MailActivitySchedule(models.TransientModel):
             record.message_post(body=body)
 
         if len(applied_on) == 1:
-            return {
-                'type': 'ir.actions.act_window',
-                'res_model': self.res_model,
-                'res_id': applied_on.id,
-                'name': applied_on.display_name,
-                'view_mode': 'form',
-                'views': [(False, "form")],
-            }
+            return {'type': 'ir.actions.client', 'tag': 'soft_reload'}
 
         return {
             'type': 'ir.actions.act_window',

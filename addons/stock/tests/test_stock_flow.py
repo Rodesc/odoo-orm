@@ -2135,6 +2135,7 @@ class TestStockFlow(TestStockCommon):
             picking.action_confirm()
             return picking
 
+        self.env['stock.picking.type'].browse(self.picking_type_out).reservation_method = 'at_confirm'
         out01 = create_picking(self.picking_type_out, self.stock_location, self.customer_location)
         out02 = create_picking(self.picking_type_out, self.stock_location, self.customer_location, sequence=2, delay=1)
         in01 = create_picking(self.picking_type_in, self.supplier_location, self.stock_location, delay=2)
@@ -2248,6 +2249,27 @@ class TestStockFlow(TestStockCommon):
 
         picking.write({'partner_id': partner_2.id})
         self.assertEqual(picking.move_ids.partner_id, partner_2)
+
+    def test_scrap_tracked_product_without_lot(self):
+        """Scrapping a tracked product without lot should not raise
+        if is_scrap context is set."""
+        stock_location = self.StockLocationObj.browse(self.stock_location)
+        tracked_product = self.env['product.product'].create({
+            'name': 'Tracked Product',
+            'type': 'product',
+            'tracking': 'lot',
+        })
+        self.env['stock.quant']._update_available_quantity(tracked_product, stock_location, 1.0)
+
+        scrap = self.env['stock.scrap'].create({
+            'product_id': tracked_product.id,
+            'product_uom_id': tracked_product.uom_id.id,
+            'location_id': self.stock_location,
+            'scrap_qty': 1.0,
+        })
+        scrap.do_scrap()
+
+        self.assertEqual(scrap.move_ids.state, 'done')
 
     def test_cancel_picking_with_scrapped_products(self):
         """
@@ -2375,8 +2397,8 @@ class TestStockFlow(TestStockCommon):
         steps), the out-move should be automatically assigned.
         """
         self.env['ir.config_parameter'].sudo().set_param('stock.picking_no_auto_reserve', False)
-
         warehouse = self.env['stock.warehouse'].search([('company_id', '=', self.env.company.id)], limit=1)
+        warehouse.out_type_id.reservation_method = 'by_date'
         warehouse.reception_steps = 'two_steps'
 
         out_move = self.env['stock.move'].create({

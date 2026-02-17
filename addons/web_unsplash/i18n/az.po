@@ -3,16 +3,16 @@
 # 	* web_unsplash
 #
 # Translators:
-# erpgo translator <jumshud@erpgo.az>, 2022
-# Jumshud Sultanov <cumshud@gmail.com>, 2022
+# erpgo translator <jumshud@erpgo.az>, 2024
+# Jumshud Sultanov <cumshud@gmail.com>, 2024
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 13:50+0000\n"
-"PO-Revision-Date: 2022-09-22 05:56+0000\n"
-"Last-Translator: Jumshud Sultanov <cumshud@gmail.com>, 2022\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
+"PO-Revision-Date: 2023-10-26 23:09+0000\n"
+"Last-Translator: Jumshud Sultanov <cumshud@gmail.com>, 2024\n"
 "Language-Team: Azerbaijani (https://app.transifex.com/odoo/teams/41243/az/)\n"
 "Language: az\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,9 @@ msgstr "Zəhmət olmasa Unsplash giriş düyməsini və tətbiq İD-sini yoxlay�
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "Please check your internet connection or contact administrator."
-msgstr "Zəhmət olmasa internet əlaqənizi yoxlayın və ya administratorla əlaqə saxlayın."
+msgstr ""
+"Zəhmət olmasa internet əlaqənizi yoxlayın və ya administratorla əlaqə "
+"saxlayın."
 
 #. module: web_unsplash
 #: model:ir.model,name:web_unsplash.model_ir_qweb_field_image
@@ -141,8 +143,12 @@ msgstr "Xəta baş verdi"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
-msgid "The max number of searches is exceeded. Please retry in an hour or extend to a better account."
-msgstr "Maksimum axtarış sayı aşıldı. Xahiş edirik bir saatdan sonra yenidən cəhd edin və ya daha yaxşı hesaba keçin."
+msgid ""
+"The max number of searches is exceeded. Please retry in an hour or extend to "
+"a better account."
+msgstr ""
+"Maksimum axtarış sayı aşıldı. Xahiş edirik bir saatdan sonra yenidən cəhd "
+"edin və ya daha yaxşı hesaba keçin."
 
 #. module: web_unsplash
 #. odoo-javascript

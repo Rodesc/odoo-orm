@@ -1,29 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* repair
-# 
+#
 # Translators:
-# Wil Odoo, 2024
 # Jolien De Paepe, 2024
-# 
+# Wil Odoo, 2024
+# Manon Rondou, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Jolien De Paepe, 2024\n"
+"Last-Translator: Manon Rondou, 2025\n"
 "Language-Team: French (https://app.transifex.com/odoo/teams/41243/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
 
 #. module: repair
 #: model:ir.actions.report,print_report_name:repair.action_report_repair_order
 msgid "('Repair Order - %s' % (object.name))"
 msgstr "('Ordre de réparation - %s' % (object.name))"
+
+#. module: repair
+#: model_terms:ir.ui.view,arch_db:repair.report_repairorder
+msgid "(<i>Recycle</i>)"
+msgstr "(<i>Recycler</i>)"
 
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.report_repairorder
@@ -33,17 +40,21 @@ msgstr "(<i>Supprimer</i>)"
 #. module: repair
 #: model:ir.model.fields,help:repair.field_repair_order__state
 msgid ""
-"* The 'New' status is used when a user is encoding a new and unconfirmed repair order.\n"
+"* The 'New' status is used when a user is encoding a new and unconfirmed "
+"repair order.\n"
 "* The 'Confirmed' status is used when a user confirms the repair order.\n"
 "* The 'Under Repair' status is used when the repair is ongoing.\n"
 "* The 'Repaired' status is set when repairing is completed.\n"
 "* The 'Cancelled' status is used when user cancel repair order."
 msgstr ""
-"* Le statut 'Nouveau' est utilisé lorsqu'un utilisateur encode un nouvel ordre de réparation non confirmé.\n"
-"* Le statut 'Confirmé' est utilisé lorsqu'un utilisateur confirme l'ordre de réparation.\n"
+"* Le statut 'Nouveau' est utilisé lorsqu'un utilisateur encode un nouvel "
+"ordre de réparation non confirmé.\n"
+"* Le statut 'Confirmé' est utilisé lorsqu'un utilisateur confirme l'ordre de "
+"réparation.\n"
 "* Le statut 'En réparation' est utilisé lorsque la réparation est en cours.\n"
 "* Le statut 'Réparé' est utilisé lorsque la réparation est achevée.\n"
-"* Le statut 'Annulé' est utilisé lorsque l'utilisateur annule l'ordre de réparation."
+"* Le statut 'Annulé' est utilisé lorsque l'utilisateur annule l'ordre de "
+"réparation."
 
 #. module: repair
 #. odoo-python
@@ -70,7 +81,7 @@ msgstr "<span class=\"o_stat_text\">Pièces de rechange :</span>"
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form
 msgid "<span class=\"o_stat_text\">Sale Order</span>"
-msgstr "<span class=\"o_stat_text\">Bon de commande</span>"
+msgstr "<span class=\"o_stat_text\">Commande client</span>"
 
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.stock_production_lot_view_form
@@ -228,8 +239,8 @@ msgid ""
 "find a partner by its Name, TIN, Email or Internal Reference."
 msgstr ""
 "Choisissez le partenaire pour qui la commande sera facturée et livrée. Vous "
-"pouvez trouver un partenaire par son nom, son NIF, son email ou sa référence"
-" interne."
+"pouvez trouver un partenaire par son nom, son NIF, son e-mail ou sa "
+"référence interne."
 
 #. module: repair
 #: model:ir.model.fields,field_description:repair.field_repair_tags__color
@@ -271,8 +282,8 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
-"Il est possible de convertir deux unités de mesures si elles appartiennent à"
-" la même catégorie. Cette conversion utilise les facteurs définis pour ces "
+"Il est possible de convertir deux unités de mesures si elles appartiennent à "
+"la même catégorie. Cette conversion utilise les facteurs définis pour ces "
 "unités."
 
 #. module: repair
@@ -300,8 +311,8 @@ msgstr "Créer des ordres de réparation à partir des retours"
 msgid ""
 "Create a linked Repair Order on Sale Order confirmation of this product."
 msgstr ""
-"Créer un ordre de réparation associé lors de la confirmation d'un bon de "
-"commande de ce produit."
+"Créer un ordre de réparation associé lors de la confirmation d'une commande "
+"client de ce produit."
 
 #. module: repair
 #: model_terms:ir.actions.act_window,help:repair.action_repair_order_tag
@@ -419,10 +430,12 @@ msgstr "Icône Font Awesome par ex. fa-tasks"
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_warn_uncomplete_move
 msgid ""
-"For some of the parts, there is a difference between the initial demand and the actual quantity that was used.<br/>\n"
+"For some of the parts, there is a difference between the initial demand and "
+"the actual quantity that was used.<br/>\n"
 "                Are you sure you want to confirm ?"
 msgstr ""
-"Pour certaines pièces, il y a une différence entre la demande initiale et la quantité actuelle utilisée.<br/>\n"
+"Pour certaines pièces, il y a une différence entre la demande initiale et la "
+"quantité actuelle utilisée.<br/>\n"
 " Êtes-vous sûr de vouloir continuer ?"
 
 #. module: repair
@@ -485,8 +498,8 @@ msgid ""
 "If ticked, the sales price will be set to 0 for all products transferred "
 "from the repair order."
 msgstr ""
-"Si cette option est cochée, le prix de vente sera défini sur 0 pour tous les"
-" produits transférés de l'ordre de réparation."
+"Si cette option est cochée, le prix de vente sera défini sur 0 pour tous les "
+"produits transférés de l'ordre de réparation."
 
 #. module: repair
 #: model:ir.model.fields,help:repair.field_stock_picking_type__is_repairable
@@ -500,11 +513,14 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:repair.action_repair_order_tree
 msgid ""
 "In a repair order, you can detail the components you remove,\n"
-"                add or replace and record the time you spent on the different\n"
+"                add or replace and record the time you spent on the "
+"different\n"
 "                operations."
 msgstr ""
-"Dans un ordre de réparation, vous pouvez détailler les composants à supprimer,\n"
-"à ajouter ou à remplacer et vous pouvez enregistrer le temps que vous avez passé sur les différentes\n"
+"Dans un ordre de réparation, vous pouvez détailler les composants à "
+"supprimer,\n"
+"à ajouter ou à remplacer et vous pouvez enregistrer le temps que vous avez "
+"passé sur les différentes\n"
 "opérations."
 
 #. module: repair
@@ -631,12 +647,9 @@ msgid "My Activity Deadline"
 msgstr "Échéance de mon activité"
 
 #. module: repair
-#. odoo-python
-#: code:addons/repair/models/repair.py:0
 #: model:ir.model.fields.selection,name:repair.selection__repair_order__state__draft
 #: model_terms:ir.ui.view,arch_db:repair.stock_repair_type_kanban
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form_filter
-#, python-format
 msgid "New"
 msgstr "Nouveau"
 
@@ -801,6 +814,11 @@ msgstr "Produit B"
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form
 msgid "Product Moves"
 msgstr "Mouvements de produits"
+
+#. module: repair
+#: model:ir.model,name:repair.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements de produit (Ligne de mouvement de stock)"
 
 #. module: repair
 #: model:ir.model.fields,field_description:repair.field_repair_order__product_qty
@@ -1071,12 +1089,12 @@ msgstr "Ligne de commande de laquelle provient l'ordre de réparation."
 #. module: repair
 #: model:ir.model.fields,help:repair.field_repair_order__sale_order_id
 msgid "Sale Order from which the Repair Order comes from."
-msgstr "Bon de commande duquel provient l'ordre de réparation."
+msgstr "Commande client de laquelle provient l'ordre de réparation."
 
 #. module: repair
 #: model:ir.model,name:repair.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Commande client"
 
 #. module: repair
 #: model:ir.model,name:repair.model_sale_order_line
@@ -1268,8 +1286,8 @@ msgid ""
 "True if this repair is linked to a Return Order and the order is 'Done'. "
 "False otherwise."
 msgstr ""
-"Vrai si cette réparation est liée à un retour et que la commande est 'Fait'."
-" Sinon faux."
+"Vrai si cette réparation est liée à un retour et que la commande est 'Fait'. "
+"Sinon faux."
 
 #. module: repair
 #: model:ir.model.fields,field_description:repair.field_stock_move__repair_line_type
@@ -1316,7 +1334,7 @@ msgstr "Unité de mesure"
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.report_repairorder
 msgid "Units"
-msgstr "Unités"
+msgstr "Unité(s)"
 
 #. module: repair
 #: model_terms:ir.ui.view,arch_db:repair.view_repair_order_form
@@ -1355,7 +1373,7 @@ msgstr "Avertissement mouvement(s) incomplet(s)"
 
 #. module: repair
 #. odoo-python
-#: code:addons/repair/models/repair.py:0 code:addons/repair/models/repair.py:0
+#: code:addons/repair/models/repair.py:0
 #, python-format
 msgid "Warning"
 msgstr "Avertissement"
@@ -1389,10 +1407,12 @@ msgstr "Vous ne pouvez pas annuler un ordre de réparation qui est déjà achev�
 #: code:addons/repair/models/repair.py:0
 #, python-format
 msgid ""
-"You cannot create a quotation for a repair order that is already linked to an existing sale order.\n"
+"You cannot create a quotation for a repair order that is already linked to "
+"an existing sale order.\n"
 "Concerned repair order(s) :\n"
 msgstr ""
-"Vous ne pouvez pas créer un devis pour un ordre de réparation qui est déjà lié à une commande existante.\n"
+"Vous ne pouvez pas créer un devis pour un ordre de réparation qui est déjà "
+"lié à une commande existante.\n"
 "Ordre(s) de réparation concerné(s) :\n"
 
 #. module: repair
@@ -1400,10 +1420,12 @@ msgstr ""
 #: code:addons/repair/models/repair.py:0
 #, python-format
 msgid ""
-"You need to define a customer for a repair order in order to create an associated quotation.\n"
+"You need to define a customer for a repair order in order to create an "
+"associated quotation.\n"
 "Concerned repair order(s) :\n"
 msgstr ""
-"Vous devez définir un client sur un ordre de réparation pour créer un devis associé. \n"
+"Vous devez définir un client sur un ordre de réparation pour créer un devis "
+"associé. \n"
 "Ordre(s) de réparation concerné(s) :\n"
 
 #. module: repair

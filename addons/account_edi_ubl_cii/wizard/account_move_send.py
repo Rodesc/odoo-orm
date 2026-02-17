@@ -7,6 +7,7 @@ from lxml import etree
 from xml.sax.saxutils import escape, quoteattr
 
 from odoo import _, api, fields, models, tools, SUPERUSER_ID
+from odoo.addons.account_edi_ubl_cii.models.account_edi_common import SUPPORTED_FILE_TYPES
 from odoo.tools import cleanup_xml_node
 from odoo.tools.pdf import OdooPdfFileReader, OdooPdfFileWriter
 
@@ -43,6 +44,11 @@ class AccountMoveSend(models.TransientModel):
             **values,
         }
 
+    def _get_invoice_edi_format(self):
+        # EXTENDS 'account'
+        self.ensure_one()
+        return self.move_ids.partner_id.commercial_partner_id.ubl_cii_format
+
     # -------------------------------------------------------------------------
     # COMPUTE METHODS
     # -------------------------------------------------------------------------
@@ -53,7 +59,7 @@ class AccountMoveSend(models.TransientModel):
             wizard.checkbox_ubl_cii_label = False
             if wizard.mode in ('invoice_single', 'invoice_multi'):
                 code_to_label = dict(wizard.move_ids.partner_id._fields['ubl_cii_format'].selection)
-                codes = wizard.move_ids.partner_id.mapped('ubl_cii_format')
+                codes = wizard.move_ids.partner_id.commercial_partner_id.mapped('ubl_cii_format')
                 if any(codes):
                     wizard.checkbox_ubl_cii_label = ", ".join(code_to_label[c] for c in set(codes) if c)
 
@@ -77,7 +83,7 @@ class AccountMoveSend(models.TransientModel):
         for wizard in self:
             wizard.show_ubl_company_warning = False
             wizard.ubl_partner_warning = False
-            if not set(wizard.move_ids.partner_id.mapped('ubl_cii_format')) - {False, 'facturx', 'oioubl_201'}:
+            if not set(wizard.move_ids.partner_id.commercial_partner_id.mapped('ubl_cii_format')) - {False, 'facturx', 'oioubl_201', 'ubl_tr'}:
                 return
 
             wizard.show_ubl_company_warning = not (wizard.company_id.partner_id.peppol_eas and wizard.company_id.partner_id.peppol_endpoint)
@@ -92,6 +98,21 @@ class AccountMoveSend(models.TransientModel):
                 wizard.ubl_partner_warning = _("The following partners are missing Peppol EAS or Peppol Endpoint field: %s. "
                                         "Please check those in their Accounting tab. "
                                         "Otherwise, the generated files will be incomplete.", names)
+
+    def _compute_attachments_not_supported(self):
+        # EXTENDS 'account'
+        super()._compute_attachments_not_supported()
+        for wizard in self:
+            if wizard.mode == 'invoice_single' and wizard.checkbox_ubl_cii_xml:
+                edi_format = wizard._get_invoice_edi_format()
+                _attachments_to_embed, attachments_not_supported = wizard._get_ubl_available_attachments(
+                    wizard.mail_attachments_widget,
+                    edi_format,
+                )
+                wizard.attachments_not_supported = {
+                    attachment.id: _("Unsupported file type via %s", edi_format)
+                    for attachment in attachments_not_supported
+                }
 
     # -------------------------------------------------------------------------
     # ATTACHMENTS
@@ -110,7 +131,7 @@ class AccountMoveSend(models.TransientModel):
         results = super()._get_placeholder_mail_attachments_data(move)
 
         if self.mode == 'invoice_single' and self._needs_ubl_cii_placeholder():
-            builder = move.partner_id._get_edi_builder()
+            builder = move.partner_id.commercial_partner_id._get_edi_builder()
             filename = builder._export_invoice_filename(move)
             results.append({
                 'id': f'placeholder_{filename}',
@@ -120,6 +141,27 @@ class AccountMoveSend(models.TransientModel):
             })
 
         return results
+
+    @api.depends('checkbox_ubl_cii_xml')
+    def _compute_display_attachments_widget(self):
+        # EXTENDS 'account'
+        super()._compute_display_attachments_widget()
+        for wizard in self:
+            if not wizard.display_attachments_widget and wizard.mode == 'invoice_single':
+                wizard.display_attachments_widget = wizard.checkbox_ubl_cii_xml and wizard._get_invoice_edi_format() == 'ubl_bis3'
+
+    @api.model
+    def _get_ubl_available_attachments(self, mail_attachments_widget, invoice_edi_format):
+        if not invoice_edi_format or not mail_attachments_widget:
+            return self.env['ir.attachment'], self.env['ir.attachment']
+        attachment_ids = [values['id'] for values in mail_attachments_widget if values.get('manual')]
+        attachments = self.env['ir.attachment'].browse(attachment_ids)
+
+        if invoice_edi_format != 'ubl_bis3':
+            return self.env['ir.attachment'], attachments
+
+        accepted_attachments = attachments.filtered(lambda attachment: attachment.mimetype in SUPPORTED_FILE_TYPES)
+        return accepted_attachments, attachments - accepted_attachments
 
     # -------------------------------------------------------------------------
     # BUSINESS ACTIONS
@@ -131,7 +173,7 @@ class AccountMoveSend(models.TransientModel):
         super()._hook_invoice_document_before_pdf_report_render(invoice, invoice_data)
 
         if invoice_data.get('ubl_cii_xml') and invoice._need_ubl_cii_xml():
-            builder = invoice.partner_id._get_edi_builder()
+            builder = invoice.partner_id.commercial_partner_id._get_edi_builder()
             xml_content, errors = builder._export_invoice(invoice)
             filename = builder._export_invoice_filename(invoice)
 
@@ -152,7 +194,7 @@ class AccountMoveSend(models.TransientModel):
                     'res_field': 'ubl_cii_xml_file',  # Binary field
                 }
                 invoice_data['ubl_cii_xml_options'] = {
-                    'ubl_cii_format': invoice.partner_id.ubl_cii_format,
+                    'ubl_cii_format': invoice.partner_id.commercial_partner_id.ubl_cii_format,
                     'builder': builder,
                 }
 
@@ -173,7 +215,7 @@ class AccountMoveSend(models.TransientModel):
 
         # during tests, no wkhtmltopdf, create the attachment for test purposes
         if tools.config['test_enable']:
-            self.env['ir.attachment'].create({
+            self.env['ir.attachment'].sudo().create({
                 'name': 'factur-x.xml',
                 'raw': xml_facturx,
                 'res_id': invoice.id,
@@ -208,6 +250,8 @@ class AccountMoveSend(models.TransientModel):
                     'date': fields.Date.context_today(self),
                 },
             )
+            if "<pdfaid:conformance>B</pdfaid:conformance>" in content:
+                content.replace("<pdfaid:conformance>B</pdfaid:conformance>", "<pdfaid:conformance>A</pdfaid:conformance>")
             writer.add_file_metadata(content.encode())
 
         # Replace the current content.
@@ -225,9 +269,9 @@ class AccountMoveSend(models.TransientModel):
         if not anchor_elements:
             return
 
-        pdf_values = invoice_data.get('pdf_attachment_values') or invoice_data['proforma_pdf_attachment_values']
-        filename = pdf_values['name']
-        content = pdf_values['raw']
+        xmlns_move_type = 'Invoice' if invoice.move_type == 'out_invoice' else 'CreditNote'
+        anchor_index = tree.index(anchor_elements[0])
+        pdf_values = invoice.invoice_pdf_report_id or invoice_data.get('pdf_attachment_values') or invoice_data['proforma_pdf_attachment_values']
 
         doc_type_node = ""
         edi_model = invoice_data["ubl_cii_xml_options"]["builder"]
@@ -235,25 +279,45 @@ class AccountMoveSend(models.TransientModel):
         if doc_type_code_vals['value']:
             doc_type_code_attrs = " ".join(f'{name}="{value}"' for name, value in doc_type_code_vals['attrs'].items())
             doc_type_node = f"<cbc:DocumentTypeCode {doc_type_code_attrs}>{doc_type_code_vals['value']}</cbc:DocumentTypeCode>"
-        to_inject = f'''
-            <cac:AdditionalDocumentReference
-                xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-                xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-                xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
-                <cbc:ID>{escape(filename)}</cbc:ID>
-                {doc_type_node}
-                <cac:Attachment>
-                    <cbc:EmbeddedDocumentBinaryObject
-                        mimeCode="application/pdf"
-                        filename={quoteattr(filename)}>
-                        {base64.b64encode(content).decode()}
-                    </cbc:EmbeddedDocumentBinaryObject>
-                </cac:Attachment>
-            </cac:AdditionalDocumentReference>
-        '''
 
-        anchor_index = tree.index(anchor_elements[0])
-        tree.insert(anchor_index, etree.fromstring(to_inject))
+        attachments_to_embed = [
+            {
+                'filename': attachment.name,
+                'raw': attachment.raw,
+                'mimetype': attachment.mimetype,
+            }
+            for attachment in self._get_ubl_available_attachments(
+                invoice_data['mail_attachments_widget'],
+                invoice.partner_id.commercial_partner_id.ubl_cii_format,
+            )[0]
+        ] if invoice_data.get('mail_attachments_widget') else []
+        attachments_to_embed.append({
+            'filename': pdf_values['name'],
+            'raw': pdf_values['raw'],
+            'mimetype': pdf_values['mimetype'],
+            'xmlns': f'xmlns="urn:oasis:names:specification:ubl:schema:xsd:{xmlns_move_type}-2"',
+            'document_type_node': doc_type_node,
+        })
+
+        for attachment_values in attachments_to_embed:
+            to_inject = f'''
+                <cac:AdditionalDocumentReference
+                    {attachment_values.get("xmlns", "")}
+                    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+                    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+                    <cbc:ID>{escape(attachment_values["filename"])}</cbc:ID>
+                    {attachment_values.get("document_type_node", "")}
+                    <cac:Attachment>
+                        <cbc:EmbeddedDocumentBinaryObject
+                            mimeCode={quoteattr(attachment_values["mimetype"])}
+                            filename={quoteattr(attachment_values['filename'])}>
+                            {base64.b64encode(attachment_values['raw']).decode()}
+                        </cbc:EmbeddedDocumentBinaryObject>
+                    </cac:Attachment>
+                </cac:AdditionalDocumentReference>
+            '''
+            tree.insert(anchor_index, etree.fromstring(to_inject))
+
         invoice_data['ubl_cii_xml_attachment_values']['raw'] = etree.tostring(
             cleanup_xml_node(tree), xml_declaration=True, encoding='UTF-8'
         )

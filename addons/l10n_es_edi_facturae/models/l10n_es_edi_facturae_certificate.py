@@ -1,4 +1,3 @@
-import re
 from base64 import b64decode, b64encode, encodebytes
 from copy import deepcopy
 from hashlib import sha1
@@ -73,7 +72,16 @@ class Certificate(models.Model):
         root = deepcopy(edi_data)
         cert_private, cert_public = self._decode_certificate()
         public_key_numbers = cert_public.public_key().public_numbers()
-        issuer = ', '.join(sorted(element.rfc4514_string() for element in cert_public.issuer.rdns if re.match(r'[A-Z]{1,2}', element.rfc4514_string())))
+
+        issuer_key_priority = {
+            'CN': 0,
+            'OU': 1,
+            'O': 2,
+            'C': 3,
+        }
+        items = [rdn.rfc4514_string() for rdn in cert_public.issuer.rdns]
+        sorted_items = sorted(items, key=lambda item_string: issuer_key_priority.get(item_string.split('=', 1)[0], 99))
+        issuer = ", ".join(sorted_items)
 
         # Identifiers
         document_id = f"Document-{sha1(etree.tostring(edi_data)).hexdigest()}"

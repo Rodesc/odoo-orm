@@ -27,6 +27,10 @@ class PeppolSettingsButtons extends Component {
         });
     }
 
+    get useParentCompany() {
+        return Boolean(this.props.record.data.peppol_use_parent_company);
+    }
+
     get proxyState() {
         return this.props.record.data.account_peppol_proxy_state;
     }
@@ -91,14 +95,6 @@ class PeppolSettingsButtons extends Component {
             },
             cancel: () => { },
         });
-    }
-
-    migrate() {
-        this.showConfirmation(
-            "This will migrate your Peppol registration away from Odoo. A migration key will be generated. \
-            If the other service does not support migration, consider deregistering instead.",
-            "button_migrate_peppol_registration"
-        )
     }
 
     deregister() {

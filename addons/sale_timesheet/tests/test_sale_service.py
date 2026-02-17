@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import tagged
+from odoo.tests.common import Form
 
 
 @tagged('-at_install', 'post_install')
@@ -881,3 +881,141 @@ class TestSaleService(TestCommonSaleTimesheet):
         sale_order_2._compute_timesheet_count()
         sale_order_2._compute_show_hours_recorded_button()
         self.assertTrue(sale_order_2.show_hours_recorded_button, "There is a product service with the service_policy set on 'delivered on timesheet' and a project on the sale order, the button should be displayed")
+
+    def test_timesheet_hours_delivered_rounding(self):
+        """
+        Ensure hours are rounded consistently on SO & invoice.
+        """
+        self.env.company.project_time_mode_id.rounding = 1.0
+        self.env['sale.order.line'].create({
+            'name': self.product_delivery_timesheet3.name,
+            'product_id': self.product_delivery_timesheet3.id,
+            'product_uom_qty': 10,
+            'product_uom': self.product_delivery_timesheet3.uom_id.id,
+            'price_unit': self.product_delivery_timesheet3.list_price,
+            'order_id': self.sale_order.id,
+        })
+
+        for amount in (8.1, 8.5, 8.9):
+            order = self.sale_order.copy()
+            sol = order.order_line
+            order.action_confirm()
+
+            self.env['account.analytic.line'].create([{
+                'name': 'Test Line',
+                'project_id': sol.project_id.id,
+                'task_id': sol.task_id.id,
+                'unit_amount': amount,
+                'employee_id': self.employee_manager.id,
+            }])
+
+            invoice = order._create_invoices()
+            hours_delivered = sol._get_delivered_quantity_by_analytic([])[sol.id]
+
+            self.assertEqual(
+                order.timesheet_total_duration,
+                hours_delivered,
+                f"{amount} hours delivered should round the same for SO & timesheet",
+            )
+            self.assertEqual(
+                invoice.timesheet_total_duration,
+                hours_delivered,
+                f"{amount} hours delivered should round the same for invoice & timesheet",
+            )
+
+    def test_service_product_uom_default(self):
+        """
+        Test that user-defined UoM default is respected when creating a product or product variant
+        """
+        uom_cm = self.env.ref('uom.product_uom_cm')
+        uom_day = self.env.ref('uom.product_uom_day')
+        uom_hour = self.env.ref('uom.product_uom_hour')
+        test_user = self.env['res.users'].create({
+            'name': 'test user',
+            'login': 'test_uom_default_user',
+            'email': 'test_uom_default@example.com',
+        })
+        self.env['ir.default'].set('product.template', 'uom_id',
+                                   uom_cm.id, user_id=test_user.id, company_id=self.env.company.id)
+        self.env['ir.default'].set('product.product', 'uom_id',
+                                   uom_cm.id, user_id=test_user.id, company_id=self.env.company.id)
+
+        # - product.template
+        product_form = Form(self.env['product.template'].with_user(test_user))
+        product_form.name = 'product test'
+        product = product_form.save()
+        self.assertEqual(product.uom_id, uom_cm, "UoM default was not respected")
+
+        product_form = Form(self.env['product.template'].with_user(test_user))
+        product_form.name = 'timesheet service'
+        product_form.detailed_type = 'service'
+        product_form.service_policy = 'delivered_timesheet'
+        product = product_form.save()
+        self.assertEqual(product.uom_id, uom_hour, "UoM should be hours for timesheet service when default is not a time unit")
+
+        self.env['ir.default'].set('product.template', 'uom_id',
+                                   uom_day.id, user_id=test_user.id, company_id=self.env.company.id)
+        product_form = Form(self.env['product.template'].with_user(test_user))
+        product_form.name = 'timesheet service'
+        product_form.detailed_type = 'service'
+        product_form.service_policy = 'delivered_timesheet'
+        product = product_form.save()
+        self.assertEqual(product.uom_id, uom_day, "time UoM default was not respected")
+
+        # - product.product
+        product_form = Form(self.env['product.product'].with_user(test_user))
+        product_form.name = 'product variant test'
+        product = product_form.save()
+        self.assertEqual(product.uom_id, uom_cm, "UoM default was not respected")
+
+        product_form = Form(self.env['product.product'].with_user(test_user))
+        product_form.name = 'timesheet service'
+        product_form.detailed_type = 'service'
+        product_form.service_policy = 'delivered_timesheet'
+        product = product_form.save()
+        self.assertEqual(product.uom_id, uom_hour, "UoM should be hours for timesheet service when default is not a time unit")
+
+        self.env['ir.default'].set('product.product', 'uom_id',
+                                   uom_day.id, user_id=test_user.id, company_id=self.env.company.id)
+        product_form = Form(self.env['product.product'].with_user(test_user))
+        product_form.name = 'timesheet service'
+        product_form.detailed_type = 'service'
+        product_form.service_policy = 'delivered_timesheet'
+        product = product_form.save()
+        self.assertEqual(product.uom_id, uom_day, "time UoM default was not respected")
+
+    def test_prepaid_pack_remaining_hours_rounding(self):
+        """Avoid double rounding with pack UoM"""
+        uom_day = self.env.ref('uom.product_uom_day')
+        pack20 = self.env['uom.uom'].create({
+            'name': 'Pack of 20 Hours',
+            'category_id': uom_day.category_id.id,
+            'uom_type': 'bigger',
+            'factor_inv': 2.5,
+        })
+        product = self.env['product.product'].create({
+            'name': 'Prepaid Pack 20h',
+            'type': 'service',
+            'uom_id': pack20.id,
+            'service_type': 'timesheet',
+            'service_policy': 'ordered_prepaid',
+            'service_tracking': 'task_in_project',
+        })
+        order = self.env['sale.order'].create({'partner_id': self.partner_a.id})
+        sol = self.env['sale.order.line'].create({
+            'order_id': order.id,
+            'product_id': product.id,
+            'product_uom_qty': 1.0,
+            'product_uom': pack20.id,
+        })
+        order.action_confirm()
+        self.env['account.analytic.line'].create({
+            'name': 'Over-consumed timesheet',
+            'project_id': sol.project_id.id,
+            'task_id': sol.task_id.id,
+            'unit_amount': 22.0,
+            'employee_id': self.employee_user.id,
+        })
+        sol.invalidate_recordset()
+        self.assertAlmostEqual(sol.remaining_hours, -2.0, places=6)
+        self.assertIn('-02:00', sol.with_context(with_remaining_hours=True).display_name)

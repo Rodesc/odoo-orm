@@ -1,24 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* pos_sale
-# 
+#
 # Translators:
 # Wil Odoo, 2023
 # Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
 "Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/odoo/teams/41243/uk/)\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: uk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -118,12 +121,11 @@ msgstr "Доставлено з"
 #, python-format
 msgid "Do you want to load the SN/Lots linked to the Sales Order?"
 msgstr ""
-"Ви хочете завантажити серійний/партійний номер, пов'язаний із Замовленням на"
-" продаж?"
+"Ви хочете завантажити серійний/партійний номер, пов'язаний із Замовленням на "
+"продаж?"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Down Payment"
@@ -159,6 +161,13 @@ msgstr "Баланс боргу: %s"
 #, python-format
 msgid "E.g. customer: Steward, date: 2020-05-09"
 msgstr "Напр., клієнт: Стюарт, дата: 2020-05-09"
+
+#. module: pos_sale
+#. odoo-javascript
+#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
+#, python-format
+msgid "Error amount too high"
+msgstr "Сума помилки занадто висока"
 
 #. module: pos_sale
 #. odoo-javascript
@@ -213,14 +222,12 @@ msgstr "Заблокований"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
 #, python-format
 msgid "Next Order List"
 msgstr "Список наступних замовлень"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "No"
@@ -300,7 +307,6 @@ msgstr "Розрахунок замовлення точки продажу"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
 #, python-format
 msgid "Previous Order List"
 msgstr "Список попередніх замовлень"
@@ -347,7 +353,6 @@ msgstr "Завантаження серійного/партійного ном�
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/overrides/components/product_screen/product_screen.xml:0
 #: code:addons/pos_sale/static/src/overrides/components/product_screen/product_screen.xml:0
 #, python-format
 msgid "SO"
@@ -431,7 +436,6 @@ msgstr "Запуск сесій"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/set_sale_order_button/set_sale_order_button.xml:0
 #: code:addons/pos_sale/static/src/app/set_sale_order_button/set_sale_order_button.xml:0
 #, python-format
 msgid "Set Sale Order"
@@ -557,7 +561,6 @@ msgstr "Що би ви хотіли зробити?"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Yes"

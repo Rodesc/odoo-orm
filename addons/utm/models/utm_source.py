@@ -50,12 +50,21 @@ class UtmSourceMixin(models.AbstractModel):
     name = fields.Char('Name', related='source_id.name', readonly=False)
     source_id = fields.Many2one('utm.source', string='Source', required=True, ondelete='restrict', copy=False)
 
+    @api.model
+    def default_get(self, fields_list):
+        # Exclude 'name' from fields_list to avoid retrieving it from context.
+        return super().default_get([field for field in fields_list if field != "name"])
+
     @api.model_create_multi
     def create(self, vals_list):
         """Create the UTM sources if necessary, generate the name based on the content in batch."""
         # Create all required <utm.source>
         utm_sources = self.env['utm.source'].create([
-            {'name': values.get('name') or self.env['utm.source']._generate_name(self, values.get(self._rec_name))}
+            {
+                'name': values.get('name')
+                or self.env.context.get('default_name')
+                or self.env['utm.source']._generate_name(self, values.get(self._rec_name)),
+            }
             for values in vals_list
             if not values.get('source_id')
         ])
@@ -72,10 +81,17 @@ class UtmSourceMixin(models.AbstractModel):
         return super().create(vals_list)
 
     def write(self, values):
+        if (values.get(self._rec_name) or values.get('name')) and len(self) > 1:
+            raise ValueError(
+                _('You cannot update multiple records with the same name. The name should be unique!')
+            )
+
         if values.get(self._rec_name) and not values.get('name'):
             values['name'] = self.env['utm.source']._generate_name(self, values[self._rec_name])
         if values.get('name'):
-            values['name'] = self.env['utm.mixin']._get_unique_names(self._name, [values['name']])[0]
+            values['name'] = self.env['utm.mixin'].with_context(
+                utm_check_skip_record_ids=self.source_id.ids
+            )._get_unique_names("utm.source", [values['name']])[0]
 
         return super().write(values)
 
@@ -83,5 +99,5 @@ class UtmSourceMixin(models.AbstractModel):
         """Increment the counter when duplicating the source."""
         default = default or {}
         default_name = default.get('name')
-        default['name'] = self.env['utm.mixin']._get_unique_names(self._name, [default_name or self.name])[0]
+        default['name'] = self.env['utm.mixin']._get_unique_names("utm.source", [default_name or self.name])[0]
         return super().copy(default)

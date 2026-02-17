@@ -46,13 +46,17 @@ class AccountFiscalPosition(models.Model):
     zip_to = fields.Char(string='Zip Range To')
     # To be used in hiding the 'Federal States' field('attrs' in view side) when selected 'Country' has 0 states.
     states_count = fields.Integer(compute='_compute_states_count')
-    foreign_vat = fields.Char(string="Foreign Tax ID", help="The tax ID of your company in the region mapped by this fiscal position.")
+    foreign_vat = fields.Char(string="Foreign Tax ID", inverse="_inverse_foreign_vat", help="The tax ID of your company in the region mapped by this fiscal position.")
 
     # Technical field used to display a banner on top of foreign vat fiscal positions,
     # in order to ease the instantiation of foreign taxes when possible.
     foreign_vat_header_mode = fields.Selection(
         selection=[('templates_found', "Templates Found"), ('no_template', "No Template")],
         compute='_compute_foreign_vat_header_mode')
+
+    def _inverse_foreign_vat(self):
+        # Hook for extension
+        pass
 
     def _compute_states_count(self):
         for position in self:
@@ -76,31 +80,39 @@ class AccountFiscalPosition(models.Model):
     @api.constrains('zip_from', 'zip_to')
     def _check_zip(self):
         for position in self:
-            if position.zip_from and position.zip_to and position.zip_from > position.zip_to:
-                raise ValidationError(_('Invalid "Zip Range", please configure it properly.'))
+            if bool(position.zip_from) != bool(position.zip_to) or position.zip_from > position.zip_to:
+                raise ValidationError(_('Invalid "Zip Range", You have to configure both "From" and "To" values for the zip range and "To" should be greater than "From".'))
 
-    @api.constrains('country_id', 'state_ids', 'foreign_vat')
+    @api.constrains('country_id', 'country_group_id', 'state_ids', 'foreign_vat')
     def _validate_foreign_vat_country(self):
         for record in self:
             if record.foreign_vat:
                 if record.country_id == record.company_id.account_fiscal_country_id:
-                    if record.foreign_vat == record.company_id.vat:
-                        raise ValidationError(_("You cannot create a fiscal position within your fiscal country with the same VAT number as the main one set on your company."))
-
                     if not record.state_ids:
                         if record.company_id.account_fiscal_country_id.state_ids:
                             raise ValidationError(_("You cannot create a fiscal position with a foreign VAT within your fiscal country without assigning it a state."))
-                        else:
-                            raise ValidationError(_("You cannot create a fiscal position with a foreign VAT within your fiscal country."))
+                if record.country_group_id and record.country_id:
+                    if record.country_id not in record.country_group_id.country_ids:
+                        raise ValidationError(_("You cannot create a fiscal position with a country outside of the selected country group."))
 
                 similar_fpos_domain = [
                     *self.env['account.fiscal.position']._check_company_domain(record.company_id),
                     ('foreign_vat', '!=', False),
-                    ('country_id', '=', record.country_id.id),
                     ('id', '!=', record.id),
                 ]
+
+                if record.country_group_id:
+                    foreign_vat_country = self.country_group_id.country_ids.filtered(lambda c: c.code == record.foreign_vat[:2].upper())
+                    if not foreign_vat_country:
+                        raise ValidationError(_("The country code of the foreign VAT number does not match any country in the group."))
+                    similar_fpos_domain += [('country_group_id', '=', record.country_group_id.id), ('country_id', '=', foreign_vat_country.id)]
+                elif record.country_id:
+                    similar_fpos_domain += [('country_id', '=', record.country_id.id), ('country_group_id', '=', False)]
+
                 if record.state_ids:
                     similar_fpos_domain.append(('state_ids', 'in', record.state_ids.ids))
+                else:
+                    similar_fpos_domain.append(('state_ids', '=', False))
 
                 similar_fpos_count = self.env['account.fiscal.position'].search_count(similar_fpos_domain)
                 if similar_fpos_count:
@@ -135,23 +147,24 @@ class AccountFiscalPosition(models.Model):
     @api.onchange('country_id')
     def _onchange_country_id(self):
         if self.country_id:
-            self.zip_from = self.zip_to = self.country_group_id = False
+            self.zip_from = self.zip_to = False
             self.state_ids = [(5,)]
             self.states_count = len(self.country_id.state_ids)
 
     @api.onchange('country_group_id')
     def _onchange_country_group_id(self):
         if self.country_group_id:
-            self.zip_from = self.zip_to = self.country_id = False
+            self.zip_from = self.zip_to = False
             self.state_ids = [(5,)]
 
     @api.model
     def _convert_zip_values(self, zip_from='', zip_to=''):
-        max_length = max(len(zip_from), len(zip_to))
-        if zip_from.isdigit():
-            zip_from = zip_from.rjust(max_length, '0')
-        if zip_to.isdigit():
-            zip_to = zip_to.rjust(max_length, '0')
+        if zip_from and zip_to:
+            max_length = max(len(zip_from), len(zip_to))
+            if zip_from.isdigit():
+                zip_from = zip_from.rjust(max_length, '0')
+            if zip_to.isdigit():
+                zip_to = zip_to.rjust(max_length, '0')
         return zip_from, zip_to
 
     @api.model_create_multi
@@ -175,38 +188,45 @@ class AccountFiscalPosition(models.Model):
     def _get_fpos_by_region(self, country_id=False, state_id=False, zipcode=False, vat_required=False):
         if not country_id:
             return False
+
+        def local_get_fpos_by_region(base_domain):
+            null_state_dom = state_domain = [('state_ids', '=', False)]
+            null_zip_dom = zip_domain = [('zip_from', '=', False), ('zip_to', '=', False)]
+            null_country_dom = [('country_id', '=', False), ('country_group_id', '=', False)]
+
+            if zipcode:
+                zip_domain = [('zip_from', '<=', zipcode), ('zip_to', '>=', zipcode)]
+
+            if state_id:
+                state_domain = [('state_ids', '=', state_id)]
+
+            domain_country = base_domain + [('country_id', '=', country_id)]
+            domain_group = base_domain + [('country_group_id.country_ids', '=', country_id)]
+
+            # Build domain to search records with exact matching criteria
+            fpos = self.search(domain_country + state_domain + zip_domain, limit=1)
+            # return records that fit the most the criteria, and fallback on less specific fiscal positions if any can be found
+            if not fpos and state_id:
+                fpos = self.search(domain_country + null_state_dom + zip_domain, limit=1)
+            if not fpos and zipcode:
+                fpos = self.search(domain_country + state_domain + null_zip_dom, limit=1)
+            if not fpos and state_id and zipcode:
+                fpos = self.search(domain_country + null_state_dom + null_zip_dom, limit=1)
+
+            # fallback: country group with no state/zip range
+            if not fpos:
+                fpos = self.search(domain_group + null_state_dom + null_zip_dom, limit=1)
+
+            if not fpos:
+                # Fallback on catchall (no country, no group)
+                fpos = self.search(base_domain + null_country_dom, limit=1)
+            return fpos
+
         base_domain = self._prepare_fpos_base_domain(vat_required)
-        null_state_dom = state_domain = [('state_ids', '=', False)]
-        null_zip_dom = zip_domain = [('zip_from', '=', False), ('zip_to', '=', False)]
-        null_country_dom = [('country_id', '=', False), ('country_group_id', '=', False)]
-
-        if zipcode:
-            zip_domain = [('zip_from', '<=', zipcode), ('zip_to', '>=', zipcode)]
-
-        if state_id:
-            state_domain = [('state_ids', '=', state_id)]
-
-        domain_country = base_domain + [('country_id', '=', country_id)]
-        domain_group = base_domain + [('country_group_id.country_ids', '=', country_id)]
-
-        # Build domain to search records with exact matching criteria
-        fpos = self.search(domain_country + state_domain + zip_domain, limit=1)
-        # return records that fit the most the criteria, and fallback on less specific fiscal positions if any can be found
-        if not fpos and state_id:
-            fpos = self.search(domain_country + null_state_dom + zip_domain, limit=1)
-        if not fpos and zipcode:
-            fpos = self.search(domain_country + state_domain + null_zip_dom, limit=1)
-        if not fpos and state_id and zipcode:
-            fpos = self.search(domain_country + null_state_dom + null_zip_dom, limit=1)
-
-        # fallback: country group with no state/zip range
-        if not fpos:
-            fpos = self.search(domain_group + null_state_dom + null_zip_dom, limit=1)
-
-        if not fpos:
-            # Fallback on catchall (no country, no group)
-            fpos = self.search(base_domain + null_country_dom, limit=1)
-        return fpos
+        if fpos := local_get_fpos_by_region([('company_id', '=', self.env.company.id)] + base_domain):
+            return fpos
+        else:
+            return local_get_fpos_by_region(base_domain)
 
     def _get_vat_valid(self, delivery, company=None):
         """ Hook for determining VAT validity with more complex VAT requirements """
@@ -248,11 +268,11 @@ class AccountFiscalPosition(models.Model):
             return manual_fiscal_position
 
         # First search only matching VAT positions
-        vat_valid = self._get_vat_valid(delivery, company)
-        fp = self._get_fpos_by_region(delivery.country_id.id, delivery.state_id.id, delivery.zip, vat_valid)
+        vat_required = bool(partner.vat)
+        fp = self._get_fpos_by_region(delivery.country_id.id, delivery.state_id.id, delivery.zip, vat_required)
 
         # Then if VAT required found no match, try positions that do not require it
-        if not fp and vat_valid:
+        if not fp and vat_required:
             fp = self._get_fpos_by_region(delivery.country_id.id, delivery.state_id.id, delivery.zip, False)
 
         return fp or self.env['account.fiscal.position']
@@ -512,6 +532,7 @@ class ResPartner(models.Model):
             else:
                 partner.currency_id = self.env.company.currency_id
 
+    name = fields.Char(tracking=True)
     credit = fields.Monetary(compute='_credit_debit_get', search=_credit_search,
         string='Total Receivable', help="Total amount this customer owes you.",
         groups='account.group_account_invoice,account.group_account_readonly')
@@ -525,7 +546,8 @@ class ResPartner(models.Model):
         company_dependent=True, copy=False, readonly=False)
     use_partner_credit_limit = fields.Boolean(
         string='Partner Limit', groups='account.group_account_invoice,account.group_account_readonly',
-        compute='_compute_use_partner_credit_limit', inverse='_inverse_use_partner_credit_limit')
+        compute='_compute_use_partner_credit_limit', inverse='_inverse_use_partner_credit_limit',
+        help='Set a value greater than 0.0 to activate a credit limit check')
     show_credit_limit = fields.Boolean(
         default=lambda self: self.env.company.account_use_credit_limit,
         compute='_compute_show_credit_limit', groups='account.group_account_invoice,account.group_account_readonly')
@@ -564,6 +586,7 @@ class ResPartner(models.Model):
         help="This payment term will be used instead of the default one for purchase orders and vendor bills")
     ref_company_ids = fields.One2many('res.company', 'partner_id',
         string='Companies that refers to partner')
+    supplier_invoice_count = fields.Integer(compute='_compute_supplier_invoice_count', string='# Vendor Bills')
     has_unreconciled_entries = fields.Boolean(compute='_compute_has_unreconciled_entries',
         help="The partner has at least one unreconciled debit and credit since last time the invoices & payments matching was performed.")
     last_time_entries_checked = fields.Datetime(
@@ -586,12 +609,34 @@ class ResPartner(models.Model):
     duplicated_bank_account_partners_count = fields.Integer(
         compute='_compute_duplicated_bank_account_partners_count',
     )
+    # DEPRECATED, DO NOT USE, TO BE REMOVED IN MASTER
+    is_coa_installed = fields.Boolean(store=False, default=lambda partner: bool(partner.env.company.chart_template))
 
     def _compute_bank_count(self):
         bank_data = self.env['res.partner.bank']._read_group([('partner_id', 'in', self.ids)], ['partner_id'], ['__count'])
         mapped_data = {partner.id: count for partner, count in bank_data}
         for partner in self:
             partner.bank_account_count = mapped_data.get(partner.id, 0)
+
+    def _compute_supplier_invoice_count(self):
+        # retrieve all children partners and prefetch 'parent_id' on them
+        all_partners = self.with_context(active_test=False).search_fetch(
+            [('id', 'child_of', self.ids)],
+            ['parent_id'],
+        )
+        supplier_invoice_groups = self.env['account.move']._read_group(
+            domain=[('partner_id', 'in', all_partners.ids),
+                    ('move_type', 'in', ('in_invoice', 'in_refund'))],
+            groupby=['partner_id'], aggregates=['__count']
+        )
+        self_ids = set(self._ids)
+
+        self.supplier_invoice_count = 0
+        for partner, count in supplier_invoice_groups:
+            while partner:
+                if partner.id in self_ids:
+                    partner.supplier_invoice_count += count
+                partner = partner.parent_id
 
     def _get_duplicated_bank_accounts(self):
         self.ensure_one()
@@ -736,6 +781,7 @@ class ResPartner(models.Model):
                     """).format(field=sql.Identifier(field))
                     self.env.cr.execute(query, {'partner_ids': tuple(self.ids), 'n': n})
                     self.invalidate_recordset([field])
+                    self.modified([field])
             except DatabaseError as e:
                 # 55P03 LockNotAvailable
                 # 40001 SerializationFailure
@@ -793,8 +839,8 @@ class ResPartner(models.Model):
         if not vat:
             return None
 
-        # Sometimes, the vat is specified with some whitespaces.
-        normalized_vat = vat.replace(' ', '')
+        # Sometimes, the vat is specified with some whitespaces or dots.
+        normalized_vat = vat.replace(' ', '').replace('.', '')
         country_prefix = re.match('^[a-zA-Z]{2}|^', vat).group()
 
         partner = self.env['res.partner'].search(extra_domain + [('vat', 'in', (normalized_vat, vat))], limit=2)
@@ -890,6 +936,10 @@ class ResPartner(models.Model):
                 [('company_id', '=', False)],
             ):
                 partner = search_method(extra_domain)
+
+                # The VAT should be a sufficiently distinctive criterion
+                if partner and search_method == search_with_vat:
+                    return partner[:1]
                 if partner and len(partner) == 1:
                     return partner
         return self.env['res.partner']

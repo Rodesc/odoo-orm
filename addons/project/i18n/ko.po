@@ -1,25 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* project
-# 
+# * project
+#
 # Translators:
-# Daye Jeong, 2023
-# Sarah Park, 2024
+# Daye Jeong, 2024
 # Wil Odoo, 2024
-# 
+# Sarah Park, 2025
+#
+# "Kwanghee Park (kwpa)" <kwpa@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 10:44+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2024\n"
-"Language-Team: Korean (https://app.transifex.com/odoo/teams/41243/ko/)\n"
+"POT-Creation-Date: 2025-12-29 18:36+0000\n"
+"PO-Revision-Date: 2026-02-14 08:06+0000\n"
+"Last-Translator: \"Kwanghee Park (kwpa)\" <kwpa@odoo.com>\n"
+"Language-Team: Korean <https://translate.odoo.com/projects/odoo-17/project/"
+"ko/>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. module: project
 #. odoo-python
@@ -30,7 +33,8 @@ msgid ""
 "                <p class=\"o_view_nocontent_smiling_face\">\n"
 "                    No milestones found. Let's create one!\n"
 "                </p><p>\n"
-"                    Track major progress points that must be reached to achieve success.\n"
+"                    Track major progress points that must be reached to "
+"achieve success.\n"
 "                </p>\n"
 "            "
 msgstr ""
@@ -38,7 +42,8 @@ msgstr ""
 "                <p class=\"o_view_nocontent_smiling_face\">\n"
 "                    마일스톤을 찾을 수 없습니다. 지금 생성해 주세요!\n"
 "                </p><p>\n"
-"                    성공적으로 완료하기 위해 달성해야 하는 주요 진행 포인트를 추적하십시오.\n"
+"                    성공적으로 완료하기 위해 달성해야 하는 주요 진행 포인트"
+"를 추적하십시오.\n"
 "                </p>\n"
 "            "
 
@@ -85,8 +90,8 @@ msgid ""
 "#{record.milestone_count_reached.value} Milestones reached out of "
 "#{record.milestone_count.value}"
 msgstr ""
-"#{record.milestone_count.value}에 도달한 #{record.milestone_count_reached.value}"
-" 마일스톤"
+"#{record.milestone_count.value}에 도달한 "
+"#{record.milestone_count_reached.value} 마일스톤"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.portal_tasks_list
@@ -197,58 +202,76 @@ msgstr "카드를 <b>끌어서</b> 작업의 단계를 수정합니다."
 msgid ""
 "<b>Log notes</b> for internal communications <i>(the people following this "
 "task won't be notified of the note you are logging unless you specifically "
-"tag them)</i>. Use @ <b>mentions</b> to ping a colleague or # "
-"<b>mentions</b> to reach an entire team."
+"tag them)</i>. Use @ <b>mentions</b> to ping a colleague or # <b>mentions</"
+"b> to reach an entire team."
 msgstr ""
-"<b>로그 메모</b>를 내부 커뮤니케이션용으로 기록합니다 <i>(특별히 태그를 지정하지 않는 한 작업 팔로워에게는 로그 메모에 대한 "
-"알림을 보내지 않습니다)</i>. @ 기호로 동료에게 <b>멘션</b>하거나 # 기호로 팀 전체에 <b>멘션</b>으로 전달할 수도 "
-"있습니다."
+"<b>로그 메모</b>를 내부 커뮤니케이션용으로 기록합니다 <i>(특별히 태그를 지정"
+"하지 않는 한 작업 팔로워에게는 로그 메모에 대한 알림을 보내지 않습니다)</i>. "
+"@ 기호로 동료에게 <b>멘션</b>하거나 # 기호로 팀 전체에 <b>멘션</b>으로 전달"
+"할 수도 있습니다."
 
 #. module: project
 #: model:mail.template,body_html:project.rating_project_request_email_template
 msgid ""
 "<div>\n"
-"    <t t-set=\"access_token\" t-value=\"object._rating_get_access_token()\"></t>\n"
+"    <t t-set=\"access_token\" t-value=\"object._rating_get_access_token()"
+"\"></t>\n"
 "    <t t-set=\"partner\" t-value=\"object._rating_get_partner()\"></t>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"width:100%; margin:0px auto;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"width:100%; margin:0px auto;\">\n"
 "    <tbody>\n"
 "        <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
 "            <t t-if=\"partner.name\">\n"
-"                Hello <t t-out=\"partner.name or ''\">Brandon Freeman</t>,<br><br>\n"
+"                Hello <t t-out=\"partner.name or ''\">Brandon Freeman</t>,"
+"<br><br>\n"
 "            </t>\n"
 "            <t t-else=\"\">\n"
 "                Hello,<br><br>\n"
 "            </t>\n"
-"            Please take a moment to rate our services related to the <strong t-out=\"object.name or ''\">Planning and budget</strong> task\n"
+"            Please take a moment to rate our services related to the <strong "
+"t-out=\"object.name or ''\">Planning and budget</strong> task\n"
 "            <t t-if=\"object._rating_get_operator().name\">\n"
-"                assigned to <strong t-out=\"object._rating_get_operator().name or ''\">Mitchell Admin</strong>.<br>\n"
+"                assigned to <strong t-"
+"out=\"object._rating_get_operator().name or ''\">Mitchell Admin</strong>."
+"<br>\n"
 "            </t>\n"
 "            <t t-else=\"\">\n"
 "                .<br>\n"
 "            </t>\n"
 "        </td></tr>\n"
 "        <tr><td style=\"text-align: center;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" summary=\"o_mail_notification\" style=\"width:100%; margin: 32px 0px 32px 0px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" summary=\"o_mail_notification\" style=\"width:100%; margin: "
+"32px 0px 32px 0px;\">\n"
 "                <tr><td style=\"font-size: 13px;\">\n"
-"                    <strong>Tell us how you feel about our services</strong><br>\n"
-"                    <span style=\"font-size: 12px; opacity: 0.5; color: #454748;\">(click on one of these smileys)</span>\n"
+"                    <strong>Tell us how you feel about our services</"
+"strong><br>\n"
+"                    <span style=\"font-size: 12px; opacity: 0.5; color: "
+"#454748;\">(click on one of these smileys)</span>\n"
 "                </td></tr>\n"
 "                <tr><td style=\"font-size: 13px;\">\n"
-"                    <table style=\"width:100%;text-align:center;margin-top:2rem;\">\n"
+"                    <table style=\"width:100%;text-align:center;margin-"
+"top:2rem;\">\n"
 "                        <tr>\n"
 "                            <td>\n"
-"                                <a t-attf-href=\"/rate/{{ access_token }}/5\">\n"
-"                                    <img alt=\"Satisfied\" src=\"/rating/static/src/img/rating_5.png\" title=\"Satisfied\">\n"
+"                                <a t-attf-href=\"/rate/{{ access_token }}/"
+"5\">\n"
+"                                    <img alt=\"Satisfied\" src=\"/rating/"
+"static/src/img/rating_5.png\" title=\"Satisfied\">\n"
 "                                </a>\n"
 "                            </td>\n"
 "                            <td>\n"
-"                                <a t-attf-href=\"/rate/{{ access_token }}/3\">\n"
-"                                    <img alt=\"Okay\" src=\"/rating/static/src/img/rating_3.png\" title=\"Okay\">\n"
+"                                <a t-attf-href=\"/rate/{{ access_token }}/"
+"3\">\n"
+"                                    <img alt=\"Okay\" src=\"/rating/static/"
+"src/img/rating_3.png\" title=\"Okay\">\n"
 "                                </a>\n"
 "                            </td>\n"
 "                            <td>\n"
-"                                <a t-attf-href=\"/rate/{{ access_token }}/1\">\n"
-"                                    <img alt=\"Dissatisfied\" src=\"/rating/static/src/img/rating_1.png\" title=\"Dissatisfied\">\n"
+"                                <a t-attf-href=\"/rate/{{ access_token }}/"
+"1\">\n"
+"                                    <img alt=\"Dissatisfied\" src=\"/rating/"
+"static/src/img/rating_1.png\" title=\"Dissatisfied\">\n"
 "                                </a>\n"
 "                            </td>\n"
 "                        </tr>\n"
@@ -259,23 +282,38 @@ msgid ""
 "        <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
 "            We appreciate your feedback. It helps us improve continuously.\n"
 "            <t t-if=\"object.project_id.rating_status == 'stage'\">\n"
-"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; color: #454748;\">This satisfaction survey has been sent because your task has been moved to the <b t-out=\"object.stage_id.name or ''\">In progress</b> stage</span>\n"
+"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; "
+"color: #454748;\">This satisfaction survey has been sent because your task "
+"has been moved to the <b t-out=\"object.stage_id.name or ''\">In progress</"
+"b> stage</span>\n"
 "            </t>\n"
 "            <t t-if=\"object.project_id.rating_status == 'periodic'\">\n"
-"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; color: #454748;\">This satisfaction survey is sent <b t-out=\"object.project_id.rating_status_period or ''\">weekly</b> as long as the task is in the <b t-out=\"object.stage_id.name or ''\">In progress</b> stage.</span>\n"
+"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; "
+"color: #454748;\">This satisfaction survey is sent <b t-"
+"out=\"object.project_id.rating_status_period or ''\">weekly</b> as long as "
+"the task is in the <b t-out=\"object.stage_id.name or ''\">In progress</b> "
+"stage.</span>\n"
 "            </t>\n"
 "        </td></tr>\n"
 "        <tr><td><br>Best regards,</td></tr>\n"
 "        <tr><td>\n"
-"           <t t-out=\"object.project_id.company_id.name or ''\">YourCompany</t>\n"
+"           <t t-out=\"object.project_id.company_id.name or ''\">YourCompany</"
+"t>\n"
 "        </td></tr>\n"
 "        <tr><td style=\"opacity: 0.5;\">\n"
-"            <t t-out=\"object.project_id.company_id.phone or ''\">1 650-123-4567</t>\n"
+"            <t t-out=\"object.project_id.company_id.phone or ''\">1 "
+"650-123-4567</t>\n"
 "            <t t-if=\"object.project_id.company_id.email\">\n"
-"                | <a t-attf-href=\"mailto:{{ object.project_id.company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object.project_id.company_id.email or ''\">info@yourcompany.com</a>\n"
+"                | <a t-attf-href=\"mailto:"
+"{{ object.project_id.company_id.email }}\" style=\"text-decoration:none; "
+"color: #454748;\" t-out=\"object.project_id.company_id.email or "
+"''\">info@yourcompany.com</a>\n"
 "            </t>\n"
 "            <t t-if=\"object.project_id.company_id.website\">\n"
-"                | <a t-attf-href=\"{{ object.project_id.company_id.website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object.project_id.company_id.website or ''\">http://www.example.com</a>\n"
+"                | <a t-attf-href=\"{{ object.project_id.company_id.website }}"
+"\" style=\"text-decoration:none; color: #454748;\" t-"
+"out=\"object.project_id.company_id.website or ''\">http://www.example.com</"
+"a>\n"
 "            </t>\n"
 "        </td></tr>\n"
 "    </tbody>\n"
@@ -284,47 +322,64 @@ msgid ""
 "            "
 msgstr ""
 "<div>\n"
-"    <t t-set=\"access_token\" t-value=\"object._rating_get_access_token()\"></t>\n"
+"    <t t-set=\"access_token\" t-value=\"object._rating_get_access_token()"
+"\"></t>\n"
 "    <t t-set=\"partner\" t-value=\"object._rating_get_partner()\"></t>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"width:100%; margin:0px auto;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"width:100%; margin:0px auto;\">\n"
 "    <tbody>\n"
 "        <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
 "            <t t-if=\"partner.name\">\n"
-"                안녕하세요, <t t-out=\"partner.name or ''\">Brandon Freeman</t>님.<br><br>\n"
+"                안녕하세요, <t t-out=\"partner.name or ''\">Brandon Freeman</"
+"t>님.<br><br>\n"
 "            </t>\n"
 "            <t t-else=\"\">\n"
 "                안녕하세요,<br><br>\n"
 "            </t>\n"
-"            잠시만 시간을 내어 <strong t-out=\"object.name or ''\">계획 및 예산</strong> 작업과 관련한 하기 직원의 서비스를 평가해주시면 감사하겠습니다.\n"
+"            잠시만 시간을 내어 <strong t-out=\"object.name or ''\">계획 및 예"
+"산</strong> 작업과 관련한 하기 직원의 서비스를 평가해주시면 감사하겠습니다.\n"
 "            <t t-if=\"object._rating_get_operator().name\">\n"
-"                담당 직원명 <strong t-out=\"object._rating_get_operator().name or ''\">Mitchell Admin</strong>.<br>\n"
+"                담당 직원명 <strong t-"
+"out=\"object._rating_get_operator().name or ''\">Mitchell Admin</strong>."
+"<br>\n"
 "            </t>\n"
 "            <t t-else=\"\">\n"
 "                .<br>\n"
 "            </t>\n"
 "        </td></tr>\n"
 "        <tr><td style=\"text-align: center;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" summary=\"o_mail_notification\" style=\"width:100%; margin: 32px 0px 32px 0px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" summary=\"o_mail_notification\" style=\"width:100%; margin: "
+"32px 0px 32px 0px;\">\n"
 "                <tr><td style=\"font-size: 13px;\">\n"
-"                    <strong>서비스에 대해 느끼신 점을 말씀해 주세요.</strong><br>\n"
-"                    <span style=\"font-size: 12px; opacity: 0.5; color: #454748;\">(스마일 이모티콘 중 하나를 선택)</span>\n"
+"                    <strong>서비스에 대해 느끼신 점을 말씀해 주세요.</"
+"strong><br>\n"
+"                    <span style=\"font-size: 12px; opacity: 0.5; color: "
+"#454748;\">(스마일 이모티콘 중 하나를 선택)</span>\n"
 "                </td></tr>\n"
 "                <tr><td style=\"font-size: 13px;\">\n"
-"                    <table style=\"width:100%;text-align:center;margin-top:2rem;\">\n"
+"                    <table style=\"width:100%;text-align:center;margin-"
+"top:2rem;\">\n"
 "                        <tr>\n"
 "                            <td>\n"
-"                                <a t-attf-href=\"/rate/{{ access_token }}/5\">\n"
-"                                    <img alt=\"Satisfied\" src=\"/rating/static/src/img/rating_5.png\" title=\"Satisfied\">\n"
+"                                <a t-attf-href=\"/rate/{{ access_token }}/"
+"5\">\n"
+"                                    <img alt=\"Satisfied\" src=\"/rating/"
+"static/src/img/rating_5.png\" title=\"Satisfied\">\n"
 "                                </a>\n"
 "                            </td>\n"
 "                            <td>\n"
-"                                <a t-attf-href=\"/rate/{{ access_token }}/3\">\n"
-"                                    <img alt=\"Okay\" src=\"/rating/static/src/img/rating_3.png\" title=\"Okay\">\n"
+"                                <a t-attf-href=\"/rate/{{ access_token }}/"
+"3\">\n"
+"                                    <img alt=\"Okay\" src=\"/rating/static/"
+"src/img/rating_3.png\" title=\"Okay\">\n"
 "                                </a>\n"
 "                            </td>\n"
 "                            <td>\n"
-"                                <a t-attf-href=\"/rate/{{ access_token }}/1\">\n"
-"                                    <img alt=\"Dissatisfied\" src=\"/rating/static/src/img/rating_1.png\" title=\"Dissatisfied\">\n"
+"                                <a t-attf-href=\"/rate/{{ access_token }}/"
+"1\">\n"
+"                                    <img alt=\"Dissatisfied\" src=\"/rating/"
+"static/src/img/rating_1.png\" title=\"Dissatisfied\">\n"
 "                                </a>\n"
 "                            </td>\n"
 "                        </tr>\n"
@@ -333,25 +388,41 @@ msgstr ""
 "            </table>\n"
 "        </td></tr>\n"
 "        <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
-"            고객님의 의견에 깊은 감사의 말씀을 드립니다. 해당 내용을 반영하여 저희의 서비스를 지속적으로 개선할 수 있도록 노력하겠습니다.\n"
+"            고객님의 의견에 깊은 감사의 말씀을 드립니다. 해당 내용을 반영하"
+"여 저희의 서비스를 지속적으로 개선할 수 있도록 노력하겠습니다.\n"
 "            <t t-if=\"object.project_id.rating_status == 'stage'\">\n"
-"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; color: #454748;\">본 고객용 설문은 작업 진행이 <b t-out=\"object.stage_id.name or ''\">진행 중</b> 단계로 넘어감에 따라 자동 발송되었습니다.</span>\n"
+"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; "
+"color: #454748;\">본 고객용 설문은 작업 진행이 <b t-"
+"out=\"object.stage_id.name or ''\">진행 중</b> 단계로 넘어감에 따라 자동 발송"
+"되었습니다.</span>\n"
 "            </t>\n"
 "            <t t-if=\"object.project_id.rating_status == 'periodic'\">\n"
-"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; color: #454748;\">본 고객 만족 설문 조사는 <b t-out=\"object.project_id.rating_status_period or ''\">매주</b>마다, 작업이 <b t-out=\"object.stage_id.name or ''\">진행 중</b> 단계에 있는 동안 전송됩니다.</span>\n"
+"                <br><span style=\"margin: 0; font-size: 12px; opacity: 0.5; "
+"color: #454748;\">본 고객 만족 설문 조사는 <b t-"
+"out=\"object.project_id.rating_status_period or ''\">매주</b>마다, 작업이 <b "
+"t-out=\"object.stage_id.name or ''\">진행 중</b> 단계에 있는 동안 전송됩니다."
+"</span>\n"
 "            </t>\n"
 "        </td></tr>\n"
 "        <tr><td><br>감사합니다.</td></tr>\n"
 "        <tr><td>\n"
-"           <t t-out=\"object.project_id.company_id.name or ''\">YourCompany</t>\n"
+"           <t t-out=\"object.project_id.company_id.name or ''\">YourCompany</"
+"t>\n"
 "        </td></tr>\n"
 "        <tr><td style=\"opacity: 0.5;\">\n"
-"            <t t-out=\"object.project_id.company_id.phone or ''\">1 650-123-4567</t>\n"
+"            <t t-out=\"object.project_id.company_id.phone or ''\">1 "
+"650-123-4567</t>\n"
 "            <t t-if=\"object.project_id.company_id.email\">\n"
-"                | <a t-attf-href=\"mailto:{{ object.project_id.company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object.project_id.company_id.email or ''\">info@yourcompany.com</a>\n"
+"                | <a t-attf-href=\"mailto:"
+"{{ object.project_id.company_id.email }}\" style=\"text-decoration:none; "
+"color: #454748;\" t-out=\"object.project_id.company_id.email or "
+"''\">info@yourcompany.com</a>\n"
 "            </t>\n"
 "            <t t-if=\"object.project_id.company_id.website\">\n"
-"                | <a t-attf-href=\"{{ object.project_id.company_id.website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object.project_id.company_id.website or ''\">http://www.example.com</a>\n"
+"                | <a t-attf-href=\"{{ object.project_id.company_id.website }}"
+"\" style=\"text-decoration:none; color: #454748;\" t-"
+"out=\"object.project_id.company_id.website or ''\">http://www.example.com</"
+"a>\n"
 "            </t>\n"
 "        </td></tr>\n"
 "    </tbody>\n"
@@ -363,32 +434,43 @@ msgstr ""
 #: model:mail.template,body_html:project.project_done_email_template
 msgid ""
 "<div>\n"
-"    Dear <t t-out=\"object.partner_id.name or 'customer'\">Brandon Freeman</t>,<br>\n"
-"    It is my pleasure to let you know that we have successfully completed the project \"<strong t-out=\"object.name or ''\">Renovations</strong>\".\n"
+"    Dear <t t-out=\"object.partner_id.name or 'customer'\">Brandon Freeman</"
+"t>,<br>\n"
+"    It is my pleasure to let you know that we have successfully completed "
+"the project \"<strong t-out=\"object.name or ''\">Renovations</strong>\".\n"
 "    <t t-if=\"user.signature\">\n"
 "        <br>\n"
 "        <t t-out=\"user.signature or ''\">--<br>Mitchell Admin</t>\n"
 "    </t>\n"
 "</div>\n"
-"<br><span style=\"margin: 0px 0px 0px 0px; font-size: 12px; opacity: 0.5; color: #454748;\" groups=\"project.group_project_stages\">You are receiving this email because your project has been moved to the stage <b t-out=\"object.stage_id.name or ''\">Done</b></span>\n"
+"<br><span style=\"margin: 0px 0px 0px 0px; font-size: 12px; opacity: 0.5; "
+"color: #454748;\" groups=\"project.group_project_stages\">You are receiving "
+"this email because your project has been moved to the stage <b t-"
+"out=\"object.stage_id.name or ''\">Done</b></span>\n"
 "            "
 msgstr ""
 "<div>\n"
-"    안녕하세요 <t t-out=\"object.partner_id.name or 'customer'\">Brandon Freeman</t>님,<br>\n"
-"     \"<strong t-out=\"object.name or ''\">Renovations</strong>\" 프로젝트를 성공리에 완료하게 되었음을 알려드리게 되어 기쁩니다.\n"
+"    안녕하세요 <t t-out=\"object.partner_id.name or 'customer'\">Brandon "
+"Freeman</t>님,<br>\n"
+"     \"<strong t-out=\"object.name or ''\">Renovations</strong>\" 프로젝트를 "
+"성공리에 완료하게 되었음을 알려드리게 되어 기쁩니다.\n"
 "    <t t-if=\"user.signature\">\n"
 "        <br>\n"
 "        <t t-out=\"user.signature or ''\">--<br>Mitchell Admin</t>\n"
 "    </t>\n"
 "</div>\n"
-"<br><span style=\"margin: 0px 0px 0px 0px; font-size: 12px; opacity: 0.5; color: #454748;\" groups=\"project.group_project_stages\">귀하의 프로젝트가 <b t-out=\"object.stage_id.name or ''\">Done</b>단계로 이동하여 본 이메일이 발송되었음을 안내드립니다.</span>\n"
+"<br><span style=\"margin: 0px 0px 0px 0px; font-size: 12px; opacity: 0.5; "
+"color: #454748;\" groups=\"project.group_project_stages\">귀하의 프로젝트가 "
+"<b t-out=\"object.stage_id.name or ''\">Done</b>단계로 이동하여 본 이메일이 "
+"발송되었음을 안내드립니다.</span>\n"
 "            "
 
 #. module: project
 #: model:mail.template,body_html:project.mail_template_data_project_task
 msgid ""
 "<div>\n"
-"    Dear <t t-out=\"object.partner_id.name or 'customer'\">Brandon Freeman</t>,<br>\n"
+"    Dear <t t-out=\"object.partner_id.name or 'customer'\">Brandon Freeman</"
+"t>,<br>\n"
 "    Thank you for your enquiry.<br>\n"
 "    If you have any questions, please let us know.\n"
 "    <br><br>\n"
@@ -401,7 +483,8 @@ msgid ""
 "        "
 msgstr ""
 "<div>\n"
-"    안녕하세요 <t t-out=\"object.partner_id.name or 'customer'\">Brandon Freeman</t>님,<br>\n"
+"    안녕하세요 <t t-out=\"object.partner_id.name or 'customer'\">Brandon "
+"Freeman</t>님,<br>\n"
 "    문의주셔서 감사합니다.<br>\n"
 "    궁금한 점이 있으시면 언제든 연락주시기 바랍니다.\n"
 "    <br><br>\n"
@@ -416,13 +499,21 @@ msgstr ""
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_task_form2
 msgid ""
-"<i class=\"fa fa-fw o_button_icon fa-smile-o text-success\" invisible=\"rating_avg &lt; 3.66\" title=\"Satisfied\"/>\n"
-"                            <i class=\"fa fa-fw o_button_icon fa-meh-o text-warning\" invisible=\"rating_avg &lt; 2.33 or rating_avg &gt;= 3.66\" title=\"Okay\"/>\n"
-"                            <i class=\"fa fa-fw o_button_icon fa-frown-o text-danger\" invisible=\"rating_avg &gt;= 2.33\" title=\"Dissatisfied\"/>"
+"<i class=\"fa fa-fw o_button_icon fa-smile-o text-success\" "
+"invisible=\"rating_avg &lt; 3.66\" title=\"Satisfied\"/>\n"
+"                            <i class=\"fa fa-fw o_button_icon fa-meh-o text-"
+"warning\" invisible=\"rating_avg &lt; 2.33 or rating_avg &gt;= 3.66\" "
+"title=\"Okay\"/>\n"
+"                            <i class=\"fa fa-fw o_button_icon fa-frown-o "
+"text-danger\" invisible=\"rating_avg &gt;= 2.33\" title=\"Dissatisfied\"/>"
 msgstr ""
-"<i class=\"fa fa-fw o_button_icon fa-smile-o text-success\" invisible=\"rating_avg < 3.66\" title=\"만족\"/>\n"
-"                            <i class=\"fa fa-fw o_button_icon fa-meh-o text-warning\" invisible=\"rating_avg < 2.33 or rating_avg >= 3.66\" title=\"보통\"/>\n"
-"                            <i class=\"fa fa-fw o_button_icon fa-frown-o text-danger\" invisible=\"rating_avg >= 2.33\" title=\"불만족\"/>"
+"<i class=\"fa fa-fw o_button_icon fa-smile-o text-success\" "
+"invisible=\"rating_avg < 3.66\" title=\"만족\"/>\n"
+"                            <i class=\"fa fa-fw o_button_icon fa-meh-o text-"
+"warning\" invisible=\"rating_avg < 2.33 or rating_avg >= 3.66\" title=\"보통"
+"\"/>\n"
+"                            <i class=\"fa fa-fw o_button_icon fa-frown-o "
+"text-danger\" invisible=\"rating_avg >= 2.33\" title=\"불만족\"/>"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
@@ -483,11 +574,14 @@ msgstr "<span class=\"fa fa-clock-o me-2\" title=\"Dates\"/>"
 msgid ""
 "<span class=\"fa fa-envelope-o me-2\" aria-label=\"Domain Alias\" "
 "title=\"Domain Alias\"/>"
-msgstr "<span class=\"fa fa-envelope-o me-2\" aria-label=\"도메인 별칭\" title=\"도메인 별칭\"/>"
+msgstr ""
+"<span class=\"fa fa-envelope-o me-2\" aria-label=\"도메인 별칭\" title=\"도메"
+"인 별칭\"/>"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_kanban
-msgid "<span class=\"fa fa-user me-2\" aria-label=\"Partner\" title=\"Partner\"/>"
+msgid ""
+"<span class=\"fa fa-user me-2\" aria-label=\"Partner\" title=\"Partner\"/>"
 msgstr "<span class=\"fa fa-user me-2\" aria-label=\"협렧\" title=\"협력사\"/>"
 
 #. module: project
@@ -534,22 +628,35 @@ msgstr "<span class=\"o_stat_text\">상위 작업</span>"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
-msgid "<span class=\"text-muted o_row ps-1 pb-3\">Send a rating request:</span>"
+msgid ""
+"<span class=\"text-muted o_row ps-1 pb-3\">Send a rating request:</span>"
 msgstr "<span class=\"text-muted o_row ps-1 pb-3\">평가 요청 보내기:</span>"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
 msgid ""
 "<span colspan=\"2\" class=\"text-muted o_row ps-1\">\n"
-"                                                    <i class=\"fa fa-lightbulb-o pe-2\"/>\n"
-"                                                    <span invisible=\"rating_status == 'periodic'\">A rating request will be sent as soon as the task reaches a stage on which a Rating Email Template is defined.</span>\n"
-"                                                    <span invisible=\"rating_status == 'stage'\">Rating requests will be sent as long as the task remains in a stage on which a Rating Email Template is defined.</span>\n"
+"                                                    <i class=\"fa fa-"
+"lightbulb-o pe-2\"/>\n"
+"                                                    <span "
+"invisible=\"rating_status == 'periodic'\">A rating request will be sent as "
+"soon as the task reaches a stage on which a Rating Email Template is defined."
+"</span>\n"
+"                                                    <span "
+"invisible=\"rating_status == 'stage'\">Rating requests will be sent as long "
+"as the task remains in a stage on which a Rating Email Template is defined.</"
+"span>\n"
 "                                                </span>"
 msgstr ""
 "<span colspan=\"2\" class=\"text-muted o_row ps-1\">\n"
-"                                                    <i class=\"fa fa-lightbulb-o pe-2\"/>\n"
-"                                                    <span invisible=\"rating_status == 'periodic'\">평가 요청은 작업이 환경 설정 내용에 따라 정의된 단계에 도달하는 즉시 이메일을 통해 전송됩니다.</span>\n"
-"                                                    <span invisible=\"rating_status == 'stage'\">평가 요청은 작업의 환경 설정 내용에 따라 정의된 단계에 있는 동안 이메일을 통해 전송됩니다.</span>\n"
+"                                                    <i class=\"fa fa-"
+"lightbulb-o pe-2\"/>\n"
+"                                                    <span "
+"invisible=\"rating_status == 'periodic'\">평가 요청은 작업이 환경 설정 내용"
+"에 따라 정의된 단계에 도달하는 즉시 이메일을 통해 전송됩니다.</span>\n"
+"                                                    <span "
+"invisible=\"rating_status == 'stage'\">평가 요청은 작업의 환경 설정 내용에 따"
+"라 정의된 단계에 있는 동안 이메일을 통해 전송됩니다.</span>\n"
 "                                                </span>"
 
 #. module: project
@@ -597,23 +704,29 @@ msgstr "=&gt;"
 msgid ""
 "A Python dictionary that will be evaluated to provide default values when "
 "creating new records for this alias."
-msgstr "이 별칭에 대한 새 레코드를 만들 때 기본값을 제공하도록 평가되는 Python 사전입니다."
+msgstr ""
+"이 별칭에 대한 새 레코드를 만들 때 기본값을 제공하도록 평가되는 Python 사전입"
+"니다."
 
 #. module: project
 #: model:ir.model.constraint,message:project.constraint_project_collaborator_unique_collaborator
 msgid ""
 "A collaborator cannot be selected more than once in the project sharing "
 "access. Please remove duplicate(s) and try again."
-msgstr "프로젝트 공유 액세스에서 공동 작업자를 두 번 이상 선택할 수 없습니다. 중복된 선택 항목 삭제 후 다시 시도하십시오."
+msgstr ""
+"프로젝트 공유 액세스에서 공동 작업자를 두 번 이상 선택할 수 없습니다. 중복된 "
+"선택 항목 삭제 후 다시 시도하십시오."
 
 #. module: project
 #. odoo-python
 #: code:addons/project/models/project_task_type.py:0
 #, python-format
 msgid ""
-"A personal stage cannot be linked to a project because it is only visible to"
-" its corresponding user."
-msgstr "개인 단계는 해당 사용자에게만 표시되기 때문에 프로젝트 단계에 연결시킬 수 없습니다."
+"A personal stage cannot be linked to a project because it is only visible to "
+"its corresponding user."
+msgstr ""
+"개인 단계는 해당 사용자에게만 표시되기 때문에 프로젝트 단계에 연결시킬 수 없"
+"습니다."
 
 #. module: project
 #: model:ir.model.constraint,message:project.constraint_project_task_private_task_has_no_parent
@@ -736,12 +849,13 @@ msgstr "메모 추가"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/js/tours/project.js:0
-#: code:addons/project/static/src/js/tours/project.js:0
 #, python-format
 msgid ""
 "Add columns to organize your tasks into <b>stages</b> <i>e.g. New - In "
 "Progress - Done</i>."
-msgstr "열을 추가하여 작업을 관리할<b>단계</b>구성합니다 <i>예. 신규 - 진행중 - 완료</i>."
+msgstr ""
+"열을 추가하여 작업을 관리할<b>단계</b>구성합니다 <i>예. 신규 - 진행중 - 완료"
+"</i>."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_share_wizard_view_form
@@ -847,6 +961,7 @@ msgid "Allocated Time"
 msgstr "할당된 시간"
 
 #. module: project
+#: model_terms:ir.ui.view,arch_db:project.portal_my_task
 #: model_terms:ir.ui.view,arch_db:project.portal_my_task_allocated_hours_template
 msgid "Allocated Time:"
 msgstr "할당 시간:"
@@ -871,13 +986,18 @@ msgstr "분석 계획"
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__analytic_account_id
 msgid ""
-"Analytic account to which this project, its tasks and its timesheets are linked. \n"
-"Track the costs and revenues of your project by setting this analytic account on your related documents (e.g. sales orders, invoices, purchase orders, vendor bills, expenses etc.).\n"
-"This analytic account can be changed on each task individually if necessary.\n"
+"Analytic account to which this project, its tasks and its timesheets are "
+"linked. \n"
+"Track the costs and revenues of your project by setting this analytic "
+"account on your related documents (e.g. sales orders, invoices, purchase "
+"orders, vendor bills, expenses etc.).\n"
+"This analytic account can be changed on each task individually if "
+"necessary.\n"
 "An analytic account is required in order to use timesheets."
 msgstr ""
 "이 프로젝트와 작업, 작업기록이 연결된 분석 계정입니다. \n"
-"관련 문서 (예: 판매주문서, 청구서, 구매주문서, 공급업체 청구서, 비용 등)에 이 분석 계정을 설정하여 프로젝트에 소요된 비용과 수익을 추적할 수 있습니다.\n"
+"관련 문서 (예: 판매주문서, 청구서, 구매주문서, 공급업체 청구서, 비용 등)에 "
+"이 분석 계정을 설정하여 프로젝트에 소요된 비용과 수익을 추적할 수 있습니다.\n"
 "분석 계정은 필요한 경우 각 작업에서 개별적으로 변경할 수 있습니다.\n"
 "작업기록을 사용하려면 분석 계정이 필요합니다."
 
@@ -885,12 +1005,17 @@ msgstr ""
 #: model:ir.model.fields,help:project.field_project_task__analytic_account_id
 msgid ""
 "Analytic account to which this task and its timesheets are linked.\n"
-"Track the costs and revenues of your task by setting its analytic account on your related documents (e.g. sales orders, invoices, purchase orders, vendor bills, expenses etc.).\n"
-"By default, the analytic account of the project is set. However, it can be changed on each task individually if necessary."
+"Track the costs and revenues of your task by setting its analytic account on "
+"your related documents (e.g. sales orders, invoices, purchase orders, vendor "
+"bills, expenses etc.).\n"
+"By default, the analytic account of the project is set. However, it can be "
+"changed on each task individually if necessary."
 msgstr ""
 "이 작업 및 작업 기록이 연결된 분석 계정입니다.\n"
-"관련 문서 (예: 판매주문서, 청구서, 구매주문서, 거래처 청구서 및 경비 등)에 분석 계정을 설정하여 작업에 소요된 비용과 수익을 추적할 수 있습니다.\n"
-"프로젝트의 분석 계정은 기본값으로 설정되어 있으며, 필요한 경우 각 작업에서 개별적으로 변경할 수 있습니다."
+"관련 문서 (예: 판매주문서, 청구서, 구매주문서, 거래처 청구서 및 경비 등)에 분"
+"석 계정을 설정하여 작업에 소요된 비용과 수익을 추적할 수 있습니다.\n"
+"프로젝트의 분석 계정은 기본값으로 설정되어 있으며, 필요한 경우 각 작업에서 개"
+"별적으로 변경할 수 있습니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
@@ -903,7 +1028,9 @@ msgstr "분석"
 msgid ""
 "Analyze how quickly your team is completing your project's tasks and check "
 "if everything is progressing according to plan."
-msgstr "팀에서 프로젝트의 작업을 얼마나 빨리 완수할 수 있는지와 모든 것이 계획대로 진행되고 있는지를 분석합니다."
+msgstr ""
+"팀에서 프로젝트의 작업을 얼마나 빨리 완수할 수 있는지와 모든 것이 계획대로 진"
+"행되고 있는지를 분석합니다."
 
 #. module: project
 #: model_terms:ir.actions.act_window,help:project.action_project_task_user_tree
@@ -912,12 +1039,9 @@ msgid ""
 msgstr "프로젝트의 진행 상황과 직원들의 실적을 분석합니다."
 
 #. module: project
-#. odoo-javascript
-#: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.js:0
 #: model:ir.model.fields.selection,name:project.selection__project_task__state__03_approved
 #: model:ir.model.fields.selection,name:project.selection__project_task_burndown_chart_report__state__03_approved
 #: model:ir.model.fields.selection,name:project.selection__report_project_task_user__state__03_approved
-#, python-format
 msgid "Approved"
 msgstr "결재 완료"
 
@@ -1004,8 +1128,6 @@ msgid "Assigned to"
 msgstr "담당자"
 
 #. module: project
-#. odoo-python
-#: code:addons/project/controllers/portal.py:0
 #: model:ir.model.fields,field_description:project.field_project_task__user_ids
 #: model:ir.model.fields,field_description:project.field_project_task_burndown_chart_report__user_ids
 #: model:ir.model.fields,field_description:project.field_report_project_task_user__user_ids
@@ -1013,7 +1135,6 @@ msgstr "담당자"
 #: model_terms:ir.ui.view,arch_db:project.project_sharing_project_task_view_form
 #: model_terms:ir.ui.view,arch_db:project.project_sharing_project_task_view_tree
 #: model_terms:ir.ui.view,arch_db:project.view_task_search_form_base
-#, python-format
 msgid "Assignees"
 msgstr "담당자"
 
@@ -1047,7 +1168,8 @@ msgstr "리스크"
 msgid ""
 "Attach all documents or links to the task directly, to have all research "
 "information centralized."
-msgstr "문서나 링크를 작업에 직접 첨부하여 모든 조사 자료를 중앙 집중화하십시오."
+msgstr ""
+"문서나 링크를 작업에 직접 첨부하여 모든 조사 자료를 중앙 집중화하십시오."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_milestone__message_attachment_count
@@ -1080,13 +1202,18 @@ msgstr "자동 칸반 상태"
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task_type__auto_validation_state
 msgid ""
-"Automatically modify the state when the customer replies to the feedback for this stage.\n"
-" * Good feedback from the customer will update the state to 'Approved' (green bullet).\n"
-" * Neutral or bad feedback will set the kanban state to 'Changes Requested' (orange bullet).\n"
+"Automatically modify the state when the customer replies to the feedback for "
+"this stage.\n"
+" * Good feedback from the customer will update the state to 'Approved' "
+"(green bullet).\n"
+" * Neutral or bad feedback will set the kanban state to 'Changes Requested' "
+"(orange bullet).\n"
 msgstr ""
 "고객이 이 단계에 대한 피드백에 회신할 경우 자동으로 상태를 변경합니다 .\n"
-" * 고객으로부터 좋은 피드백을 받은 경우 상태는 '승인 완료' (초록색)로 변경됩니다.\n"
-" * 보통 또는 나쁜 피드백을 받은 경우 칸반 상태는 '변경 요청' (주황색)으로 변경됩니다.\n"
+" * 고객으로부터 좋은 피드백을 받은 경우 상태는 '승인 완료' (초록색)로 변경됩"
+"니다.\n"
+" * 보통 또는 나쁜 피드백을 받은 경우 칸반 상태는 '변경 요청' (주황색)으로 변"
+"경됩니다.\n"
 
 #. module: project
 #. odoo-javascript
@@ -1130,7 +1257,6 @@ msgstr "평균 점수: 만족"
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Backlog"
@@ -1205,10 +1331,8 @@ msgid "Can Be Marked As Done"
 msgstr "완료로 표시할 수 있음"
 
 #. module: project
-#. odoo-javascript
 #. odoo-python
 #: code:addons/project/models/project_task.py:0
-#: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.js:0
 #: model:ir.model.fields.selection,name:project.selection__project_task__state__1_canceled
 #: model:ir.model.fields.selection,name:project.selection__project_task_burndown_chart_report__state__1_canceled
 #: model:ir.model.fields.selection,name:project.selection__report_project_task_user__state__1_canceled
@@ -1221,15 +1345,12 @@ msgid "Canceled"
 msgstr "취소됨"
 
 #. module: project
-#. odoo-javascript
-#: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.js:0
 #: model:ir.model.fields.selection,name:project.selection__project_task__state__02_changes_requested
 #: model:ir.model.fields.selection,name:project.selection__project_task_burndown_chart_report__state__02_changes_requested
 #: model:ir.model.fields.selection,name:project.selection__report_project_task_user__state__02_changes_requested
 #: model:mail.message.subtype,description:project.mt_task_changes_requested
 #: model:mail.message.subtype,name:project.mt_project_task_changes_requested
 #: model:mail.message.subtype,name:project.mt_task_changes_requested
-#, python-format
 msgid "Changes Requested"
 msgstr "변경 요청"
 
@@ -1239,10 +1360,10 @@ msgstr "변경 요청"
 #, python-format
 msgid ""
 "Choose a <b>name</b> for your project. <i>It can be anything you want: the "
-"name of a customer, of a product, of a team, of a construction site, "
-"etc.</i>"
+"name of a customer, of a product, of a team, of a construction site, etc.</i>"
 msgstr ""
-"프로젝트의 <b>이름</b>을 선택하세요. <i>고객 이름이나, 품목명, 팀명, 건설 현장명 등 무엇이든 선택하실 수 있습니다.</i>"
+"프로젝트의 <b>이름</b>을 선택하세요. <i>고객 이름이나, 품목명, 팀명, 건설 현"
+"장명 등 무엇이든 선택하실 수 있습니다.</i>"
 
 #. module: project
 #. odoo-javascript
@@ -1290,11 +1411,11 @@ msgstr "마감된 작업"
 #: model_terms:ir.actions.act_window,help:project.project_collaborator_action
 msgid ""
 "Collaborate efficiently with key stakeholders by sharing with them the "
-"Kanban view of your tasks. Collaborators will be able to edit parts of tasks"
-" and send messages."
+"Kanban view of your tasks. Collaborators will be able to edit parts of tasks "
+"and send messages."
 msgstr ""
-"주요 이해관계자에게 작업의 칸반 화면을 공유하여 효율적으로 협업하실 수 있습니다. 공유 작업자가 일부 작업을 편집할 수 있으며 메시지를 "
-"전송할 수 있습니다."
+"주요 이해관계자에게 작업의 칸반 화면을 공유하여 효율적으로 협업하실 수 있습니"
+"다. 공유 작업자가 일부 작업을 편집할 수 있으며 메시지를 전송할 수 있습니다."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_collaborator__partner_id
@@ -1315,13 +1436,21 @@ msgstr "공유된 프로젝트의 공동 작업자"
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__rating_status
 msgid ""
-"Collect feedback from your customers by sending them a rating request when a task enters a certain stage. To do so, define a rating email template on the corresponding stages.\n"
-"Rating when changing stage: an email will be automatically sent when the task reaches the stage on which the rating email template is set.\n"
-"Periodic rating: an email will be automatically sent at regular intervals as long as the task remains in the stage in which the rating email template is set."
+"Collect feedback from your customers by sending them a rating request when a "
+"task enters a certain stage. To do so, define a rating email template on the "
+"corresponding stages.\n"
+"Rating when changing stage: an email will be automatically sent when the "
+"task reaches the stage on which the rating email template is set.\n"
+"Periodic rating: an email will be automatically sent at regular intervals as "
+"long as the task remains in the stage in which the rating email template is "
+"set."
 msgstr ""
-"작업이 특정 단계에 도달하면 평가 요청을 보내어 고객으로부터 피드백을 수집합니다. 그렇게 하려면 해당 단계에 평가 이메일 서식을 지정해야 합니다. \n"
-"단계 변경 시 평가: 평가 이메일 서식이 설정되어 있는 경우, 작업이 단계에 도달하면 자동으로 이메일을 발송합니다.\n"
-"정기 평가: 평가 이메일 서식이 설정되어 있으면 작업이 단계에 있는 동안 정기적으로 자동 이메일을 발송합니다. "
+"작업이 특정 단계에 도달하면 평가 요청을 보내어 고객으로부터 피드백을 수집합니"
+"다. 그렇게 하려면 해당 단계에 평가 이메일 서식을 지정해야 합니다. \n"
+"단계 변경 시 평가: 평가 이메일 서식이 설정되어 있는 경우, 작업이 단계에 도달"
+"하면 자동으로 이메일을 발송합니다.\n"
+"정기 평가: 평가 이메일 서식이 설정되어 있으면 작업이 단계에 있는 동안 정기적"
+"으로 자동 이메일을 발송합니다. "
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_tags__color
@@ -1340,10 +1469,12 @@ msgstr "색상표"
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid ""
-"Communicate with customers on the task using the email gateway. Attach logo designs to the task, so that information flows from\n"
+"Communicate with customers on the task using the email gateway. Attach logo "
+"designs to the task, so that information flows from\n"
 "      designers to the workers who print the t-shirt."
 msgstr ""
-"이메일 게이트웨이를 사용하여 작업에 대해 고객과 소통합니다. 작업에 로고 디자인을 첨부하여\n"
+"이메일 게이트웨이를 사용하여 작업에 대해 고객과 소통합니다. 작업에 로고 디자"
+"인을 첨부하여\n"
 "      디자이너로부터 티셔츠 프린트 담당자에게 정보가 전달될 수 있도록 합니다."
 
 #. module: project
@@ -1478,14 +1609,18 @@ msgstr "프로젝트 생성"
 msgid ""
 "Create projects to organize your tasks and define a different workflow for "
 "each project."
-msgstr "프로젝트를 생성하여 작업을 체계화하고 각 프로젝트마다 다른 작업 절차를 지정합니다."
+msgstr ""
+"프로젝트를 생성하여 작업을 체계화하고 각 프로젝트마다 다른 작업 절차를 지정합"
+"니다."
 
 #. module: project
 #: model_terms:ir.actions.act_window,help:project.open_view_project_all
 msgid ""
-"Create projects to organize your tasks. Define a different workflow for each"
-" project."
-msgstr "프로젝트를 생성하여 작업을 체계화합니다. 각 프로젝트마다 다른 작업 절차를 지정합니다."
+"Create projects to organize your tasks. Define a different workflow for each "
+"project."
+msgstr ""
+"프로젝트를 생성하여 작업을 체계화합니다. 각 프로젝트마다 다른 작업 절차를 지"
+"정합니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
@@ -1563,7 +1698,9 @@ msgstr "작업의 현재 단계"
 msgid ""
 "Currently available to everyone viewing this document, click to restrict to "
 "internal employees."
-msgstr "현재 모든 사용자가 내용을 볼 수 있습니다. 내부 직원용으로 제한하려면 클릭하십시오."
+msgstr ""
+"현재 모든 사용자가 내용을 볼 수 있습니다. 내부 직원용으로 제한하려면 클릭하십"
+"시오."
 
 #. module: project
 #. odoo-javascript
@@ -1572,7 +1709,9 @@ msgstr "현재 모든 사용자가 내용을 볼 수 있습니다. 내부 직원
 msgid ""
 "Currently restricted to internal employees, click to make it available to "
 "everyone viewing this document."
-msgstr "현재 내부 직원용으로 제한되어 있습니다. 모든 사용자가 볼 수 있도록 바꾸려면 클릭하세요."
+msgstr ""
+"현재 내부 직원용으로 제한되어 있습니다. 모든 사용자가 볼 수 있도록 바꾸려면 "
+"클릭하세요."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project__alias_bounced_content
@@ -1632,7 +1771,8 @@ msgstr "고객 평가 상태"
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid ""
-"Customers propose feedbacks by email; Odoo creates tasks automatically, and you can\n"
+"Customers propose feedbacks by email; Odoo creates tasks automatically, and "
+"you can\n"
 "      communicate on the task directly."
 msgstr ""
 "고객이 이메일로 피드백을 제안하면 Odoo는 자동으로 작업을 생성하여\n"
@@ -1674,17 +1814,23 @@ msgstr "날짜 및 단계"
 #: model:ir.model.fields,help:project.field_project_task__date_last_stage_update
 msgid ""
 "Date on which the state of your task has last been modified.\n"
-"Based on this information you can identify tasks that are stalling and get statistics on the time it usually takes to move tasks from one stage/state to another."
+"Based on this information you can identify tasks that are stalling and get "
+"statistics on the time it usually takes to move tasks from one stage/state "
+"to another."
 msgstr ""
 "마지막으로 작업 상태를 수정한 날짜입니다.\n"
-"이 정보를 기준으로 지연된 작업에 대해 파악하고 작업이 한 단계/상태에서 다른 단계/상태로 이동하는데 일반적으로 소요되는 시간에 대한 통계를 얻을 수 있습니다."
+"이 정보를 기준으로 지연된 작업에 대해 파악하고 작업이 한 단계/상태에서 다른 "
+"단계/상태로 이동하는데 일반적으로 소요되는 시간에 대한 통계를 얻을 수 있습니"
+"다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__date
 msgid ""
 "Date on which this project ends. The timeframe defined on the project is "
 "taken into account when viewing its planning."
-msgstr "이 프로젝트가 종료되는 날짜입니다. 프로젝트에서 지정한 시간 범위를 일정 계획을 검토할 때 고려합니다."
+msgstr ""
+"이 프로젝트가 종료되는 날짜입니다. 프로젝트에서 지정한 시간 범위를 일정 계획"
+"을 검토할 때 고려합니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task__date_assign
@@ -1692,8 +1838,8 @@ msgid ""
 "Date on which this task was last assigned (or unassigned). Based on this, "
 "you can get statistics on the time it usually takes to assign tasks."
 msgstr ""
-"이 작업이 최근 배정 (또는 배정 취소)된 날짜입니다. 이를 기반으로 하여 일반적으로 작업을 배정하는 데 걸리는 시간에 대한 통계를 얻을"
-" 수 있습니다."
+"이 작업이 최근 배정 (또는 배정 취소)된 날짜입니다. 이를 기반으로 하여 일반적"
+"으로 작업을 배정하는 데 걸리는 시간에 대한 통계를 얻을 수 있습니다."
 
 #. module: project
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_unit__day
@@ -1733,7 +1879,8 @@ msgstr "기본값"
 #: model_terms:ir.actions.act_window,help:project.open_task_type_form_domain
 msgid ""
 "Define the steps that will be used in the project from the\n"
-"                creation of the task, up to the closing of the task or issue.\n"
+"                creation of the task, up to the closing of the task or "
+"issue.\n"
 "                You will use these stages in order to track the progress in\n"
 "                solving a task or an issue."
 msgstr ""
@@ -1800,19 +1947,20 @@ msgid ""
 "preserve the sub-tasks, make sure to unlink them from their parent task "
 "beforehand. Are you sure you want to proceed?"
 msgstr ""
-"작업을 삭제하면 관련된 하위 작업도 삭제됩니다. 하위 작업을 지우고싶지 않다면 미리 하위 작업의 연결을 해제해야 합니다. 계속 "
-"진행하시겠습니까?"
+"작업을 삭제하면 관련된 하위 작업도 삭제됩니다. 하위 작업을 지우고싶지 않다면 "
+"미리 하위 작업의 연결을 해제해야 합니다. 계속 진행하시겠습니까?"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task__milestone_id
 msgid ""
 "Deliver your services automatically when a milestone is reached by linking "
 "it to a sales order item."
-msgstr "판매주문서의 항목과 연결하여 마일스톤에 도달하면 자동으로 서비스를 제공합니다."
+msgstr ""
+"판매주문서의 항목과 연결하여 마일스톤에 도달하면 자동으로 서비스를 제공합니"
+"다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Delivered"
@@ -1847,8 +1995,6 @@ msgstr "이 프로젝트에 대한 추가 정보 및 컨텍스트를 확인할 �
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Design"
@@ -1941,11 +2087,6 @@ msgstr "사용 권한 없음, 이 데이터는 사용자 요약 이메일에서 
 #. odoo-javascript
 #. odoo-python
 #: code:addons/project/models/project_task.py:0
-#: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: model:ir.model.fields.selection,name:project.selection__project_project__last_update_status__done
 #: model:ir.model.fields.selection,name:project.selection__project_task__state__1_done
@@ -1975,7 +2116,8 @@ msgid ""
 "Each user should have at least one personal stage. Create a new stage to "
 "which the tasks can be transferred after the selected ones are deleted."
 msgstr ""
-"각 사용자에게는 개인 단계가 최소 하나 이상 있어야 합니다. 선택한 단계를 삭제한 후 작업을 이전할 수 있는 새로운 단계를 생성합니다."
+"각 사용자에게는 개인 단계가 최소 하나 이상 있어야 합니다. 선택한 단계를 삭제"
+"한 후 작업을 이전할 수 있는 새로운 단계를 생성합니다."
 
 #. module: project
 #: model:ir.model.fields.selection,name:project.selection__project_share_wizard__access_mode__edit
@@ -1984,7 +2126,6 @@ msgstr "편집"
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Editing"
@@ -2011,13 +2152,20 @@ msgstr "이메일 서식"
 msgid ""
 "Email addresses that were in the CC of the incoming emails from this task "
 "and that are not currently linked to an existing customer."
-msgstr "이 작업에서 수신된 이메일에서 참조가 되어 있었으며 기존 고객과 현재 연결되어 있지 않은 이메일 주소입니다."
+msgstr ""
+"이 작업에서 수신된 이메일에서 참조가 되어 있었으며 기존 고객과 현재 연결되어 "
+"있지 않은 이메일 주소입니다."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task__email_cc
 #: model:ir.model.fields,field_description:project.field_project_update__email_cc
 msgid "Email cc"
 msgstr "이메일 참조"
+
+#. module: project
+#: model:ir.model.fields,help:project.field_project_project__alias_domain
+msgid "Email domain e.g. 'example.com' in 'odoo@example.com'"
+msgstr "이메일 도메인 예: 'odoo@example.com'의 'example.com'"
 
 #. module: project
 #: model_terms:digest.tip,tip_description:project.digest_tip_project_1
@@ -2056,11 +2204,12 @@ msgstr "오류가 발생했습니다! 작업 순환 구조를 생성할 수 없�
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid "Everyone can propose ideas, and the Editor marks the best ones as"
-msgstr "누구나 아이디어를 제시할 수 있으며, 최고의 아이디어는 편집자가 다음과 같이 표시합니다."
+msgstr ""
+"누구나 아이디어를 제시할 수 있으며, 최고의 아이디어는 편집자가 다음과 같이 표"
+"시합니다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/components/project_right_side_panel/components/project_profitability.xml:0
 #: code:addons/project/static/src/components/project_right_side_panel/components/project_profitability.xml:0
 #, python-format
 msgid "Expected"
@@ -2125,7 +2274,9 @@ msgstr "프로젝트 진행을 팔로우합니다."
 msgid ""
 "Follow this project to automatically track the events associated to tasks "
 "and issues of this project."
-msgstr "이 프로젝트의 작업 및 이슈와 관련된 이벤트를 자동으로 추적하려면 이 프로젝트를 팔로우 하십시오."
+msgstr ""
+"이 프로젝트의 작업 및 이슈와 관련된 이벤트를 자동으로 추적하려면 이 프로젝트"
+"를 팔로우 하십시오."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_task_search_form_base
@@ -2180,9 +2331,10 @@ msgstr "향후 활동"
 #. module: project
 #: model_terms:ir.actions.act_window,help:project.project_update_all_action
 msgid ""
-"Get a snapshot of the status of your project and share its progress with key"
-" stakeholders."
-msgstr "프로젝트 상태에 대한 정보를 확인하며 진행 상황을 관련자들에게 공유해주십시오."
+"Get a snapshot of the status of your project and share its progress with key "
+"stakeholders."
+msgstr ""
+"프로젝트 상태에 대한 정보를 확인하며 진행 상황을 관련자들에게 공유해주십시오."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
@@ -2199,11 +2351,11 @@ msgstr "포털 접근 권한 부여"
 #: code:addons/project/models/project_project.py:0
 #, python-format
 msgid ""
-"Grant employees access to your project or tasks by adding them as followers."
-" Employees automatically get access to the tasks they are assigned to."
+"Grant employees access to your project or tasks by adding them as followers. "
+"Employees automatically get access to the tasks they are assigned to."
 msgstr ""
-"직원을 팔로워로 추가하여 프로젝트나 작업에 접근할 수 있도록 권한을 부여합니다. 직원은 배정받은 작업에 접근 권한을 자동으로 받게 "
-"됩니다. "
+"직원을 팔로워로 추가하여 프로젝트나 작업에 접근할 수 있도록 권한을 부여합니"
+"다. 직원은 배정받은 작업에 접근 권한을 자동으로 받게 됩니다. "
 
 #. module: project
 #. odoo-python
@@ -2211,11 +2363,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Grant portal users access to your project or tasks by adding them as "
-"followers. Customers automatically get access to their tasks in their "
-"portal."
+"followers. Customers automatically get access to their tasks in their portal."
 msgstr ""
-"포털 사용자를 팔로워로 추가하여 프로젝트나 작업에 접근할 수 있도록 권한을 부여합니다. 고객은 포털에서 작업 접근 권한을 자동으로 받게 "
-"됩니다."
+"포털 사용자를 팔로워로 추가하여 프로젝트나 작업에 접근할 수 있도록 권한을 부"
+"여합니다. 고객은 포털에서 작업 접근 권한을 자동으로 받게 됩니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_collaborator_view_search
@@ -2230,9 +2381,11 @@ msgstr "그룹별"
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid ""
-"Handle your idea gathering within Tasks of your new Project and discuss them"
-" in the chatter of the tasks."
-msgstr "새로운 프로젝트의 작업에서 수집한 아이디어를 처리하고 작업 메시지창에서 이에 대해 논의합니다."
+"Handle your idea gathering within Tasks of your new Project and discuss them "
+"in the chatter of the tasks."
+msgstr ""
+"새로운 프로젝트의 작업에서 수집한 아이디어를 처리하고 작업 메시지창에서 이에 "
+"대해 논의합니다."
 
 #. module: project
 #. odoo-javascript
@@ -2307,9 +2460,11 @@ msgstr "ID"
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__alias_parent_thread_id
 msgid ""
-"ID of the parent record holding the alias (example: project holding the task"
-" creation alias)"
-msgstr "별칭을 담고 있는 상위 레코드의 ID (예: 별칭을 생성한 작업을 담고 있는 프로젝트)"
+"ID of the parent record holding the alias (example: project holding the task "
+"creation alias)"
+msgstr ""
+"별칭을 담고 있는 상위 레코드의 ID (예: 별칭을 생성한 작업을 담고 있는 프로젝"
+"트)"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project__activity_exception_icon
@@ -2327,7 +2482,6 @@ msgstr "예외 활동을 표시하기 위한 아이콘"
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Ideas"
@@ -2359,52 +2513,62 @@ msgid ""
 "If enabled, this stage will be displayed as folded in the Kanban view of "
 "your projects. Projects in a folded stage are considered as closed."
 msgstr ""
-"활성화한 경우, 프로젝트의 칸반 화면에서 이 단계는 접힌 상태로 표시됩니다. 프로젝트에서 접힘 단계인 경우에는 종료된 것으로 간주합니다."
+"활성화한 경우, 프로젝트의 칸반 화면에서 이 단계는 접힌 상태로 표시됩니다. 프"
+"로젝트에서 접힘 단계인 경우에는 종료된 것으로 간주합니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task_type__rating_template_id
 msgid ""
-"If set, a rating request will automatically be sent by email to the customer when the task reaches this stage. \n"
-"Alternatively, it will be sent at a regular interval as long as the task remains in this stage, depending on the configuration of your project. \n"
-"To use this feature make sure that the 'Customer Ratings' option is enabled on your project."
+"If set, a rating request will automatically be sent by email to the customer "
+"when the task reaches this stage. \n"
+"Alternatively, it will be sent at a regular interval as long as the task "
+"remains in this stage, depending on the configuration of your project. \n"
+"To use this feature make sure that the 'Customer Ratings' option is enabled "
+"on your project."
 msgstr ""
-"설정할 경우, 작업이 이 단계에 도달하면 고객에게 자동으로 이메일을 통해 평가 요청을 전송합니다. \n"
-"그렇지 않으면, 프로젝트의 환경 설정 내용에 따라서 작업이 이 단계에 있는 동안 정기적으로 텀을 두고 고객에게 전송하게 됩니다. \n"
-"이 기능을 사용하려면 '고객 평가' 옵션이 프로젝트에서 활성화되어 있는지 확인하시기 바랍니다."
+"설정할 경우, 작업이 이 단계에 도달하면 고객에게 자동으로 이메일을 통해 평가 "
+"요청을 전송합니다. \n"
+"그렇지 않으면, 프로젝트의 환경 설정 내용에 따라서 작업이 이 단계에 있는 동안 "
+"정기적으로 텀을 두고 고객에게 전송하게 됩니다. \n"
+"이 기능을 사용하려면 '고객 평가' 옵션이 프로젝트에서 활성화되어 있는지 확인하"
+"시기 바랍니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_stage__mail_template_id
 msgid ""
-"If set, an email will be automatically sent to the customer when the project"
-" reaches this stage."
-msgstr "설정할 경우, 프로젝트가 이 단계에 도달하면 고객에게 자동으로 이메일을 전송합니다."
+"If set, an email will be automatically sent to the customer when the project "
+"reaches this stage."
+msgstr ""
+"설정할 경우, 프로젝트가 이 단계에 도달하면 고객에게 자동으로 이메일을 전송합"
+"니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task_type__mail_template_id
 msgid ""
 "If set, an email will be automatically sent to the customer when the task "
 "reaches this stage."
-msgstr "설정할 경우, 작업이 이 단계에 도달하면 고객에게 자동으로 이메일을 전송합니다."
+msgstr ""
+"설정할 경우, 작업이 이 단계에 도달하면 고객에게 자동으로 이메일을 전송합니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__alias_bounced_content
 msgid ""
 "If set, this content will automatically be sent out to unauthorized users "
 "instead of the default message."
-msgstr "설정할 경우, 권한이 없는 사용자에게 기본 메시지 대신 이 내용을 전송합니다. "
+msgstr ""
+"설정할 경우, 권한이 없는 사용자에게 기본 메시지 대신 이 내용을 전송합니다. "
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__active
 msgid ""
 "If the active field is set to False, it will allow you to hide the project "
 "without removing it."
-msgstr "활성 필드를 False로 설정하면 프로젝트를 제거하지 않고 숨길 수 있습니다."
+msgstr ""
+"활성 필드를 False로 설정하면 프로젝트를 제거하지 않고 숨길 수 있습니다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.js:0
 #: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.xml:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: model:ir.model.fields.selection,name:project.selection__project_task__state__01_in_progress
 #: model:ir.model.fields.selection,name:project.selection__project_task_burndown_chart_report__state__01_in_progress
@@ -2450,8 +2614,8 @@ msgid ""
 "automatically synchronized with Tasks (or optionally Issues if the Issue "
 "Tracker module is installed)."
 msgstr ""
-"이 프로젝트와 관련된 내부 이메일. 수신 이메일은 자동적으로 작업과 동기화됩니다(또는 이슈 추적 모듈이 설치되었으면 이슈와 동기화-"
-"선택사항)"
+"이 프로젝트와 관련된 내부 이메일. 수신 이메일은 자동적으로 작업과 동기화됩니"
+"다(또는 이슈 추적 모듈이 설치되었으면 이슈와 동기화-선택사항)"
 
 #. module: project
 #. odoo-javascript
@@ -2549,19 +2713,23 @@ msgstr "many2one 필드의 ID를 초 단위의 소요 시간으로 매핑하는 
 #: model_terms:ir.actions.act_window,help:project.project_task_action_sub_task
 msgid ""
 "Keep track of the progress of your tasks from creation to completion.<br>\n"
-"                    Collaborate efficiently by chatting in real-time or via email."
+"                    Collaborate efficiently by chatting in real-time or via "
+"email."
 msgstr ""
 "제작부터 완료까지 작업의 진행 상황을 추적해보세요.<br>\n"
-"                    실시간 채팅이나 이메일을 통하여 효율적인 방식으로 협업할 수 있습니다."
+"                    실시간 채팅이나 이메일을 통하여 효율적인 방식으로 협업할 "
+"수 있습니다."
 
 #. module: project
 #: model_terms:ir.actions.act_window,help:project.project_sharing_project_task_action
 msgid ""
 "Keep track of the progress of your tasks from creation to completion.<br>\n"
-"                Collaborate efficiently by chatting in real-time or via email."
+"                Collaborate efficiently by chatting in real-time or via "
+"email."
 msgstr ""
 "제작부터 완료까지 작업의 진행 상황을 추적해보세요.<br>\n"
-"                실시간 채팅이나 이메일을 통하여 효율적인 방식으로 협업할 수 있습니다."
+"                실시간 채팅이나 이메일을 통하여 효율적인 방식으로 협업할 수 "
+"있습니다."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_digest_digest__kpi_project_task_opened_value
@@ -2667,7 +2835,6 @@ msgstr "의견을 남겨주세요"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/js/tours/project.js:0
-#: code:addons/project/static/src/js/tours/project.js:0
 #, python-format
 msgid "Let's create your first <b>project</b>."
 msgstr "첫번째 <b>프로젝트</b>를 생성합니다."
@@ -2762,15 +2929,16 @@ msgstr "주요 첨부 파일"
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid ""
-"Manage the lifecycle of your project using the kanban view. Add newly acquired projects,\n"
+"Manage the lifecycle of your project using the kanban view. Add newly "
+"acquired projects,\n"
 "      assign them and use the"
 msgstr ""
-"칸반 보기를 통하여 프로젝트의 수명 주기를 관리합니다. 새로 시작된 프로젝트를 추가하여,\n"
+"칸반 보기를 통하여 프로젝트의 수명 주기를 관리합니다. 새로 시작된 프로젝트를 "
+"추가하여,\n"
 "     할당하고 다음에 사용합니다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Manufacturing"
@@ -2781,7 +2949,7 @@ msgstr "제조 관리"
 #: code:addons/project/static/src/components/project_right_side_panel/components/project_profitability.xml:0
 #, python-format
 msgid "Margin"
-msgstr "이윤"
+msgstr "마진"
 
 #. module: project
 #. odoo-javascript
@@ -2802,7 +2970,8 @@ msgstr "자재 수급"
 msgid ""
 "Measure your customer satisfaction by sending rating requests when your "
 "tasks reach a certain stage."
-msgstr "작업이 특정 단계에 도달하면 평가 요청을 전송하여 고객 만족도를 측정합니다."
+msgstr ""
+"작업이 특정 단계에 도달하면 평가 요청을 전송하여 고객 만족도를 측정합니다."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project__favorite_user_ids
@@ -2838,7 +3007,6 @@ msgstr "메시지"
 #. module: project
 #. odoo-javascript
 #. odoo-python
-#: code:addons/project/controllers/portal.py:0
 #: code:addons/project/controllers/portal.py:0
 #: code:addons/project/static/src/components/project_right_side_panel/components/project_milestone.js:0
 #: model:ir.model.fields,field_description:project.field_project_project__milestone_ids
@@ -2953,7 +3121,9 @@ msgstr "작업 이름"
 msgid ""
 "Name used to refer to the tasks of your project e.g. tasks, tickets, "
 "sprints, etc..."
-msgstr "프로젝트의 작업 표시에 사용되는 이름입니다. 예를 들어, 작업, 상담, 스프린트 등에 사용합니다."
+msgstr ""
+"프로젝트의 작업 표시에 사용되는 이름입니다. 예를 들어, 작업, 상담, 스프린트 "
+"등에 사용합니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_kanban
@@ -2965,7 +3135,6 @@ msgstr "중립적인 얼굴"
 #. odoo-javascript
 #. odoo-python
 #: code:addons/project/models/project_project.py:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: model:project.task.type,name:project.project_stage_0
 #, python-format
@@ -2986,7 +3155,6 @@ msgstr "새로운 마일스톤"
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "New Orders"
@@ -3023,14 +3191,12 @@ msgstr "새 작업"
 #. module: project
 #. odoo-python
 #: code:addons/project/controllers/portal.py:0
-#: code:addons/project/controllers/portal.py:0
 #, python-format
 msgid "Newest"
 msgstr "최신"
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/project_sharing/components/chatter/chatter_pager.xml:0
 #: code:addons/project/static/src/project_sharing/components/chatter/chatter_pager.xml:0
 #, python-format
 msgid "Next"
@@ -3256,6 +3422,13 @@ msgid "Once a Month"
 msgstr "월 1회"
 
 #. module: project
+#. odoo-python
+#: code:addons/project/controllers/portal.py:0
+#, python-format
+msgid "Only jpeg, png, bmp and tiff images are allowed as attachments."
+msgstr "jpeg, png, bmp 및 tiff 이미지만 첨부할 수 있습니다."
+
+#. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/project_sharing/components/chatter/chatter_composer.xml:0
 #, python-format
@@ -3288,7 +3461,8 @@ msgid ""
 "attached, even if they did not reply to it. If set, this will disable the "
 "creation of new records completely."
 msgstr ""
-"회신하지 않은 것까지 모든 받는 메시지를 첨부할 스레드(레코드)의 선택사항 ID. 설정하면 완벽하게 새로운 레코드의 생성을 억제합니다."
+"회신하지 않은 것까지 모든 받는 메시지를 첨부할 스레드(레코드)의 선택사항 ID. "
+"설정하면 완벽하게 새로운 레코드의 생성을 억제합니다."
 
 #. module: project
 #. odoo-javascript
@@ -3302,10 +3476,12 @@ msgstr "주문 간의 우선 순위를 정리하려면"
 #: model_terms:ir.actions.act_window,help:project.action_view_my_task
 msgid ""
 "Organize your tasks by dispatching them across the pipeline.<br>\n"
-"                    Collaborate efficiently by chatting in real-time or via email."
+"                    Collaborate efficiently by chatting in real-time or via "
+"email."
 msgstr ""
 "파이프라인 전반에 걸쳐 작업을 보내어 체계적으로 작업을 관리하세요.<br>\n"
-"                    실시간 채팅이나 이메일을 통하여 효율적인 방식으로 협업할 수 있습니다."
+"                    실시간 채팅이나 이메일을 통하여 효율적인 방식으로 협업할 "
+"수 있습니다."
 
 #. module: project
 #. odoo-python
@@ -3348,27 +3524,27 @@ msgstr "상위 작업"
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__alias_parent_model_id
 msgid ""
-"Parent model holding the alias. The model holding the alias reference is not"
-" necessarily the model given by alias_model_id (example: project "
+"Parent model holding the alias. The model holding the alias reference is not "
+"necessarily the model given by alias_model_id (example: project "
 "(parent_model) and task (model))"
 msgstr ""
-"별칭이 있는 상위 모델입니다. 별칭 참조를 포함하는 모델은 반드시 alias_model_id(예: 프로젝트(parent_model) 및 "
-"태스크(model)에서 제공하는 모델일 필요는 없습니다.)"
+"별칭이 있는 상위 모델입니다. 별칭 참조를 포함하는 모델은 반드시 "
+"alias_model_id(예: 프로젝트(parent_model) 및 태스크(model)에서 제공하는 모델"
+"일 필요는 없습니다.)"
 
 #. module: project
 #. odoo-python
 #: code:addons/project/models/res_partner.py:0
 #, python-format
-msgid ""
-"Partner company cannot be different from its assigned projects' company"
-msgstr ""
+msgid "Partner company cannot be different from its assigned projects' company"
+msgstr "협력사는 프로젝트에 배정된 회사와 다를 수 없습니다."
 
 #. module: project
 #. odoo-python
 #: code:addons/project/models/res_partner.py:0
 #, python-format
 msgid "Partner company cannot be different from its assigned tasks' company"
-msgstr ""
+msgstr "협력사는 해당 업무에 배정된 회사와 다를 수 없습니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_share_wizard_confirm_form
@@ -3382,33 +3558,57 @@ msgstr "프로젝트에 협업하도록 초대한 사람들에게는 포탈 접�
 msgid ""
 "People to whom this project and its tasks will be visible.\n"
 "\n"
-"- Invited internal users: when following a project, internal users will get access to all of its tasks without distinction. Otherwise, they will only get access to the specific tasks they are following.\n"
-" A user with the project > administrator access right level can still access this project and its tasks, even if they are not explicitly part of the followers.\n"
+"- Invited internal users: when following a project, internal users will get "
+"access to all of its tasks without distinction. Otherwise, they will only "
+"get access to the specific tasks they are following.\n"
+" A user with the project > administrator access right level can still access "
+"this project and its tasks, even if they are not explicitly part of the "
+"followers.\n"
 "\n"
-"- All internal users: all internal users can access the project and all of its tasks without distinction.\n"
+"- All internal users: all internal users can access the project and all of "
+"its tasks without distinction.\n"
 "\n"
-"- Invited portal users and all internal users: all internal users can access the project and all of its tasks without distinction.\n"
-"When following a project, portal users will get access to all of its tasks without distinction. Otherwise, they will only get access to the specific tasks they are following.\n"
+"- Invited portal users and all internal users: all internal users can access "
+"the project and all of its tasks without distinction.\n"
+"When following a project, portal users will get access to all of its tasks "
+"without distinction. Otherwise, they will only get access to the specific "
+"tasks they are following.\n"
 "\n"
-"When a project is shared in read-only, the portal user is redirected to their portal. They can view the tasks, but not edit them.\n"
-"When a project is shared in edit, the portal user is redirected to the kanban and list views of the tasks. They can modify a selected number of fields on the tasks.\n"
+"When a project is shared in read-only, the portal user is redirected to "
+"their portal. They can view the tasks, but not edit them.\n"
+"When a project is shared in edit, the portal user is redirected to the "
+"kanban and list views of the tasks. They can modify a selected number of "
+"fields on the tasks.\n"
 "\n"
-"In any case, an internal user with no project access rights can still access a task, provided that they are given the corresponding URL (and that they are part of the followers if the project is private)."
+"In any case, an internal user with no project access rights can still access "
+"a task, provided that they are given the corresponding URL (and that they "
+"are part of the followers if the project is private)."
 msgstr ""
 "이 프로젝트 및 관련 작업을 볼 수 있는 사람.\n"
 "\n"
-"- 초대 받은 내부 사용자: 프로젝트를 팔로우하면 내부 사용자는 동등하게 어떤 작업에나 접근할 수 있습니다. 그렇지 않은 경우, 팔로우하는 특정 작업에만 접근할 수 있습니다.\n"
-" 프로젝트 > 관리자 접근 권한 수준을 가진 사용자는 직접 팔로우하지 않은 경우에도 여전히 이 프로젝트 및 관련 작업에 접근할 수 있습니다.\n"
+"- 초대 받은 내부 사용자: 프로젝트를 팔로우하면 내부 사용자는 동등하게 어떤 작"
+"업에나 접근할 수 있습니다. 그렇지 않은 경우, 팔로우하는 특정 작업에만 접근할 "
+"수 있습니다.\n"
+" 프로젝트 > 관리자 접근 권한 수준을 가진 사용자는 직접 팔로우하지 않은 경우에"
+"도 여전히 이 프로젝트 및 관련 작업에 접근할 수 있습니다.\n"
 "\n"
-"- 모든 내부 사용자: 모든 내부 사용자는 동등하게 프로젝트 및 관련 작업에 접근할 수 있습니다..\n"
+"- 모든 내부 사용자: 모든 내부 사용자는 동등하게 프로젝트 및 관련 작업에 접근"
+"할 수 있습니다..\n"
 "\n"
-"- 초대 받은 포털 사용자 및 모든 내부 사용자: 모든 내부 사용자는 프로젝트 및 모든 작업에 동등하게 접근할 수 있습니다.\n"
-"프로젝트를 팔로우하면 포털 사용자는 동등하게 모든 작업에 접근할 수 있습니다. 그렇지 않으면 팔로우하는 특정 작업에만 접근할 수 있습니다. \n"
+"- 초대 받은 포털 사용자 및 모든 내부 사용자: 모든 내부 사용자는 프로젝트 및 "
+"모든 작업에 동등하게 접근할 수 있습니다.\n"
+"프로젝트를 팔로우하면 포털 사용자는 동등하게 모든 작업에 접근할 수 있습니다. "
+"그렇지 않으면 팔로우하는 특정 작업에만 접근할 수 있습니다. \n"
 "\n"
-"프로젝트가 읽기 전용으로 공유되는 경우에는, 포탈 사용자를 해당 포털로 이동시킵니다. 작업 보기는 가능하지만, 편집할 수는 없습니다.\n"
-"프로젝트가 편집 기능으로 공유되는 경우에는, 포털 사용자를 작업의 칸반 및 목록 화면으로 이동시킵니다. 작업에 대해 선택된 필드 숫자만큼 수정할 수 있습니다.\n"
+"프로젝트가 읽기 전용으로 공유되는 경우에는, 포탈 사용자를 해당 포털로 이동시"
+"킵니다. 작업 보기는 가능하지만, 편집할 수는 없습니다.\n"
+"프로젝트가 편집 기능으로 공유되는 경우에는, 포털 사용자를 작업의 칸반 및 목"
+"록 화면으로 이동시킵니다. 작업에 대해 선택된 필드 숫자만큼 수정할 수 있습니"
+"다.\n"
 "\n"
-"어떤 경우에도, 프로젝트 접근 권한이 없는 내부 사용자는 해당 URL을 통하여 (또한 비공개 프로젝트인 경우에는 팔로우하는 경우에) 여전히 작업에 접근할 수 있습니다."
+"어떤 경우에도, 프로젝트 접근 권한이 없는 내부 사용자는 해당 URL을 통하여 (또"
+"한 비공개 프로젝트인 경우에는 팔로우하는 경우에) 여전히 작업에 접근할 수 있습"
+"니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__rating_percentage_satisfaction
@@ -3467,12 +3667,14 @@ msgid ""
 "Policy to post a message on the document using the mailgateway.\n"
 "- everyone: everyone can post\n"
 "- partners: only authenticated partners\n"
-"- followers: only followers of the related document or members of following channels\n"
+"- followers: only followers of the related document or members of following "
+"channels\n"
 msgstr ""
 "Mailgateway를 사용하여 문서에 메시지를 게시하는 정책.\n"
 "- 모든 사용자: 모든 사용자가 게시할 수 있습니다\n"
 "- 협력사: 인증된 협력사만 게시할 수 있습니다\n"
-"- 팔로워: 관련 문서의 팔로워 또는 팔로잉 중인 채널의 사용자만 게시할 수 있습니다\n"
+"- 팔로워: 관련 문서의 팔로워 또는 팔로잉 중인 채널의 사용자만 게시할 수 있습"
+"니다\n"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project__access_url
@@ -3490,13 +3692,11 @@ msgstr "포털 사용자 이름"
 #: code:addons/project/models/project_project.py:0
 #, python-format
 msgid ""
-"Portal users will be removed from the followers of the project and its "
-"tasks."
+"Portal users will be removed from the followers of the project and its tasks."
 msgstr "포털 사용자를 프로젝트 및 관련 작업 팔로워에서 삭제합니다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/project_sharing/components/chatter/chatter_pager.xml:0
 #: code:addons/project/static/src/project_sharing/components/chatter/chatter_pager.xml:0
 #, python-format
 msgid "Previous"
@@ -3511,7 +3711,6 @@ msgstr "중요한 작업을 표시하여 작업의 우선순위를 정하세요"
 
 #. module: project
 #. odoo-python
-#: code:addons/project/controllers/portal.py:0
 #: code:addons/project/controllers/portal.py:0
 #: model:ir.model.fields,field_description:project.field_project_task__priority
 #: model:ir.model.fields,field_description:project.field_report_project_task_user__priority
@@ -3533,7 +3732,6 @@ msgstr "개인정보 가시성 경고"
 #. odoo-javascript
 #: code:addons/project/static/src/components/project_many2one_field/project_many2one_field.js:0
 #: code:addons/project/static/src/components/project_many2one_field/project_many2one_field.xml:0
-#: code:addons/project/static/src/components/project_many2one_field/project_many2one_field.xml:0
 #: code:addons/project/static/src/views/project_task_calendar/project_task_calendar_model.js:0
 #: code:addons/project/static/src/views/project_task_pivot/project_pivot_model.js:0
 #: model_terms:ir.ui.view,arch_db:project.quick_create_task_form
@@ -3553,7 +3751,9 @@ msgstr "비공개 작업"
 msgid ""
 "Private tasks cannot be converted into sub-tasks. Please set a project for "
 "the task to gain access to this feature."
-msgstr "비공개 작업은 하위 작업으로 전환할 수 없습니다. 해당 기능에 접근하려면 작업에 대해 프로젝트를 설정하세요."
+msgstr ""
+"비공개 작업은 하위 작업으로 전환할 수 없습니다. 해당 기능에 접근하려면 작업"
+"에 대해 프로젝트를 설정하세요."
 
 #. module: project
 #. odoo-javascript
@@ -3578,7 +3778,6 @@ msgstr "진행률"
 #. module: project
 #. odoo-javascript
 #. odoo-python
-#: code:addons/project/controllers/portal.py:0
 #: code:addons/project/controllers/portal.py:0
 #: code:addons/project/static/src/views/project_rating_graph/project_rating_graph_view.js:0
 #: code:addons/project/static/src/views/project_rating_pivot/project_rating_pivot_view.js:0
@@ -3785,17 +3984,20 @@ msgstr "프로젝트"
 #: model_terms:ir.actions.act_window,help:project.open_view_project_all_group_stage
 msgid ""
 "Projects contain tasks on the same topic, and each has its own dashboard."
-msgstr "프로젝트에는 동일한 주제의 작업이 포함되어 있으며, 각각의 고유 현황판이 있습니다."
+msgstr ""
+"프로젝트에는 동일한 주제의 작업이 포함되어 있으며, 각각의 고유 현황판이 있습"
+"니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task_type__project_ids
 msgid ""
-"Projects in which this stage is present. If you follow a similar workflow in"
-" several projects, you can share this stage among them and get consolidated "
+"Projects in which this stage is present. If you follow a similar workflow in "
+"several projects, you can share this stage among them and get consolidated "
 "information this way."
 msgstr ""
-"이 단계가 속해 있는 프로젝트입니다. 여러 프로젝트에서 비슷한 작업 단계를 수행하는 경우, 이 단계를 공유하여 이러한 방식으로 통합된 "
-"정보를 확인할 수 있습니다."
+"이 단계가 속해 있는 프로젝트입니다. 여러 프로젝트에서 비슷한 작업 단계를 수행"
+"하는 경우, 이 단계를 공유하여 이러한 방식으로 통합된 정보를 확인할 수 있습니"
+"다."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task__task_properties
@@ -3807,10 +4009,9 @@ msgstr "속성"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Published"
-msgstr "게시 됨"
+msgstr "게시 완료"
 
 #. module: project
 #. odoo-javascript
@@ -3838,7 +4039,8 @@ msgid ""
 "identify those on hold until dependencies are resolved with the hourglass "
 "icon."
 msgstr ""
-"작업 상태를 신속하게 확인하여 승인이나 변경 요청에 대응하며, 종속성 문제 때문에 보류 중인 작업은 모래시계 아이콘으로 구분합니다."
+"작업 상태를 신속하게 확인하여 승인이나 변경 요청에 대응하며, 종속성 문제 때문"
+"에 보류 중인 작업은 모래시계 아이콘으로 구분합니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_task_view_tree_base
@@ -4022,7 +4224,6 @@ msgstr "보고"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Research"
 msgstr "연구"
@@ -4081,6 +4282,20 @@ msgstr "SMS 전송 에러"
 #: model_terms:ir.ui.view,arch_db:project.view_task_kanban
 msgid "Sad face"
 msgstr "슬픈 표정"
+
+#. module: project
+#. odoo-javascript
+#: code:addons/project/static/src/project_sharing/views/form/project_sharing_form_controller.js:0
+#, python-format
+msgid "Save the task to be able to drag images in description"
+msgstr "설명에서 이미지를 드래그할 수 있도록 작업을 저장합니다."
+
+#. module: project
+#. odoo-javascript
+#: code:addons/project/static/src/project_sharing/views/form/project_sharing_form_controller.js:0
+#, python-format
+msgid "Save the task to be able to paste images in description"
+msgstr " 설명에 이미지를 붙여넣을 수 있도록 작업을 저장합니다."
 
 #. module: project
 #. odoo-javascript
@@ -4233,9 +4448,9 @@ msgstr "단계의 평가 이메일 양식 설정"
 #. module: project
 #: model:mail.template,description:project.project_done_email_template
 msgid ""
-"Set on project's stages to inform customers when a project reaches that "
-"stage"
-msgstr "프로젝트 상태를 설정하여 프로젝트가 해당 단계에 도달하면 고객에게 안내합니다."
+"Set on project's stages to inform customers when a project reaches that stage"
+msgstr ""
+"프로젝트 상태를 설정하여 프로젝트가 해당 단계에 도달하면 고객에게 안내합니다."
 
 #. module: project
 #. odoo-javascript
@@ -4256,14 +4471,18 @@ msgstr "상태를 다음으로 설정"
 msgid ""
 "Set this template on a project stage to request feedback from your "
 "customers. Enable the \"customer ratings\" feature on the project"
-msgstr "프로젝트 단계에서 서식을 설정하여 고객에게 피드백을 요청하세요. 프로젝트에서 \"고객 평가\" 기능을 활성화하십시오."
+msgstr ""
+"프로젝트 단계에서 서식을 설정하여 고객에게 피드백을 요청하세요. 프로젝트에서 "
+"\"고객 평가\" 기능을 활성화하십시오."
 
 #. module: project
 #: model:mail.template,description:project.mail_template_data_project_task
 msgid ""
 "Set this template on a project's stage to automate email when tasks reach "
 "stages"
-msgstr "작업이 단계에 도달하게 되면 이메일을 자동 발송하도록 프로젝트 단계에서 해당 서식을 설정합니다."
+msgstr ""
+"작업이 단계에 도달하게 되면 이메일을 자동 발송하도록 프로젝트 단계에서 해당 "
+"서식을 설정합니다."
 
 #. module: project
 #: model:ir.actions.act_window,name:project.project_config_settings_action
@@ -4358,7 +4577,6 @@ msgstr "진행중인 스프린트"
 #. odoo-javascript
 #. odoo-python
 #: code:addons/project/controllers/portal.py:0
-#: code:addons/project/controllers/portal.py:0
 #: code:addons/project/static/src/views/burndown_chart/burndown_chart_search_model.js:0
 #: model:ir.model.fields,field_description:project.field_project_project__stage_id
 #: model:ir.model.fields,field_description:project.field_project_task__stage_id
@@ -4428,7 +4646,6 @@ msgstr "시/도"
 #. module: project
 #. odoo-python
 #: code:addons/project/controllers/portal.py:0
-#: code:addons/project/controllers/portal.py:0
 #: model:ir.model.fields,field_description:project.field_project_update__status
 #: model_terms:ir.ui.view,arch_db:project.view_project
 #: model_terms:ir.ui.view,arch_db:project.view_project_calendar
@@ -4497,8 +4714,8 @@ msgid ""
 "linked to this task. Usually less than or equal to the allocated hours of "
 "this task."
 msgstr ""
-"이 작업에 연결되어 있는 모든 하위 작업 (및 자체 하위 작업)에 할당되어 있는 총 합계 시간입니다. 일반적으로 이 작업에 할당된 시간과"
-" 같거나 적습니다."
+"이 작업에 연결되어 있는 모든 하위 작업 (및 자체 하위 작업)에 할당되어 있는 "
+"총 합계 시간입니다. 일반적으로 이 작업에 할당된 시간과 같거나 적습니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_update_default_description
@@ -4687,7 +4904,6 @@ msgstr "작업: 평가 요청"
 #. module: project
 #. odoo-python
 #: code:addons/project/models/project_project.py:0
-#: code:addons/project/models/project_project.py:0
 #: model:ir.actions.act_window,name:project.act_project_project_2_project_task_all
 #: model:ir.actions.act_window,name:project.action_view_task
 #: model:ir.actions.act_window,name:project.action_view_task_from_milestone
@@ -4777,6 +4993,13 @@ msgstr "현재 사용자의 개인 작업 단계입니다."
 
 #. module: project
 #. odoo-python
+#: code:addons/project/controllers/portal.py:0
+#, python-format
+msgid "The document does not exist or you do not have the rights to access it."
+msgstr "문서가 없거나 문서에 접근할 권한이 없습니다."
+
+#. module: project
+#. odoo-python
 #: code:addons/project/models/project_task_recurrence.py:0
 #, python-format
 msgid "The end date should be in the future"
@@ -4802,12 +5025,12 @@ msgstr "간격은 0보다 큰 숫자여야 합니다."
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__alias_model_id
 msgid ""
-"The model (Odoo Document Kind) to which this alias corresponds. Any incoming"
-" email that does not reply to an existing record will cause the creation of "
-"a new record of this model (e.g. a Project Task)"
+"The model (Odoo Document Kind) to which this alias corresponds. Any incoming "
+"email that does not reply to an existing record will cause the creation of a "
+"new record of this model (e.g. a Project Task)"
 msgstr ""
-"이 별칭에 해당하는 모델(Odoo 문서 종류)입니다. 모든 받는 메일은 기존 레코드로 기록되지 않고 이 모델의 새 레코드로 작성됩니다. "
-"(예. 프로젝트 작업)"
+"이 별칭에 해당하는 모델(Odoo 문서 종류)입니다. 모든 받는 메일은 기존 레코드"
+"로 기록되지 않고 이 모델의 새 레코드로 작성됩니다. (예. 프로젝트 작업)"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project__alias_name
@@ -4815,7 +5038,8 @@ msgid ""
 "The name of the email alias, e.g. 'jobs' if you want to catch emails for "
 "<jobs@example.odoo.com>"
 msgstr ""
-"<jobs@example.odoo.com>에 대한 이메일을 수신하도록 하려면 이메일의 별칭 이름을 적어주세요. 예: 'jobs'"
+"<jobs@example.odoo.com>에 대한 이메일을 수신하도록 하려면 이메일의 별칭 이름"
+"을 적어주세요. 예: 'jobs'"
 
 #. module: project
 #. odoo-python
@@ -4834,17 +5058,20 @@ msgid ""
 "the project is too restricted. Set the privacy to 'Visible by following "
 "customers' in order to make it accessible by the recipient(s)."
 msgstr ""
-"프로젝트의 개인 정보가 너무 제한되어 있으므로 프로젝트를 수신자와 공유할 수 없습니다. 수신자가 개인 정보에 접근할 수있게 하려면 개인 "
-"정보를 '고객에게 표시'로 설정하십시오."
+"프로젝트의 개인 정보가 너무 제한되어 있으므로 프로젝트를 수신자와 공유할 수 "
+"없습니다. 수신자가 개인 정보에 접근할 수있게 하려면 개인 정보를 '고객에게 표"
+"시'로 설정하십시오."
 
 #. module: project
 #. odoo-python
 #: code:addons/project/models/project_project.py:0
 #, python-format
 msgid ""
-"The project's company cannot be changed if its analytic account has analytic"
-" lines or if more than one project is linked to it."
-msgstr "분석 계정에 분석 항목이 있거나 둘 이상의 프로젝트가 연결되어 있는 경우 프로젝트 회사를 변경할 수 없습니다."
+"The project's company cannot be changed if its analytic account has analytic "
+"lines or if more than one project is linked to it."
+msgstr ""
+"분석 계정에 분석 항목이 있거나 둘 이상의 프로젝트가 연결되어 있는 경우 프로젝"
+"트 회사를 변경할 수 없습니다."
 
 #. module: project
 #: model:ir.model.constraint,message:project.constraint_project_project_project_date_greater
@@ -4862,8 +5089,7 @@ msgstr "검색에서는 %s 연산자나 %s 값이 지원되지 않습니다."
 #. odoo-python
 #: code:addons/project/models/project_task.py:0
 #, python-format
-msgid ""
-"The task and the associated partner must be linked to the same company."
+msgid "The task and the associated partner must be linked to the same company."
 msgstr "작업과 관련된 협력사는 동일한 회사에 연결되어 있어야 합니다."
 
 #. module: project
@@ -4875,8 +5101,9 @@ msgid ""
 "project is too restricted. Set the privacy of the project to 'Visible by "
 "following customers' in order to make it accessible by the recipient(s)."
 msgstr ""
-"프로젝트의 개인 정보가 너무 제한되어 있으므로 작업을 수신자와 공유할 수 없습니다. 수신자가 프로젝트에 접근할 수있게 하려면 프로젝트의 "
-"개인 정보를 '고객에게 공개'로 설정하십시오."
+"프로젝트의 개인 정보가 너무 제한되어 있으므로 작업을 수신자와 공유할 수 없습"
+"니다. 수신자가 프로젝트에 접근할 수있게 하려면 프로젝트의 개인 정보를 '고객에"
+"게 공개'로 설정하십시오."
 
 #. module: project
 #. odoo-python
@@ -4922,8 +5149,9 @@ msgid ""
 "mode on your website. This includes leads/opportunities, quotations/sales "
 "orders, purchase orders, invoices and bills, timesheets, and tickets."
 msgstr ""
-"공유 프로젝트를 편집하거나 특정 문서를 웹사이트에서 읽기 전용으로 볼 수 있습니다. 영업제안이나 영업기회, 견적서나 판매주문서, "
-"구매발주서, 청구서나 거래처 청구서와 작업시간표와 상담까지 아우릅니다."
+"공유 프로젝트를 편집하거나 특정 문서를 웹사이트에서 읽기 전용으로 볼 수 있습"
+"니다. 영업제안이나 영업기회, 견적서나 판매주문서, 구매발주서, 청구서나 거래"
+"처 청구서와 작업시간표와 상담까지 아우릅니다."
 
 #. module: project
 #. odoo-python
@@ -4948,7 +5176,9 @@ msgstr "이번 주"
 msgid ""
 "This is a preview of how the project will look when it's shared with "
 "customers and they have editing access."
-msgstr "고객에게 공유하여 편집 권한을 가지게 되는 경우 프로젝트가 어떻게 보이는지 확인할 수 있는 미리보기입니다."
+msgstr ""
+"고객에게 공유하여 편집 권한을 가지게 되는 경우 프로젝트가 어떻게 보이는지 확"
+"인할 수 있는 미리보기입니다."
 
 #. module: project
 #. odoo-python
@@ -4961,25 +5191,26 @@ msgid ""
 "update the company information for these records to align them under the "
 "same company."
 msgstr ""
-"%s과 연결된 프로젝트이지만, 선택한 단계는 %s와 연결되어 있습니다. 프로젝트 또는 단계에서 회사 지정을 제거하거나, 이러한 레코드에 "
-"대한 회사 정보를 업데이트하여 동일한 회사 아래에 정렬하실 수 있습니다."
+"%s과 연결된 프로젝트이지만, 선택한 단계는 %s와 연결되어 있습니다. 프로젝트 또"
+"는 단계에서 회사 지정을 제거하거나, 이러한 레코드에 대한 회사 정보를 업데이트"
+"하여 동일한 회사 아래에 정렬하실 수 있습니다."
 
 #. module: project
 #. odoo-python
 #: code:addons/project/models/project_project.py:0
 #, python-format
 msgid ""
-"This project is not associated to any company, while the stage is associated"
-" to %s. There are a couple of options to consider: either change the "
+"This project is not associated to any company, while the stage is associated "
+"to %s. There are a couple of options to consider: either change the "
 "project's company to align with the stage's company or remove the company "
 "designation from the stage"
 msgstr ""
-"해당 프로젝트에는 회사가 연결되어 있지 않으나, 단계는 %s에 연결되어 있습니다. 몇 가지 옵션 중에서 선택하세요: 프로젝트 회사를 "
-"스테이지의 회사에 맞도록 변경하거나 단계에서 회사 지정을 삭제할 수 있습니다."
+"해당 프로젝트에는 회사가 연결되어 있지 않으나, 단계는 %s에 연결되어 있습니"
+"다. 몇 가지 옵션 중에서 선택하세요: 프로젝트 회사를 스테이지의 회사에 맞도록 "
+"변경하거나 단계에서 회사 지정을 삭제할 수 있습니다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.xml:0
 #: code:addons/project/static/src/components/project_task_state_selection/project_task_state_selection.xml:0
 #, python-format
 msgid "This task is blocked by another unfinished task"
@@ -4990,14 +5221,17 @@ msgstr "다른 미완료 작업으로 인해 이 작업이 차단되었습니다
 msgid ""
 "This will archive the stages and all the tasks they contain from the "
 "following projects:"
-msgstr "이렇게 하면 다음의 프로젝트에 해당하는 단계 및 전체 작업이 보관 처리됩니다:"
+msgstr ""
+"이렇게 하면 다음의 프로젝트에 해당하는 단계 및 전체 작업이 보관 처리됩니다:"
 
 #. module: project
 #: model_terms:ir.actions.act_window,help:project.mail_activity_type_action_config_project_types
 msgid ""
 "Those represent the different categories of things you have to do (e.g. "
 "\"Call\" or \"Send email\")."
-msgstr "이는 수행해야 하는 작업에 대한 다양한 카테고리를 나타냅니다 (예: \"전화\" 또는 \"이메일 전송\")."
+msgstr ""
+"이는 수행해야 하는 작업에 대한 다양한 카테고리를 나타냅니다 (예: \"전화\" 또"
+"는 \"이메일 전송\")."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
@@ -5044,7 +5278,7 @@ msgstr "To Do"
 #: code:addons/project/static/src/components/project_right_side_panel/components/project_profitability.xml:0
 #, python-format
 msgid "To Invoice"
-msgstr "발행할 청구서"
+msgstr "청구서 발행 대기"
 
 #. module: project
 #. odoo-javascript
@@ -5069,8 +5303,8 @@ msgid ""
 "leave the parent task field blank to convert a sub-task into a standalone "
 "task."
 msgstr ""
-"작업을 하위 작업으로 전환하려면, 상위 작업을 선택하세요. 또는 상위 작업 필드가 공란으로 비워져 있으면 하위 작업이 독립형 작업으로 "
-"전환됩니다."
+"작업을 하위 작업으로 전환하려면, 상위 작업을 선택하세요. 또는 상위 작업 필드"
+"가 공란으로 비워져 있으면 하위 작업이 독립형 작업으로 전환됩니다."
 
 #. module: project
 #. odoo-python
@@ -5089,7 +5323,6 @@ msgstr "오늘 활동"
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/components/project_right_side_panel/components/project_profitability.xml:0
 #: code:addons/project/static/src/components/project_right_side_panel/components/project_profitability.xml:0
 #, python-format
 msgid "Total"
@@ -5120,14 +5353,18 @@ msgstr "성공하기 위해서 반드시 도달해야 하는 주요 진행 사�
 msgid ""
 "Track project costs, revenues, and margin by setting the analytic account "
 "associated with the project on relevant documents."
-msgstr "프로젝트 비용과 수익, 마진을 추적하세요. 관련 문서에서 프로젝트에 연결되어 있는 분석 계정을 설정합니다."
+msgstr ""
+"프로젝트 비용과 수익, 마진을 추적하세요. 관련 문서에서 프로젝트에 연결되어 있"
+"는 분석 계정을 설정합니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.res_config_settings_view_form
 msgid ""
-"Track the profitability of your project with analytic accounting. Select the"
-" analytic plan for new projects:"
-msgstr "분석 회계로 프로젝트의 수익성을 추적하세요. 새 프로젝트에 대한 분석 계획을 선택합니다:"
+"Track the profitability of your project with analytic accounting. Select the "
+"analytic plan for new projects:"
+msgstr ""
+"분석 회계로 프로젝트의 수익성을 추적하세요. 새 프로젝트에 대한 분석 계획을 선"
+"택합니다:"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.res_config_settings_view_form
@@ -5136,8 +5373,8 @@ msgid ""
 "timesheets are linked to an analytic account and any analytic account "
 "belongs to a plan."
 msgstr ""
-"프로젝트 수익성을 추적합니다. 전체 프로젝트에서 관련 작업과 작업시간표를 분석 계정으로 연결시키며 모든 분석 계정은 계획에 포함되어 "
-"있습니다. "
+"프로젝트 수익성을 추적합니다. 전체 프로젝트에서 관련 작업과 작업시간표를 분"
+"석 계정으로 연결시키며 모든 분석 계정은 계획에 포함되어 있습니다. "
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.res_config_settings_view_form
@@ -5281,19 +5518,6 @@ msgstr "작업 분류에 태그 사용하기"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid "Use the"
 msgstr "다음 내용을 사용"
@@ -5307,8 +5531,8 @@ msgid ""
 "customers. Add new people to the followers' list to make them aware of the "
 "main changes about this task."
 msgstr ""
-"메시지창을 통해 <b>이메일을 보내거나</b> 고객들과 효율적으로 소통할 수 있습니다. 팔로워 목록에 신규 사용자를 추가하여 작업의 주요"
-" 변경 내용을 알려줍니다."
+"메시지창을 통해 <b>이메일을 보내거나</b> 고객들과 효율적으로 소통할 수 있습니"
+"다. 팔로워 목록에 신규 사용자를 추가하여 작업의 주요 변경 내용을 알려줍니다."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_task__display_name
@@ -5320,7 +5544,8 @@ msgid ""
 "        @user Assign the task to a user\n"
 "        ! Set the task a high priority\n"
 "\n"
-"        Make sure to use the right format and order e.g. Improve the configuration screen 5h #feature #v16 @Mitchell !"
+"        Make sure to use the right format and order e.g. Improve the "
+"configuration screen 5h #feature #v16 @Mitchell !"
 msgstr ""
 "새로운 작업을 설정하려면 제목에 다음 키워드를 사용하십시오:\n"
 "\n"
@@ -5329,7 +5554,8 @@ msgstr ""
 "        @user 사용자에게 작업 배정\n"
 "        ! 작업에 우선 순위를 설정\n"
 "\n"
-"        올바른 형식과 순서를 사용했는지 확인하십시오. 예. 환경 설정 화면 개선 5h #feature #v16 @Mitchell !"
+"        올바른 형식과 순서를 사용했는지 확인하십시오. 예. 환경 설정 화면 개"
+"선 5h #feature #v16 @Mitchell !"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_stage_personal__user_id
@@ -5379,11 +5605,12 @@ msgstr "대기 중"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/js/tours/project.js:0
-#: code:addons/project/static/src/js/tours/project.js:0
 #, python-format
 msgid ""
 "Want a better way to <b>manage your projects</b>? <i>It starts here.</i>"
-msgstr "더 나은 <b>프로젝트 관리</b> 방법을 찾고 있으신가요? <i>여기에 그 해답이 있습니다.</i>"
+msgstr ""
+"더 나은 <b>프로젝트 관리</b> 방법을 찾고 있으신가요? <i>여기에 그 해답이 있습"
+"니다.</i>"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_milestone__website_message_ids
@@ -5422,20 +5649,28 @@ msgstr "주"
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_share_wizard_view_form
 msgid ""
-"When sharing a project in edit mode, you are giving people access to the kanban and list views of your tasks.\n"
-"                    Collaborators will be able to view and modify part of the tasks' information."
+"When sharing a project in edit mode, you are giving people access to the "
+"kanban and list views of your tasks.\n"
+"                    Collaborators will be able to view and modify part of "
+"the tasks' information."
 msgstr ""
-"프로젝트를 편집 모드로 공유하면, 작업 항목에서 칸반 및 목록 화면에 대한 접근 권한을 부여하게 됩니다.\n"
-"                     공동 작업자는 작업 정보 일부를 보기 및 편집할 수 있습니다."
+"프로젝트를 편집 모드로 공유하면, 작업 항목에서 칸반 및 목록 화면에 대한 접근 "
+"권한을 부여하게 됩니다.\n"
+"                     공동 작업자는 작업 정보 일부를 보기 및 편집할 수 있습니"
+"다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_share_wizard_view_form
 msgid ""
-"When sharing a project in read-only mode, you are giving people access to the tasks in their portal.\n"
-"                    These people will be able to view the tasks, but not edit them."
+"When sharing a project in read-only mode, you are giving people access to "
+"the tasks in their portal.\n"
+"                    These people will be able to view the tasks, but not "
+"edit them."
 msgstr ""
-"프로젝트를 읽기 전용으로 공유하면, 해당 작업자 포털에서 작업 항목에 접근하는 권한을 부여하게 됩니다.\n"
-"                     해당 작업자는 작업 정보 보기를 할 수 있으나, 편집할 수는 없습니다."
+"프로젝트를 읽기 전용으로 공유하면, 해당 작업자 포털에서 작업 항목에 접근하는 "
+"권한을 부여하게 됩니다.\n"
+"                     해당 작업자는 작업 정보 보기를 할 수 있으나, 편집할 수"
+"는 없습니다."
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task__working_days_open
@@ -5479,8 +5714,8 @@ msgstr "마감까지 근무 시간"
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_project_stage_unarchive_wizard
 msgid ""
-"Would you like to unarchive all of the projects contained in these stages as"
-" well?"
+"Would you like to unarchive all of the projects contained in these stages as "
+"well?"
 msgstr "이 단계에 포함되어 있는 모든 프로젝트도 보관 처리를 취소하시겠습니까?"
 
 #. module: project
@@ -5499,7 +5734,6 @@ msgstr "메시지 작성..."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #: code:addons/project/static/src/views/project_task_kanban/project_task_kanban_examples.js:0
 #, python-format
 msgid "Writing"
@@ -5523,11 +5757,12 @@ msgstr "년"
 msgid ""
 "You are not able to switch the company of this stage to %(company_name)s "
 "since it currently includes projects associated with "
-"%(project_company_name)s. Please ensure that this stage exclusively consists"
-" of projects linked to %(company_name)s."
+"%(project_company_name)s. Please ensure that this stage exclusively consists "
+"of projects linked to %(company_name)s."
 msgstr ""
-"이 단계에서는 %(company_name)s 회사로 변경할 수 없습니다. 현재 %(project_company_name)s 회사에 "
-"연결되어 있는 프로젝트가 있습니다. 현재 단계에서 모든 프로젝트가 %(company_name)s 회사에 연결되어 있는지 확인하세요."
+"이 단계에서는 %(company_name)s 회사로 변경할 수 없습니다. 현재 "
+"%(project_company_name)s 회사에 연결되어 있는 프로젝트가 있습니다. 현재 단계"
+"에서 모든 프로젝트가 %(company_name)s 회사에 연결되어 있는지 확인하세요."
 
 #. module: project
 #. odoo-python
@@ -5539,31 +5774,38 @@ msgstr "비공개 작업에서만 개인 단계를 설정할 수 있습니다."
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_project_stage_delete_wizard
 msgid ""
-"You cannot delete stages containing projects. You can either archive them or"
-" first delete all of their projects."
+"You cannot delete stages containing projects. You can either archive them or "
+"first delete all of their projects."
 msgstr ""
-"단계에 프포젝트가 포함되어 있는 경우에는 삭제할 수 없습니다. 프로젝트를 보관 처리하거나 먼저 모든 프로젝트를 삭제하시기 바랍니다."
+"단계에 프포젝트가 포함되어 있는 경우에는 삭제할 수 없습니다. 프로젝트를 보관 "
+"처리하거나 먼저 모든 프로젝트를 삭제하시기 바랍니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_project_stage_delete_wizard
 msgid ""
-"You cannot delete stages containing projects. You should first delete all of"
-" their projects."
-msgstr "단계에 프로젝트가 포함되어 있는 경우에는 삭제할 수 없습니다. 먼저 모든 프로젝트를 삭제하시기 바랍니다."
+"You cannot delete stages containing projects. You should first delete all of "
+"their projects."
+msgstr ""
+"단계에 프로젝트가 포함되어 있는 경우에는 삭제할 수 없습니다. 먼저 모든 프로젝"
+"트를 삭제하시기 바랍니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_task_type_delete_wizard
 msgid ""
 "You cannot delete stages containing tasks. You can either archive them or "
 "first delete all of their tasks."
-msgstr "단계에 작업이 포함되어 있는 경우에는 삭제할 수 없습니다. 프로젝트를 보관 처리하거나 먼저 모든 작업을 삭제하시기 바랍니다."
+msgstr ""
+"단계에 작업이 포함되어 있는 경우에는 삭제할 수 없습니다. 프로젝트를 보관 처리"
+"하거나 먼저 모든 작업을 삭제하시기 바랍니다."
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_project_task_type_delete_wizard
 msgid ""
 "You cannot delete stages containing tasks. You should first delete all of "
 "their tasks."
-msgstr "단계에 작업이 포함되어 있는 경우에는 삭제할 수 없습니다. 먼저 모든 작업을 삭제하시기 바랍니다."
+msgstr ""
+"단계에 작업이 포함되어 있는 경우에는 삭제할 수 없습니다. 먼저 모든 작업을 삭"
+"제하시기 바랍니다."
 
 #. module: project
 #. odoo-python
@@ -5594,9 +5836,10 @@ msgstr "다음에 할당되었습니다"
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_share_wizard_confirm_form
 msgid ""
-"You have full control and can revoke portal access anytime. Are you ready to"
-" proceed?"
-msgstr "전체 권한이 있으며 포탈 접근을 언제든 취소할 수 있습니다. 계속 진행할까요?"
+"You have full control and can revoke portal access anytime. Are you ready to "
+"proceed?"
+msgstr ""
+"전체 권한이 있으며 포탈 접근을 언제든 취소할 수 있습니다. 계속 진행할까요?"
 
 #. module: project
 #. odoo-python
@@ -5622,10 +5865,9 @@ msgstr "관리자가 어떤 피드백을 받아들일지 결정합니다."
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid "and"
-msgstr "그리고"
+msgstr "및"
 
 #. module: project
 #. odoo-javascript
@@ -5722,12 +5964,6 @@ msgstr "예: 제품 출시"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid "icon to organize your daily activities."
 msgstr "일별 활동을 아이콘을 활용하여 정리하세요."
@@ -5739,7 +5975,9 @@ msgstr "일별 활동을 아이콘을 활용하여 정리하세요."
 msgid ""
 "icon to see tasks waiting on other ones. Once a task is marked as complete "
 "or canceled, all of its dependencies will be unblocked."
-msgstr "아이콘을 클릭하면 대기 중인 다른 작업을 볼 수 있습니다. 작업이 완료 또는 취소로 표시되면 모든 종속성은 해제됩니다."
+msgstr ""
+"아이콘을 클릭하면 대기 중인 다른 작업을 볼 수 있습니다. 작업이 완료 또는 취소"
+"로 표시되면 모든 종속성은 해제됩니다."
 
 #. module: project
 #. odoo-javascript
@@ -5778,7 +6016,6 @@ msgstr "도달 완료로 표시할 준비됨"
 #. module: project
 #. odoo-javascript
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid ""
 "state to indicate a request for changes or a need for discussion on a task."
@@ -5786,7 +6023,6 @@ msgstr "작업에 대한 변경 요청이나 논의할 점을 표시합니다."
 
 #. module: project
 #. odoo-javascript
-#: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid ""
@@ -5868,17 +6104,20 @@ msgstr "다음에 대한 작업을 생성합니다."
 
 #. module: project
 #: model:mail.template,subject:project.rating_project_request_email_template
-msgid "{{ object.project_id.company_id.name }}: Satisfaction Survey"
-msgstr "{{ object.project_id.company_id.name }}: 만족도 조사"
+msgid ""
+"{{ object.project_id.company_id.name or user.env.company.name }}: "
+"Satisfaction Survey"
+msgstr ""
+"{{ object.project_id.company_id.name or user.env.company.name }}: 만족도 조사"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_task_kanban
 msgid ""
-"{{ record.closed_subtask_count.value }} sub-tasks closed out of {{ "
-"record.subtask_count.value }}"
+"{{ record.closed_subtask_count.value }} sub-tasks closed out of "
+"{{ record.subtask_count.value }}"
 msgstr ""
-"{{ record.closed_subtask_count.value }} 하위 작업이 다음에서 마감됨 {{ "
-"record.subtask_count.value }}"
+"{{ record.closed_subtask_count.value }} 하위 작업이 다음에서 마감됨 "
+"{{ record.subtask_count.value }}"
 
 #. module: project
 #. odoo-javascript

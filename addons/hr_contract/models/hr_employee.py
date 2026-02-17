@@ -1,11 +1,14 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from collections import defaultdict
 from pytz import timezone, UTC
 from datetime import date, datetime, time
+from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.osv import expression
 from odoo.addons.resource.models.utils import Intervals
+from odoo.exceptions import UserError
 
 
 class EmployeePublic(models.Model):
@@ -161,6 +164,28 @@ class Employee(models.Model):
             ))
         return unusual_days
 
+    def _employee_attendance_intervals(self, start, stop, lunch=False):
+        self.ensure_one()
+        if not lunch:
+            return self._get_expected_attendances(start, stop)
+        else:
+            valid_contracts = self.sudo()._get_contracts(start, stop, states=['open', 'close'])
+            if not valid_contracts:
+                return super()._employee_attendance_intervals(start, stop, lunch)
+            employee_tz = timezone(self.tz) if self.tz else None
+            duration_data = Intervals()
+            for contract in valid_contracts:
+                contract_start = datetime.combine(contract.date_start, time.min, employee_tz)
+                contract_end = datetime.combine(contract.date_end or date.max, time.max, employee_tz)
+                calendar = contract.resource_calendar_id or contract.company_id.resource_calendar_id
+                lunch_intervals = calendar._attendance_intervals_batch(
+                    max(start, contract_start),
+                    min(stop, contract_end),
+                    resources=self.resource_id,
+                    lunch=True)[self.resource_id.id]
+                duration_data = duration_data | lunch_intervals
+            return duration_data
+
     def _get_expected_attendances(self, date_from, date_to):
         self.ensure_one()
         valid_contracts = self.sudo()._get_contracts(date_from, date_to, states=['open', 'close'])
@@ -178,8 +203,8 @@ class Employee(models.Model):
                                     tz=employee_tz,
                                     resources=self.resource_id,
                                     compute_leaves=True)[self.resource_id.id]
-            duration_data = duration_data.__or__(contract_intervals)
-        return self.env['resource.calendar']._get_attendance_intervals_days_data(duration_data)
+            duration_data = duration_data | contract_intervals
+        return duration_data
 
     def _get_calendar_attendances(self, date_from, date_to):
         self.ensure_one()
@@ -211,6 +236,11 @@ class Employee(models.Model):
                     employee.resource_calendar_id = employee.contract_id.resource_calendar_id
         return res
 
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_open_contract(self):
+        if any(contract.state == 'open' for contract in self.contract_ids):
+            raise UserError(_('You cannot delete an employee with a running contract.'))
+
     def action_open_contract(self):
         self.ensure_one()
         action = self.env["ir.actions.actions"]._for_xml_id('hr_contract.action_hr_contract')
@@ -234,3 +264,32 @@ class Employee(models.Model):
 
         action['res_id'] = self.contract_ids[0].id
         return action
+
+    def _get_calendar_periods(self, start, stop):
+        calendar_periods_by_employee = defaultdict(list)
+        contracts_by_employee = self.env['hr.contract'].sudo()._read_group(domain=[
+            '|',
+            ('state', 'in', ['open', 'close']),
+            '&',
+            ('state', '=', 'draft'),
+            ('kanban_state', '=', 'done'),
+            ('date_start', '<=', stop),
+            '|',
+            ('date_end', '=', False),
+            ('date_end', '>=', start),
+            ('employee_id', 'in', self.ids),
+        ], groupby=['employee_id'], aggregates=['id:recordset'])
+        for employee, contracts in contracts_by_employee:
+            for contract in contracts:
+                calendar_tz = timezone(contract.resource_calendar_id.tz)
+                utc = timezone('UTC')
+                date_start = datetime.combine(contract.date_start, time(0, 0, 0)).replace(
+                    tzinfo=calendar_tz).astimezone(utc)
+                if contract.date_end:
+                    date_end = datetime.combine(contract.date_end + relativedelta(days=1), time(0, 0, 0)).replace(
+                        tzinfo=calendar_tz).astimezone(utc)
+                else:
+                    date_end = stop
+                calendar_periods_by_employee[employee].append(
+                    (max(date_start, start), min(date_end, stop), contract.resource_calendar_id))
+        return calendar_periods_by_employee

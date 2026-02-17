@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* analytic
-# 
+# * analytic
+#
 # Translators:
 # Jonatan Gk, 2023
 # jabiri7, 2023
@@ -10,9 +10,7 @@
 # Pere Martínez, 2023
 # Albert Parera, 2023
 # Sandra Franch <sandra.franch@upc.edu>, 2023
-# oscaryuu, 2023
-# AncesLatino2004, 2023
-# marcescu, 2023
+# 7b9408628f00af852f513eb4f12c005b_f9c6891, 2023
 # Martin Trigaux, 2023
 # eriiikgt, 2023
 # Arnau Ros, 2023
@@ -20,23 +18,27 @@
 # Ivan Espinola, 2023
 # Josep Anton Belchi, 2023
 # Harcogourmet, 2023
-# Quim - eccit <quim@eccit.com>, 2023
-# Santiago Payà <santiagopim@gmail.com>, 2024
+# Quim - coopdevs <quim.rebull@coopdevs.org>, 2023
 # Óscar Fonseca <tecnico@pyming.com>, 2024
-# 
+# Santiago Payà <santiagopim@gmail.com>, 2024
+# marcescu, 2024
+# Wil Odoo, 2025
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Óscar Fonseca <tecnico@pyming.com>, 2024\n"
-"Language-Team: Catalan (https://app.transifex.com/odoo/teams/41243/ca/)\n"
+"POT-Creation-Date: 2026-01-29 18:35+0000\n"
+"PO-Revision-Date: 2025-11-15 17:01+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Language-Team: Catalan <https://translate.odoo.com/projects/odoo-17/analytic/"
+"ca/>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #. module: analytic
 #. odoo-python
@@ -63,18 +65,25 @@ msgid ""
 "A 'Project' plan needs to exist and its id needs to be set as "
 "`analytic.project_plan` in the system variables"
 msgstr ""
+"Cal que existeixi un pla 'Projecte' i el seu id ha de ser "
+"`analytic.project_plan` a les variables del sistema"
 
 #. module: analytic
 #. odoo-javascript
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.js:0
 #, python-format
 msgid "Account field"
-msgstr ""
+msgstr "Camp del compte"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_plan__account_ids
 msgid "Accounts"
 msgstr "Comptes"
+
+#. module: analytic
+#: model:account.analytic.account,name:analytic.analytic_agrolait
+msgid "Acme Corporation"
+msgstr ""
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_account__message_needaction
@@ -89,7 +98,7 @@ msgstr "Actiu"
 #. module: analytic
 #: model:account.analytic.account,name:analytic.analytic_active_account
 msgid "Active account"
-msgstr ""
+msgstr "Compte actiu"
 
 #. module: analytic
 #. odoo-javascript
@@ -125,7 +134,7 @@ msgstr "Import"
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.js:0
 #, python-format
 msgid "Amount field"
-msgstr ""
+msgstr "Camp d'import"
 
 #. module: analytic
 #. odoo-javascript
@@ -179,7 +188,7 @@ msgstr "Model de distribució analític"
 #. module: analytic
 #: model:ir.actions.act_window,name:analytic.action_analytic_distribution_model
 msgid "Analytic Distribution Models"
-msgstr "Models de distribució analític"
+msgstr "Models de distribució analítica"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_distribution_model__analytic_distribution_search
@@ -297,7 +306,7 @@ msgstr "Balanç: "
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.js:0
 #, python-format
 msgid "Business domain"
-msgstr ""
+msgstr "Domini de l'empresa"
 
 #. module: analytic
 #: model:account.analytic.account,name:analytic.analytic_partners_camp_to_camp
@@ -372,7 +381,7 @@ msgstr "Nom complert"
 #. module: analytic
 #: model_terms:ir.ui.view,arch_db:analytic.account_analytic_distribution_model_form_view
 msgid "Conditions to meet"
-msgstr ""
+msgstr "Condicions a complir"
 
 #. module: analytic
 #: model:ir.model,name:analytic.model_res_config_settings
@@ -385,8 +394,8 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
-"La conversió entre les unitats de mesura només és possible si pertanyen a la"
-" mateixa categoria. La conversió es basarà en les ràtios establertes."
+"La conversió entre les unitats de mesura només és possible si pertanyen a la "
+"mateixa categoria. La conversió es basarà en les ràtios establertes."
 
 #. module: analytic
 #: model_terms:ir.actions.act_window,help:analytic.account_analytic_line_action
@@ -451,11 +460,6 @@ msgid "Debit"
 msgstr "Deure"
 
 #. module: analytic
-#: model:account.analytic.account,name:analytic.analytic_agrolait
-msgid "Deco Addict"
-msgstr "Deco Addict"
-
-#. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_plan__default_applicability
 msgid "Default Applicability"
 msgstr "Aplicabilitat predeterminada"
@@ -486,7 +490,7 @@ msgstr "Desertic - Hispafuentes"
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.js:0
 #, python-format
 msgid "Disable save"
-msgstr ""
+msgstr "Desactivar salvar"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_account__display_name
@@ -498,9 +502,15 @@ msgid "Display Name"
 msgstr "Nom mostrat"
 
 #. module: analytic
+#: model:ir.model.fields,field_description:analytic.field_account_analytic_distribution_model__distribution_analytic_account_ids
+#: model:ir.model.fields,field_description:analytic.field_analytic_mixin__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr "Compte analític de distribució"
+
+#. module: analytic
 #: model_terms:ir.ui.view,arch_db:analytic.account_analytic_distribution_model_form_view
 msgid "Distribution to apply"
-msgstr ""
+msgstr "Distribució a aplicar"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_applicability__business_domain
@@ -522,7 +532,7 @@ msgstr "Seguidors (Partners)"
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.js:0
 #, python-format
 msgid "Force applicability"
-msgstr ""
+msgstr "Forçar aplicació"
 
 #. module: analytic
 #: model:ir.actions.act_window,name:analytic.account_analytic_line_action
@@ -565,7 +575,8 @@ msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 #: model_terms:ir.actions.act_window,help:analytic.account_analytic_line_action_entries
 msgid ""
 "In Odoo, sales orders and projects are implemented using\n"
-"                analytic accounts. You can track costs and revenues to analyse\n"
+"                analytic accounts. You can track costs and revenues to "
+"analyse\n"
 "                your margins easily."
 msgstr ""
 "En Odoo, les comandes de venda i els projectes s'implementaran utilitzant "
@@ -648,6 +659,13 @@ msgid "Nebula"
 msgstr "Nebula"
 
 #. module: analytic
+#. odoo-javascript
+#: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
+#, python-format
+msgid "New Model"
+msgstr "Nou Model"
+
+#. module: analytic
 #: model_terms:ir.actions.act_window,help:analytic.account_analytic_line_action_entries
 msgid "No activity yet"
 msgstr "Encara sense activitat"
@@ -662,7 +680,7 @@ msgstr "Encara sense activitat en aquest compte"
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
 #, python-format
 msgid "No analytic plans found"
-msgstr ""
+msgstr "No s'han trobat plans analítics"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_account__message_needaction_counter
@@ -757,12 +775,12 @@ msgstr "Pla"
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.js:0
 #, python-format
 msgid "Product field"
-msgstr ""
+msgstr "Camp del producte"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_line__account_id
 msgid "Project Account"
-msgstr ""
+msgstr "Compte del projecte"
 
 #. module: analytic
 #: model:account.analytic.plan,name:analytic.analytic_plan_projects
@@ -790,13 +808,15 @@ msgstr "Recerca i desenvolupament"
 #: model_terms:ir.actions.act_window,help:analytic.account_analytic_line_action_entries
 msgid ""
 "Revenues will be created automatically when you create customer\n"
-"                invoices. Customer invoices can be created based on sales orders\n"
-"                (fixed price invoices), on timesheets (based on the work done) or\n"
+"                invoices. Customer invoices can be created based on sales "
+"orders\n"
+"                (fixed price invoices), on timesheets (based on the work "
+"done) or\n"
 "                on expenses (e.g. reinvoicing of travel costs)."
 msgstr ""
 "Els ingressos es crearan automàticament quan creeu factures de client. Les "
-"factures de client es poden crear basades en les comandes de venda (factures"
-" de preu fix), en els fulls d'hores (basades en el treball realitzat) o en "
+"factures de client es poden crear basades en les comandes de venda (factures "
+"de preu fix), en els fulls d'hores (basades en el treball realitzat) o en "
 "les despeses (per exemple, refacturació de despeses de viatge)."
 
 #. module: analytic
@@ -814,7 +834,7 @@ msgstr "Pla arrel"
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
 #, python-format
 msgid "Save as new analytic distribution model"
-msgstr ""
+msgstr "Desar com un nou model de distribució analítica"
 
 #. module: analytic
 #: model:account.analytic.account,name:analytic.analytic_seagate_p2
@@ -825,6 +845,13 @@ msgstr "Seagate P2"
 #: model_terms:ir.ui.view,arch_db:analytic.view_account_analytic_line_filter
 msgid "Search Analytic Lines"
 msgstr "Cerca línies analítiques"
+
+#. module: analytic
+#. odoo-python
+#: code:addons/analytic/models/analytic_account.py:0
+#, python-format
+msgid "See them"
+msgstr ""
 
 #. module: analytic
 #: model:ir.model.fields,help:analytic.field_account_analytic_distribution_model__company_id
@@ -875,6 +902,20 @@ msgid "Subplans"
 msgstr "Subplans"
 
 #. module: analytic
+#: model:ir.model,name:analytic.model_ir_config_parameter
+msgid "System Parameter"
+msgstr "Paràmetres del sistema"
+
+#. module: analytic
+#. odoo-python
+#: code:addons/analytic/models/ir_config_parameter.py:0
+#, python-format
+msgid ""
+"The value for %s must be the ID to a valid analytic plan that is not a "
+"subplan"
+msgstr ""
+
+#. module: analytic
 #: model:account.analytic.account,name:analytic.analytic_absences
 msgid "Time Off"
 msgstr "Absències"
@@ -888,7 +929,7 @@ msgstr "Total"
 #: model:ir.model.fields.selection,name:analytic.selection__account_analytic_applicability__applicability__unavailable
 #: model:ir.model.fields.selection,name:analytic.selection__account_analytic_plan__default_applicability__unavailable
 msgid "Unavailable"
-msgstr "no està disponible"
+msgstr "No disponible"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_line__product_uom_id
@@ -915,11 +956,27 @@ msgstr "Vista"
 #: code:addons/analytic/models/analytic_account.py:0
 #, python-format
 msgid ""
+"Whoa there! Making this change would wipe out your current data. Let's avoid "
+"that, shall we?"
+msgstr ""
+
+#. module: analytic
+#. odoo-python
+#: code:addons/analytic/models/analytic_account.py:0
+#, python-format
+msgid ""
 "You can't set a different company on your analytic account since there are "
 "some analytic items linked to it."
 msgstr ""
 "No podeu establir una empresa diferent al vostre compte analític, ja que hi "
 "ha alguns apunts analítics enllaçats."
+
+#. module: analytic
+#. odoo-python
+#: code:addons/analytic/models/analytic_plan.py:0
+#, python-format
+msgid "You cannot add a parent to the base plan '%s'"
+msgstr ""
 
 #. module: analytic
 #. odoo-python
@@ -930,10 +987,13 @@ msgid ""
 "company but a model shared between companies or with a different company"
 msgstr ""
 "Heu definit una distribució amb comptes analítics que pertanyen a una "
-"empresa específica, però un model compartit entre empreses o amb una empresa"
-" diferent"
+"empresa específica, però un model compartit entre empreses o amb una empresa "
+"diferent"
 
 #. module: analytic
 #: model_terms:ir.ui.view,arch_db:analytic.view_account_analytic_account_form
 msgid "e.g. Project XYZ"
 msgstr "p.ex. Projecte XYZ"
+
+#~ msgid "Deco Addict"
+#~ msgstr "Deco Addict"

@@ -73,3 +73,6 @@ Andrea Gidalti andreag@vauxoo.com  https://github.com/andreagidaltig
 German Loredo german@vauxoo.com https://github.com/xmglord 
 Antonio Aguilar antonio@vauxoo.com https://github.com/antonag32
 Christihan Laurel laurel@vauxoo.com https://github.com/CLaurelB
+Andrea Manenti manenti@vauxoo.com https://github.com/maneandrea
+Eduardo Martinez eduardoms@vauxoo.com https://github.com/emtz10
+Jonathan Osorio Alcalá jonathan@vauxoo.com https://github.com/jonathanosalc

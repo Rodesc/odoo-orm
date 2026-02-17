@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import ast
@@ -56,7 +55,7 @@ class Project(models.Model):
         project_and_state_counts = self.env['project.task'].with_context(
             active_test=any(project.active for project in self)
         )._read_group(
-            [('project_id', 'in', self.ids)],
+            [('project_id', 'in', self.ids), ('display_in_project', '=', True)],
             ['project_id', 'state'],
             ['__count'],
         )
@@ -127,7 +126,7 @@ class Project(models.Model):
         string='Members')
     is_favorite = fields.Boolean(compute='_compute_is_favorite', inverse='_inverse_is_favorite', search='_search_is_favorite',
         compute_sudo=True, string='Show Project on Dashboard')
-    label_tasks = fields.Char(string='Use Tasks as', default='Tasks', translate=True,
+    label_tasks = fields.Char(string='Use Tasks as', default=lambda s: _('Tasks'), translate=True,
         help="Name used to refer to the tasks of your project e.g. tasks, tickets, sprints, etc...")
     tasks = fields.One2many('project.task', 'project_id', string="Task Activities")
     resource_calendar_id = fields.Many2one(
@@ -167,7 +166,7 @@ class Project(models.Model):
     date_start = fields.Date(string='Start Date')
     date = fields.Date(string='Expiration Date', index=True, tracking=True,
         help="Date on which this project ends. The timeframe defined on the project is taken into account when viewing its planning.")
-    allow_task_dependencies = fields.Boolean('Task Dependencies', default=lambda self: self.env.user.has_group('project.group_project_task_dependencies'))
+    allow_task_dependencies = fields.Boolean('Task Dependencies', default=lambda self: self.env.user.has_group('project.group_project_task_dependencies'), inverse='_inverse_allow_task_dependencies')
     allow_milestones = fields.Boolean('Milestones', default=lambda self: self.env.user.has_group('project.group_project_milestone'))
     tag_ids = fields.Many2many('project.tags', relation='project_project_project_tags_rel', string='Tags')
     task_properties_definition = fields.PropertiesDefinition('Task Properties')
@@ -244,12 +243,14 @@ class Project(models.Model):
     def _compute_allow_rating(self):
         self.allow_rating = self.env.user.has_group('project.group_project_rating')
 
-    @api.depends('analytic_account_id.company_id')
+    @api.depends('analytic_account_id.company_id', 'partner_id.company_id')
     def _compute_company_id(self):
         for project in self:
-            # if a new restriction is put on the account, the restriction on the project is updated.
+            # if a new restriction is put on the account or the customer, the restriction on the project is updated.
             if project.analytic_account_id.company_id:
                 project.company_id = project.analytic_account_id.company_id
+            if not project.company_id and project.partner_id.company_id:
+                project.company_id = project.partner_id.company_id
 
     @api.depends_context('company')
     @api.depends('company_id', 'company_id.resource_calendar_id')
@@ -264,7 +265,7 @@ class Project(models.Model):
         """
         for project in self:
             account = project.analytic_account_id
-            if project.partner_id and project.partner_id.company_id and project.company_id and project.company_id != project.partner_id.company_id:
+            if project.partner_id and project.partner_id.company_id and project.company_id != project.partner_id.company_id:
                 raise UserError(_('The project and the associated partner must be linked to the same company.'))
             if not account or not account.company_id:
                 continue
@@ -381,6 +382,35 @@ class Project(models.Model):
             else:
                 project.access_instruction_message = ''
 
+    def _inverse_allow_task_dependencies(self):
+        """ Reset state for waiting tasks in the project if the feature is disabled
+            or recompute the tasks with dependencies if the project has the feature enabled again
+        """
+        project_with_task_dependencies_feature = self.filtered('allow_task_dependencies')
+        projects_without_task_dependencies_feature = self - project_with_task_dependencies_feature
+        ProjectTask = self.env['project.task']
+        if (
+            project_with_task_dependencies_feature
+            and (
+                open_tasks_with_dependencies := ProjectTask.search([
+                    ('project_id', 'in', project_with_task_dependencies_feature.ids),
+                    ('depend_on_ids.state', 'in', ProjectTask.OPEN_STATES),
+                    ('state', 'in', ProjectTask.OPEN_STATES),
+                ])
+            )
+        ):
+            open_tasks_with_dependencies.state = '04_waiting_normal'
+        if (
+            projects_without_task_dependencies_feature
+            and (
+                waiting_tasks := ProjectTask.search([
+                    ('project_id', 'in', projects_without_task_dependencies_feature.ids),
+                    ('state', '=', '04_waiting_normal'),
+                ])
+            )
+        ):
+            waiting_tasks.state = '01_in_progress'
+
     # TODO: Remove in master
     @api.onchange('date_start', 'date')
     def _onchange_planned_date(self):
@@ -460,17 +490,35 @@ class Project(models.Model):
             for vals in vals_list:
                 if 'label_tasks' in vals and not vals['label_tasks']:
                     vals['label_tasks'] = task_label
-        if len(self.env.companies) > 1 and self.env.user.has_group('project.group_project_stages'):
-            # Select the stage whether the default_stage_id field is set in context (quick create) or if it is not (normal create)
-            stage = self.env['project.project.stage'].browse(self._context['default_stage_id']) if 'default_stage_id' in self._context else self._default_stage_id()
-            # The project's company_id must be the same as the stage's company_id
-            if stage.company_id:
+        if self.env.user.has_group('project.group_project_stages'):
+            if 'default_stage_id' in self._context:
+                stage = self.env['project.project.stage'].browse(self._context['default_stage_id'])
+                # The project's company_id must be the same as the stage's company_id
+                if stage.company_id:
+                    for vals in vals_list:
+                        if vals.get('stage_id'):
+                            continue
+                        vals['company_id'] = stage.company_id.id
+            else:
+                companies_ids = [vals.get('company_id', False) for vals in vals_list] + [False]
+                stages = self.env['project.project.stage'].search([('company_id', 'in', companies_ids)])
                 for vals in vals_list:
-                    vals['company_id'] = stage.company_id.id
+                    if vals.get('stage_id'):
+                        continue
+                    # Pick the stage with the lowest sequence with no company or project's company
+                    stage_domain = [False] if 'company_id' not in vals else [False, vals.get('company_id')]
+                    stage = stages.filtered(lambda s: s.company_id.id in stage_domain)[:1]
+                    vals['stage_id'] = stage.id
+
         projects = super().create(vals_list)
         return projects
 
     def write(self, vals):
+        if vals.get('access_token'):
+            self.ensure_one()  # We are not supposed to add a single access token to multiple project
+            if self.privacy_visibility != 'portal':
+                vals['access_token'] = ''
+
         # Here we modify the project's stage according to the selected company (selecting the first
         # stage in sequence that is linked to the company).
         company_id = vals.get('company_id')
@@ -633,6 +681,19 @@ class Project(models.Model):
                 res -= waiting_subtype
         return res
 
+    def _notify_get_recipients_groups(self, message, model_description, msg_vals=None):
+        """ Give access to the portal user/customer if the project visibility is portal. """
+        groups = super()._notify_get_recipients_groups(message, model_description, msg_vals=msg_vals)
+        if not self:
+            return groups
+
+        self.ensure_one()
+        portal_privacy = self.privacy_visibility == 'portal'
+        for group_name, _group_method, group_data in groups:
+            if group_name in ['portal', 'portal_customer'] and not portal_privacy:
+                group_data['has_button_access'] = False
+        return groups
+
     # ---------------------------------------------------
     #  Actions
     # ---------------------------------------------------
@@ -670,6 +731,7 @@ class Project(models.Model):
             'delete': False,
             'search_default_open_tasks': True,
             'active_id_chatter': self.id,
+            'allow_milestones': self.allow_milestones,
         }
         action['display_name'] = self.name
         return action
@@ -687,7 +749,7 @@ class Project(models.Model):
         favorite_projects.write({'favorite_user_ids': [(3, self.env.uid)]})
 
     def action_view_tasks(self):
-        action = self.env['ir.actions.act_window'].with_context({'active_id': self.id})._for_xml_id('project.act_project_project_2_project_task_all')
+        action = self.env['ir.actions.act_window'].with_context(active_id=self.id)._for_xml_id('project.act_project_project_2_project_task_all')
         action['display_name'] = _("%(name)s", name=self.name)
         context = action['context'].replace('active_id', str(self.id))
         context = ast.literal_eval(context)
@@ -774,7 +836,7 @@ class Project(models.Model):
         if self.allow_milestones:
             panel_data['milestones'] = self._get_milestones()
         if show_profitability:
-            profitability_items = self._get_profitability_items()
+            profitability_items = self.with_context(active_test=False)._get_profitability_items()
             if self._get_profitability_sequence_per_invoice_type() and profitability_items and 'revenues' in profitability_items and 'costs' in profitability_items:  # sort the data values
                 profitability_items['revenues']['data'] = sorted(profitability_items['revenues']['data'], key=lambda k: k['sequence'])
                 profitability_items['costs']['data'] = sorted(profitability_items['costs']['data'], key=lambda k: k['sequence'])
@@ -961,6 +1023,9 @@ class Project(models.Model):
                 portal_users = project.message_partner_ids.user_ids.filtered('share')
                 project.message_unsubscribe(partner_ids=portal_users.partner_id.ids)
                 project.tasks._unsubscribe_portal_users()
+                # revoke access_token since the project and its tasks are no longer accessible for portal/public users
+                project.tasks.access_token = ''
+                project.access_token = ''
 
     # ---------------------------------------------------
     # Project sharing

@@ -58,7 +58,9 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
         onMounted(() => this.numberBuffer.reset());
         this.numberBuffer.use({
             triggerAtInput: (...args) => {
-                if (!this.pos.tempScreenIsShown) this.updateSelectedOrderline(...args);
+                if (!this.pos.tempScreenIsShown) {
+                    this.updateSelectedOrderline(...args);
+                }
             },
             useWithBarcode: true,
         });
@@ -80,7 +82,11 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
             { value: "7" },
             { value: "8" },
             { value: "9" },
-            { value: "price", text: _t("Price"), disabled: !this.pos.cashierHasPriceControlRights() },
+            {
+                value: "price",
+                text: _t("Price"),
+                disabled: !this.pos.cashierHasPriceControlRights(),
+            },
             { value: "-", text: "+/-" },
             { value: "0" },
             { value: this.env.services.localization.decimalPoint },
@@ -123,6 +129,14 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
     get items() {
         return this.currentOrder.orderlines?.reduce((items, line) => items + line.quantity, 0) ?? 0;
     }
+    handleOrderLineQuantityChange(selectedLine, buffer, currentQuantity, lastId) {
+        const parsedInput = (buffer && parseFloat(buffer)) || 0;
+        if (lastId != selectedLine.cid || parsedInput < currentQuantity) {
+            this._showDecreaseQuantityPopup();
+        } else if (currentQuantity < parsedInput) {
+            this._setValue(buffer);
+        }
+    }
     async updateSelectedOrderline({ buffer, key }) {
         const order = this.pos.get_order();
         const selectedLine = order.get_selected_orderline();
@@ -144,7 +158,11 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
             }
             return;
         }
-        if (selectedLine && this.pos.numpadMode === "quantity" && this.pos.disallowLineQuantityChange()) {
+        if (
+            selectedLine &&
+            this.pos.numpadMode === "quantity" &&
+            this.pos.disallowLineQuantityChange()
+        ) {
             const orderlines = order.orderlines;
             const lastId = orderlines.length !== 0 && orderlines.at(orderlines.length - 1).cid;
             const currentQuantity = this.pos.get_order().get_selected_orderline().get_quantity();
@@ -156,13 +174,21 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
                 });
                 return;
             }
-            const parsedInput = (buffer && parseFloat(buffer)) || 0;
-            if (lastId != selectedLine.cid) {
-                this._showDecreaseQuantityPopup();
-            } else if (currentQuantity < parsedInput) {
-                this._setValue(buffer);
-            } else if (parsedInput < currentQuantity) {
-                this._showDecreaseQuantityPopup();
+            this.handleOrderLineQuantityChange(selectedLine, buffer, currentQuantity, lastId);
+            return;
+        } else if (
+            selectedLine &&
+            this.pos.numpadMode === "discount" &&
+            this.pos.disallowLineDiscountChange()
+        ) {
+            this.numberBuffer.reset();
+            const { confirmed, payload: inputNumber } = await this.popup.add(NumberPopup, {
+                startingValue: 10,
+                title: _t("Set the new discount"),
+                isInputSelected: true,
+            });
+            if (confirmed) {
+                await this.pos.setDiscountFromUI(selectedLine, inputNumber);
             }
             return;
         }
@@ -188,7 +214,7 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
                         val,
                         Boolean(selectedLine.comboLines?.length)
                     );
-                    if(selectedLine.comboLines){
+                    if (selectedLine.comboLines) {
                         for (const line of selectedLine.comboLines) {
                             line.set_quantity(val, true);
                         }
@@ -198,7 +224,7 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
                     }
                 }
             } else if (numpadMode === "discount") {
-                selectedLine.set_discount(val);
+                this.pos.setDiscountFromUI(selectedLine, val);
             } else if (numpadMode === "price") {
                 selectedLine.price_type = "manual";
                 selectedLine.set_unit_price(val);
@@ -287,14 +313,29 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
     _barcodeDiscountAction(code) {
         var last_orderline = this.currentOrder.get_last_orderline();
         if (last_orderline) {
-            last_orderline.set_discount(code.value);
+            this.pos.setDiscountFromUI(last_orderline, code.value);
         }
     }
     async _parseElementsFromGS1(parsed_results) {
         const productBarcode = parsed_results.find((element) => element.type === "product");
         const lotBarcode = parsed_results.find((element) => element.type === "lot");
+        const qty = parsed_results.find((element) => element.type === "quantity");
         const product = await this._getProductByBarcode(productBarcode);
-        return { product, lotBarcode, customProductOptions: {} };
+        const customProductOptions = {};
+        if (
+            qty &&
+            product?.uom_id[0] &&
+            qty?.rule?.associated_uom_id &&
+            product.uom_id[0] == qty.rule.associated_uom_id[0]
+        ) {
+            customProductOptions.quantity = qty.value;
+        }
+        if (product?._getPackagingQty(productBarcode)) {
+            customProductOptions.quantity = customProductOptions.quantity
+                ? customProductOptions.quantity * product._getPackagingQty(productBarcode)
+                : product._getPackagingQty(productBarcode);
+        }
+        return { product, lotBarcode, customProductOptions };
     }
     /**
      * Add a product to the current order using the product identifier and lot number from parsed results.
@@ -324,31 +365,85 @@ export class ProductScreen extends ControlButtonsMixin(Component) {
             startingValue: 0,
             title: _t("Set the new quantity"),
         });
-        const newQuantity = inputNumber && inputNumber !== "" ? parseFloat(inputNumber) : null;
-        if (confirmed && newQuantity !== null) {
+        if (confirmed) {
+            const newQuantity = inputNumber && inputNumber !== "" ? parseFloat(inputNumber) : null;
+            return await this.updateQuantityNumber(newQuantity);
+        }
+    }
+    async updateQuantityNumber(newQuantity) {
+        if (newQuantity !== null) {
             const order = this.pos.get_order();
             const selectedLine = order.get_selected_orderline();
             const currentQuantity = selectedLine.get_quantity();
             if (newQuantity >= currentQuantity) {
                 selectedLine.set_quantity(newQuantity);
-                return true;
-            }
-            if (newQuantity >= selectedLine.saved_quantity) {
-                selectedLine.set_quantity(newQuantity);
-                if (newQuantity == 0) {
-                    order._unlinkOrderline(selectedLine);
+                for (const line of selectedLine.comboLines ?? []) {
+                    line.set_quantity(newQuantity, true);
                 }
-                return true;
+            } else if (newQuantity >= selectedLine.saved_quantity) {
+                await this.handleDecreaseUnsavedLine(newQuantity);
+            } else {
+                await this.handleDecreaseLine(newQuantity);
             }
-            const newLine = selectedLine.clone();
-            const decreasedQuantity = selectedLine.saved_quantity - newQuantity;
-            newLine.order = order;
-            newLine.set_quantity(-decreasedQuantity, true);
-            selectedLine.set_quantity(selectedLine.saved_quantity);
-            order.add_orderline(newLine);
             return true;
         }
         return false;
+    }
+    async handleDecreaseUnsavedLine(newQuantity) {
+        const order = this.pos.get_order();
+        const selectedLine = order.get_selected_orderline();
+        const decreaseQuantity = selectedLine.get_quantity() - newQuantity;
+        selectedLine.set_quantity(newQuantity);
+        for (const line of selectedLine.comboLines ?? []) {
+            line.set_quantity(newQuantity, true);
+        }
+        if (newQuantity == 0) {
+            order._unlinkOrderline(selectedLine);
+            for (const line of selectedLine.comboLines ?? []) {
+                order._unlinkOrderline(line);
+            }
+        }
+        return decreaseQuantity;
+    }
+    async handleDecreaseLine(newQuantity) {
+        const order = this.pos.get_order();
+        const selectedLine = order.get_selected_orderline();
+        let current_saved_quantity = 0;
+        for (const line of order.orderlines) {
+            if (line === selectedLine) {
+                current_saved_quantity += line.saved_quantity;
+            } else if (
+                line.product.id === selectedLine.product.id &&
+                line.get_unit_price() === selectedLine.get_unit_price()
+            ) {
+                current_saved_quantity += line.quantity;
+            }
+        }
+
+        const newLine = this.getNewLine();
+        const decreasedQuantity = current_saved_quantity - newQuantity;
+        newLine.order = this.currentOrder;
+        if (decreasedQuantity != 0) {
+            if (newLine === selectedLine) {
+                selectedLine.set_quantity(newQuantity, true);
+            } else {
+                newLine.set_quantity(-decreasedQuantity, true);
+                order.add_orderline(newLine);
+            }
+        }
+        if (newLine !== selectedLine && selectedLine.saved_quantity != 0) {
+            selectedLine.set_quantity(selectedLine.saved_quantity);
+        }
+        return decreasedQuantity;
+    }
+    getNewLine() {
+        const selectedLine = this.currentOrder.get_selected_orderline();
+        let newLine = selectedLine;
+        if (selectedLine.saved_quantity != 0) {
+            newLine = selectedLine.clone();
+            newLine.refunded_orderline_id = selectedLine.refunded_orderline_id;
+        }
+        return newLine;
     }
     get selectedOrderlineQuantity() {
         return this.currentOrder.get_selected_orderline()?.get_quantity_str();

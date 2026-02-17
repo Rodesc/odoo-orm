@@ -103,7 +103,7 @@ class AccountMoveSend(models.TransientModel):
             'demo': _('Demo'),
         }
         for wizard in self:
-            edi_user = wizard.company_id.account_edi_proxy_client_ids.filtered(
+            edi_user = wizard.company_id.sudo().account_edi_proxy_client_ids.filtered(
                 lambda usr: usr.proxy_type == 'peppol'
             )
             mode = mode_strings.get(edi_user.edi_mode)
@@ -120,6 +120,14 @@ class AccountMoveSend(models.TransientModel):
     # BUSINESS ACTIONS
     # -------------------------------------------------------------------------
 
+    @api.model
+    def _get_mail_layout(self):
+        # EXTENDS 'account'
+        # TODO remove the fallback in master
+        if self.env.ref('account_peppol.mail_notification_layout_with_responsible_signature_and_peppol', raise_if_not_found=False):
+            return 'account_peppol.mail_notification_layout_with_responsible_signature_and_peppol'
+        return super()._get_mail_layout()
+
     def action_send_and_print(self, force_synchronous=False, allow_fallback_pdf=False, **kwargs):
         # Extends 'account' to force ubl xml checkbox if sending via peppol
         self.ensure_one()
@@ -129,9 +137,22 @@ class AccountMoveSend(models.TransientModel):
         if self.checkbox_send_peppol and self.enable_peppol:
             for move in self.move_ids:
                 if not move.peppol_move_state or move.peppol_move_state == 'ready':
-                    move.peppol_move_state = 'to_send'
+                    move.sudo().peppol_move_state = 'to_send'
 
         return super().action_send_and_print(force_synchronous=force_synchronous, allow_fallback_pdf=allow_fallback_pdf, **kwargs)
+
+    def _hook_if_errors(self, moves_data, from_cron=False, allow_fallback_pdf=False):
+        # Extends account
+        # to update `peppol_move_state` as `skipped` to show users that something went wrong
+        # because those moves that failed XML/PDF files generation are not sent via Peppol
+        moves_failed_file_generation = self.env['account.move']
+        for move, move_data in moves_data.items():
+            if move_data.get('send_peppol') and move_data.get('blocking_error'):
+                moves_failed_file_generation |= move
+
+        moves_failed_file_generation.peppol_move_state = 'skipped'
+
+        return super()._hook_if_errors(moves_data, from_cron=from_cron, allow_fallback_pdf=allow_fallback_pdf)
 
     @api.model
     def _call_web_service_after_invoice_pdf_render(self, invoices_data):
@@ -141,11 +162,11 @@ class AccountMoveSend(models.TransientModel):
         params = {'documents': []}
         invoices_data_peppol = {}
         for invoice, invoice_data in invoices_data.items():
-            if invoice_data.get('send_peppol'):
+            if invoice_data.get('send_peppol') and invoice.peppol_move_state not in ('processing', 'done'):
                 if invoice_data.get('ubl_cii_xml_attachment_values'):
                     xml_file = invoice_data['ubl_cii_xml_attachment_values']['raw']
                     filename = invoice_data['ubl_cii_xml_attachment_values']['name']
-                elif invoice.ubl_cii_xml_id and invoice.peppol_move_state not in ('processing', 'canceled', 'done'):
+                elif invoice.ubl_cii_xml_id and invoice.peppol_move_state != 'canceled':
                     xml_file = invoice.ubl_cii_xml_id.raw
                     filename = invoice.ubl_cii_xml_id.name
                 else:
@@ -162,6 +183,9 @@ class AccountMoveSend(models.TransientModel):
                     invoice.peppol_move_state = 'error'
                     invoice_data['error'] = _('Please verify partner configuration in partner settings.')
                     continue
+
+                if len(xml_file) > 64000000:
+                    invoice_data['error'] = _("Invoice %s is too big to send via peppol (64MB limit)", invoice.name)
 
                 receiver_identification = f"{partner.peppol_eas}:{partner.peppol_endpoint}"
                 params['documents'].append({
@@ -195,13 +219,40 @@ class AccountMoveSend(models.TransientModel):
             else:
                 # the response only contains message uuids,
                 # so we have to rely on the order to connect peppol messages to account.move
-                invoices = self.env['account.move']
+                attachments_linked_message = _("The invoice has been sent to the Peppol Access Point. The following attachments were sent with the XML:")
+                attachments_not_linked_message = _("Some attachments could not be sent with the XML:")
                 for message, (invoice, invoice_data) in zip(response['messages'], invoices_data_peppol.items()):
                     invoice.peppol_message_uuid = message['message_uuid']
                     invoice.peppol_move_state = 'processing'
-                    invoices |= invoice
-                log_message = _('The document has been sent to the Peppol Access Point for processing')
-                invoices._message_log_batch(bodies=dict((invoice.id, log_message) for invoice in invoices))
+                    attachments_linked, attachments_not_linked = self._get_ubl_available_attachments(
+                        invoice_data.get('mail_attachments_widget', []),
+                        invoice.partner_id.commercial_partner_id.ubl_cii_format,
+                    )
+                    if attachments_not_linked:
+                        invoice._message_log(body=attachments_not_linked_message, attachment_ids=attachments_not_linked.mapped('id'))
+
+                    base_attachments = [
+                        (invoice_data[key]['name'], invoice_data[key]['raw'])
+                        for key in ['pdf_attachment_values', 'ubl_cii_xml_attachment_values']
+                        if invoice_data.get(key)
+                    ]
+                    attachments_embedded = [
+                        (attachment.name, attachment.raw)
+                        for attachment in attachments_linked
+                    ] + base_attachments
+
+                    new_message = invoice.with_context(no_new_invoice=True).message_post(
+                        body=attachments_linked_message,
+                        attachments=attachments_embedded,
+                    )
+
+                    if new_message.attachment_ids.ids:
+                        self.env.cr.execute("UPDATE ir_attachment SET res_id = NULL WHERE id IN %s", [tuple(new_message.attachment_ids.ids)])
+                        new_message.attachment_ids.invalidate_recordset(['res_id', 'res_model'], flush=False)
+                    new_message.attachment_ids.write({
+                        'res_model': new_message._name,
+                        'res_id': new_message.id,
+                    })
 
         if self._can_commit():
             self._cr.commit()

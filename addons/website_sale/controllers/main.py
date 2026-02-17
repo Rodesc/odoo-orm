@@ -3,27 +3,29 @@
 
 import json
 import logging
-
 from datetime import datetime
+
+from psycopg2.errors import LockNotAvailable
 from werkzeug.exceptions import Forbidden, NotFound
 from werkzeug.urls import url_decode, url_encode, url_parse
 
 from odoo import fields, http, SUPERUSER_ID, tools, _
+from odoo.exceptions import AccessError, MissingError, UserError, ValidationError
 from odoo.fields import Command
 from odoo.http import request, route
+from odoo.tools import SQL, lazy, str2bool
+
 from odoo.addons.base.models.ir_qweb_fields import nl2br_enclose
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.addons.payment import utils as payment_utils
 from odoo.addons.payment.controllers import portal as payment_portal
 from odoo.addons.website.controllers.main import QueryURL
 from odoo.addons.website.models.ir_http import sitemap_qs2dom
-from odoo.exceptions import AccessError, MissingError, ValidationError
 from odoo.addons.portal.controllers.portal import _build_url_w_params
 from odoo.addons.website.controllers import main
 from odoo.addons.website.controllers.form import WebsiteForm
 from odoo.addons.sale.controllers import portal as sale_portal
 from odoo.osv import expression
-from odoo.tools import lazy, str2bool
 from odoo.tools.json import scriptsafe as json_scriptsafe
 
 _logger = logging.getLogger(__name__)
@@ -155,6 +157,16 @@ class Website(main.Website):
             'position': request.website.currency_id.position,
         }
 
+    @http.route()
+    def change_lang(self, lang, **kwargs):
+        order_sudo = request.website.sale_get_order()
+        request.env.add_to_compute(
+            order_sudo.order_line._fields['name'],
+            order_sudo.order_line.with_context(lang=lang),
+        )
+        return super().change_lang(lang, **kwargs)
+
+
 class WebsiteSale(payment_portal.PaymentPortal):
     _express_checkout_route = '/shop/express_checkout'
     _express_checkout_shipping_route = '/shop/express/shipping_address_change'
@@ -275,6 +287,10 @@ class WebsiteSale(payment_portal.PaymentPortal):
         """ Hook to update values used for rendering website_sale.products template """
         return {}
 
+    def _get_additional_extra_shop_values(self, values, **post):
+        """ Hook to update values used for rendering website_sale.products template """
+        return self._get_additional_shop_values(values)
+
     @http.route([
         '/shop',
         '/shop/page/<int:page>',
@@ -318,6 +334,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
         attrib_values = [[int(x) for x in v.split("-")] for v in attrib_list if v]
         attributes_ids = {v[0] for v in attrib_values}
         attrib_set = {v[1] for v in attrib_values}
+        if attrib_list:
+            post['attrib'] = attrib_list
 
         filter_by_tags_enabled = website.is_view_active('website_sale.filter_products_tags')
         if filter_by_tags_enabled:
@@ -358,8 +376,6 @@ class WebsiteSale(payment_portal.PaymentPortal):
         url = '/shop'
         if search:
             post['search'] = search
-        if attrib_list:
-            post['attrib'] = attrib_list
 
         options = self._get_search_options(
             category=category,
@@ -376,7 +392,8 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if filter_by_price_enabled:
             # TODO Find an alternative way to obtain the domain through the search metadata.
             Product = request.env['product.template'].with_context(bin_size=True)
-            domain = self._get_shop_domain(search, category, attrib_values)
+            search_term = fuzzy_search_term if fuzzy_search_term else search
+            domain = self._get_shop_domain(search_term, category, attrib_values)
 
             # This is ~4 times more efficient than a search for the cheapest and most expensive products
             query = Product._where_calc(domain)
@@ -408,7 +425,12 @@ class WebsiteSale(payment_portal.PaymentPortal):
         if filter_by_tags_enabled and search_product:
             all_tags = ProductTag.search(
                 expression.AND([
-                    [('product_ids.is_published', '=', True), ('visible_on_ecommerce', '=', True)],
+                    [
+                        ('visible_on_ecommerce', '=', True),
+                        '|',
+                        ('product_template_ids.is_published', '=', True),
+                        ('product_product_ids.is_published', '=', True),
+                    ],
                     website_domain
                 ])
             )
@@ -435,12 +457,16 @@ class WebsiteSale(payment_portal.PaymentPortal):
         ProductAttribute = request.env['product.attribute']
         if products:
             # get all products without limit
-            attributes = lazy(lambda: ProductAttribute.search([
-                ('product_tmpl_ids', 'in', search_product.ids),
-                ('visibility', '=', 'visible'),
-            ]))
-        else:
-            attributes = lazy(lambda: ProductAttribute.browse(attributes_ids))
+            attributes_grouped = request.env['product.template.attribute.line']._read_group(
+                domain=[
+                    ('product_tmpl_id', 'in', search_product.ids),
+                    ('attribute_id.visibility', '=', 'visible'),
+                ],
+                groupby=['attribute_id']
+            )
+
+            attributes_ids = [attribute.id for attribute, *aggregates in attributes_grouped]
+        attributes = lazy(lambda: ProductAttribute.browse(attributes_ids))
 
         layout_mode = request.session.get('website_sale_shop_layout_mode')
         if not layout_mode:
@@ -489,7 +515,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             values.update({'all_tags': all_tags, 'tags': tags})
         if category:
             values['main_object'] = category
-        values.update(self._get_additional_shop_values(values))
+        values.update(self._get_additional_extra_shop_values(values, **post))
         return request.render("website_sale.products", values)
 
     @http.route(['/shop/<model("product.template"):product>'], type='http', auth="public", website=True, sitemap=True)
@@ -553,7 +579,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             product_product = product_template._get_variant_for_combination(combination)
             if not product_product:
                 product_product = product_template._create_product_variant(combination)
-        if product_template.has_configurable_attributes and product_product:
+        if product_template.has_configurable_attributes and product_product and not all(pa.create_variant == 'no_variant' for pa in product_template.attribute_line_ids.attribute_id):
             product_product.write({
                 'product_variant_image_ids': image_create_data
             })
@@ -782,15 +808,15 @@ class WebsiteSale(payment_portal.PaymentPortal):
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
         order = request.website.sale_get_order()
+        if order and order.state != 'draft':
+            request.session['sale_order_id'] = None
+            order = request.website.sale_get_order()
         if order and order.carrier_id:
             # Express checkout is based on the amout of the sale order. If there is already a
             # delivery line, Express Checkout form will display and compute the price of the
             # delivery two times (One already computed in the total amount of the SO and one added
             # in the form while selecting the delivery carrier)
             order._remove_delivery_line()
-        if order and order.state != 'draft':
-            request.session['sale_order_id'] = None
-            order = request.website.sale_get_order()
 
         request.session['website_sale_cart_quantity'] = order.cart_quantity
 
@@ -816,7 +842,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'suggested_products': [],
         })
         if order:
-            order.order_line.filtered(lambda l: not l.product_id.active).unlink()
+            order.order_line.filtered(lambda l: l.product_id and not l.product_id.active).unlink()
             values['suggested_products'] = order._cart_accessories()
             values.update(self._get_express_shop_payment_values(order))
 
@@ -971,7 +997,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 { # For the cart_notification
                     'id': line.id,
                     'image_url': order.website_id.image_url(line.product_id, 'image_128'),
-                    'quantity': line.product_uom_qty,
+                    'quantity': line._get_displayed_quantity(),
                     'name': line.name_short,
                     'description': line._get_sale_order_line_multiline_description_variants(),
                     'line_price_total': line.price_total if show_tax else line.price_subtotal,
@@ -1080,6 +1106,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         error = dict()
         error_message = []
 
+        partner_su = request.env['res.partner'].sudo()
         if data.get('partner_id'):
             partner_su = request.env['res.partner'].sudo().browse(int(data['partner_id'])).exists()
             if partner_su:
@@ -1112,7 +1139,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         # Required fields from mandatory field function
         country_id = int(data.get('country_id', False))
 
-        _update_mode, address_mode = mode
+        update_mode, address_mode = mode
         if address_mode == 'shipping':
             required_fields += self._get_mandatory_fields_shipping(country_id)
         else: # 'billing'
@@ -1121,6 +1148,21 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 # If the billing address is also used as shipping one, the phone is required as well
                 # because it's required for shipping addresses
                 required_fields.append('phone')
+
+            order_sudo = request.website.sale_get_order()
+            if (
+                # New secondary billing address (SO is not an anonymous cart)
+                (update_mode == 'new' and not order_sudo._is_public_order())
+                or
+                # Editing secondary billing address
+                (partner_su and order_sudo.partner_id != partner_su)
+            ):
+                # Commercial fields managed by the parent partner should not be set or edited
+                # through a child billing address.  They should therefore be removed from the
+                # required fields.
+                for fname in partner_su._commercial_fields():
+                    if fname not in data and fname in required_fields:
+                        required_fields.remove(fname)
 
         # error message for empty required fields
         for field_name in required_fields:
@@ -1258,10 +1300,9 @@ class WebsiteSale(payment_portal.PaymentPortal):
                 else:
                     address_mode = kw.get('mode')
                     if not address_mode:
+                        address_mode = 'shipping'
                         if partner_id == order.partner_invoice_id.id:
                             address_mode = 'billing'
-                        elif partner_id == order.partner_shipping_id.id:
-                            address_mode = 'shipping'
 
                     # Make sure the address exists and belongs to the customer of the SO
                     partner_sudo = Partner.browse(partner_id).exists()
@@ -1273,7 +1314,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
                         billing_partners = partners_sudo.filtered(lambda p: p.type != 'delivery')
                         if partner_sudo not in billing_partners:
                             raise Forbidden()
-                    elif address_mode == 'shipping':
+                    else:
                         shipping_partners = partners_sudo.filtered(lambda p: p.type != 'invoice')
                         if partner_sudo not in shipping_partners:
                             raise Forbidden()
@@ -1350,7 +1391,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
 
                 # TDE FIXME: don't ever do this
                 # -> TDE: you are the guy that did what we should never do in commit e6f038a
-                order.message_partner_ids = [(4, partner_id), (3, request.website.partner_id.id)]
+                order.message_partner_ids = [(4, order.partner_id.id), (3, request.website.partner_id.id)]
                 if not errors:
                     return request.redirect(kw.get('callback') or '/shop/confirm_order')
 
@@ -1426,7 +1467,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
             #in order to not override shippig address, it's checked separately from shipping option
             self._include_country_and_state_in_address(shipping_address)
 
-            if order_sudo.partner_shipping_id.name.endswith(order_sudo.name):
+            if order_sudo.name in order_sudo.partner_shipping_id.name:
                 # The existing partner was created by `process_express_checkout_delivery_choice`, it
                 # means that the partner is missing information, so we update it.
                 order_sudo.partner_shipping_id = self._create_or_edit_partner(
@@ -1486,6 +1527,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
         ], limit=1)
         state = request.env["res.country.state"].search([
             ('code', '=', address.pop('state', '')),
+            ('country_id', '=', country.id),
         ], limit=1)
         address.update(country_id=country, state_id=state)
 
@@ -1565,7 +1607,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
     @http.route(['/shop/checkout'], type='http', auth="public", website=True, sitemap=False)
     def checkout(self, **post):
         order_sudo = request.website.sale_get_order()
-
+        request.session['sale_last_order_id'] = order_sudo.id
         redirection = self.checkout_redirection(order_sudo)
         if redirection:
             return redirection
@@ -1639,7 +1681,6 @@ class WebsiteSale(payment_portal.PaymentPortal):
             return redirection
 
         order.order_line._compute_tax_id()
-        request.session['sale_last_order_id'] = order.id
         request.website.sale_get_order(update_pricelist=True)
         extra_step = request.website.viewref('website_sale.extra_info')
         if extra_step.active:
@@ -1693,14 +1734,11 @@ class WebsiteSale(payment_portal.PaymentPortal):
             'express_checkout_route': self._express_checkout_route,
             'landing_route': '/shop/payment/validate',
             'payment_method_unknown_id': request.env.ref('payment.payment_method_unknown').id,
+            'shipping_info_required': not order.only_services,
+            'shipping_address_update_route': self._express_checkout_shipping_route,
         })
         if request.website.is_public_user():
             payment_form_values['partner_id'] = -1
-        if request.website.enabled_delivery:
-            payment_form_values.update({
-                'shipping_info_required': not order.only_services,
-                'shipping_address_update_route': self._express_checkout_shipping_route,
-            })
         return payment_form_values
 
     def _get_shop_payment_values(self, order, **kwargs):
@@ -1741,6 +1779,16 @@ class WebsiteSale(payment_portal.PaymentPortal):
             ).id
 
         return values
+
+    @http.route(
+        _express_checkout_shipping_route + '/compute_taxes', type='json', auth='public',
+        website=True, sitemap=False,
+    )
+    def express_checkout_shipping_address_compute_taxes(self):
+        order_sudo = request.website.sale_get_order()
+        order_sudo._recompute_taxes()
+
+        return payment_utils.to_minor_currency_units(order_sudo.amount_total, order_sudo.currency_id)
 
     def _get_shop_payment_errors(self, order):
         """ Check that there is no error that should block the payment.
@@ -1829,7 +1877,10 @@ class WebsiteSale(payment_portal.PaymentPortal):
             return request.redirect('/shop')
 
         if order and not order.amount_total and not tx_sudo:
-            order.with_context(send_email=True).with_user(SUPERUSER_ID).action_confirm()
+            if order.state != 'sale':
+                order._check_cart_is_ready_to_be_paid()
+                order.with_context(send_email=True).with_user(SUPERUSER_ID).action_confirm()
+            request.website.sale_reset()
             return request.redirect(order.get_portal_url())
 
         # clean context and session, then redirect to the confirmation page
@@ -2009,15 +2060,22 @@ class PaymentPortal(payment_portal.PaymentPortal):
         :param dict kwargs: Locally unused data passed to `_create_transaction`
         :return: The mandatory values for the processing of the transaction
         :rtype: dict
+        :raise: UserError if the order has already been paid or has an ongoing transaction
         :raise: ValidationError if the invoice id or the access token is invalid
         """
         # Check the order id and the access token
+        # Then lock it during the transaction to prevent concurrent payments
         try:
             order_sudo = self._document_check_access('sale.order', order_id, access_token)
+            request.env.cr.execute(
+                SQL('SELECT 1 FROM sale_order WHERE id = %s FOR NO KEY UPDATE NOWAIT', order_id)
+            )
         except MissingError as error:
             raise error
         except AccessError:
             raise ValidationError(_("The access token is invalid."))
+        except LockNotAvailable:
+            raise UserError(_("Payment is already being processed."))
 
         if order_sudo.state == "cancel":
             raise ValidationError(_("The order has been canceled."))
@@ -2033,9 +2091,14 @@ class PaymentPortal(payment_portal.PaymentPortal):
         if not kwargs.get('amount'):
             kwargs['amount'] = order_sudo.amount_total
 
-        if tools.float_compare(kwargs['amount'], order_sudo.amount_total, precision_rounding=order_sudo.currency_id.rounding):
+        compare_amounts = order_sudo.currency_id.compare_amounts
+        if compare_amounts(kwargs['amount'], order_sudo.amount_total):
             raise ValidationError(_("The cart has been updated. Please refresh the page."))
+        if compare_amounts(order_sudo.amount_paid, order_sudo.amount_total) == 0:
+            raise UserError(_("The cart has already been paid. Please refresh the page."))
 
+        if delay_payment_request := kwargs.get('flow') == 'token':
+            request.update_context(delay_payment_request=True)  # wait until after tx validation
         tx_sudo = self._create_transaction(
             custom_create_values={'sale_order_ids': [Command.set([order_id])]}, **kwargs,
         )
@@ -2045,6 +2108,8 @@ class PaymentPortal(payment_portal.PaymentPortal):
         request.session['__website_sale_last_tx_id'] = tx_sudo.id
 
         self._validate_transaction_for_order(tx_sudo, order_id)
+        if delay_payment_request:
+            tx_sudo._send_payment_request()
 
         return tx_sudo._get_processing_values()
 
@@ -2060,7 +2125,12 @@ class CustomerPortal(sale_portal.CustomerPortal):
         :return: The payment-specific values.
         :rtype: dict
         """
-        website_id = website_id or order_sudo.website_id.id
+        if not website_id:
+            if order_sudo.website_id:
+                website_id = order_sudo.website_id.id
+            elif request.website:
+                website_id = request.website.id
+
         return super()._get_payment_values(order_sudo, website_id=website_id, **kwargs)
 
     def _sale_reorder_get_line_context(self):
@@ -2069,7 +2139,9 @@ class CustomerPortal(sale_portal.CustomerPortal):
     @http.route('/my/orders/reorder_modal_content', type='json', auth='public', website=True)
     def my_orders_reorder_modal_content(self, order_id, access_token):
         try:
-            sale_order = self._document_check_access('sale.order', order_id, access_token=access_token)
+            sale_order = self._document_check_access(
+                'sale.order', order_id, access_token=access_token,
+            ).with_user(request.env.user).sudo()
         except (AccessError, MissingError):
             return request.redirect('/my')
 

@@ -143,7 +143,11 @@
         <field name="model_id" ref="model_hr_leave_allocation"/>
         <field name="domain_force">[
             '|',
-                ('employee_id', '=', False),
+                '&amp;',
+                    ('employee_id', '=', False),
+                    '|',
+                        ('employee_ids', '=', False),
+                        ('employee_ids.company_id', 'in', company_ids),
                 ('employee_id.company_id', 'in', company_ids),
             ('holiday_status_id.company_id', 'in', company_ids + [False])
         ]</field>
@@ -264,6 +268,12 @@
         <field name="name">Time Off Report Calendar: multi company global rule</field>
         <field name="model_id" ref="model_hr_leave_report_calendar"/>
         <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="hr_leave_report_rule_multi_company" model="ir.rule">
+        <field name="name">Time Off Report: multi company global rule</field>
+        <field name="model_id" ref="model_hr_leave_report"/>
         <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
     </record>
 

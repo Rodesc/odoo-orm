@@ -102,6 +102,11 @@ export class Message extends Record {
     is_discussion;
     /** @type {boolean} */
     is_note;
+    isSeenBySelf = Record.attr(false, {
+        compute() {
+            return this.originThread?.selfMember?.lastSeenMessage?.id >= this.id;
+        },
+    });
     /** @type {boolean} */
     isStarred;
     /** @type {boolean} */
@@ -263,6 +268,10 @@ export class Message extends Record {
         const defaultSubject = this.default_subject ? this.default_subject.toLowerCase() : "";
         const candidates = new Set([defaultSubject, threadName]);
         return candidates.has(this.subject?.toLowerCase());
+    }
+
+    get persistent() {
+        return Number.isInteger(this.id);
     }
 
     get resUrl() {

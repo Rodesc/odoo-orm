@@ -3,6 +3,7 @@
 
 from lxml import html
 import requests
+from urllib3.exceptions import LocationParseError
 
 
 def get_link_preview_from_url(url, request_session=None):
@@ -20,13 +21,18 @@ def get_link_preview_from_url(url, request_session=None):
     (e.g. a lot of url could have the same domain).
     """
     # Some websites are blocking non browser user agent.
-    user_agent = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0'}
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0',
+        'Odoo-Link-Preview': 'True',  # Used to identify coming from the link previewer
+    }
     try:
         if request_session:
-            response = request_session.get(url, timeout=3, headers=user_agent, allow_redirects=True, stream=True)
+            response = request_session.get(url, timeout=3, headers=headers, allow_redirects=True, stream=True)
         else:
-            response = requests.get(url, timeout=3, headers=user_agent, allow_redirects=True, stream=True)
+            response = requests.get(url, timeout=3, headers=headers, allow_redirects=True, stream=True)
     except requests.exceptions.RequestException:
+        return False
+    except LocationParseError:
         return False
     if not response.ok or not response.headers.get('Content-Type'):
         return False

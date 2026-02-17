@@ -13,7 +13,7 @@ MAP_REPAIR_LINE_TYPE_TO_MOVE_LOCATIONS_FROM_REPAIR = {
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    repair_id = fields.Many2one('repair.order', check_company=True)
+    repair_id = fields.Many2one('repair.order', check_company=True, ondelete='cascade')
     repair_line_type = fields.Selection([
         ('add', 'Add'),
         ('remove', 'Remove'),
@@ -73,14 +73,16 @@ class StockMove(models.Model):
             move.origin = move.name
             move.picking_type_id = move.repair_id.picking_type_id.id
             repair_moves |= move
-
-            if move.state == 'draft' and move.repair_id.state in ('confirmed', 'under_repair'):
-                move._check_company()
-                move._adjust_procure_method()
-                move._action_confirm()
-                move._trigger_scheduler()
-        repair_moves._create_repair_sale_order_line()
-        return moves
+        no_repair_moves = moves - repair_moves
+        draft_repair_moves = repair_moves.filtered(lambda m: m.state == 'draft' and m.repair_id.state in ('confirmed', 'under_repair'))
+        other_repair_moves = repair_moves - draft_repair_moves
+        draft_repair_moves._check_company()
+        draft_repair_moves._adjust_procure_method()
+        res = draft_repair_moves._action_confirm()
+        res._trigger_scheduler()
+        confirmed_repair_moves = (res | other_repair_moves)
+        confirmed_repair_moves._create_repair_sale_order_line()
+        return (confirmed_repair_moves | no_repair_moves)
 
     def write(self, vals):
         res = super().write(vals)
@@ -90,7 +92,7 @@ class StockMove(models.Model):
             if not move.repair_id:
                 continue
             # checks vals update
-            if 'repair_line_type' in vals or 'picking_type_id' in vals and move.product_id != move.repair_id.product_id:
+            if 'repair_line_type' in vals or 'picking_type_id' in vals and move.repair_line_type:
                 move.location_id, move.location_dest_id = move._get_repair_locations(move.repair_line_type)
             if not move.sale_line_id and 'sale_line_id' not in vals and move.repair_line_type == 'add':
                 moves_to_create_so_line |= move
@@ -106,6 +108,23 @@ class StockMove(models.Model):
         self._clean_repair_sale_order_line()
         return super()._action_cancel()
 
+    def _prepare_repair_so_line_vals(self):
+        self.ensure_one()
+        product_qty = self.product_uom_qty if self.repair_id.state != 'done' else self.quantity
+        vals = {
+            'order_id': self.repair_id.sale_order_id.id,
+            'product_id': self.product_id.id,
+            'product_uom_qty': product_qty,  # When relying only on so_line compute method, the sol quantity is only updated on next sol creation
+            'product_uom': self.product_uom.id,
+            'move_ids': [Command.link(self.id)],
+            'qty_delivered': self.quantity if self.state == 'done' else 0.0,
+        }
+        if self.repair_id.under_warranty:
+            vals['price_unit'] = 0.0
+        elif self.price_unit:
+            vals['price_unit'] = self.price_unit
+        return vals
+
     def _create_repair_sale_order_line(self):
         if not self:
             return
@@ -113,17 +132,7 @@ class StockMove(models.Model):
         for move in self:
             if move.sale_line_id or move.repair_line_type != 'add' or not move.repair_id.sale_order_id:
                 continue
-            product_qty = move.product_uom_qty if move.repair_id.state != 'done' else move.quantity
-            so_line_vals.append({
-                'order_id': move.repair_id.sale_order_id.id,
-                'product_id': move.product_id.id,
-                'product_uom_qty': product_qty, # When relying only on so_line compute method, the sol quantity is only updated on next sol creation
-                'move_ids': [Command.link(move.id)],
-            })
-            if move.repair_id.under_warranty:
-                so_line_vals[-1]['price_unit'] = 0.0
-            elif move.price_unit:
-                so_line_vals[-1]['price_unit'] = move.price_unit
+            so_line_vals.append(move._prepare_repair_so_line_vals())
 
         self.env['sale.order.line'].create(so_line_vals)
 

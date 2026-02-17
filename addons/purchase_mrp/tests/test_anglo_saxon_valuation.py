@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from odoo import Command
 from odoo.fields import Date, Datetime
 from odoo.tools import mute_logger
 from odoo.tests import Form, tagged
@@ -233,3 +234,101 @@ class TestAngloSaxonValuationPurchaseMRP(AccountTestInvoicingCommon):
         self.assertEqual(svl.value, 50)  # USD
         self.assertEqual(input_aml.amount_currency, 100)  # EUR
         self.assertEqual(input_aml.balance, 50)  # USD
+
+    def test_multicurrency_kit_different_uom_categories(self):
+        """
+            Create a kit with an UoM belonging to a different category than its component UoM.
+            Purchase that kit in a different currency than the company currency and validate the receipt.
+            Check the generated account entries.
+        """
+        eur = self.env.ref('base.EUR')
+
+        uom_unit = self.env.ref('uom.product_uom_unit')
+        uom_meter = self.env.ref('uom.product_uom_meter')
+
+        kit, component = self.env['product.product'].create([
+            {
+                'name': 'Kit multi UoM',
+                'type': 'product',
+                'uom_id': uom_unit.id,
+                'uom_po_id': uom_unit.id,
+                'categ_id': self.avco_category.id,
+            },
+            {
+                'name': 'Component meter',
+                'type': 'product',
+                'uom_id': uom_meter.id,
+                'uom_po_id': uom_meter.id,
+                'categ_id': self.avco_category.id,
+            },
+        ])
+
+        self.env['mrp.bom'].create({
+            'product_tmpl_id': kit.product_tmpl_id.id,
+            'product_uom_id': uom_unit.id,
+            'product_qty': 1.0,
+            'type': 'phantom',
+            'bom_line_ids': [Command.create({
+                'product_id': component.id,
+                'product_qty': 1.0,
+                'product_uom_id': uom_meter.id,
+            })],
+        })
+
+        po = self.env['purchase.order'].create({
+            'partner_id': self.vendor01.id,
+            'currency_id': eur.id,
+            'order_line': [Command.create({
+                'product_id': kit.id,
+                'product_qty': 1.0,
+                'product_uom': kit.uom_po_id.id,
+                'price_unit': 100.0,
+            })],
+        })
+        po.button_confirm()
+
+        receipt = po.picking_ids
+        receipt.button_validate()
+
+        self.assertEqual(receipt.move_ids.state, 'done')
+
+    def test_fifo_cost_adjust_mo_quantity(self):
+        """ An MO using a FIFO cost method product as a component should not zero-out the std cost
+        of the product if we unlock it once it is in a validated state and adjust the quantity of
+        component used to be smaller than originally entered.
+        """
+        self.product_a.categ_id = self.env['product.category'].create({
+            'name': 'FIFO',
+            'property_cost_method': 'fifo',
+            'property_valuation': 'real_time'
+        })
+
+        purchase_order = self.env['purchase.order'].create({
+            'partner_id': self.partner_a.id,
+            'order_line': [(0, 0, {
+                'product_id': self.product_a.id,
+                'product_qty': 10,
+                'price_unit': 100,
+            })],
+        })
+        purchase_order.button_confirm()
+        purchase_order.picking_ids[0].button_validate()
+
+        manufacturing_order = self.env['mrp.production'].create({
+            'product_id': self.product_b.id,
+            'product_qty': 1,
+            'move_raw_ids': [(0, 0, {
+                'product_id': self.product_a.id,
+                'product_uom_qty': 100,
+            })],
+        })
+        manufacturing_order.action_confirm()
+        manufacturing_order.move_raw_ids.write({
+            'quantity': 100,
+            'picked': True,
+        })
+        manufacturing_order.button_mark_done()
+        manufacturing_order.action_toggle_is_locked()
+        manufacturing_order.move_raw_ids.quantity = 1
+
+        self.assertEqual(self.product_a.standard_price, 100)

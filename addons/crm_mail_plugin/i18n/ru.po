@@ -1,25 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* crm_mail_plugin
-# 
+#
 # Translators:
 # ILMIR <karamov@it-projects.info>, 2023
 # Collex100, 2024
 # Wil Odoo, 2024
-# 
+# Nadia Martynova, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2024\n"
+"Last-Translator: Nadia Martynova, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/odoo/teams/41243/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ru\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: crm_mail_plugin
 #. odoo-javascript
@@ -46,7 +49,7 @@ msgstr "%(expected_revenue)s на %(probability)s%"
 #: code:addons/crm_mail_plugin/static/src/to_translate/translations_gmail.xml:0
 #, python-format
 msgid "Could not create the lead"
-msgstr "Не удалось создать зацепку"
+msgstr "Не удалось создать Лид"
 
 #. module: crm_mail_plugin
 #. odoo-javascript
@@ -58,12 +61,12 @@ msgstr "Электронная почта уже зарегистрирован�
 #. module: crm_mail_plugin
 #: model:ir.model,name:crm_mail_plugin.model_crm_lead
 msgid "Lead/Opportunity"
-msgstr "Потенциальные сделки"
+msgstr "Лиды/Возможности"
 
 #. module: crm_mail_plugin
 #: model:ir.actions.act_window,name:crm_mail_plugin.crm_lead_action_form_edit
 msgid "Lead: redirect form in edit mode"
-msgstr "Лид: форма перенаправления в режиме редактирования"
+msgstr "Лид: форма перенаправления в режиме редактирования "
 
 #. module: crm_mail_plugin
 #. odoo-javascript

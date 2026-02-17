@@ -132,7 +132,9 @@ class CustomerPortal(payment_portal.PaymentPortal):
                 download=download,
             )
 
-        if request.env.user.share and access_token:
+        # If the route is fetched from the link previewer avoid triggering that quotation is viewed.
+        is_link_preview = request.httprequest.headers.get('Odoo-Link-Preview')
+        if request.env.user.share and access_token and is_link_preview != 'True':
             # If a public/portal user accesses the order with the access token
             # Log a note on the chatter.
             today = fields.Date.today().isoformat()
@@ -278,13 +280,13 @@ class CustomerPortal(payment_portal.PaymentPortal):
                 'signed_on': fields.Datetime.now(),
                 'signature': signature,
             })
-            request.env.cr.commit()
+            # flush now to make signature data available to PDF render request
+            request.env.cr.flush()
         except (TypeError, binascii.Error) as e:
             return {'error': _('Invalid signature data.')}
 
         if not order_sudo._has_to_be_paid():
-            order_sudo.action_confirm()
-            order_sudo._send_order_confirmation_mail()
+            order_sudo.with_context(send_email=True).action_confirm()
 
         pdf = request.env['ir.actions.report'].sudo()._render_qweb_pdf('sale.action_report_saleorder', [order_sudo.id])[0]
 
@@ -313,6 +315,13 @@ class CustomerPortal(payment_portal.PaymentPortal):
 
         if order_sudo._has_to_be_signed() and decline_message:
             order_sudo._action_cancel()
+            # The currency is manually cached while in a sudoed environment to prevent an
+            # AccessError. The state of the Sales Order is a dependency of
+            # `untaxed_amount_to_invoice`, which is a monetary field. They require the currency to
+            # ensure the values are saved in the correct format. However, the currency cannot be
+            # read directly during the flush due to access rights, necessitating manual caching.
+            order_sudo.order_line.currency_id
+
             _message_post_helper(
                 'sale.order',
                 order_sudo.id,
@@ -407,6 +416,9 @@ class PaymentPortal(payment_portal.PaymentPortal):
                 access_token, order_sudo.partner_invoice_id.id, amount, order_sudo.currency_id.id
             ):
                 raise ValidationError(_("The provided parameters are invalid."))
+
+            if order_sudo.is_expired:
+                raise ValidationError(_("The sale order has expired."))
 
             kwargs.update({
                 # To display on the payment form; will be later overwritten when creating the tx.

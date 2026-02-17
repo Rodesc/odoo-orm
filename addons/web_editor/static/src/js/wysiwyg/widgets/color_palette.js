@@ -41,6 +41,7 @@ export class ColorPalette extends Component {
         onInputEnter: { type: Function, optional: true },
         getCustomColors: { type: Function, optional: true },
         getEditableCustomColors: { type: Function, optional: true },
+        onColorpaletteTabChange: { type: Function, optional: true },
     };
     static defaultProps = {
         document: window.document,
@@ -61,6 +62,7 @@ export class ColorPalette extends Component {
         onInputEnter: () => {},
         getCustomColors: () => [],
         getEditableCustomColors: () => [],
+        onColorpaletteTabChange: () => {},
     }
     static components = { Colorpicker };
     elRef = useRef('el');
@@ -470,7 +472,10 @@ export class ColorPalette extends Component {
             eventCallback(colorInfo);
         }
         this._buildCustomColors();
-        this.state.customSelectedColor = colorInfo.color;
+        this.state.customSelectedColor = isCSSColor(colorInfo.color)
+            ? colorInfo.color
+            : weUtils.getCSSVariableValue(colorInfo.color, this.style);
+
         const customGradient = weUtils.isColorGradient(colorInfo.color) ? colorInfo.color : false;
         if (this.pickers['custom_gradient']) {
             this._selectGradient(customGradient);
@@ -728,8 +733,14 @@ export class ColorPalette extends Component {
             // instead of style but seems necessary for custom colors right
             // now...
             const value = buttonEl.dataset.color || buttonEl.style.backgroundColor;
+            // Buttons in the theme-colors tab of the palette have
+            // no opacity, hence they should be searched by removing
+            // opacity of 0.6 (which was applied by default) from
+            // the selected color.
+            const isCommonColor = buttonEl.classList.contains('o_common_color');
+            const selectedColor = isCommonColor ? this._opacifyColor(this.selectedColor) : this.selectedColor;
             buttonEl.classList.toggle('selected', value
-                && (this.selectedCC === value || weUtils.areCssValuesEqual(this.selectedColor, value)));
+                && (this.selectedCC === value || weUtils.areCssValuesEqual(selectedColor, value)));
         }
     }
 
@@ -756,6 +767,7 @@ export class ColorPalette extends Component {
         this.el.querySelectorAll('.o_colorpicker_sections').forEach(el => {
             el.classList.toggle('d-none', el.dataset.colorTab !== buttonEl.dataset.target);
         });
+        this.props.onColorpaletteTabChange(buttonEl.dataset.target);
     }
     /**
      * Updates a gradient color from a selection in the color picker.

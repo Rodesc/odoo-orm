@@ -1,26 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* spreadsheet_dashboard_purchase
-# 
+#
 # Translators:
 # Foldi Robert <foldirobert@nexterp.ro>, 2024
 # Martin Trigaux, 2024
 # Cozmin Candea <office@terrabit.ro>, 2024
-# Dorin Hongu <dhongu@gmail.com>, 2024
-# 
+# Alin Miclea, 2024
+# Dorin Hongu <dhongu@gmail.com>, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2024\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2025\n"
 "Language-Team: Romanian (https://app.transifex.com/odoo/teams/41243/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
@@ -32,17 +34,12 @@ msgstr "zile"
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Amount"
 msgstr "Sumă"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Buyer"
@@ -51,14 +48,12 @@ msgstr "Cumpărător"
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Country"
 msgstr "Țară"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Current"
@@ -67,10 +62,9 @@ msgstr "Curent(ă)"
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Days to receive"
-msgstr ""
+msgstr "Zile până la primire"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
@@ -81,7 +75,6 @@ msgstr "KPI"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Lines"
@@ -104,10 +97,6 @@ msgstr "Comandat"
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Orders"
 msgstr "Comenzi"
@@ -122,7 +111,6 @@ msgstr "Perioadă"
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Previous"
 msgstr "Anterior"
@@ -132,28 +120,28 @@ msgstr "Anterior"
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Purchase Analysis by Partner Country"
-msgstr ""
+msgstr "Analiză achiziție în funcție de țara partenerului"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Purchase Analysis by Purchase Representative"
-msgstr ""
+msgstr "Analiză achiziți în funcție de reprezentantul achiziției"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Purchase Analysis by Vendor"
-msgstr ""
+msgstr "Analiză achiziție în funcție de furnizor"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Purchase Orders by Untaxed Amount"
-msgstr ""
+msgstr "Comenzi de achiziție în funcție de valoarea neimpozitată"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
@@ -167,14 +155,14 @@ msgstr "Achiziționat"
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Qty ordered"
-msgstr ""
+msgstr "Cant. comandată"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Quantity ordered"
-msgstr ""
+msgstr "Cantitatea comandată"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
@@ -188,14 +176,14 @@ msgstr "Sursa"
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Sourcing by Country"
-msgstr ""
+msgstr "Aprovizionare în funcție de țară"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Top Buyers"
-msgstr ""
+msgstr "Top Cumpărători"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
@@ -223,12 +211,10 @@ msgstr "Top furnizori după valoare"
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Untaxed total"
-msgstr ""
+msgstr "Total fără taxe"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "Vendor"
@@ -248,9 +234,6 @@ msgstr "ultima perioadă"
 
 #. module: spreadsheet_dashboard_purchase
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_purchase/data/files/vendors_dashboard.json:0
 #, python-format
 msgid "since last period"

@@ -1,30 +1,32 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* base_setup
-# 
+# * base_setup
+#
 # Translators:
-# Wil Odoo, 2023
-# 何彬 <vnsoft.he@gmail.com>, 2023
+# Odoo哥 <vnsoft.he@gmail.com>, 2023
 # Chloe Wang, 2024
-# 湘子 南 <1360857908@qq.com>, 2024
-# 
+# Wil Odoo, 2024
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: 湘子 南 <1360857908@qq.com>, 2024\n"
-"Language-Team: Chinese (China) (https://app.transifex.com/odoo/teams/41243/zh_CN/)\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
+"PO-Revision-Date: 2025-11-20 16:04+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.odoo.com/"
+"projects/odoo-17/base_setup/zh_Hans/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
 msgstr "<span class=\"fa fa-lg fa-users\" aria-label=\"有效用户数量\"/>"
 
 #. module: base_setup
@@ -33,14 +35,16 @@ msgid ""
 "<span class=\"o_form_label\" invisible=\"active_user_count &gt; 1\">\n"
 "                                        Active User\n"
 "                                    </span>\n"
-"                                    <span class=\"o_form_label\" invisible=\"active_user_count &lt;= 1\">\n"
+"                                    <span class=\"o_form_label\" "
+"invisible=\"active_user_count &lt;= 1\">\n"
 "                                        Active Users\n"
 "                                    </span>"
 msgstr ""
 "<span class=\"o_form_label\" invisible=\"active_user_count &gt; 1\">\n"
 "                                        活跃用户\n"
 "                                    </span>\n"
-"                                    <span class=\"o_form_label\" invisible=\"active_user_count &lt;= 1\">\n"
+"                                    <span class=\"o_form_label\" "
+"invisible=\"active_user_count &lt;= 1\">\n"
 "                                        活跃用户\n"
 "                                    </span>"
 
@@ -50,7 +54,8 @@ msgid ""
 "<span class=\"o_form_label\" invisible=\"company_count &gt; 1\">\n"
 "                                        Company\n"
 "                                    </span>\n"
-"                                    <span class=\"o_form_label\" invisible=\"company_count &lt;= 1\">\n"
+"                                    <span class=\"o_form_label\" "
+"invisible=\"company_count &lt;= 1\">\n"
 "                                        Companies\n"
 "                                    </span>\n"
 "                                    <br/>"
@@ -58,7 +63,8 @@ msgstr ""
 "<span class=\"o_form_label\" invisible=\"company_count &gt; 1\">\n"
 "                                        公司\n"
 "                                    </span>\n"
-"                                    <span class=\"o_form_label\" invisible=\"company_count &lt;= 1\">\n"
+"                                    <span class=\"o_form_label\" "
+"invisible=\"company_count &lt;= 1\">\n"
 "                                        公司\n"
 "                                    </span>\n"
 "                                    <br/>"
@@ -69,14 +75,16 @@ msgid ""
 "<span class=\"o_form_label\" invisible=\"language_count &gt; 1\">\n"
 "                                            Language\n"
 "                                        </span>\n"
-"                                        <span class=\"o_form_label\" invisible=\"language_count &lt;= 1\">\n"
+"                                        <span class=\"o_form_label\" "
+"invisible=\"language_count &lt;= 1\">\n"
 "                                            Languages\n"
 "                                        </span>"
 msgstr ""
 "<span class=\"o_form_label\" invisible=\"language_count &gt; 1\">\n"
 "                                            种语言\n"
 "                                        </span>\n"
-"                                        <span class=\"o_form_label\" invisible=\"language_count &lt;= 1\">\n"
+"                                        <span class=\"o_form_label\" "
+"invisible=\"language_count &lt;= 1\">\n"
 "                                            种语言\n"
 "                                        </span>"
 
@@ -96,8 +104,7 @@ msgstr "<strong>保存</strong> 此页面并返回此处进行 Cloudflare Turnst
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid ""
-"<strong>Save</strong> this page and come back here to set up reCaptcha."
+msgid "<strong>Save</strong> this page and come back here to set up reCaptcha."
 msgstr "<strong>保存</strong> 此页面，然后返回此处设置 reCaptcha。"
 
 #. module: base_setup
@@ -116,7 +123,7 @@ msgstr "API密钥"
 msgid ""
 "API Keys allow your users to access Odoo with external tools when multi-"
 "factor authentication is enabled."
-msgstr "通过API密钥，您的用户在启用多因素身份验证时可以使用外部工具访问 ERP."
+msgstr "通过API密钥，您的用户在启用多因素身份验证时可以使用外部工具访问Odoo。"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -185,8 +192,7 @@ msgstr "自动产生公司间订单/结算单的对应文档"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid ""
-"By default, new users get highest access rights for all installed apps."
+msgid "By default, new users get highest access rights for all installed apps."
 msgstr "默认情况下，新用户获得所有安装的应用程序的最高访问权限。"
 
 #. module: base_setup
@@ -358,6 +364,11 @@ msgid "Is Root Company"
 msgstr "是母公司"
 
 #. module: base_setup
+#: model:ir.model,name:base_setup.model_kpi_provider
+msgid "KPI Provider"
+msgstr "KPI提供者"
+
+#. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_auth_ldap
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "LDAP Authentication"
@@ -522,7 +533,7 @@ msgstr ""
 msgid ""
 "This name will be used for the application when Odoo is installed through "
 "the browser."
-msgstr "如果 ERP 通过浏览器安装了PWA 应用，则将以此名称命名."
+msgstr "如果Odoo通过浏览器安装了PWA，则将以此名称命名。"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_web_unsplash
@@ -572,7 +583,9 @@ msgid ""
 "When populating your address book, Odoo provides a list of matching "
 "companies. When selecting one item, the company data and logo are auto-"
 "filled."
-msgstr "当公布您的地址簿时，系统为您提供一个匹配公司列表。当选择其中一个，公司数据和logo会自动填充."
+msgstr ""
+"当公布您的地址簿时，系统为您提供一个匹配公司列表。当选择其中一个，公司数据和"
+"logo会自动填充。"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_recaptcha

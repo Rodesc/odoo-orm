@@ -1687,6 +1687,8 @@ QUnit.test(
         messageFetchShouldFail = false;
         await click("button", { text: "Click here to retry" });
         await contains(".o-mail-Message", { count: 60 });
+        await click("button", { text: "Load More" });
+        await contains(".o-mail-Message", { count: 90 });
     }
 );
 
@@ -1829,8 +1831,9 @@ QUnit.test("Message shows up even if channel data is incomplete", async () => {
         ],
         channel_type: "chat",
     });
+    const subscribeProm = waitUntilSubscribe();
     env.services["bus_service"].forceUpdateChannels();
-    await waitUntilSubscribe();
+    await subscribeProm;
     await pyEnv.withUser(correspondentUserId, () =>
         env.services.rpc("/discuss/channel/notify_typing", {
             is_typing: true,

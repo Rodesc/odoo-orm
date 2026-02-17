@@ -1,12 +1,13 @@
 /** @odoo-module **/
 
+import { EventBus } from "@odoo/owl";
 import { browser } from "@web/core/browser/browser";
 import { registry } from "@web/core/registry";
 
 export const presenceService = {
     start(env) {
         const LOCAL_STORAGE_PREFIX = "presence";
-
+        const bus = new EventBus();
         let isOdooFocused = true;
         let lastPresenceTime =
             browser.localStorage.getItem(`${LOCAL_STORAGE_PREFIX}.lastPresence`) ||
@@ -15,6 +16,7 @@ export const presenceService = {
         function onPresence() {
             lastPresenceTime = new Date().getTime();
             browser.localStorage.setItem(`${LOCAL_STORAGE_PREFIX}.lastPresence`, lastPresenceTime);
+            bus.trigger("presence");
         }
 
         function onFocusChange(isFocused) {
@@ -38,21 +40,26 @@ export const presenceService = {
             }
             if (key === `${LOCAL_STORAGE_PREFIX}.lastPresence`) {
                 lastPresenceTime = JSON.parse(newValue);
+                bus.trigger("presence");
             }
         }
         browser.addEventListener("storage", onStorage);
         browser.addEventListener("focus", () => onFocusChange(true));
         browser.addEventListener("blur", () => onFocusChange(false));
         browser.addEventListener("pagehide", () => onFocusChange(false));
-        browser.addEventListener("click", onPresence);
-        browser.addEventListener("keydown", onPresence);
+        browser.addEventListener("click", onPresence, true);
+        browser.addEventListener("keydown", onPresence, true);
 
         return {
+            bus,
             getLastPresence() {
                 return lastPresenceTime;
             },
             isOdooFocused() {
                 return isOdooFocused;
+            },
+            getInactivityPeriod() {
+                return new Date().getTime() - this.getLastPresence();
             },
         };
     },

@@ -9,10 +9,6 @@ from freezegun import freeze_time
 from threading import Event
 from unittest.mock import patch
 from weakref import WeakSet
-try:
-    from websocket._exceptions import WebSocketBadStatusException
-except ImportError:
-    pass
 
 from odoo.api import Environment
 from odoo.tests import common, new_test_user
@@ -25,7 +21,6 @@ from ..websocket import (
     Frame,
     Opcode,
     TimeoutManager,
-    TimeoutReason,
     Websocket,
     WebsocketConnectionHandler,
 )
@@ -72,46 +67,51 @@ class TestWebsocketCaryall(WebsocketCase):
             # A PING frame was just sent, if no pong has been received
             # within TIMEOUT seconds, the connection should have timed out.
             timeout_manager.acknowledge_frame_sent(Frame(Opcode.PING))
-            self.assertEqual(timeout_manager._awaited_opcode, Opcode.PONG)
             frozen_time.tick(delta=timedelta(seconds=TimeoutManager.TIMEOUT / 2))
-            self.assertFalse(timeout_manager.has_timed_out())
+            self.assertFalse(timeout_manager.has_frame_response_timed_out())
             frozen_time.tick(delta=timedelta(seconds=TimeoutManager.TIMEOUT / 2))
-            self.assertTrue(timeout_manager.has_timed_out())
-            self.assertEqual(timeout_manager.timeout_reason, TimeoutReason.NO_RESPONSE)
+            self.assertTrue(timeout_manager.has_frame_response_timed_out())
 
             timeout_manager = TimeoutManager()
             # A CLOSE frame was just sent, if no close has been received
             # within TIMEOUT seconds, the connection should have timed out.
             timeout_manager.acknowledge_frame_sent(Frame(Opcode.CLOSE))
-            self.assertEqual(timeout_manager._awaited_opcode, Opcode.CLOSE)
             frozen_time.tick(delta=timedelta(seconds=TimeoutManager.TIMEOUT / 2))
-            self.assertFalse(timeout_manager.has_timed_out())
+            self.assertFalse(timeout_manager.has_frame_response_timed_out())
             frozen_time.tick(delta=timedelta(seconds=TimeoutManager.TIMEOUT / 2))
-            self.assertTrue(timeout_manager.has_timed_out())
-            self.assertEqual(timeout_manager.timeout_reason, TimeoutReason.NO_RESPONSE)
+            self.assertTrue(timeout_manager.has_frame_response_timed_out())
+
+    def test_timeout_manager_overlapping_timeouts(self):
+        with freeze_time('2022-08-19') as frozen_time:
+            timeout_manager = TimeoutManager()
+            timeout_manager.acknowledge_frame_sent(Frame(Opcode.CLOSE))
+            timeout_manager.acknowledge_frame_sent(Frame(Opcode.PING))
+            timeout_manager.acknowledge_frame_receipt(Frame(Opcode.PONG))
+            frozen_time.tick(delta=timedelta(seconds=timeout_manager.TIMEOUT + 1))
+            self.assertTrue(timeout_manager.has_frame_response_timed_out())
 
     def test_timeout_manager_keep_alive_timeout(self):
         with freeze_time('2022-08-19') as frozen_time:
             timeout_manager = TimeoutManager()
             frozen_time.tick(delta=timedelta(seconds=timeout_manager._keep_alive_timeout / 2))
-            self.assertFalse(timeout_manager.has_timed_out())
+            self.assertFalse(timeout_manager.has_keep_alive_timed_out())
             frozen_time.tick(delta=timedelta(seconds=timeout_manager._keep_alive_timeout / 2 + 1))
-            self.assertTrue(timeout_manager.has_timed_out())
-            self.assertEqual(timeout_manager.timeout_reason, TimeoutReason.KEEP_ALIVE)
+            self.assertTrue(timeout_manager.has_keep_alive_timed_out())
 
     def test_timeout_manager_reset_wait_for(self):
-        timeout_manager = TimeoutManager()
-        # PING frame
-        timeout_manager.acknowledge_frame_sent(Frame(Opcode.PING))
-        self.assertEqual(timeout_manager._awaited_opcode, Opcode.PONG)
-        timeout_manager.acknowledge_frame_receipt(Frame(Opcode.PONG))
-        self.assertIsNone(timeout_manager._awaited_opcode)
+        with freeze_time('2022-08-19') as frozen_time:
+            timeout_manager = TimeoutManager()
+            # PING frame
+            timeout_manager.acknowledge_frame_sent(Frame(Opcode.PING))
+            timeout_manager.acknowledge_frame_receipt(Frame(Opcode.PONG))
+            frozen_time.tick(delta=timedelta(seconds=timeout_manager.TIMEOUT + 1))
+            self.assertFalse(timeout_manager.has_frame_response_timed_out())
 
-        # CLOSE frame
-        timeout_manager.acknowledge_frame_sent(Frame(Opcode.CLOSE))
-        self.assertEqual(timeout_manager._awaited_opcode, Opcode.CLOSE)
-        timeout_manager.acknowledge_frame_receipt(Frame(Opcode.CLOSE))
-        self.assertIsNone(timeout_manager._awaited_opcode)
+            # CLOSE frame
+            timeout_manager.acknowledge_frame_sent(Frame(Opcode.CLOSE))
+            timeout_manager.acknowledge_frame_receipt(Frame(Opcode.CLOSE))
+            frozen_time.tick(delta=timedelta(seconds=timeout_manager.TIMEOUT + 1))
+            self.assertFalse(timeout_manager.has_frame_response_timed_out())
 
     def test_user_login(self):
         websocket = self.websocket_connect()
@@ -250,9 +250,80 @@ class TestWebsocketCaryall(WebsocketCase):
             serve_forever_called_event.set()
 
         with patch.object(WebsocketConnectionHandler, '_serve_forever', side_effect=serve_forever) as mock:
-            self.websocket_connect(
+            ws = self.websocket_connect(
                 cookie=f'session_id={user_session.sid};',
                 origin="http://example.com"
             )
+            self.assertTrue(
+                ws.getheaders().get('set-cookie').startswith(f'session_id={user_session.sid}'),
+                'The set-cookie response header must be the origin request session rather than the websocket session'
+            )
             serve_forever_called_event.wait(timeout=5)
             self.assertTrue(mock.called)
+
+    def test_disconnect_when_version_outdated(self):
+        # Outdated version, connection should be closed immediately
+        with patch.object(WebsocketConnectionHandler, "_VERSION", "17.0-1"), patch.object(
+            self, "_WEBSOCKET_URL", f"{self._BASE_WEBSOCKET_URL}?version=17.0-0"
+        ):
+            websocket = self.websocket_connect(
+                ping_after_connect=False, header={"User-Agent": "Chrome/126.0.0.0"}
+            )
+            self.assert_close_with_code(websocket, CloseCode.CLEAN, "OUTDATED_VERSION")
+
+        # Version not passed, User-Agent present, should be considered as outdated
+        with patch.object(WebsocketConnectionHandler, "_VERSION", "17.0-1"), patch.object(
+            self, "_WEBSOCKET_URL", self._BASE_WEBSOCKET_URL
+        ):
+            websocket = self.websocket_connect(
+                ping_after_connect=False, header={"User-Agent": "Chrome/126.0.0.0"}
+            )
+            self.assert_close_with_code(websocket, CloseCode.CLEAN, "OUTDATED_VERSION")
+        # Version not passed, User-Agent not present, should not be considered
+        # as outdated
+        with patch.object(WebsocketConnectionHandler, "_VERSION", None), patch.object(
+            self, "_WEBSOCKET_URL", self._BASE_WEBSOCKET_URL
+        ):
+            websocket = self.websocket_connect()
+            websocket.ping()
+            websocket.recv_data_frame(control_frame=True)  # pong
+
+    def test_trigger_on_websocket_closed(self):
+        with patch('odoo.addons.bus.models.ir_websocket.IrWebsocket._on_websocket_closed') as mock:
+            ws = self.websocket_connect()
+            ws.close(CloseCode.CLEAN)
+            self.wait_remaining_websocket_connections()
+            self.assertTrue(mock.called)
+
+    def test_websocket_terminates_after_closing_timeout(self):
+        orig_disconnect = Websocket.disconnect
+        orig_terminate = Websocket._terminate
+        disconnect_done_event = Event()
+        terminate_done_event = Event()
+
+        def disconnect_wrapper(self, code):
+            orig_disconnect(self, code)
+            disconnect_done_event.set()
+
+        def terminate_wrapper(self):
+            orig_terminate(self)
+            terminate_done_event.set()
+
+        with (
+            patch('odoo.addons.bus.websocket.TimeoutManager.KEEP_ALIVE_TIMEOUT', 0),
+            patch.object(Websocket, 'disconnect', disconnect_wrapper),
+            patch.object(Websocket, '_terminate', terminate_wrapper),
+            freeze_time('2022-08-19') as frozen_time,
+        ):
+            ws = self.websocket_connect(ping_after_connect=False)
+            ws.send(b'\x00')  # Wake up the WebSocket loop.
+            self.assertTrue(
+                disconnect_done_event.wait(timeout=5),
+                'Server should have initiated the closing handshake as the keep alive timeout is exceeded.',
+            )
+            frozen_time.tick(delta=timedelta(seconds=TimeoutManager.TIMEOUT + 1))
+            ws.send(b'\x00')  # Wake up the WebSocket loop.
+            self.assertTrue(
+                terminate_done_event.wait(timeout=5),
+                'Server should have terminated the connection as it didn\'t receive any response.',
+            )

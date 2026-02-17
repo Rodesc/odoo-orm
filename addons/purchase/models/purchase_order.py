@@ -8,11 +8,11 @@ from pytz import timezone
 from markupsafe import escape, Markup
 from werkzeug.urls import url_encode
 
-from odoo import api, fields, models, _
+from odoo import api, Command, fields, models, _
 from odoo.osv import expression
 from odoo.tools import format_amount, format_date, formatLang, groupby
 from odoo.tools.float_utils import float_is_zero
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import AccessDenied, UserError, ValidationError
 
 
 class PurchaseOrder(models.Model):
@@ -39,7 +39,8 @@ class PurchaseOrder(models.Model):
                 amount_untaxed = sum(order_lines.mapped('price_subtotal'))
                 amount_tax = sum(order_lines.mapped('price_tax'))
 
-            order.amount_untaxed = amount_untaxed
+            if order.currency_id.compare_amounts(order.amount_untaxed, amount_untaxed):
+                order.amount_untaxed = amount_untaxed
             order.amount_tax = amount_tax
             order.amount_total = order.amount_untaxed + order.amount_tax
 
@@ -88,8 +89,8 @@ class PurchaseOrder(models.Model):
     date_order = fields.Datetime('Order Deadline', required=True, index=True, copy=False, default=fields.Datetime.now,
         help="Depicts the date within which the Quotation should be confirmed and converted into a purchase order.")
     date_approve = fields.Datetime('Confirmation Date', readonly=True, index=True, copy=False)
-    partner_id = fields.Many2one('res.partner', string='Vendor', required=True, change_default=True, tracking=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]", help="You can find a vendor by its Name, TIN, Email or Internal Reference.")
-    dest_address_id = fields.Many2one('res.partner', domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]", string='Dropship Address',
+    partner_id = fields.Many2one('res.partner', string='Vendor', required=True, change_default=True, tracking=True, check_company=True, help="You can find a vendor by its Name, TIN, Email or Internal Reference.")
+    dest_address_id = fields.Many2one('res.partner', check_company=True, string='Dropship Address',
         help="Put an address if you want to deliver directly from the vendor to the customer. "
              "Otherwise, keep empty to deliver to your own company.")
     currency_id = fields.Many2one('res.currency', 'Currency', required=True,
@@ -282,6 +283,18 @@ class PurchaseOrder(models.Model):
         # To be overridden
         return field_name == 'order_line'
 
+    def onchange(self, values, field_names, fields_spec):
+        """
+        Override onchange to NOT update all date_planned on PO lines when
+        date_planned on PO is updated by the change of date_planned on PO lines.
+        """
+        result = super().onchange(values, field_names, fields_spec)
+        if any(self._must_delete_date_planned(field) for field in field_names) and 'value' in result:
+            for line in result['value'].get('order_line', []):
+                if line[0] == Command.UPDATE and 'date_planned' in line[2]:
+                    del line[2]['date_planned']
+        return result
+
     def _get_report_base_filename(self):
         self.ensure_one()
         return 'Purchase Order-%s' % (self.name)
@@ -366,16 +379,17 @@ class PurchaseOrder(models.Model):
             pass
         else:
             access_opt = customer_portal_group[2].setdefault('button_access', {})
+            base_url = self.get_base_url()
             if self.env.context.get('is_reminder'):
                 access_opt['title'] = _('View')
                 actions = customer_portal_group[2].setdefault('actions', list())
                 actions.extend([
-                    {'url': self.get_confirm_url(confirm_type='reminder'), 'title': _('Accept')},
-                    {'url': self.get_update_url(), 'title': _('Update Dates')},
+                    {'url': base_url + self.get_confirm_url(confirm_type='reminder'), 'title': _('Accept')},
+                    {'url': base_url + self.get_update_url(), 'title': _('Update Dates')},
                 ])
             else:
                 access_opt['title'] = _('Confirm')
-                access_opt['url'] = self.get_confirm_url(confirm_type='reception')
+                access_opt['url'] = base_url + self.get_confirm_url(confirm_type='reception')
 
         return groups
 
@@ -688,6 +702,8 @@ class PurchaseOrder(models.Model):
         """ This function returns the values to populate the custom dashboard in
             the purchase order views.
         """
+        if not self.env.user._is_internal():
+            raise AccessDenied()
         self.check_access_rights('read')
 
         result = {
@@ -962,6 +978,8 @@ class PurchaseOrder(models.Model):
         date_planned = date_planned or self.date_planned
         if not date_planned:
             return False
+        if isinstance(date_planned, str):
+            date_planned = fields.Datetime.from_string(date_planned)
         tz = self.get_order_timezone()
         return date_planned.astimezone(tz)
 
@@ -1025,7 +1043,8 @@ class PurchaseOrder(models.Model):
                 uom_id=pol.product_uom)
             if seller:
                 # Fix the PO line's price on the seller's one.
-                pol.price_unit = seller.price_discounted
+                pol.price_unit = seller.price
+                pol.discount = seller.discount
         return pol.price_unit_discounted
 
     def _create_update_date_activity(self, updated_dates):

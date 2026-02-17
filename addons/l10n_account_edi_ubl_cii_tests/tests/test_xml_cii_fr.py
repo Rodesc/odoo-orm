@@ -17,7 +17,7 @@ class TestCIIFR(TestUBLCommon):
             'city': "Paris",
             'vat': 'FR05677404089',
             'country_id': cls.env.ref('base.fr').id,
-            'bank_ids': [(0, 0, {'acc_number': 'FR15001559627230'})],
+            'bank_ids': [(0, 0, {'acc_number': 'FR15001559627230', 'allow_out_payment': True})],
             'phone': '+1 (650) 555-0111',
             'email': "partner1@yourcompany.com",
             'ref': 'ref_partner_1',
@@ -30,7 +30,7 @@ class TestCIIFR(TestUBLCommon):
             'city': "Colombey-les-Deux-Églises",
             'vat': 'FR35562153452',
             'country_id': cls.env.ref('base.fr').id,
-            'bank_ids': [(0, 0, {'acc_number': 'FR90735788866632'})],
+            'bank_ids': [(0, 0, {'acc_number': 'FR90735788866632', 'allow_out_payment': True})],
             'ref': 'ref_partner_2',
         })
 
@@ -119,6 +119,7 @@ class TestCIIFR(TestUBLCommon):
         acc_bank = self.env['res.partner.bank'].create({
             'acc_number': 'FR15001559627231',
             'partner_id': self.company_data['company'].partner_id.id,
+            'allow_out_payment': True,
         })
 
         invoice = self._generate_move(
@@ -480,3 +481,20 @@ class TestCIIFR(TestUBLCommon):
             list_line_subtotals=[99], currency_id=self.currency_data['currency'].id, list_line_price_unit=[99],
             list_line_discount=[0], list_line_taxes=[self.tax_21+self.recupel], move_type='out_invoice',
         )
+
+    def test_facturx_has_no_negative_lines(self):
+        """
+        Test that the is no negative ChargeAmount in the facturx xml
+        """
+        invoice = self._generate_move(
+            seller=self.partner_1,
+            buyer=self.partner_2,
+            move_type='out_invoice',
+            invoice_line_ids=[
+                {'product_id': self.product_a.id, 'quantity': 1, 'price_unit': 100.0, 'tax_ids': [(6, 0, [self.tax_sale_a.id])],},
+                {'product_id': self.product_b.id, 'quantity': 1, 'price_unit': -50.0, 'tax_ids': [(6, 0, [self.tax_sale_a.id])],}
+            ],
+        )
+
+        self._assert_invoice_attachment(invoice.ubl_cii_xml_id, None, 'from_odoo/facturx_positive_discount_price_unit.xml')
+

@@ -1,35 +1,34 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* base_vat
-# 
+#
 # Translators:
 # Pekko Tuomisto <pekko.tuomisto@web-veistamo.fi>, 2023
 # Kari Lindgren <kari.lindgren@emsystems.fi>, 2023
 # Kim Asplund <kim.asplund@gmail.com>, 2023
 # Tuomo Aura <tuomo.aura@web-veistamo.fi>, 2023
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2024
-# Ossi Mantylahti <ossi.mantylahti@obs-solutions.fi>, 2024
-# 
+# Ossi Mantylahti <ossi.mantylahti@obs-solutions.fi>, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2026-02-12 18:36+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Ossi Mantylahti <ossi.mantylahti@obs-solutions.fi>, 2024\n"
+"Last-Translator: Ossi Mantylahti <ossi.mantylahti@obs-solutions.fi>, 2025\n"
 "Language-Team: Finnish (https://app.transifex.com/odoo/teams/41243/fi/)\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_vat
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
-msgid ""
-"10XXXXXXXXY or 20XXXXXXXXY or 15XXXXXXXXY or 16XXXXXXXXY or 17XXXXXXXXY"
+msgid "10XXXXXXXXY or 20XXXXXXXXY or 15XXXXXXXXY or 16XXXXXXXXY or 17XXXXXXXXY"
 msgstr ""
 "10XXXXXXXXXXY tai 20XXXXXXXXXXXXY tai 15XXXXXXXXXXY tai 16XXXXXXXXXXY tai "
 "17XXXXXXXXXXY"
@@ -38,8 +37,22 @@ msgstr ""
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
+msgid "11111111111 (NIN) or 2222222222 (VKN)"
+msgstr ""
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
 msgid "1792060346001 or 1792060346"
 msgstr "1792060346001 tai 1792060346"
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid "3101012009"
+msgstr "3101012009"
 
 #. module: base_vat
 #. odoo-python
@@ -125,6 +138,16 @@ msgstr ""
 "Eurooppalaiset ALV-numerot tarkistetaan automaattisesti VIES-palvelusta."
 
 #. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid ""
+"Example: '219999830019' (format: 12 digits, all numbers, valid check digit)"
+msgstr ""
+"Esimerkki: \"219999830019\" (muoto: 12 numeroa, kaikki numerot, kelvollinen "
+"tarkistusnumero)"
+
+#. module: base_vat
 #: model:ir.model,name:base_vat.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Verokanta"
@@ -172,13 +195,6 @@ msgid "Perform Vies Validation"
 msgstr "Suorita VIES-tarkastus"
 
 #. module: base_vat
-#. odoo-python
-#: code:addons/base_vat/models/res_partner.py:0
-#, python-format
-msgid "TR1234567890 (VERGINO) or TR17291716060 (TCKIMLIKNO)"
-msgstr "TR1234567890 (VERGINO) tai TR17291716060 (TCKIMLIKNO)"
-
-#. module: base_vat
 #: model_terms:ir.ui.view,arch_db:base_vat.view_partner_base_vat_form
 msgid "Tax ID"
 msgstr "ALV-numero"
@@ -199,10 +215,12 @@ msgstr ""
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid ""
-"The %(vat_label)s number [%(wrong_vat)s] for %(record_label)s does not seem to be valid. \n"
+"The %(vat_label)s number [%(wrong_vat)s] for %(record_label)s does not seem "
+"to be valid. \n"
 "Note: the expected format is %(expected_format)s"
 msgstr ""
-"ALV-tunnuksen %(vat_label)s numero [%(wrong_vat)s] tietueelle %(record_label)s ei näytä kelvolliselta. \n"
+"ALV-tunnuksen %(vat_label)s numero [%(wrong_vat)s] tietueelle "
+"%(record_label)s ei näytä kelvolliselta. \n"
 "Huomaa: odotettu muotoilu on %(expected_format)s"
 
 #. module: base_vat
@@ -217,17 +235,30 @@ msgstr "VIES-palvelin ei pystynyt tulkitsemaan ALV-numeroa %s."
 #: code:addons/base_vat/models/account_fiscal_position.py:0
 #, python-format
 msgid ""
-"The country detected for this foreign VAT number does not match the one set "
-"on this fiscal position."
-msgstr "Maa, johon tämä ALV-numero viittaa ei täsmää sen verokantaan."
+"The country detected for this foreign VAT number does not match any of the "
+"countries composing the country group set on this fiscal position."
+msgstr ""
+"Tämän ulkomaisen ALV-numeron kohdalla havaittu maa ei vastaa mitään maata, "
+"joka muodostaa tämän verokannan maaryhmän."
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/account_fiscal_position.py:0
+#, python-format
+msgid ""
+"The country of the foreign VAT number could not be detected. Please assign a "
+"country to the fiscal position or set a country group"
+msgstr ""
+"Ulkomaisen alv-numeron maata ei voitu havaita. Määritä maa verokannalle tai "
+"aseta maaryhmä"
 
 #. module: base_vat
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid ""
-"The request for VAT validation was not processed. VIES service has responded"
-" with the following error: %s"
+"The request for VAT validation was not processed. VIES service has responded "
+"with the following error: %s"
 msgstr ""
 "Arvonlisäveron vahvistamista koskevaa pyyntöä ei käsitelty. VIES-palvelu on "
 "vastannut seuraavalla virheilmoituksella: %s"
@@ -260,6 +291,15 @@ msgstr "VIES-palvelun ALV-tarkastettavaksi"
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
+msgid "XXXXXXXXX [9 digits] and it should respect the Luhn algorithm checksum"
+msgstr ""
+"XXXXXXXXXXX [9 numeroa] ja sen on noudatettava Luhnin algoritmin "
+"tarkistussummaa"
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
 msgid "either 11 digits for CPF or 14 digits for CNPJ"
 msgstr "joko 11 numeroa CPF:n osalta tai 14 numeroa CNPJ:n osalta"
 
@@ -276,3 +316,7 @@ msgstr "verokanta [%s]"
 #, python-format
 msgid "partner [%s]"
 msgstr "kumppani [%s]"
+
+#, python-format
+#~ msgid "17291716060 (NIN) or 1729171602 (VKN)"
+#~ msgstr "17291716060 (NIN) tai 1729171602 (VKN)"

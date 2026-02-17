@@ -23,29 +23,50 @@ const { DateTime } = luxon;
  * Convert pivot period to the related filter value
  *
  * @param {import("@spreadsheet/global_filters/plugins/global_filters_core_plugin").RangeType} timeRange
- * @param {string} value
+ * @param {string|number} value
  * @returns {object}
  */
 function pivotPeriodToFilterValue(timeRange, value) {
     // reuse the same logic as in `parseAccountingDate`?
-    const yearOffset = (value.split("/").pop() | 0) - DateTime.now().year;
+    if (typeof value === "number") {
+        value = value.toString(10);
+    }
+    if (
+        value === "false" || // the value "false" is the default value when there is no data for a group header
+        typeof value !== "string"
+    ) {
+        // anything else then a string at this point is incorrect, so no filtering
+        return undefined;
+    }
+
+    const yearValue = value.split("/").at(-1);
+    if (!yearValue) {
+        return undefined;
+    }
+    const yearOffset = yearValue - DateTime.now().year;
     switch (timeRange) {
         case "year":
             return {
                 yearOffset,
             };
         case "month": {
-            const month = value.split("/")[0] | 0;
+            const month = value.includes("/") ? Number.parseInt(value.split("/")[0]) - 1 : -1;
+            if (!(month in monthsOptions)) {
+                return { yearOffset, period: undefined };
+            }
             return {
                 yearOffset,
-                period: monthsOptions[month - 1].id,
+                period: monthsOptions[month].id,
             };
         }
         case "quarter": {
-            const quarter = value.split("/")[0] | 0;
+            const quarter = value.includes("/") ? Number.parseInt(value.split("/")[0]) - 1 : -1;
+            if (!(quarter in FILTER_DATE_OPTION.quarter)) {
+                return { yearOffset, period: undefined };
+            }
             return {
                 yearOffset,
-                period: FILTER_DATE_OPTION.quarter[quarter - 1],
+                period: FILTER_DATE_OPTION.quarter[quarter],
             };
         }
     }
@@ -79,7 +100,10 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
                 const { col, row } = event.anchor.cell;
                 const cell = this.getters.getCell({ sheetId, col, row });
                 if (cell !== undefined && cell.content.startsWith("=ODOO.PIVOT.HEADER(")) {
-                    const filters = this._getFiltersMatchingPivot(cell.compiledFormula.tokens);
+                    const filters = this._getFiltersMatchingPivot(
+                        sheetId,
+                        cell.compiledFormula.tokens
+                    );
                     this.dispatch("SET_MANY_GLOBAL_FILTER_VALUE", { filters });
                 }
                 break;
@@ -137,6 +161,7 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
                 const pivotDefinition = this.getters.getPivotModelDefinition(cmd.pivotId);
                 const dataSourceId = this.getPivotDataSourceId(cmd.pivotId);
                 this.dataSources.add(dataSourceId, PivotDataSource, pivotDefinition);
+                this._addDomain(cmd.pivotId);
                 break;
             }
             case "UNDO":
@@ -164,6 +189,7 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
                     const pivotDefinition = this.getters.getPivotModelDefinition(cmd.pivotId);
                     const dataSourceId = this.getPivotDataSourceId(cmd.pivotId);
                     this.dataSources.add(dataSourceId, PivotDataSource, pivotDefinition);
+                    this._addDomains();
                 }
 
                 if (!this.getters.getPivotIds().length) {
@@ -198,7 +224,10 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
     getPivotIdFromPosition(position) {
         const cell = this.getters.getCorrespondingFormulaCell(position);
         if (cell && cell.isFormula) {
-            const pivotFunction = this.getters.getFirstPivotFunction(cell.compiledFormula.tokens);
+            const pivotFunction = this.getters.getFirstPivotFunction(
+                position.sheetId,
+                cell.compiledFormula.tokens
+            );
             if (pivotFunction && pivotFunction.args[0]) {
                 return pivotFunction.args[0].toString();
             }
@@ -206,7 +235,11 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
         return undefined;
     }
 
-    getFirstPivotFunction(tokens) {
+    /**
+     * @param {string} sheetId sheet id on which the formula tokens are
+     * @param {import("@odoo/o-spreadsheet").Token[]} tokens
+     */
+    getFirstPivotFunction(sheetId, tokens) {
         const pivotFunction = getFirstPivotFunction(tokens);
         if (!pivotFunction) {
             return undefined;
@@ -223,7 +256,7 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
                 return argAst.value;
             }
             const argsString = astToFormula(argAst);
-            return this.getters.evaluateFormula(this.getters.getActiveSheetId(), argsString);
+            return this.getters.evaluateFormula(sheetId, argsString);
         });
         return { functionName, args: evaluatedArgs };
     }
@@ -255,12 +288,16 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
         }
         const mainPosition = this.getters.getCellPosition(cell.id);
         const { args, functionName } = this.getters.getFirstPivotFunction(
+            position.sheetId,
             cell.compiledFormula.tokens
         );
         if (functionName === "ODOO.PIVOT.TABLE") {
             const pivotId = args[0];
             const dataSource = this.getPivotDataSource(pivotId);
             if (!this.getters.isExistingPivot(pivotId) || !dataSource.isReady()) {
+                return undefined;
+            }
+            if (!cell.content.replaceAll(" ", "").toUpperCase().startsWith("=ODOO.PIVOT.TABLE")) {
                 return undefined;
             }
             const includeTotal = args[2];
@@ -364,12 +401,13 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
 
     /**
      * Get the filter impacted by a pivot formula's argument
-     * @param {Token[]} tokens Formula of the pivot cell
+     * @param {string} sheetId sheet id on which the formula tokens are
+     * @param {import("@odoo/o-spreadsheet").Token[]} tokens Formula of the pivot cell
      *
      * @returns {Array<Object>}
      */
-    _getFiltersMatchingPivot(tokens) {
-        const functionDescription = this.getters.getFirstPivotFunction(tokens);
+    _getFiltersMatchingPivot(sheetId, tokens) {
+        const functionDescription = this.getters.getFirstPivotFunction(sheetId, tokens);
         if (!functionDescription) {
             return [];
         }
@@ -421,9 +459,14 @@ export class PivotUIPlugin extends spreadsheet.UIPlugin {
                                 break;
                             }
                         }
+                        // A group by value of "none"
+                        if (value === false) {
+                            break;
+                        }
                         if (JSON.stringify(currentValue) !== `[${value}]`) {
                             transformedValue = [value];
                         }
+
                         break;
                     case "text":
                         if (currentValue !== value) {

@@ -1,28 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* http_routing
-# 
+#
 # Translators:
 # Egon Raamat <egon@avalah.ee>, 2023
 # Rivo Zängov <eraser@eraser.ee>, 2023
 # Wanradt Koell <wanradt@gmail.com>, 2023
 # JanaAvalah, 2023
 # Martin Talts <martin.t@avalah.ee>, 2023
-# Anna, 2023
 # Triine Aavik <triine@avalah.ee>, 2023
-# 
+# Anna, 2024
+# Stevin Lilla, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Triine Aavik <triine@avalah.ee>, 2023\n"
+"Last-Translator: Stevin Lilla, 2024\n"
 "Language-Team: Estonian (https://app.transifex.com/odoo/teams/41243/et/)\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: http_routing
@@ -43,7 +44,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:http_routing.error_message
 #: model_terms:ir.ui.view,arch_db:http_routing.http_error_debug
 msgid "<strong>Error message:</strong>"
-msgstr ""
+msgstr "<strong>Veateade:</strong>"
 
 #. module: http_routing
 #: model_terms:ir.ui.view,arch_db:http_routing.500
@@ -109,7 +110,7 @@ msgstr "Otsitud lehekülge ei saanud autoriseerida."
 #. module: http_routing
 #: model_terms:ir.ui.view,arch_db:http_routing.http_error_debug
 msgid "Traceback"
-msgstr ""
+msgstr "Jälitus"
 
 #. module: http_routing
 #: model_terms:ir.ui.view,arch_db:http_routing.404

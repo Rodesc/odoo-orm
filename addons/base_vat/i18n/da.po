@@ -1,35 +1,43 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* base_vat
-# 
+# * base_vat
+#
 # Translators:
 # Martin Trigaux, 2023
 # lhmflexerp <lhm@flexerp.dk>, 2024
 # Sanne Kristensen <sanne@vkdata.dk>, 2024
-# 
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Sanne Kristensen <sanne@vkdata.dk>, 2024\n"
-"Language-Team: Danish (https://app.transifex.com/odoo/teams/41243/da/)\n"
+"POT-Creation-Date: 2026-02-12 18:36+0000\n"
+"PO-Revision-Date: 2025-12-31 11:28+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-17/base_vat/"
+"da/>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: da\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. module: base_vat
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
-msgid ""
-"10XXXXXXXXY or 20XXXXXXXXY or 15XXXXXXXXY or 16XXXXXXXXY or 17XXXXXXXXY"
+msgid "10XXXXXXXXY or 20XXXXXXXXY or 15XXXXXXXXY or 16XXXXXXXXY or 17XXXXXXXXY"
 msgstr ""
 "10XXXXXXXXY eller 20XXXXXXXXY eller 15XXXXXXXXY eller 16XXXXXXXXY eller "
 "17XXXXXXXXY"
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid "11111111111 (NIN) or 2222222222 (VKN)"
+msgstr ""
 
 #. module: base_vat
 #. odoo-python
@@ -42,8 +50,15 @@ msgstr "1792060346001 eller 1792060346"
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
-msgid "310175397400003 [Fifteen digits, first and last digits should be \"3\"]"
+msgid "3101012009"
 msgstr ""
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid "310175397400003 [Fifteen digits, first and last digits should be \"3\"]"
+msgstr "310175397400003 [Femten cifre, første og sidste cifre bør være \"3\"]"
 
 #. module: base_vat
 #. odoo-python
@@ -92,6 +107,8 @@ msgid ""
 "Connection with the VIES server failed. The VAT number %s could not be "
 "validated."
 msgstr ""
+"Det var ikke muligt at oprette forbindelse til VIES-serveren. Momsnummeret "
+"%s kunne derfor ikke valideres."
 
 #. module: base_vat
 #: model:ir.model,name:base_vat.model_res_partner
@@ -103,7 +120,7 @@ msgstr "Kontakt"
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid "DE123456788 or 12/345/67890"
-msgstr ""
+msgstr "DE123456788 eller 12/345/67890"
 
 #. module: base_vat
 #. odoo-python
@@ -116,7 +133,16 @@ msgstr "DO1-01-85004-3 eller 101850043"
 #: model:ir.model.fields,help:base_vat.field_res_partner__vies_valid
 #: model:ir.model.fields,help:base_vat.field_res_users__vies_valid
 msgid "European VAT numbers are automatically checked on the VIES database."
+msgstr "Europæiske momsnumre kontrolleres automatisk på VIES-databasen."
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid ""
+"Example: '219999830019' (format: 12 digits, all numbers, valid check digit)"
 msgstr ""
+"Eksempel: '219999830019' (format: 12 cifre, alle tal, gyldige kontrolcifre)"
 
 #. module: base_vat
 #: model:ir.model,name:base_vat.model_account_fiscal_position
@@ -143,12 +169,14 @@ msgid ""
 "If this checkbox is ticked, the default fiscal position that applies will "
 "depend upon the output of the verification by the European VIES Service."
 msgstr ""
+"Hvis dette felt er markeret, fastsættes den relevante standardskatteposition "
+"ud fra resultatet af verifikationen via den europæiske VIES-tjeneste."
 
 #. module: base_vat
 #: model:ir.model.fields,field_description:base_vat.field_res_partner__vies_valid
 #: model:ir.model.fields,field_description:base_vat.field_res_users__vies_valid
 msgid "Intra-Community Valid"
-msgstr ""
+msgstr "Gyldig inden for EU"
 
 #. module: base_vat
 #. odoo-python
@@ -161,14 +189,7 @@ msgstr "MXGODE561231GR8 eller GODE561231GR8"
 #: model:ir.model.fields,field_description:base_vat.field_res_partner__perform_vies_validation
 #: model:ir.model.fields,field_description:base_vat.field_res_users__perform_vies_validation
 msgid "Perform Vies Validation"
-msgstr ""
-
-#. module: base_vat
-#. odoo-python
-#: code:addons/base_vat/models/res_partner.py:0
-#, python-format
-msgid "TR1234567890 (VERGINO) or TR17291716060 (TCKIMLIKNO)"
-msgstr "TR1234567890 (VERGINO) eller TR17291716060 (TCKIMLIKNO)"
+msgstr "Udfør VIES-validering"
 
 #. module: base_vat
 #: model_terms:ir.ui.view,arch_db:base_vat.view_partner_base_vat_form
@@ -189,7 +210,8 @@ msgstr ""
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid ""
-"The %(vat_label)s number [%(wrong_vat)s] for %(record_label)s does not seem to be valid. \n"
+"The %(vat_label)s number [%(wrong_vat)s] for %(record_label)s does not seem "
+"to be valid. \n"
 "Note: the expected format is %(expected_format)s"
 msgstr ""
 
@@ -198,6 +220,15 @@ msgstr ""
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid "The VAT number %s could not be interpreted by the VIES server."
+msgstr "Skattenummeret %s kunne ikke fortolkes af VIES-serveren."
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/account_fiscal_position.py:0
+#, python-format
+msgid ""
+"The country detected for this foreign VAT number does not match any of the "
+"countries composing the country group set on this fiscal position."
 msgstr ""
 
 #. module: base_vat
@@ -205,8 +236,8 @@ msgstr ""
 #: code:addons/base_vat/models/account_fiscal_position.py:0
 #, python-format
 msgid ""
-"The country detected for this foreign VAT number does not match the one set "
-"on this fiscal position."
+"The country of the foreign VAT number could not be detected. Please assign a "
+"country to the fiscal position or set a country group"
 msgstr ""
 
 #. module: base_vat
@@ -214,9 +245,11 @@ msgstr ""
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid ""
-"The request for VAT validation was not processed. VIES service has responded"
-" with the following error: %s"
+"The request for VAT validation was not processed. VIES service has responded "
+"with the following error: %s"
 msgstr ""
+"Anmodningen om momsvalidering kunne ikke behandles. VIES-ydelsen svarede med "
+"følgende fejl: %s"
 
 #. module: base_vat
 #. odoo-python
@@ -246,8 +279,16 @@ msgstr ""
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
-msgid "either 11 digits for CPF or 14 digits for CNPJ"
+msgid "XXXXXXXXX [9 digits] and it should respect the Luhn algorithm checksum"
 msgstr ""
+"XXXXXXXXX [9 cifre], og det skal respektere Luhn-algorithmens kontrolsum"
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid "either 11 digits for CPF or 14 digits for CNPJ"
+msgstr "enten 11 cifre for CPF eller 14 cifre for CNPJ"
 
 #. module: base_vat
 #. odoo-python
@@ -262,3 +303,7 @@ msgstr "bogføringsgruppe [%s]"
 #, python-format
 msgid "partner [%s]"
 msgstr "partner [%s]"
+
+#, python-format
+#~ msgid "17291716060 (NIN) or 1729171602 (VKN)"
+#~ msgstr "17291716060 (NIN) eller 1729171602 (VKN)"

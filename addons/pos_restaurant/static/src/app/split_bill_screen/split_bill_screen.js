@@ -106,32 +106,20 @@ export class SplitBillScreen extends Component {
      */
     _splitQuantity(line) {
         const split = this.splitlines[line.id];
-        // total quantity of the product in this line
-        // we add up the quantities of all the lines that have this product
-        let totalQuantity = 0;
+        const lineQty = line.get_quantity();
 
-        this.pos
-            .get_order()
-            .get_orderlines()
-            .forEach(function (orderLine) {
-                if (orderLine.get_product().id === split.product) {
-                    totalQuantity += orderLine.get_quantity();
-                }
-            });
-
-        if (line.get_quantity() > 0) {
-            if (!line.is_pos_groupable()) {
-                if (split.quantity !== line.get_quantity()) {
-                    split.quantity = line.get_quantity();
+        if(lineQty > 0) {
+            if (!line.get_unit().is_pos_groupable) {
+                if (split.quantity !== lineQty) {
+                    split.quantity = lineQty;
                 } else {
                     split.quantity = 0;
                 }
             } else {
-                if (split.quantity < totalQuantity) {
-                    split.quantity += 1;
-                    // TODO: why do we need this `if`?
-                    if (split.quantity > line.get_quantity()) {
-                        split.quantity = line.get_quantity();
+                if (split.quantity < lineQty) {
+                    split.quantity += line.get_unit().is_pos_groupable? 1: line.get_unit().rounding;
+                    if (split.quantity > lineQty) {
+                        split.quantity = lineQty;
                     }
                 } else {
                     split.quantity = 0;
@@ -184,7 +172,7 @@ export class SplitBillScreen extends Component {
             var split = this.splitlines[id];
             var line = this.currentOrder.get_orderline(parseInt(id));
 
-            if (!this.props.disallow) {
+            if (!this.pos.disallowLineQuantityChange()) {
                 line.set_quantity(
                     line.get_quantity() - split.quantity,
                     "do not recompute unit price"
@@ -199,7 +187,7 @@ export class SplitBillScreen extends Component {
                 }
             }
         }
-        if (!this.props.disallow) {
+        if (!this.pos.disallowLineQuantityChange()) {
             for (id in this.splitlines) {
                 line = this.currentOrder.get_orderline(parseInt(id));
                 if (line && Math.abs(line.get_quantity()) < 0.00001) {

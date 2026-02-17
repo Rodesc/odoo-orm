@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 import json
 import werkzeug.urls
 
+from markupsafe import Markup
 from pytz import utc, timezone
 
 from odoo import api, fields, models, _
@@ -65,7 +66,7 @@ class Event(models.Model):
         readonly=False, store=True)
     location_menu_ids = fields.One2many(
         "website.event.menu", "event_id", string="Location Menus",
-        domain=[("menu_type", "=", "location_menu")])
+        domain=[("menu_type", "=", "location")])
     address_name = fields.Char(related='address_id.name')
     register_menu = fields.Boolean(
         "Register Menu", compute="_compute_website_menu_data",
@@ -420,8 +421,9 @@ class Event(models.Model):
             page_result = self.env['website'].sudo().new_page(
                 name=f'{name} {self.name}', template=xml_id,
                 add_menu=False, ispage=False)
-            url = f"/event/{slug(self)}/page{page_result['url']}"  # url contains starting "/"
             view_id = page_result['view_id']
+            view = self.env["ir.ui.view"].browse(view_id)
+            url = f"/event/{slug(self)}/page/{view.key.split('.')[-1]}"  # url contains starting "/"
 
         website_menu = self.env['website.menu'].sudo().create({
             'name': name,
@@ -614,5 +616,8 @@ class Event(models.Model):
             for event, data in zip(self, results_data):
                 begin = self.env['ir.qweb.field.date'].record_to_html(event, 'date_begin', {})
                 end = self.env['ir.qweb.field.date'].record_to_html(event, 'date_end', {})
-                data['range'] = '%s🠖%s' % (begin, end) if begin != end else begin
+                data['range'] = (
+                    Markup('{} <i class="fa fa-long-arrow-right"></i> {}').format(begin, end)
+                    if begin != end else begin
+                )
         return results_data

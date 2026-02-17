@@ -1,25 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* mass_mailing_themes
-# 
+#
 # Translators:
 # Wil Odoo, 2023
 # 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2023
 # Jeffery CHEN <jeffery9@gmail.com>, 2024
 # 湘子 南 <1360857908@qq.com>, 2024
-# 
+# Chloe Wang, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: 湘子 南 <1360857908@qq.com>, 2024\n"
-"Language-Team: Chinese (China) (https://app.transifex.com/odoo/teams/41243/zh_CN/)\n"
+"Last-Translator: Chloe Wang, 2024\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/odoo/teams/41243/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mass_mailing_themes
@@ -42,8 +44,8 @@ msgstr "&amp;nbsp;&amp;nbsp;"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_blogging_template
 msgid "&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"
 msgstr ""
-"&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;"
-" &amp;nbsp；"
+"&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "
+"&amp;nbsp；"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -64,12 +66,13 @@ msgstr "*对于超过39美元的订单。"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 ". I put it on hold for 6 years, waiting for the right moment to use it. I "
-"thought it would take 3 years to deprecate a 77 billion dollars company just"
-" because open source is so cool. Sometimes it's better for your self-"
+"thought it would take 3 years to deprecate a 77 billion dollars company just "
+"because open source is so cool. Sometimes it's better for your self-"
 "motivation not to face reality..."
 msgstr ""
-".我把它搁置了 6 年，等待使用它的合适时机。我以为，仅仅因为开放源代码太酷了，一家市值 770 亿美元的公司就需要 3 "
-"年时间才能被淘汰。有时候，不面对现实更有利于自我激励......"
+".我把它搁置了 6 年，等待使用它的合适时机。我以为，仅仅因为开放源代码太酷了，"
+"一家市值 770 亿美元的公司就需要 3 年时间才能被淘汰。有时候，不面对现实更有利"
+"于自我激励......"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
@@ -85,8 +88,9 @@ msgid ""
 "feeling that we were missing something. It's a strange feeling to build "
 "extraordinary things but to not be proud of ourselves."
 msgstr ""
-"2011 年风谲云诡。我们没有达到预期目标：只完成了预计销售的 "
-"70%。会议氛围紧张，业绩不佳，我们对自己并不满意，总觉得缺少了什么。这种感觉很奇怪，我们明明建造了意义非凡的事物，却未感到自豪。"
+"2011 年风谲云诡。我们没有达到预期目标：只完成了预计销售的 70%。会议氛围紧张，"
+"业绩不佳，我们对自己并不满意，总觉得缺少了什么。这种感觉很奇怪，我们明明建造"
+"了意义非凡的事物，却未感到自豪。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_promotion_template
@@ -124,10 +128,14 @@ msgstr "培养创造力的 7 种方法"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "<br/>\n"
-"                <span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">To unsubscribe, </font></span>"
+"                <span style=\"font-size: 12px;\" "
+"class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);"
+"\">To unsubscribe, </font></span>"
 msgstr ""
 "<br/>\n"
-"                <span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">如要取消订阅，</font></span>"
+"                <span style=\"font-size: 12px;\" "
+"class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">"
+"如要取消订阅，</font></span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_magazine_template
@@ -152,27 +160,32 @@ msgstr "<font style=\"color: rgb(173, 173, 173);\">取消订阅</font>"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_event_template
 msgid ""
-"<font style=\"color: rgb(255, 255, 255);\">And it won't cost you a "
-"thing!</font>"
-msgstr "<font style=\"color: rgb(255, 255, 255);\">而且不会花费您任何东西!</font>"
+"<font style=\"color: rgb(255, 255, 255);\">And it won't cost you a thing!</"
+"font>"
+msgstr ""
+"<font style=\"color: rgb(255, 255, 255);\">而且不会花费您任何东西!</font>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coupon_template
 msgid ""
 "<font style=\"color: rgb(255, 255, 255);\">EXCLUSIVE</font>\n"
-"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">DEALS</font></span>"
+"                        <br/><span style=\"font-weight: bolder\"><font "
+"style=\"color: rgb(255, 255, 255);\">DEALS</font></span>"
 msgstr ""
 "<font style=\"color: rgb(255, 255, 255);\">独占</font>\n"
-"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">交易</font></span>"
+"                        <br/><span style=\"font-weight: bolder\"><font "
+"style=\"color: rgb(255, 255, 255);\">交易</font></span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coupon_template
 msgid ""
 "<font style=\"color: rgb(255, 255, 255);\">FREE</font>\n"
-"                        <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">SHIPPING</font></span>"
+"                        <br/><span style=\"font-weight: bolder\"><font "
+"style=\"color: rgb(255, 255, 255);\">SHIPPING</font></span>"
 msgstr ""
 "<font style=\"color: rgb(255, 255, 255);\">免费</font>\n"
-"                       <br/><span style=\"font-weight: bolder\"><font style=\"color: rgb(255, 255, 255);\">送货</font></span>"
+"                       <br/><span style=\"font-weight: bolder\"><font "
+"style=\"color: rgb(255, 255, 255);\">送货</font></span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_event_template
@@ -182,11 +195,16 @@ msgstr "<font style=\"color: rgb(255, 255, 255);\">嗨，你们好!</font>"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_event_template
 msgid ""
-"<font style=\"color: rgb(255, 255, 255);\">The next edition of <span style=\"font-weight: bolder;\">Odoo Experience Online</span> is coming soon!\n"
-"                    <br/>To stir up your curiosity, have a look at all the great talks scheduled and highlighted in our agenda!</font>"
+"<font style=\"color: rgb(255, 255, 255);\">The next edition of <span "
+"style=\"font-weight: bolder;\">Odoo Experience Online</span> is coming "
+"soon!\n"
+"                    <br/>To stir up your curiosity, have a look at all the "
+"great talks scheduled and highlighted in our agenda!</font>"
 msgstr ""
-"<font style=\"color: rgb(255, 255, 255);\">下一期的<span style=\"font-weight: bolder;\">ERP 线上体验</span>即将到来！\n"
-"                <br/>为了激发您的好奇心，请查看我们议程中安排的和强调的所有精彩会谈!</font>"
+"<font style=\"color: rgb(255, 255, 255);\">下一期的<span style=\"font-"
+"weight: bolder;\">ERP 线上体验</span>即将到来！\n"
+"                <br/>为了激发您的好奇心，请查看我们议程中安排的和强调的所有精"
+"彩会谈!</font>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_event_template
@@ -194,16 +212,15 @@ msgid ""
 "<font style=\"color: rgb(255, 255, 255);\">Zero, zilch, nada! Odoo "
 "Experience is free for everyone!</font>"
 msgstr ""
-"<font style=\"color: rgb(255, 255, 255);\">零，零，无!Odoo "
-"Experience对每个人都是免费的!</font>"
+"<font style=\"color: rgb(255, 255, 255);\">零，零，无!Odoo Experience对每个人"
+"都是免费的!</font>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
 msgid ""
 "<font style=\"font-size: 24px; background-color: rgb(20, 102, 184);\" "
 "class=\"text-o-color-4\">A+</font> <font style=\"color: rgb(20, 102, 184); "
-"font-size: 24px;\"><span style=\"font-weight: "
-"normal\">Training</span></font>"
+"font-size: 24px;\"><span style=\"font-weight: normal\">Training</span></font>"
 msgstr ""
 "<font style=\"font-size: 24px; background-color: rgb(20, 102, 184);\" "
 "class=\"text-o-color-4\">顶级</font> <font style=\"color: rgb(20, 102, 184); "
@@ -212,22 +229,26 @@ msgstr ""
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_promotion_template
 msgid ""
-"<font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;10% OFF&amp;nbsp;</font>\n"
+"<font style=\"font-size: 62px; background-color: rgb(255, 255, 255);"
+"\">&amp;nbsp;10% OFF&amp;nbsp;</font>\n"
 "                    <br/>\n"
-"                        <font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;SALES&amp;nbsp;</font>"
+"                        <font style=\"font-size: 62px; background-color: "
+"rgb(255, 255, 255);\">&amp;nbsp;SALES&amp;nbsp;</font>"
 msgstr ""
-"<font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;10%优惠&amp;nbsp;</font>\n"
+"<font style=\"font-size: 62px; background-color: rgb(255, 255, 255);"
+"\">&amp;nbsp;10%优惠&amp;nbsp;</font>\n"
 "                    <br/>\n"
-"                        <font style=\"font-size: 62px; background-color: rgb(255, 255, 255);\">&amp;nbsp;销售&amp;nbsp;</font>"
+"                        <font style=\"font-size: 62px; background-color: "
+"rgb(255, 255, 255);\">&amp;nbsp;销售&amp;nbsp;</font>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coupon_template
 msgid ""
-"<i class=\"fa fa-2x fa-ticket\" style=\"color: rgb(36, 37, 48) "
-"!important;\"/>​"
+"<i class=\"fa fa-2x fa-ticket\" style=\"color: rgb(36, 37, 48) !important;\"/"
+">​"
 msgstr ""
-"<i class=\"fa fa-2x fa-ticket\" style=\"color: rgb(36, 37, 48) "
-"!important;\"/>"
+"<i class=\"fa fa-2x fa-ticket\" style=\"color: rgb(36, 37, 48) !important;\"/"
+">"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
@@ -317,11 +338,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
 msgid ""
 "<span class=\"font-weight: bolder\">\n"
-"                        <font style=\"color: rgb(206, 0, 0); font-weight: normal;\">(only 195 tickets left)</font>\n"
+"                        <font style=\"color: rgb(206, 0, 0); font-weight: "
+"normal;\">(only 195 tickets left)</font>\n"
 "                    </span>"
 msgstr ""
 "<span class=\"font-weight: bolder\">\n"
-"                        <font style=\"color: rgb(206, 0, 0); font-weight: normal;\">（仅剩 195 张门票）</font>\n"
+"                        <font style=\"color: rgb(206, 0, 0); font-weight: "
+"normal;\">（仅剩 195 张门票）</font>\n"
 "                    </span>"
 
 #. module: mass_mailing_themes
@@ -347,8 +370,8 @@ msgstr "<span class=\"font-weight: bolder\">8:00</span>"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
 msgid ""
-"<span class=\"font-weight: bolder\">Networking: Walking Dinner &amp; "
-"Drinks</span>"
+"<span class=\"font-weight: bolder\">Networking: Walking Dinner &amp; Drinks</"
+"span>"
 msgstr "<span class=\"font-weight: bolder\">工作社交：聊天晚宴 & 酒水</span>"
 
 #. module: mass_mailing_themes
@@ -364,9 +387,10 @@ msgstr "<span class=\"font-weight: bolder\">欢迎</span>"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
 msgid ""
-"<span class=\"font-weight: bolder\">[speaker] &amp; [speaker]'s "
-"conference</span>"
-msgstr "<span class=\"font-weight: bolder\">[speaker] 及 [speaker]的会议</span>"
+"<span class=\"font-weight: bolder\">[speaker] &amp; [speaker]'s conference</"
+"span>"
+msgstr ""
+"<span class=\"font-weight: bolder\">[speaker] 及 [speaker]的会议</span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
@@ -383,12 +407,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
 msgid ""
 "<span style=\"font-size: 10px;\">\n"
-"                        <font style=\"color: rgb(112, 157, 225);\" class=\"o_default_snippet_text\">You are receiving this email because you showed an interest in our previous events\n"
+"                        <font style=\"color: rgb(112, 157, 225);\" "
+"class=\"o_default_snippet_text\">You are receiving this email because you "
+"showed an interest in our previous events\n"
 "                        </font>\n"
 "                    </span>"
 msgstr ""
 "<span style=\"font-size: 10px;\">\n"
-"                        <font style=\"color: rgb(112, 157, 225);\" class=\"o_default_snippet_text\">您之所以收到这封邮件，是因为您对我们之前举办的活动感兴趣\n"
+"                        <font style=\"color: rgb(112, 157, 225);\" "
+"class=\"o_default_snippet_text\">您之所以收到这封邮件，是因为您对我们之前举办"
+"的活动感兴趣\n"
 "                        </font>\n"
 "                    </span>"
 
@@ -413,17 +441,27 @@ msgstr ""
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
-"<span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">250 Executive Park Blvd</font></span>\n"
+"<span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font "
+"style=\"color: rgb(183, 191, 199);\">250 Executive Park Blvd</font></span>\n"
 "                <br/>\n"
-"                <span style=\"font-size: 12px;\" class=\"\"><font style=\"color: rgb(183, 191, 199);\">San Francisco, California 94134</font></span>\n"
+"                <span style=\"font-size: 12px;\" class=\"\"><font "
+"style=\"color: rgb(183, 191, 199);\">San Francisco, California 94134</font></"
+"span>\n"
 "                <br/>\n"
-"                <span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">You received this email from </font></span>"
+"                <span style=\"font-size: 12px;\" "
+"class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);"
+"\">You received this email from </font></span>"
 msgstr ""
-"<span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">250 Executive Park Blvd</font></span>\n"
+"<span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font "
+"style=\"color: rgb(183, 191, 199);\">250 Executive Park Blvd</font></span>\n"
 "                <br/>\n"
-"                <span style=\"font-size: 12px;\" class=\"\"><font style=\"color: rgb(183, 191, 199);\">San Francisco, California 94134</font></span>\n"
+"                <span style=\"font-size: 12px;\" class=\"\"><font "
+"style=\"color: rgb(183, 191, 199);\">San Francisco, California 94134</font></"
+"span>\n"
 "                <br/>\n"
-"                <span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">您收到这封电子邮件来自</font></span>"
+"                <span style=\"font-size: 12px;\" "
+"class=\"o_default_snippet_text\"><font style=\"color: rgb(183, 191, 199);\">"
+"您收到这封电子邮件来自</font></span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -438,68 +476,75 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "<span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font "
-"style=\"color: rgb(183, 191, "
-"199);\">hello@musingsoftheweek.com</font></span>"
+"style=\"color: rgb(183, 191, 199);\">hello@musingsoftheweek.com</font></span>"
 msgstr ""
 "<span style=\"font-size: 12px;\" class=\"o_default_snippet_text\"><font "
-"style=\"color: rgb(183, 191, "
-"199);\">hello@musingsoftheweek.com</font></span>"
+"style=\"color: rgb(183, 191, 199);\">hello@musingsoftheweek.com</font></span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_promotion_template
 msgid ""
 "<span style=\"font-size: 32px;\"><font style=\"font-weight: bolder; color: "
-"rgb(255, 255, 255); background-color: rgb(255, 187, "
-"0);\">SOLAR</font></span>"
+"rgb(255, 255, 255); background-color: rgb(255, 187, 0);\">SOLAR</font></span>"
 msgstr ""
 "<span style=\"font-size: 32px;\"><font style=\"font-weight: bolder; color: "
-"rgb(255, 255, 255); background-color: rgb(255, 187, 0);\">太阳能</font></span>"
+"rgb(255, 255, 255); background-color: rgb(255, 187, 0);\">太阳能</font></"
+"span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
 msgid ""
 "<span style=\"font-style: italic;\"><font class=\"text-600\">The first 20 "
-"participants will get a free copy of our business game \"Scale-"
-"Up\".</font></span>"
+"participants will get a free copy of our business game \"Scale-Up\".</font></"
+"span>"
 msgstr ""
-"<span style=\"font-style: italic;\"><font class=\"text-600\">首 20 "
-"名参与者将免费获赠我们的商业游戏《Scale-Up！》。</font></span>"
+"<span style=\"font-style: italic;\"><font class=\"text-600\">首 20 名参与者将"
+"免费获赠我们的商业游戏《Scale-Up！》。</font></span>"
+
+#. module: mass_mailing_themes
+#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coupon_template
+msgid "<span style=\"font-weight: bolder; color: white;\">VIP10</span>"
+msgstr "<span style=\"font-weight: bolder; color: white;\">VIP10</span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_promotion_template
 msgid ""
 "<span style=\"font-weight: bolder;\">\n"
-"                                <font style=\"background-color: rgb(255, 255, 255); color: rgb(255, 187, 0);\">SOLAR</font>\n"
+"                                <font style=\"background-color: rgb(255, "
+"255, 255); color: rgb(255, 187, 0);\">SOLAR</font>\n"
 "                            </span>"
 msgstr ""
 "<span style=\"font-weight: bolder;\">\n"
-"                                 <font style=\"background-color: rgb(255, 255, 255); color: rgb(255, 187, 0);\">太阳能</font>\n"
+"                                 <font style=\"background-color: rgb(255, "
+"255, 255); color: rgb(255, 187, 0);\">太阳能</font>\n"
 "                             </span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
 msgid "<span style=\"font-weight: bolder;\">25 September 2022 - 4:30 PM</span>"
-msgstr "<span style=\"font-weight: bolder;\">2022 年 9 月 25 日 - 4:30 PM</span>"
+msgstr ""
+"<span style=\"font-weight: bolder;\">2022 年 9 月 25 日 - 4:30 PM</span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
 msgid ""
 "<span style=\"font-weight: bolder;\">And what better field to upskill in "
-"than software development?</span> Jobs have been steadily booming for years,"
-" and will continue to do so. By taking some of these free courses, you can "
+"than software development?</span> Jobs have been steadily booming for years, "
+"and will continue to do so. By taking some of these free courses, you can "
 "make your CV more competitive and your portfolio more interesting."
 msgstr ""
-"<span style=\"font-weight: "
-"bolder;\">还有什么比软件开发更适合提升技能呢？</span>多年来，就业一直稳步提高，并将继续增长。参加这些免费课程，能让简历脱颖而出，让作品集更引人注目。"
+"<span style=\"font-weight: bolder;\">还有什么比软件开发更适合提升技能呢？</"
+"span>多年来，就业一直稳步提高，并将继续增长。参加这些免费课程，能让简历脱颖而"
+"出，让作品集更引人注目。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
 msgid ""
-"<span style=\"font-weight: bolder;\">Mark</span> will be helping our beloved"
-" HR team, he'll be taking care of your payroll, so be nice!"
+"<span style=\"font-weight: bolder;\">Mark</span> will be helping our beloved "
+"HR team, he'll be taking care of your payroll, so be nice!"
 msgstr ""
-"<span style=\"font-weight: "
-"bolder;\">Mark</span>将帮助我们敬爱的人力资源团队，他将负责你的工资单，所以要对他友善！"
+"<span style=\"font-weight: bolder;\">Mark</span>将帮助我们敬爱的人力资源团"
+"队，他将负责你的工资单，所以要对他友善！"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
@@ -508,8 +553,8 @@ msgid ""
 "onboarding in our remote office but you'll be seeing him in the R&amp;D "
 "department very soon."
 msgstr ""
-"<span style=\"font-weight: bolder;\">Martin</span> "
-"目前正在我们的远程办公室进行入职培训，您很快就会在研发部见到他。"
+"<span style=\"font-weight: bolder;\">Martin</span> 目前正在我们的远程办公室进"
+"行入职培训，您很快就会在研发部见到他。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
@@ -517,18 +562,13 @@ msgid "<span style=\"font-weight: bolder;\">Register now</span>"
 msgstr "<span style=\"font-weight: bolder;\">立即注册</span>"
 
 #. module: mass_mailing_themes
-#: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coupon_template
-msgid "<span style=\"font-weight: bolder;\">VIP10</span>"
-msgstr "<span style=\"font-weight: bolder;\">VIP10</span>"
-
-#. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_promotion_template
 msgid ""
 "<span style=\"font-weight: bolder;\">View online</span>&amp;nbsp;<span "
 "class=\"fa fa-external-link\"/>"
 msgstr ""
-"<span style=\"font-weight: bolder;\">线上查看</span>&amp;nbsp;<span class=\"fa "
-"fa-external-link\"/>"
+"<span style=\"font-weight: bolder;\">线上查看</span>&amp;nbsp;<span "
+"class=\"fa fa-external-link\"/>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
@@ -548,8 +588,9 @@ msgid ""
 "Xavier Niel the founder of Iliad, the only company in France funded in the "
 "past 10 years to have reached the 1 billion EUR valuation."
 msgstr ""
-"向投资者推介了数月后，我从众多风投公司获得了约 10 份意向书。我们选择了欧洲最大的风投公司 Sofinnova "
-"Partners，以及Iliad的创始人 Xavier Niel。Iliad 是法国近 10 年来唯一一家估值达到 10 亿欧元的公司。"
+"向投资者推介了数月后，我从众多风投公司获得了约 10 份意向书。我们选择了欧洲最"
+"大的风投公司 Sofinnova Partners，以及Iliad的创始人 Xavier Niel。Iliad 是法国"
+"近 10 年来唯一一家估值达到 10 亿欧元的公司。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -561,20 +602,21 @@ msgid ""
 "eCommerce, a Point of Sale, an integrated Business Intelligence engine and "
 "much more (3000+ modules)."
 msgstr ""
-"在颠覆企业资源计划 ERP 市场之后，OpenERP 远远超越了传统ERP "
-"供应商的范畴。集成企业活动，不再局限于销售、会计、库存和采购。在2014年6月，我们发布了第 8 版，其中包含了强大的内容管理系统 CMS "
-"和电子商务功能、销售点系统、整合商业智能引擎等等 (3000 多个模块)。"
+"在颠覆企业资源计划 ERP 市场之后，OpenERP 远远超越了传统ERP 供应商的范畴。集成"
+"企业活动，不再局限于销售、会计、库存和采购。在2014年6月，我们发布了第 8 版，"
+"其中包含了强大的内容管理系统 CMS 和电子商务功能、销售点系统、整合商业智能引擎"
+"等等 (3000 多个模块)。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
-"After years of rapid growth, we achieved another amazing goal - we secured a"
-" new round of 10 Million USD of financing, jointly provided by leading "
+"After years of rapid growth, we achieved another amazing goal - we secured a "
+"new round of 10 Million USD of financing, jointly provided by leading "
 "venture capital firms XAnge (France), SRIW (Belgium), Sofinnova (France), "
 "and the management team."
 msgstr ""
-"经过多年快速发展，我们实现了惊人的目标--获得新一轮1000 万美元融资，由资深风险投资公司 "
-"XAnge（法国）、SRIW（比利时）、Sofinnova（法国）和管理团队共同提供。"
+"经过多年快速发展，我们实现了惊人的目标--获得新一轮1000 万美元融资，由资深风险"
+"投资公司 XAnge（法国）、SRIW（比利时）、Sofinnova（法国）和管理团队共同提供。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
@@ -617,8 +659,9 @@ msgid ""
 "faster, what am I missing?\" and she used to reply: \"But you already are "
 "the fastest growing company in Belgium!\" (Deloitte awarded us as"
 msgstr ""
-"照例，我应该听我妻子的话。她比我更明智。每周我都向她倾诉 \"还不够优秀，我们应该增长得更快，还需要做些什么？\" 而她总是回答：\"但 ERP "
-"已经是比利时发展最快的公司了！\" (德勤将我们评为"
+"照例，我应该听我妻子的话。她比我更明智。每周我都向她倾诉 \"还不够优秀，我们应"
+"该增长得更快，还需要做些什么？\" 而她总是回答：\"但 ERP 已经是比利时发展最快"
+"的公司了！\" (德勤将我们评为"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -628,8 +671,8 @@ msgid ""
 "able to pay all employees' salaries at the end of the month without fear "
 "(which was a situation I struggled with for 4 years)."
 msgstr ""
-"当我们努力工作时，事情开始改变。我们为 OpenERP 开发了数十个模块，开源社群不断壮大，在月底支付所有员工工资对我来说也不再构成压力（曾经困扰过我 "
-"4 年）。"
+"当我们努力工作时，事情开始改变。我们为 OpenERP 开发了数十个模块，开源社群不断"
+"壮大，在月底支付所有员工工资对我来说也不再构成压力（曾经困扰过我 4 年）。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
@@ -680,16 +723,17 @@ msgstr "商业案例"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
-"But one day, someone (I don't remember who, I have a goldfish memory) made a"
-" graph of the monthly turnover of the past 2 years. It was like waking up "
+"But one day, someone (I don't remember who, I have a goldfish memory) made a "
+"graph of the monthly turnover of the past 2 years. It was like waking up "
 "from a nightmare. In fact, it was not that bad, we had multiplied the "
 "monthly turnover by 10 over the span of roughly two years! This is when we "
-"understood that OpenERP is a marathon, not a sprint. Only 100% growth a year"
-" is ok... if you can keep the rhythm for several years."
+"understood that OpenERP is a marathon, not a sprint. Only 100% growth a year "
+"is ok... if you can keep the rhythm for several years."
 msgstr ""
-"但有一天，有人（不记得是谁了，我有点健忘）制作了一张过去 2 "
-"年的月度营业额图表。我就像是从噩梦中醒来一样。还好，情况并不那么糟糕，我们用了大约两年时间，把月度营业额增加了 10 倍！这时我们明白，OpenERP "
-"是一场马拉松，而不是短跑。每年 100％ 增长就可以了⋯⋯如果你能保持这个节奏几年的话."
+"但有一天，有人（不记得是谁了，我有点健忘）制作了一张过去 2 年的月度营业额图"
+"表。我就像是从噩梦中醒来一样。还好，情况并不那么糟糕，我们用了大约两年时间，"
+"把月度营业额增加了 10 倍！这时我们明白，OpenERP 是一场马拉松，而不是短跑。每"
+"年 100％ 增长就可以了⋯⋯如果你能保持这个节奏几年的话."
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -791,7 +835,8 @@ msgid ""
 "marketing and accounting ; learn what are the best available options to "
 "digitize your company."
 msgstr ""
-"了解 ERP：一体化管理平台，提供的多款应用程序旨在改善员工日常任务效率。从销售及送货，到物流、营销和会计，了解哪些是实现公司数字化的最佳可用的选项."
+"了解 ERP：一体化管理平台，提供的多款应用程序旨在改善员工日常任务效率。从销售"
+"及送货，到物流、营销和会计，了解哪些是实现公司数字化的最佳可用的选项."
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow2_template
@@ -881,12 +926,13 @@ msgstr "只需 2 天<br/>即可获得 6 个月的知识"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
 msgid ""
-"Getting practical experience can be as likely as getting struck by lightning"
-" – <span style=\"font-style: italic;\">thank you, coronavirus</span> – but, "
+"Getting practical experience can be as likely as getting struck by lightning "
+"– <span style=\"font-style: italic;\">thank you, coronavirus</span> – but, "
 "you can take things into your own hands and use your free time to upskill."
 msgstr ""
-"要获得实践经验，有时就像被闪电击中一样——<span style=\"font-style: "
-"italic;\">谢谢你，冠状病毒</span>——但是，您可以把事情掌握在自己手中，利用空闲时间提升技能。"
+"要获得实践经验，有时就像被闪电击中一样——<span style=\"font-style: italic;\">"
+"谢谢你，冠状病毒</span>——但是，您可以把事情掌握在自己手中，利用空闲时间提升技"
+"能。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_event_template
@@ -916,28 +962,31 @@ msgstr "如何在没有经验的情况下编写网站代码"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
-"I needed to change the world. I wanted to... You know how it is when you are"
-" young; you have big dreams, a lot of energy and naive stupidity. My dream "
+"I needed to change the world. I wanted to... You know how it is when you are "
+"young; you have big dreams, a lot of energy and naive stupidity. My dream "
 "was to lead the enterprise management market with a fully open source "
-"software (I also wanted to get 100 employees before 30 years old with a "
-"self-financed company but I failed this one by only a few months)."
+"software (I also wanted to get 100 employees before 30 years old with a self-"
+"financed company but I failed this one by only a few months)."
 msgstr ""
-"我需要改变世界。我想要⋯⋯年轻时候就是这样，梦想远大、精力充沛、天真单纯。我的梦想是开发一款完全开源的软件，引领企业管理市场（我还想在 30 "
-"岁之前，自筹资金创办一家公司并招聘 100 名员工，而我晚了几个月才实现）。"
+"我需要改变世界。我想要⋯⋯年轻时候就是这样，梦想远大、精力充沛、天真单纯。我的"
+"梦想是开发一款完全开源的软件，引领企业管理市场（我还想在 30 岁之前，自筹资金"
+"创办一家公司并招聘 100 名员工，而我晚了几个月才实现）。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "I signed the LOI. I didn't realize that this contract could have turned me "
-"into a homeless person. (I already had a dog, all I needed was to lose a lot"
-" of money to become homeless). The fundraising was based on a company "
+"into a homeless person. (I already had a dog, all I needed was to lose a lot "
+"of money to become homeless). The fundraising was based on a company "
 "valuation but there was a financial mechanism to re-evaluate the company up "
 "by 9.8 m€ depending on the turnover of the next 4 years. I should have "
 "received warrants convertible into shares if we achieved the turnover "
 "targeted in the business plan."
 msgstr ""
-"我签署了意向书（LOI）。那时我没有意识到，这份合约可能会让我倾家荡产（我已经养了一只狗，若失去大量资金，就会无家可归）。筹款基于公司估值，但有一个财务机制，可以根据未来"
-" 4 年的营业额对公司重新估值，让公司价值增加 980 万欧元。如果达成商业计划设定的营业额目标，我就会收到可转换成股票的认股权证。"
+"我签署了意向书（LOI）。那时我没有意识到，这份合约可能会让我倾家荡产（我已经养"
+"了一只狗，若失去大量资金，就会无家可归）。筹款基于公司估值，但有一个财务机"
+"制，可以根据未来 4 年的营业额对公司重新估值，让公司价值增加 980 万欧元。如果"
+"达成商业计划设定的营业额目标，我就会收到可转换成股票的认股权证。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_magazine_template
@@ -947,18 +996,20 @@ msgstr "在这个问题上"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
-"If current open source players have a real technical challenge to follow us,"
-" we also have a huge marketing challenge. Wordpress has 22% of all internet "
-"websites. We were the leader in management software, but we start with 0% of"
-" the website market."
+"If current open source players have a real technical challenge to follow us, "
+"we also have a huge marketing challenge. Wordpress has 22% of all internet "
+"websites. We were the leader in management software, but we start with 0% of "
+"the website market."
 msgstr ""
-"如果说目前的开源参与者在技术上面临真正的挑战，那么我们也面临艰巨的市场营销挑战。Wordpress 占有全球 22% "
-"的网站市场份额。我们虽是管理软件领域的佼佼者，但在网站制作市场，我们从 0% 起步。"
+"如果说目前的开源参与者在技术上面临真正的挑战，那么我们也面临艰巨的市场营销挑"
+"战。Wordpress 占有全球 22% 的网站市场份额。我们虽是管理软件领域的佼佼者，但在"
+"网站制作市场，我们从 0% 起步。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
 msgid ""
-"If you didn't gather round the coffee machine or water-tank with your colleagues this week,\n"
+"If you didn't gather round the coffee machine or water-tank with your "
+"colleagues this week,\n"
 "                        you've probably missed some key information."
 msgstr ""
 "如果您本周未曾与同事们在咖啡机或饮水机旁聊天，\n"
@@ -967,8 +1018,8 @@ msgstr ""
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow2_template
 msgid ""
-"If you wish to become a partner and offer your services in [country], take a"
-" look at"
+"If you wish to become a partner and offer your services in [country], take a "
+"look at"
 msgstr "如果您希望成为合作伙伴并在 [国家/地区] 提供服务，请查看"
 
 #. module: mass_mailing_themes
@@ -976,25 +1027,29 @@ msgstr "如果您希望成为合作伙伴并在 [国家/地区] 提供服务，�
 msgid ""
 "If you wish to evaluate Odoo while taking into account your company's "
 "specific needs, you can book a free appointment with one of our"
-msgstr "如果您希望评估 ERP 效用时，兼具考虑您公司的特别需求，可以免费预约会见我们的"
+msgstr ""
+"如果您希望评估 ERP 效用时，兼具考虑您公司的特别需求，可以免费预约会见我们的"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_magazine_template
 msgid ""
 "Imagine waking up with more energy, more flexibility, with less stress and "
 "fewer instances of anxiously rushing out the door."
-msgstr "想象一下，醒来时有更多的精力，更多的灵活性，压力更小，焦急地冲出门外的情况更少。"
+msgstr ""
+"想象一下，醒来时有更多的精力，更多的灵活性，压力更小，焦急地冲出门外的情况更"
+"少。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "In 2010, we had a 100+ employees selling services on OpenERP and a powerful "
-"but ugly product. This is what happens when delivering services to customers"
-" distracts you from building an exceptional product. It was time to do a "
+"but ugly product. This is what happens when delivering services to customers "
+"distracts you from building an exceptional product. It was time to do a "
 "pivot in the business model."
 msgstr ""
-"到 2010 年，我们拥有了 100 多名员工，在 "
-"OpenERP上销售服务，产品功能强大，但外观不尽人意。要分散精力向客户服务，则无法打造卓越产品。我们是时候改变业务模式了。"
+"到 2010 年，我们拥有了 100 多名员工，在 OpenERP上销售服务，产品功能强大，但外"
+"观不尽人意。要分散精力向客户服务，则无法打造卓越产品。我们是时候改变业务模式"
+"了。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1037,7 +1092,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_magazine_template
 msgid ""
 "Issue\n"
-"                            <br/><span style=\"font-weight: bolder;\">#42</span>"
+"                            <br/><span style=\"font-weight: bolder;\">#42</"
+"span>"
 msgstr ""
 "问题\n"
 "                        <br/><span style=\"font-weight: bolder;\">#42</span>"
@@ -1115,10 +1171,12 @@ msgstr "结识社群中<br/>（其他）优秀的成员"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
 msgid ""
 "Michael Fletcher<br/>\n"
-"                   <span style=\"font-size: 12px; font-weight: bolder;\">Customer Service</span>"
+"                   <span style=\"font-size: 12px; font-weight: bolder;"
+"\">Customer Service</span>"
 msgstr ""
 "Michael Fletcher<br/>\n"
-"                  <span style=\"font-size: 12px; font-weight: bolder;\">客户服务</span>"
+"                  <span style=\"font-size: 12px; font-weight: bolder;\">客户"
+"服务</span>"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_blogging_template
@@ -1157,26 +1215,30 @@ msgstr "Odoo 专家"
 msgid ""
 "Odoo invites you on <span class=\"font-weight: bolder\">[date]</span> at "
 "<span class=\"font-weight: bolder\">[time]</span> for their infamous "
-"roadshow in <span class=\"font-weight: bolder\">[city]</span>: an event that"
-" combines learning and networking in a casual afterwork-like atmosphere."
+"roadshow in <span class=\"font-weight: bolder\">[city]</span>: an event that "
+"combines learning and networking in a casual afterwork-like atmosphere."
 msgstr ""
-"ERP 邀请您于<span class=\"font-weight: bolder\">[日期]</span><span class=\"font-"
-"weight: bolder\">[时间]</span>参加在<span class=\"font-weight: "
-"bolder\">[城市]</span>举办的著名路演活动：一场学习与工作相结合、氛围如下班后一样轻松的活动."
+"ERP 邀请您于<span class=\"font-weight: bolder\">[日期]</span><span "
+"class=\"font-weight: bolder\">[时间]</span>参加在<span class=\"font-weight: "
+"bolder\">[城市]</span>举办的著名路演活动：一场学习与工作相结合、氛围如下班后"
+"一样轻松的活动."
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_blogging_template
 msgid ""
 "One clever use of drones is for delivering gifts — but another that's "
 "becoming popular for event safety purposes."
-msgstr "无人机的一个巧妙使用是运送礼物 — 但另一个正在变得流行的是活动安全目的。"
+msgstr ""
+"无人机的一个巧妙使用是运送礼物 — 但另一个正在变得流行的是活动安全目的。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "OpenERP is now a compulsory subject for the baccalaureate in France like "
 "Word, Excel and PowerPoint"
-msgstr "与 Word、Excel 和 PowerPoint 一样，OpenERP 现在也是法国中学毕业会考的必考科目。"
+msgstr ""
+"与 Word、Excel 和 PowerPoint 一样，OpenERP 现在也是法国中学毕业会考的必考科"
+"目。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1186,8 +1248,9 @@ msgid ""
 "(Wordpress, Magento, etc). The OpenERP CMS is so good that even top "
 "competitors admitted it publicly when we released the beta version."
 msgstr ""
-"我们的卓越技术使我们得以打入新市场（CMS 内容管理系统和电子商务），并提出一种颠覆现有开源产品（Wordpress、Magento "
-"等）的产品。OpenERP的 CMS 如此出色，甚至在我们发布测试版时，连顶级竞争对手也公开承认这一点。"
+"我们的卓越技术使我们得以打入新市场（CMS 内容管理系统和电子商务），并提出一种"
+"颠覆现有开源产品（Wordpress、Magento 等）的产品。OpenERP的 CMS 如此出色，甚至"
+"在我们发布测试版时，连顶级竞争对手也公开承认这一点。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_blogging_template
@@ -1285,17 +1348,21 @@ msgstr "签名"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "So in 2005, I started to develop the TinyERP product, the software that (at "
-"least in my mind) would change the enterprise world. While preparing for the"
-" \"day of the fight\" in 2006, I"
-msgstr "因此，在 2005 年，我开始开发 TinyERP 产品，该软件（至少在我看来）将改变企业世界。在为 2006 年的 \"战斗日\" 做准备时，我"
+"least in my mind) would change the enterprise world. While preparing for the "
+"\"day of the fight\" in 2006, I"
+msgstr ""
+"因此，在 2005 年，我开始开发 TinyERP 产品，该软件（至少在我看来）将改变企业世"
+"界。在为 2006 年的 \"战斗日\" 做准备时，我"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
 msgid ""
 "Software developer training can be expensive, so we've compiled a list of "
-"free courses that are perfect for non-Computer Science graduates who want to"
-" upskill and learn to code."
-msgstr "软件开发人员培训费用可能很昂贵，因此我们汇编了一份免费课程清单，非常适合想要提高技能和学习程序代码的非计算机科学专业毕业生。"
+"free courses that are perfect for non-Computer Science graduates who want to "
+"upskill and learn to code."
+msgstr ""
+"软件开发人员培训费用可能很昂贵，因此我们汇编了一份免费课程清单，非常适合想要"
+"提高技能和学习程序代码的非计算机科学专业毕业生。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_training_template
@@ -1343,7 +1410,9 @@ msgid ""
 "The new financing will support the acceleration of the outstanding growth "
 "the company has seen over the last years, enabling the doubling of the "
 "commercial force and increased R&amp;D staff - already 100+ people strong."
-msgstr "新的融资将助力公司在已有出色成绩上更加腾飞，促使商业力量翻番，并增加研发人员。目前研发团队已超过100 名员工。"
+msgstr ""
+"新的融资将助力公司在已有出色成绩上更加腾飞，促使商业力量翻番，并增加研发人"
+"员。目前研发团队已超过100 名员工。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1358,9 +1427,12 @@ msgid ""
 "is worth 1.2 million EUR. I would have ended up a homeless person without "
 "her, as I still did not have a salary at that time."
 msgstr ""
-"在公证人面前领取授权书的前一天晚上，我的妻子检查了合约。她问我这些认股权证的税是多少。我打电话给律师，你猜怎么着？比利时可能是世界上唯一一个在收到认股权证时必须纳税的国家，即使未必达到将认股权证转换为股票的条件。如果我接受了这些认股权证，我就必须为"
-" 980 万欧元缴纳 12.5%的税款；这样，我就必须在 18 个月内缴纳 120 万欧元的税款！所以，我妻子的举动价值 120 "
-"万欧元。如果没有她，我将一贫如洗，当时我还没有工资。"
+"在公证人面前领取授权书的前一天晚上，我的妻子检查了合约。她问我这些认股权证的"
+"税是多少。我打电话给律师，你猜怎么着？比利时可能是世界上唯一一个在收到认股权"
+"证时必须纳税的国家，即使未必达到将认股权证转换为股票的条件。如果我接受了这些"
+"认股权证，我就必须为 980 万欧元缴纳 12.5%的税款；这样，我就必须在 18 个月内缴"
+"纳 120 万欧元的税款！所以，我妻子的举动价值 120 万欧元。如果没有她，我将一贫"
+"如洗，当时我还没有工资。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1378,11 +1450,13 @@ msgstr "然后，梦想开始变成现实。我们开始发现，所做的事情
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "Then, things became different. You know, tedious things like handling human "
-"resources, board meetings, dealing with big customer contracts, traveling to"
-" launch international subsidiaries. We did boring stuff like budgets, career"
-" paths, management meetings, etc."
+"resources, board meetings, dealing with big customer contracts, traveling to "
+"launch international subsidiaries. We did boring stuff like budgets, career "
+"paths, management meetings, etc."
 msgstr ""
-"后来，事情变得不一样。众所周知，要处理人力资源、董事会会议、大客户合约，还要在全球东奔西走，打造分公司等繁琐事情。我们完成了沉闷无聊的工作，比如财务预算、职业道路规划、管理层会议等等。"
+"后来，事情变得不一样。众所周知，要处理人力资源、董事会会议、大客户合约，还要"
+"在全球东奔西走，打造分公司等繁琐事情。我们完成了沉闷无聊的工作，比如财务预"
+"算、职业道路规划、管理层会议等等。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1392,8 +1466,9 @@ msgid ""
 "better to be a BigERP, rather than a TinyERP. Can you imagine how small you "
 "feel"
 msgstr ""
-"三年后，我发现如果你是 \"渺小的\"，你就无法改变世界。尤其是如果美国也是这个世界的一部分，在美国，与其做一个 TinyERP，不如做一个 "
-"BigERP。你能想象自己有多渺小吗？"
+"三年后，我发现如果你是 \"渺小的\"，你就无法改变世界。尤其是如果美国也是这个世"
+"界的一部分，在美国，与其做一个 TinyERP，不如做一个 BigERP。你能想象自己有多渺"
+"小吗？"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_blogging_template
@@ -1409,8 +1484,9 @@ msgid ""
 "who terrorizes small boys, and kick his butt in front of everyone. That was "
 "my strategy with SAP, the enterprise software giant."
 msgstr ""
-"为了激发我的动力，我必须挑一个对手。商业世界就像游乐场。当来到一所新学校时，如果想迅速成为领导者，就必须挑中班里的小霸王，也就是那个恐吓小男孩的大个子，当着所有人的面教训他。这就是我对企业软件巨头"
-" SAP 的策略。"
+"为了激发我的动力，我必须挑一个对手。商业世界就像游乐场。当来到一所新学校时，"
+"如果想迅速成为领导者，就必须挑中班里的小霸王，也就是那个恐吓小男孩的大个子，"
+"当着所有人的面教训他。这就是我对企业软件巨头 SAP 的策略。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1419,7 +1495,8 @@ msgid ""
 "days a week, with no vacation for 7 years. I lost friendships and broke up "
 "with my girlfriend in the process."
 msgstr ""
-"为了实现目标，我努力工作，拼尽全力。每天工作 13 个小时，每周工作 7 天，7 年没有休假。在这个过程中，我失去了友谊，还和女朋友分手了。"
+"为了实现目标，我努力工作，拼尽全力。每天工作 13 个小时，每周工作 7 天，7 年没"
+"有休假。在这个过程中，我失去了友谊，还和女朋友分手了。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1427,12 +1504,14 @@ msgid ""
 "To move forward, we raised 10 million USD in May 2014 in order to boost "
 "marketing and sales activities. In order to support our vision, we had to "
 "change the name that is not restricted to ERPs functions. We needed a name "
-"that allowed us to support our ambitions; build business solutions like CMS,"
-" eCommerce, Business Intelligence and, who knows, even sky rockets or "
+"that allowed us to support our ambitions; build business solutions like CMS, "
+"eCommerce, Business Intelligence and, who knows, even sky rockets or "
 "driverless cars in the future..."
 msgstr ""
-"为了向前发展，我们在 2014 年 5 月筹集了 1000 万美元，以促进市场营销和销售活动。为了支持我们的愿景，我们必须更改名称，不局限于 ERP "
-"功能。我们需要一个能够支持我们抱负的名称，构建 CMS、电子商务、商业智能等商务解决方案。谁知道呢，未来甚至可能还有火箭或无人驾驶汽车⋯⋯"
+"为了向前发展，我们在 2014 年 5 月筹集了 1000 万美元，以促进市场营销和销售活"
+"动。为了支持我们的愿景，我们必须更改名称，不局限于 ERP 功能。我们需要一个能够"
+"支持我们抱负的名称，构建 CMS、电子商务、商业智能等商务解决方案。谁知道呢，未"
+"来甚至可能还有火箭或无人驾驶汽车⋯⋯"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_magazine_template
@@ -1463,7 +1542,9 @@ msgstr "培训"
 msgid ""
 "Travel without leaving your kitchen with these international recipes. From "
 "Canada to Australia, Mexico to Sweden, and everywhere in between."
-msgstr "有了这些国际食谱，不用离开您的厨房就可以旅行。从加拿大到澳大利亚，从墨西哥到瑞典，以及两者之间的任何地方。"
+msgstr ""
+"有了这些国际食谱，不用离开您的厨房就可以旅行。从加拿大到澳大利亚，从墨西哥到"
+"瑞典，以及两者之间的任何地方。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_blogging_template
@@ -1485,8 +1566,8 @@ msgid ""
 "style=\"font-weight: bolder;\">practical skills we need to start an "
 "innovative career in tech</span>."
 msgstr ""
-"大学可能会提供给我们光鲜亮丽的学位，但它并没有给我们提供<span style=\"font-weight: "
-"bolder;\">在科技领域开创事业所需的实用技能</span>。"
+"大学可能会提供给我们光鲜亮丽的学位，但它并没有给我们提供<span style=\"font-"
+"weight: bolder;\">在科技领域开创事业所需的实用技能</span>。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
@@ -1532,12 +1613,18 @@ msgstr "我们在搬家"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_bignews_template
 msgid ""
-"We are proud to announce that due to our remarkable growth in the Springfield area, we are moving to a new location on July 1.\n"
-"                   <br/>We will continue to offer the same friendly service at our new address on <span style=\"font-weight: bolder\">1600 Main Street</span>,\n"
-"                   <br/>which will allow us to offer an even larger selection of products and services."
+"We are proud to announce that due to our remarkable growth in the "
+"Springfield area, we are moving to a new location on July 1.\n"
+"                   <br/>We will continue to offer the same friendly service "
+"at our new address on <span style=\"font-weight: bolder\">1600 Main Street</"
+"span>,\n"
+"                   <br/>which will allow us to offer an even larger "
+"selection of products and services."
 msgstr ""
-"我们很自豪地宣布，由于我们在斯普林菲尔德地区的显著增长，我们将于7月1日搬到一个新的位置。\n"
-"                  <br/>我们将在<span style=\"font-weight: bolder\">美因街1600号</span>的新地址继续提供同样的友好服务。\n"
+"我们很自豪地宣布，由于我们在斯普林菲尔德地区的显著增长，我们将于7月1日搬到一"
+"个新的位置。\n"
+"                  <br/>我们将在<span style=\"font-weight: bolder\">美因街1600"
+"号</span>的新地址继续提供同样的友好服务。\n"
 "                  <br/>这将使我们能够提供更大的产品和服务选择。"
 
 #. module: mass_mailing_themes
@@ -1545,7 +1632,8 @@ msgstr ""
 msgid ""
 "We changed the deal and I got the 3 million EUR. It allowed me to recruit a "
 "rocking management team."
-msgstr "我们改变了交易细节，我得到了 300 万欧元。这笔钱让我能招募一支出色的管理团队。"
+msgstr ""
+"我们改变了交易细节，我得到了 300 万欧元。这笔钱让我能招募一支出色的管理团队。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1553,7 +1641,9 @@ msgid ""
 "We wanted to switch from a service company to a software publisher company. "
 "This would allow us to increase our efforts in our research and development "
 "activities. As a result,"
-msgstr "我们希望从一家服务公司转型为软件发行公司。这样，我们就可以加大研发力度。结果，"
+msgstr ""
+"我们希望从一家服务公司转型为软件发行公司。这样，我们就可以加大研发力度。结"
+"果，"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
@@ -1601,13 +1691,14 @@ msgstr "凭借每天 1000 次安装，我们成为世界上安装次数最多的
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
-"With this money in our bank account, we boosted two departments: R&amp;D and"
-" Sales. We burned 2 million EUR in 18 months, mostly in salaries. The "
-"company started to grow even faster. We developed a partner network of 500 "
-"partners in 100 countries and we started to sign contracts with 6 zeros."
+"With this money in our bank account, we boosted two departments: R&amp;D and "
+"Sales. We burned 2 million EUR in 18 months, mostly in salaries. The company "
+"started to grow even faster. We developed a partner network of 500 partners "
+"in 100 countries and we started to sign contracts with 6 zeros."
 msgstr ""
-"有了这笔钱，我们加强了两个部门： 研发部和销售部。我们在 18 个月内斥资 200 万欧元，当中大部分是工资。公司开始以更快的速度发展。我们开发了一个由"
-" 100 个国家的 500 个合作伙伴组成的合作伙伴网络，并开始签订价值 7 位数的合约。"
+"有了这笔钱，我们加强了两个部门： 研发部和销售部。我们在 18 个月内斥资 200 万"
+"欧元，当中大部分是工资。公司开始以更快的速度发展。我们开发了一个由 100 个国家"
+"的 500 个合作伙伴组成的合作伙伴网络，并开始签订价值 7 位数的合约。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_magazine_template
@@ -1622,11 +1713,15 @@ msgstr "昨天在[city] [venue] 举行的活动太棒了！"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow2_template
 msgid ""
-"You had the chance to discover Odoo during a full 3 hours, how great is that?\n"
-"                    <br/>Now that you've seen Odoo in action and asked some questions, you likely need more information to move forward in your project and to work with us. You'll find additional points just below."
+"You had the chance to discover Odoo during a full 3 hours, how great is "
+"that?\n"
+"                    <br/>Now that you've seen Odoo in action and asked some "
+"questions, you likely need more information to move forward in your project "
+"and to work with us. You'll find additional points just below."
 msgstr ""
 "您有机会用整整 3 个小时了解 ERP ，是不是很棒？\n"
-"                    <br/>现在，您已了解 ERP 的实际应用动作，也提出了一些问题，您可能需要更多信息来推进您的项目移动并与我们工作。查找以下列出其他要点数."
+"                    <br/>现在，您已了解 ERP 的实际应用动作，也提出了一些问"
+"题，您可能需要更多信息来推进您的项目移动并与我们工作。查找以下列出其他要点数."
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow2_template
@@ -1637,10 +1732,12 @@ msgstr "您可以免费测试 Odoo，请点击"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow2_template
 msgid ""
-"You may then take part in round table discussions with experts who will give"
-" you their tips and tricks to help digitize companies. We'll wrap up the "
+"You may then take part in round table discussions with experts who will give "
+"you their tips and tricks to help digitize companies. We'll wrap up the "
 "event with a networking session including a walking dinner."
-msgstr "然后，您可以参加与专家的圆桌讨论，专家们将为您提供公司数字化的技巧和窍门。我们还将举行交流会（包括聊天晚宴）来结束活动。"
+msgstr ""
+"然后，您可以参加与专家的圆桌讨论，专家们将为您提供公司数字化的技巧和窍门。我"
+"们还将举行交流会（包括聊天晚宴）来结束活动。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
@@ -1649,8 +1746,8 @@ msgid ""
 "the kitchen since he's our new <span style=\"font-weight: bolder;\">chef's "
 "assistant</span>!"
 msgstr ""
-"您会在厨房看见 <span style=\"font-weight: bolder;\">Armando</span>，因为他是新的<span "
-"style=\"font-weight: bolder;\">厨师助理</span>！"
+"您会在厨房看见 <span style=\"font-weight: bolder;\">Armando</span>，因为他是"
+"新的<span style=\"font-weight: bolder;\">厨师助理</span>！"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_coffeebreak_template
@@ -1672,12 +1769,12 @@ msgstr "[speaker] 及 [speaker]"
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_roadshow1_template
 msgid ""
-"[speaker] and [speaker] will rely on a unique demo concept in which YOU lead"
-" the demo and choose what you wish to see. They'll show how to tackle the "
+"[speaker] and [speaker] will rely on a unique demo concept in which YOU lead "
+"the demo and choose what you wish to see. They'll show how to tackle the "
 "challenge using the best tools, live. You will be amazed!"
 msgstr ""
-"[speaker] 和 [speaker] "
-"将采用独特的演示概念，由您来主导演示，并选择您希望看到的内容。他们将现场演示如何使用最佳工具应对挑战。您一定会赞不绝口！"
+"[speaker] 和 [speaker] 将采用独特的演示概念，由您来主导演示，并选择您希望看到"
+"的内容。他们将现场演示如何使用最佳工具应对挑战。您一定会赞不绝口！"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
@@ -1685,14 +1782,18 @@ msgid ""
 "and decided to stop our services for customers and focus on building a "
 "strong partner network and maintenance offer. This would cost money, so I "
 "had to raise a few million euros."
-msgstr "并决定停止为客户提供服务，专注于建立强大的合作伙伴网络和提供维护服务。这需要资金，所以我必须筹集几百万欧元。"
+msgstr ""
+"并决定停止为客户提供服务，专注于建立强大的合作伙伴网络和提供维护服务。这需要"
+"资金，所以我必须筹集几百万欧元。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template
 msgid ""
 "asking; \"But why should we pay millions of dollars for a tiny software?\" "
 "So, we renamed TinyERP to OpenERP."
-msgstr "问道：\"但是我们为什么要为一个微小软件支付数百万美元呢？\" 于是，我们将 TinyERP 更名为 OpenERP。"
+msgstr ""
+"问道：\"但是我们为什么要为一个微小软件支付数百万美元呢？\" 于是，我们将 "
+"TinyERP 更名为 OpenERP。"
 
 #. module: mass_mailing_themes
 #: model_terms:ir.ui.view,arch_db:mass_mailing_themes.theme_newsletter_template

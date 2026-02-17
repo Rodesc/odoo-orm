@@ -9,7 +9,7 @@ class AccountMove(models.Model):
         comodel_name='ir.attachment',
         string="Attachment",
         compute=lambda self: self._compute_linked_attachment_id('ubl_cii_xml_id', 'ubl_cii_xml_file'),
-        depends=['ubl_cii_xml_id']
+        depends=['ubl_cii_xml_file']
     )
     ubl_cii_xml_file = fields.Binary(
         attachment=True,
@@ -58,4 +58,4 @@ class AccountMove(models.Model):
         return not self.invoice_pdf_report_id \
             and not self.ubl_cii_xml_id \
             and self.is_sale_document() \
-            and bool(self.partner_id.ubl_cii_format)
+            and bool(self.partner_id.commercial_partner_id.ubl_cii_format)

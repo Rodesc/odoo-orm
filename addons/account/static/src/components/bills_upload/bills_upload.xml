@@ -52,13 +52,13 @@
 
     <t t-name="account.ListView.Buttons" t-inherit="web.ListView.Buttons" t-inherit-mode="primary">
         <xpath expr="//div[hasclass('o_list_buttons')]" position="inside">
-            <t t-call="account.AccountViewUploadButton"/>
+            <t t-if="showUploadButton" t-call="account.AccountViewUploadButton"/>
         </xpath>
     </t>
 
     <t t-name="account.KanbanView.Buttons" t-inherit="web.KanbanView.Buttons" t-inherit-mode="primary">
         <xpath expr="//div[hasclass('o_cp_buttons')]" position="inside">
-            <t t-call="account.AccountViewUploadButton"/>
+            <t t-if="showUploadButton" t-call="account.AccountViewUploadButton"/>
         </xpath>
     </t>
 
@@ -96,7 +96,7 @@
 
     <t t-name="account.JournalUploadLink">
         <div t-att-class="props.btnClass" groups="account.group_account_invoice">
-            <a href="#" t-out="props.linkText"/>
+            <a href="#" t-out="props.linkText" draggable="false"/>
         </div>
     </t>
 

@@ -51,7 +51,6 @@ SUPPORTED_CURRENCIES = [
 DEFAULT_PAYMENT_METHODS_CODES = [
     # Primary payment methods.
     'card',
-    'ideal',
     # Brand payment methods.
     'visa',
     'mastercard',
@@ -64,6 +63,7 @@ PAYMENT_METHODS_MAPPING = {
     'apple_pay': 'applepay',
     'card': 'creditcard',
     'bank_transfer': 'banktransfer',
+    'kbc_cbc': 'kbc',
     'p24': 'przelewy24',
     'sepa_direct_debit': 'directdebit',
 }

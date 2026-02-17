@@ -1,24 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* digest
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2023
-# 
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2023\n"
+"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/odoo/teams/41243/uk/)\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: uk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
@@ -27,8 +30,9 @@ msgstr "<i class=\"oi oi-arrow-right\"/> Перевірте нашу докум�
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_mail_main
-msgid "<span class=\"button\" id=\"button_open_report\">Open Report</span>"
-msgstr "<span class=\"button\" id=\"button_open_report\">Відкрити звіт</span>"
+msgid "<span class=\"button\" id=\"button_open_report\">➔ Open Report</span>"
+msgstr ""
+"<span class=\"button\" id=\"button_open_report\">➔ Відкрити звіт</span>"
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_mail_main
@@ -37,8 +41,8 @@ msgstr "<span class=\"odoo_link_text\">Odoo</span>"
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_mail_main
-msgid "<span style=\"color: #8f8f8f;\">Unsubscribe</span>"
-msgstr "<span style=\"color: #8f8f8f;\">Видалити підписку</span>"
+msgid "<span style=\"color: #878d97;\">Unsubscribe</span>"
+msgstr "<span style=\"color: #878d97;\">Відписатися</span>"
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
@@ -200,8 +204,8 @@ msgstr "Групувати за"
 #. module: digest
 #: model_terms:digest.tip,tip_description:digest.digest_tip_digest_1
 msgid ""
-"Have a question about a document? Click on the responsible user's picture to"
-" start a conversation. If his avatar has a green dot, he is online."
+"Have a question about a document? Click on the responsible user's picture to "
+"start a conversation. If his avatar has a green dot, he is online."
 msgstr ""
 "Є запитання стосовно документу? Натисніть на зображення відповідального "
 "користувача, щоби почати розмову. Якщо його аватар має зелений кружок, він "
@@ -308,8 +312,7 @@ msgstr "Ім'я"
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.res_config_settings_view_form
 msgid ""
-"New users are automatically added as recipient of the following digest "
-"email."
+"New users are automatically added as recipient of the following digest email."
 msgstr ""
 "Нові користувачі автоматично додаються як одержувачі нагадувань електронної "
 "пошти дайджесту."
@@ -466,8 +469,8 @@ msgid ""
 "Type \"@\" to notify someone in a message, or \"#\" to link to a channel. "
 "Try to notify @OdooBot to test the feature."
 msgstr ""
-"Введіть \"@\", щоби сповістити когось у повідомленні, або \"#\", щоби додати"
-" до каналу. Спробуйте сповістити @OdooBot для тестування функції."
+"Введіть \"@\", щоби сповістити когось у повідомленні, або \"#\", щоби додати "
+"до каналу. Спробуйте сповістити @OdooBot для тестування функції."
 
 #. module: digest
 #: model:ir.model.fields,help:digest.field_digest_tip__sequence
@@ -521,18 +524,22 @@ msgid ""
 "This is useful when computing a margin or a discount on a quotation, sale "
 "order or invoice."
 msgstr ""
-"Під час редагування номеру, ви можете використовувати формулу, ввівши символ"
-" `=`.  Це корисно під час вирахування маржі чи знижки на комерційній "
+"Під час редагування номеру, ви можете використовувати формулу, ввівши символ "
+"`=`.  Це корисно під час вирахування маржі чи знижки на комерційній "
 "пропозиції, замовлення на продаж чи рахунку."
 
 #. module: digest
 #: model_terms:digest.tip,tip_description:digest.digest_tip_digest_4
 msgid ""
-"When following documents, use the pencil icon to fine-tune the information you want to receive.\n"
-"Follow a project / sales team to keep track of this project's tasks / this team's opportunities."
+"When following documents, use the pencil icon to fine-tune the information "
+"you want to receive.\n"
+"Follow a project / sales team to keep track of this project's tasks / this "
+"team's opportunities."
 msgstr ""
-"Коли ви підписуєтеся під документ, використовуйте логотип олівця для налаштувань інформації, яку ви хочете отримати.\n"
-"Слідкуйте за проектом/командою продаж, щоб слідкувати за завданнями цього проекту/нагодами команди продажу."
+"Коли ви підписуєтеся під документ, використовуйте логотип олівця для "
+"налаштувань інформації, яку ви хочете отримати.\n"
+"Слідкуйте за проектом/командою продаж, щоб слідкувати за завданнями цього "
+"проекту/нагодами команди продажу."
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.portal_digest_unsubscribed

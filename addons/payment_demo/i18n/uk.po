@@ -1,24 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* payment_demo
-# 
+#
 # Translators:
-# Wil Odoo, 2023
+# Wil Odoo, 2024
 # Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
 "Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/odoo/teams/41243/uk/)\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: uk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #. module: payment_demo
 #: model_terms:ir.ui.view,arch_db:payment_demo.payment_details
@@ -30,7 +33,8 @@ msgid ""
 "                    <option value=\"pending\" title=\"Payment processing\">\n"
 "                        Pending\n"
 "                    </option>\n"
-"                    <option value=\"cancel\" title=\"Payment canceled by customer\">\n"
+"                    <option value=\"cancel\" title=\"Payment canceled by "
+"customer\">\n"
 "                        Canceled\n"
 "                    </option>\n"
 "                    <option value=\"error\" title=\"Processing error\">\n"
@@ -45,7 +49,8 @@ msgstr ""
 "                    <option value=\"pending\" title=\"Payment processing\">\n"
 "                        В очікуванні\n"
 "                    </option>\n"
-"                    <option value=\"cancel\" title=\"Payment canceled by customer\">\n"
+"                    <option value=\"cancel\" title=\"Payment canceled by "
+"customer\">\n"
 "                        Скасовано\n"
 "                    </option>\n"
 "                    <option value=\"error\" title=\"Processing error\">\n"
@@ -126,7 +131,8 @@ msgid ""
 "you are sure you can ship the goods to them."
 msgstr ""
 "Отримайте суму від Odoo, коли доставка буде завершена.\n"
-"Використовуйте це, якщо ви хочете стягувати плату з карток своїх клієнтів, лише \n"
+"Використовуйте це, якщо ви хочете стягувати плату з карток своїх клієнтів, "
+"лише \n"
 "коли ви впевнені, що можете відправити їм товари."
 
 #. module: payment_demo
@@ -170,6 +176,13 @@ msgstr "Демо провайдери ніколи не будуть увімк�
 #: model:ir.model.fields.selection,name:payment_demo.selection__payment_token__demo_simulated_state__error
 msgid "Error"
 msgstr "Помилка"
+
+#. module: payment_demo
+#. odoo-javascript
+#: code:addons/payment_demo/static/src/js/express_checkout_form.js:0
+#, python-format
+msgid "No delivery method is available."
+msgstr "Недоступний жоден спосіб доставки."
 
 #. module: payment_demo
 #. odoo-python
@@ -218,11 +231,10 @@ msgstr "Платежі, зроблені через цей спосіб опла
 #. module: payment_demo
 #: model_terms:ir.ui.view,arch_db:payment_demo.token_inline_form
 msgid ""
-"Payments made with this payment method will be automatically "
-"<b>canceled</b>."
+"Payments made with this payment method will be automatically <b>canceled</b>."
 msgstr ""
-"Платежі, виконані через цей спосіб оплати, будуть автоматично "
-"<b>скасовані</b>."
+"Платежі, виконані через цей спосіб оплати, будуть автоматично <b>скасовані</"
+"b>."
 
 #. module: payment_demo
 #: model_terms:ir.ui.view,arch_db:payment_demo.token_inline_form
@@ -234,8 +246,8 @@ msgstr ""
 #. module: payment_demo
 #: model_terms:ir.ui.view,arch_db:payment_demo.token_inline_form
 msgid ""
-"Payments made with this payment method will simulate a processing "
-"<b>error</b>."
+"Payments made with this payment method will simulate a processing <b>error</"
+"b>."
 msgstr ""
 "Платежі, здійснені за допомогою цього способу оплати, імітуватимуть "
 "<b>помилку</b>обробки платежу."
@@ -282,6 +294,13 @@ msgstr "Транзакція не зв'язана з токеном."
 #: model_terms:ir.ui.view,arch_db:payment_demo.express_checkout_form
 msgid "Unpublished"
 msgstr "Неопубліковано"
+
+#. module: payment_demo
+#. odoo-javascript
+#: code:addons/payment_demo/static/src/js/express_checkout_form.js:0
+#, python-format
+msgid "Validation Error"
+msgstr "Помилка затвердження"
 
 #. module: payment_demo
 #: model_terms:ir.ui.view,arch_db:payment_demo.payment_details

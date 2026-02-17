@@ -9,9 +9,10 @@ export class CartNotification extends Component {
     static template = "website_sale.cartNotification";
     static props = {
         message: [String, { toString: Function }],
-        warning: [String, { toString: Function }],
+        warning: {type : [String, { toString: Function }],optional: true},
         lines: {
             type: Array,
+            optional: true,
             element: {
                 type: Object,
                 shape: {
@@ -24,9 +25,11 @@ export class CartNotification extends Component {
                 },
             },
         },
-        currency_id: Number,
+        currency_id: {type: Number, optional: true},
         className: String,
         close: Function,
+        refresh: Function,
+        freeze: Function,
     }
 
     /**

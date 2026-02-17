@@ -98,7 +98,12 @@ patch(MockServer.prototype, {
         if (args.model === "discuss.channel" && args.method === "add_members") {
             const ids = args.args[0];
             const partner_ids = args.args[1] || args.kwargs.partner_ids;
-            return this._mockDiscussChannelAddMembers(ids, partner_ids, args.kwargs.context);
+            return this._mockDiscussChannelAddMembers(
+                ids,
+                partner_ids,
+                args.kwargs.invite_to_rtc_call,
+                args.kwargs.context
+            );
         }
         if (args.model === "discuss.channel" && args.method === "channel_pin") {
             const ids = args.args[0];
@@ -284,9 +289,10 @@ patch(MockServer.prototype, {
      *
      * @private
      * @param {integer[]} ids
+     * @param {boolean} invite_to_rtc_call
      * @param {integer[]} partner_ids
      */
-    _mockDiscussChannelAddMembers(ids, partner_ids, context = {}) {
+    _mockDiscussChannelAddMembers(ids, partner_ids, invite_to_rtc_call, context = {}) {
         const [channel] = this.getRecords("discuss.channel", [["id", "in", ids]]);
         const partners = this.getRecords("res.partner", [["id", "in", partner_ids]]);
         for (const partner of partners) {
@@ -326,7 +332,7 @@ patch(MockServer.prototype, {
                 ["channel_id", "=", channel.id],
             ]) > 0;
         if (isSelfMember) {
-            this.pyEnv["bus.bus"]._sendone(channel, "mail.record/insert", {
+            const data = {
                 Thread: {
                     id: channel.id,
                     channelMembers: [
@@ -342,7 +348,18 @@ patch(MockServer.prototype, {
                     ]),
                     model: "discuss.channel",
                 },
-            });
+            };
+            if (invite_to_rtc_call) {
+                data.Thread.invitedMembers = [
+                    [
+                        "ADD",
+                        this._mockDiscussChannelMember_DiscussChannelMemberFormat(
+                            insertedChannelMembers
+                        ),
+                    ],
+                ];
+            }
+            this.pyEnv["bus.bus"]._sendone(channel, "mail.record/insert", data);
         }
     },
     /**
@@ -511,7 +528,8 @@ patch(MockServer.prototype, {
                 fold_state: foldState,
                 is_minimized: foldState !== "closed",
             };
-            this.pyEnv["discuss.channel.member"].write([memberOfCurrentUser.id], vals);
+            memberOfCurrentUser &&
+                this.pyEnv["discuss.channel.member"].write([memberOfCurrentUser.id], vals);
             this.pyEnv["bus.bus"]._sendone(this.pyEnv.currentPartner, "discuss.Thread/fold_state", {
                 foldStateCount: state_count,
                 id: channel.id,
@@ -640,6 +658,7 @@ patch(MockServer.prototype, {
      * @returns {Object[]}
      */
     _mockDiscussChannelChannelInfo(ids) {
+        const bus_last_id = this.lastBusNotificationId;
         const channels = this.getRecords("discuss.channel", [["id", "in", ids]]);
         return channels.map((channel) => {
             const members = this.getRecords("discuss.channel.member", [
@@ -673,6 +692,7 @@ patch(MockServer.prototype, {
                 Object.assign(res, {
                     custom_channel_name: memberOfCurrentUser.custom_channel_name,
                     message_unread_counter: memberOfCurrentUser.message_unread_counter,
+                    message_unread_counter_bus_id: bus_last_id,
                 });
                 if (memberOfCurrentUser.rtc_inviting_session_id) {
                     res["rtc_inviting_session"] = {
@@ -1034,24 +1054,52 @@ patch(MockServer.prototype, {
      */
     _mockDiscussChannel_SetLastSeenMessage(ids, message_id) {
         const memberOfCurrentUser = this._mockDiscussChannelMember__getAsSudoFromContext(ids[0]);
+        const message_unread_counter = this.pyEnv["mail.message"].search([
+            ["res_id", "=", ids[0]],
+            ["model", "=", "discuss.channel"],
+            ["id", ">", message_id],
+        ]).length;
         if (memberOfCurrentUser) {
             this.pyEnv["discuss.channel.member"].write([memberOfCurrentUser.id], {
                 fetched_message_id: message_id,
                 seen_message_id: message_id,
+                message_unread_counter,
             });
         }
         const [channel] = this.pyEnv["discuss.channel"].searchRead([["id", "in", ids]]);
         const [partner, guest] = this._mockResPartner__getCurrentPersona();
-        let target = guest ?? partner;
-        if (this._mockDiscussChannel__typesAllowingSeenInfos().includes(channel.channel_type)) {
-            target = channel;
-        }
-        this.pyEnv["bus.bus"]._sendone(target, "discuss.channel.member/seen", {
-            channel_id: channel.id,
+        const memberBasicInfo = {
             id: memberOfCurrentUser?.id,
-            last_message_id: message_id,
-            [guest ? "guest_id" : "partner_id"]: guest?.id ?? partner.id,
-        });
+            lastSeenMessage: message_id ? { id: message_id } : false,
+        };
+        const memberSelfInfo = {
+            ...memberBasicInfo,
+            thread: {
+                id: channel.id,
+                model: "discuss.channel",
+                message_unread_counter,
+                message_unread_counter_bus_id: this.lastBusNotificationId,
+                seen_message_id: message_id || false,
+            },
+        };
+        const notifications = [];
+        if (memberOfCurrentUser) {
+            notifications.push([
+                guest ?? partner,
+                "mail.record/insert",
+                { ChannelMember: memberSelfInfo },
+            ]);
+        }
+        if (this._mockDiscussChannel__typesAllowingSeenInfos().includes(channel.channel_type)) {
+            notifications.push([
+                channel,
+                "mail.record/insert",
+                {
+                    ChannelMember: memberBasicInfo,
+                },
+            ]);
+        }
+        this.pyEnv["bus.bus"]._sendmany(notifications);
     },
     /**
      * Simulates `_types_allowing_seen_infos` on `discuss.channel`.

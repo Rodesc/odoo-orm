@@ -1,24 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* pos_sale
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# Junko Augias, 2024
 # Ryoko Tsuda <ryoko@quartile.co>, 2024
-# 
+# Junko Augias, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Ryoko Tsuda <ryoko@quartile.co>, 2024\n"
+"Last-Translator: Junko Augias, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/odoo/teams/41243/ja/)\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: pos_sale
@@ -123,7 +123,6 @@ msgstr "販売オーダにリンクしたシリアル番号/ロットをロー�
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Down Payment"
 msgstr "前受金"
@@ -161,6 +160,13 @@ msgstr "例:顧客：スチュワード、日付：2020-05-09"
 
 #. module: pos_sale
 #. odoo-javascript
+#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
+#, python-format
+msgid "Error amount too high"
+msgstr "エラーの量が多すぎます"
+
+#. module: pos_sale
+#. odoo-javascript
 #: code:addons/pos_sale/static/src/overrides/components/receipt_screen/order_receipt/order_receipt.xml:0
 #: model_terms:ir.ui.view,arch_db:pos_sale.report_invoice_document
 #, python-format
@@ -179,7 +185,9 @@ msgstr "請求済"
 msgid ""
 "It seems that you didn't configure a down payment product in your point of "
 "sale. You can go to your point of sale configuration to choose one."
-msgstr "POSで前払プロダクトを設定していないようです。POSの設定で選択することができます。"
+msgstr ""
+"POSで前払プロダクトを設定していないようです。POSの設定で選択することができま"
+"す。"
 
 #. module: pos_sale
 #. odoo-python
@@ -210,14 +218,12 @@ msgstr "ロック済"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
 #, python-format
 msgid "Next Order List"
 msgstr "次の注文リスト"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "No"
@@ -297,7 +303,6 @@ msgstr "注文数"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_control_panel/sale_order_management_control_panel.xml:0
 #, python-format
 msgid "Previous Order List"
 msgstr "以前の注文リスト"
@@ -344,7 +349,6 @@ msgstr "シリアル番号/ロットロード中"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/overrides/components/product_screen/product_screen.xml:0
 #: code:addons/pos_sale/static/src/overrides/components/product_screen/product_screen.xml:0
 #, python-format
 msgid "SO"
@@ -429,7 +433,6 @@ msgstr "セッション実行中"
 #. module: pos_sale
 #. odoo-javascript
 #: code:addons/pos_sale/static/src/app/set_sale_order_button/set_sale_order_button.xml:0
-#: code:addons/pos_sale/static/src/app/set_sale_order_button/set_sale_order_button.xml:0
 #, python-format
 msgid "Set Sale Order"
 msgstr "販売オーダ設定"
@@ -448,7 +451,9 @@ msgstr "オーダする"
 msgid ""
 "Some of the products in your Sale Order are not available in POS, do you "
 "want to import them?"
-msgstr "販売オーダに含まれるプロダクトの中にはPOSで購入できないものがありますが、インポートしますか？"
+msgstr ""
+"販売オーダに含まれるプロダクトの中にはPOSで購入できないものがありますが、イン"
+"ポートしますか？"
 
 #. module: pos_sale
 #: model:ir.model.fields,field_description:pos_sale.field_pos_order_line__sale_order_line_id
@@ -516,7 +521,7 @@ msgstr "合計"
 #. module: pos_sale
 #: model:ir.model,name:pos_sale.model_stock_picking
 msgid "Transfer"
-msgstr "移動"
+msgstr "転送"
 
 #. module: pos_sale
 #: model_terms:ir.ui.view,arch_db:pos_sale.view_pos_order_form_inherit_pos_sale
@@ -546,11 +551,10 @@ msgstr "未払金額"
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "What do you want to do?"
-msgstr "何をしたいですか？"
+msgstr "何を行いますか？"
 
 #. module: pos_sale
 #. odoo-javascript
-#: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #: code:addons/pos_sale/static/src/app/order_management_screen/sale_order_management_screen/sale_order_management_screen.js:0
 #, python-format
 msgid "Yes"
@@ -563,4 +567,6 @@ msgstr "はい"
 msgid ""
 "You have tried to charge a down payment of %s but only %s remains to be "
 "paid, %s will be applied to the purchase order line."
-msgstr " %s の未払い金額を課金しようとしましたが支払残高は%sのみで、  %sが購買オーダ明細に適用されます。 "
+msgstr ""
+" %s の未払い金額を課金しようとしましたが支払残高は%sのみで、  %sが購買オーダ"
+"明細に適用されます。 "

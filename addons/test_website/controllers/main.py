@@ -141,6 +141,15 @@ class WebsiteTest(Home):
 
     @http.route(['/test_website/model_item/<int:record_id>'], type='http', methods=['GET'], auth="public", website=True, sitemap=False)
     def test_model_item(self, record_id):
+        record = request.env['test.model'].browse(record_id)
+        values = {
+            'record': record,
+            'main_object': record,
+        }
+        return request.render("test_website.model_item", values)
+
+    @http.route(['/test_website/model_item_sudo/<int:record_id>'], type='http', methods=['GET'], auth="public", website=True, sitemap=False)
+    def test_model_item_sudo(self, record_id):
         values = {
             'record': request.env['test.model'].sudo().browse(record_id),
         }
@@ -168,3 +177,7 @@ class WebsiteTest(Home):
     ], type='http', auth='public', website=True, sitemap=sitemap_test)
     def test_sitemap(self, rec=None, **kwargs):
         return request.make_response('Sitemap Testing Page')
+
+    @http.route('/test_model/<model("test.model"):test_model>', type='http', auth='public', website=True, sitemap=False)
+    def test_model(self, test_model, **kwargs):
+        return request.render('test_website.test_model_page_layout', {'main_object': test_model, 'test_model': test_model})

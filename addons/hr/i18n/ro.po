@@ -1,29 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* hr
-# 
+#
 # Translators:
 # Vacaru Adrian <adrian.vacaru@gmail.com>, 2024
 # Claudia Baisan, 2024
 # Cozmin Candea <office@terrabit.ro>, 2024
 # Foldi Robert <foldirobert@nexterp.ro>, 2024
 # Hongu Cosmin <cosmin513@gmail.com>, 2024
-# Martin Trigaux, 2024
 # Dorin Hongu <dhongu@gmail.com>, 2024
-# 
+# Martin Trigaux, 2024
+# Alin Miclea, 2024
+# Maria Muntean, 2024
+# Lyall Kindmurr, 2024
+# Larisa Pop, 2024
+# Wil Odoo, 2025
+# Larisa_nexterp, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
+"POT-Creation-Date: 2025-12-29 18:36+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2024\n"
+"Last-Translator: Larisa_nexterp, 2025\n"
 "Language-Team: Romanian (https://app.transifex.com/odoo/teams/41243/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_email_amount
@@ -46,7 +53,7 @@ msgstr "&amp;nbsp;"
 #. module: hr
 #: model:ir.actions.report,print_report_name:hr.hr_employee_print_badge
 msgid "'Badge - %s' % (object.name).replace('/', '')"
-msgstr ""
+msgstr "'Insigna - %s' % (object.name).replace('/', '')"
 
 #. module: hr
 #: model_terms:hr.job,job_details:hr.job_ceo
@@ -82,11 +89,6 @@ msgid "12 days / year, including <br>6 of your choice."
 msgstr "12 zile / an, inclusiv <br>6 alese de tine."
 
 #. module: hr
-#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
-msgid "12345678901"
-msgstr "12345678901"
-
-#. module: hr
 #: model_terms:hr.job,job_details:hr.job_ceo
 #: model_terms:hr.job,job_details:hr.job_consultant
 #: model_terms:hr.job,job_details:hr.job_cto
@@ -116,25 +118,29 @@ msgid ""
 "<b>Congratulations!</b> May I recommend you to setup an <a "
 "href=\"%s\">onboarding plan?</a>"
 msgstr ""
-"<b>Felicitări!</b> Pot să vă recomand să configurați <a href=\"%s\">2un plan"
-" de bord?</a>"
+"<b>Felicitări!</b> Pot să vă recomand să configurați <a href=\"%s\">2un plan "
+"de bord?</a>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
-msgid "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Company\" title=\"Company\"/>"
-msgstr "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Company\" title=\"Company\"/>"
+msgid ""
+"<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Company\" "
+"title=\"Company\"/>"
+msgstr ""
+"<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Company\" "
+"title=\"Company\"/>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
 msgid "<i class=\"fa fa-fw me-2 fa-envelope text-primary\" title=\"Email\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-fw me-2 fa-envelope text-primary\" title=\"Email\"/>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
 msgid "<i class=\"fa fa-fw me-2 fa-phone text-primary\" title=\"Phone\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-fw me-2 fa-phone text-primary\" title=\"Phone\"/>"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -152,17 +158,17 @@ msgstr "<small><b>CITIRE</b></small>"
 msgid ""
 "<span class=\"flex-shrink-0 ml8 me-2\">IP Addresses (comma-separated)</span>"
 msgstr ""
-"<span class=\"flex-shrink-0 ml8 me-2\">Adrese IP (separate prin "
-"virgulă)</span>"
+"<span class=\"flex-shrink-0 ml8 me-2\">Adrese IP (separate prin virgulă)</"
+"span>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
 msgid ""
-"<span class=\"flex-shrink-0 ml8 me-2\">Minimum number of emails to "
-"send</span>"
+"<span class=\"flex-shrink-0 ml8 me-2\">Minimum number of emails to send</"
+"span>"
 msgstr ""
-"<span class=\"flex-shrink-0 ml8 me-2\">Număr minim de emailuri de "
-"trimis</span>"
+"<span class=\"flex-shrink-0 ml8 me-2\">Număr minim de emailuri de trimis</"
+"span>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
@@ -181,15 +187,16 @@ msgstr ""
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
 msgid ""
-"<span class=\"o_form_label o_hr_form_label cursor-default\">Detailed "
-"Reason</span>"
+"<span class=\"o_form_label o_hr_form_label cursor-default\">Detailed Reason</"
+"span>"
 msgstr ""
-"<span class=\"o_form_label o_hr_form_label cursor-default\">Motiv "
-"detașat</span>"
+"<span class=\"o_form_label o_hr_form_label cursor-default\">Motiv detașat</"
+"span>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
-msgid "<span class=\"o_form_label o_hr_form_label cursor-default\">HR Info</span>"
+msgid ""
+"<span class=\"o_form_label o_hr_form_label cursor-default\">HR Info</span>"
 msgstr ""
 "<span class=\"o_form_label o_hr_form_label cursor-default\">Info HR</span>"
 
@@ -212,7 +219,7 @@ msgstr "<span class=\"o_stat_text\">Conectat începând cu data de</span>"
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_partner_view_form
 msgid "<span class=\"o_stat_text\">Employee</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Angajat</span>"
 
 #. module: hr
 #: model_terms:hr.job,job_details:hr.job_ceo
@@ -256,7 +263,7 @@ msgstr "<span>Km</span>"
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
 msgid "<span>new Employees</span>"
-msgstr ""
+msgstr "<span>Angajati noi</span>"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -326,7 +333,7 @@ msgstr "Activitate Excepție Decorare"
 #. module: hr
 #: model:ir.model,name:hr.model_mail_activity_plan
 msgid "Activity Plan"
-msgstr ""
+msgstr "Plan de activitate"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_config_plan
@@ -351,12 +358,12 @@ msgstr "Activitate de"
 #. module: hr
 #: model:ir.model,name:hr.model_mail_activity_plan_template
 msgid "Activity plan template"
-msgstr ""
+msgstr "Șablon plan de activitate"
 
 #. module: hr
 #: model:ir.model,name:hr.model_mail_activity_schedule
 msgid "Activity schedule plan Wizard"
-msgstr ""
+msgstr "Expert pentru programul de activități"
 
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.act_employee_from_department
@@ -384,6 +391,8 @@ msgid ""
 "Additional Information: \n"
 " %(description)s"
 msgstr ""
+"Informații suplimentare: \n"
+" %(description)s"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__additional_note
@@ -487,21 +496,33 @@ msgstr "Arhivat"
 #: model_terms:hr.job,website_description:hr.job_marketing
 #: model_terms:hr.job,website_description:hr.job_trainee
 msgid ""
-"As an employee of our company, you will <b>collaborate with each department to create and deploy\n"
-"                                disruptive products.</b> Come work at a growing company that offers great benefits with opportunities to\n"
-"                                moving forward and learn alongside accomplished leaders. We're seeking an experienced and outstanding member of staff.\n"
+"As an employee of our company, you will <b>collaborate with each department "
+"to create and deploy\n"
+"                                disruptive products.</b> Come work at a "
+"growing company that offers great benefits with opportunities to\n"
+"                                moving forward and learn alongside "
+"accomplished leaders. We're seeking an experienced and outstanding member of "
+"staff.\n"
 "                                <br><br>\n"
-"                                This position is both <b>creative and rigorous</b> by nature you need to think outside the box.\n"
-"                                We expect the candidate to be proactive and have a \"get it done\" spirit. To be successful,\n"
+"                                This position is both <b>creative and "
+"rigorous</b> by nature you need to think outside the box.\n"
+"                                We expect the candidate to be proactive and "
+"have a \"get it done\" spirit. To be successful,\n"
 "                                you will have solid solving problem skills."
 msgstr ""
-"Ca angajat al companiei noastre, veți colabora cu fiecare departament pentru a crea și implementa\n"
-"produse disruptive. Veniți să lucrați la o companie în creștere care oferă beneficii mari cu oportunități de\n"
-"înaintare și învățare alături de lideri de seamă. Căutăm un membru de personal experimentat și remarcabil.\n"
+"Ca angajat al companiei noastre, veți colabora cu fiecare departament pentru "
+"a crea și implementa\n"
+"produse disruptive. Veniți să lucrați la o companie în creștere care oferă "
+"beneficii mari cu oportunități de\n"
+"înaintare și învățare alături de lideri de seamă. Căutăm un membru de "
+"personal experimentat și remarcabil.\n"
 "                                <br><br>\n"
-"                                Această poziție este atât creativă cât și riguroasă, de natură trebuie să gândiți în afara cutiei.\n"
-"                                Așteptăm ca candidatul să fie proactiv și să aibă un spirit de \"get it done\". Pentru a fi de succes,\n"
-"                                veți avea abilități solide de rezolvare a problemelor."
+"                                Această poziție este atât creativă cât și "
+"riguroasă, de natură trebuie să gândiți în afara cutiei.\n"
+"                                Așteptăm ca candidatul să fie proactiv și să "
+"aibă un spirit de \"get it done\". Pentru a fi de succes,\n"
+"                                veți avea abilități solide de rezolvare a "
+"problemelor."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_mail_activity_plan_template__responsible_type
@@ -555,6 +576,11 @@ msgstr "Autonomie"
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
 msgid "Available"
 msgstr "Disponibil"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.mail_activity_plan_view_form
+msgid "Available for all Departments"
+msgstr "Disponibil pentru toate departamentele"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_1920
@@ -617,6 +643,11 @@ msgstr "ID Ecuson"
 #: model:ir.model.fields,field_description:hr.field_hr_employee__bank_account_id
 msgid "Bank Account Number"
 msgstr "Numar de cont bancar"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Conturi Bancare"
 
 #. module: hr
 #: model:ir.model,name:hr.model_base
@@ -892,12 +923,12 @@ msgstr "Creați un departament nou"
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.hr_contract_type_action
 msgid "Create a new employment type"
-msgstr ""
+msgstr "Creați un nou tip de angajare"
 
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.hr_work_location_action
 msgid "Create a new work location"
-msgstr ""
+msgstr "Creați o nouă locație de lucru"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -938,7 +969,7 @@ msgstr "Creat de"
 #: model:ir.model.fields,field_description:hr.field_hr_job__create_date
 #: model:ir.model.fields,field_description:hr.field_hr_work_location__create_date
 msgid "Created on"
-msgstr "Creat în"
+msgstr "Creat pe"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__currency_id
@@ -977,18 +1008,39 @@ msgstr "Motivul implicit de plecare nu poate fi șters."
 #. module: hr
 #: model_terms:hr.job,description:hr.job_ceo
 msgid ""
-"Demonstration of different Odoo services for each client and convincing the client about functionality of the application.\n"
+"Demonstration of different Odoo services for each client and convincing the "
+"client about functionality of the application.\n"
 "The candidate should have excellent communication skills.\n"
 "Relationship building and influencing skills\n"
 "Expertise in New Client Acquisition (NCAs) and Relationship Management.\n"
 "Gathering market and customer information.\n"
-"Coordinating with the sales and support team for adopting different strategies\n"
-"Reviewing progress and identifying opportunities and new areas for development.\n"
-"Building strong relationships with clients / customers for business growth profitability.\n"
-"Keep regular interaction with key clients for better extraction and expansion."
+"Coordinating with the sales and support team for adopting different "
+"strategies\n"
+"Reviewing progress and identifying opportunities and new areas for "
+"development.\n"
+"Building strong relationships with clients / customers for business growth "
+"profitability.\n"
+"Keep regular interaction with key clients for better extraction and "
+"expansion."
 msgstr ""
+"Demonstrarea diferitelor servicii Odoo pentru fiecare client și convingerea "
+"clientului despre funcționalitatea aplicației.\n"
+"Candidatul trebuie să aibă abilități excelente de comunicare.\n"
+"Abilități de a construi relații și influență \n"
+"Experiență în atragerea de noi clienți (ANC) și managementul relațiilor.\n"
+"Colectarea de informații despre piață și clienți.\n"
+"Coordonarea cu echipa de vânzari și suport pentru adoptarea diferitelor "
+"strategii\n"
+"Analizarea progresului și identificarea oportunităților și a noilor domenii "
+"de dezvoltare.\n"
+"Construirea unor relații puternice cu clienții pentru creșterea "
+"profitabilității afacerii.\n"
+"Interacțiune regulată cu clienții cheie pentru o extracție și o extindere "
+"mai bune."
 
 #. module: hr
+#. odoo-javascript
+#: code:addons/hr/static/src/components/avatar_card/avatar_card_popover_patch.xml:0
 #: model:ir.model,name:hr.model_hr_department
 #: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
 #: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
@@ -1001,6 +1053,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr.view_department_filter
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
 #: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+#, python-format
 msgid "Department"
 msgstr "Departament"
 
@@ -1014,7 +1067,7 @@ msgstr "Nume departament"
 #: code:addons/hr/static/src/components/department_chart/department_chart.xml:0
 #, python-format
 msgid "Department Organization"
-msgstr ""
+msgstr "Organizarea Departamentului"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.hr_department_kanban_action
@@ -1110,6 +1163,9 @@ msgid ""
 "Display remote work settings for each employee and dedicated reports. "
 "Presence icons will be updated with remote work location."
 msgstr ""
+"Afișează setările de lucru de la distanță pentru fiecare angajat și "
+"rapoartele dedicate. Pictogramele de prezență vor fi actualizate cu locația "
+"de lucru de la distanță."
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__divorced
@@ -1136,16 +1192,21 @@ msgstr "Permis de Conducere"
 #: model_terms:hr.job,website_description:hr.job_trainee
 msgid ""
 "Each employee has a chance to see the impact of his work.\n"
-"                        You can make a real contribution to the success of the company.\n"
+"                        You can make a real contribution to the success of "
+"the company.\n"
 "                        <br>\n"
-"                        Several activities are often organized all over the year, such as weekly\n"
-"                        sports sessions, team building events, monthly drink, and much more"
+"                        Several activities are often organized all over the "
+"year, such as weekly\n"
+"                        sports sessions, team building events, monthly "
+"drink, and much more"
 msgstr ""
 "Orice angajat are ocazia să vadă impactul muncii sale.\n"
 "Poți face o contribuție reală la succesul companiei.\n"
 "                        <br>\n"
-"                        De multe ori sunt organizate activități în cadrul companiei, cum ar fi\n"
-"                        sesiuni sportive săptămânale, evenimente de team building, petreceri lunare, etc."
+"                        De multe ori sunt organizate activități în cadrul "
+"companiei, cum ar fi\n"
+"                        sesiuni sportive săptămânale, evenimente de team "
+"building, petreceri lunare, etc."
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -1234,7 +1295,7 @@ msgstr "Nume angajat"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_company__employee_properties_definition
 msgid "Employee Properties"
-msgstr ""
+msgstr "Proprietățile angajaților"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.open_view_categ_form
@@ -1449,7 +1510,7 @@ msgstr "Fructe, cafea și <br> gustări oferite."
 #. module: hr
 #: model:hr.contract.type,name:hr.contract_type_full_time
 msgid "Full-Time"
-msgstr ""
+msgstr "Cu normă întreagă"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
@@ -1470,7 +1531,7 @@ msgstr "Generați"
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
 msgid "Give more details about the reason of archiving the employee."
-msgstr ""
+msgstr "Oferiți mai multe detalii despre motivul arhivării angajatului."
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -1522,7 +1583,7 @@ msgstr "Angajat HR: verificați valabilitatea permisului de muncă"
 #: code:addons/hr/static/src/components/hr_presence_status/hr_presence_status.js:0
 #, python-format
 msgid "HR Presence Status"
-msgstr ""
+msgstr "Starea prezenței HR"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
@@ -1656,6 +1717,7 @@ msgstr ""
 #: model:ir.model.fields,help:hr.field_hr_employee__private_car_plate
 msgid "If you have more than one car, just separate the plates by a space."
 msgstr ""
+"Dacă aveți mai multe mașini, separați numarul plăcuțelor printr-un spațiu."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__image_1920
@@ -1867,7 +1929,7 @@ msgstr "Numărul Locației"
 #. module: hr
 #: model:hr.department,name:hr.dep_rd_ltp
 msgid "Long Term Projects"
-msgstr ""
+msgstr "Proiecte pe termen lung"
 
 #. module: hr
 #: model_terms:hr.job,description:hr.job_hrm
@@ -1875,12 +1937,20 @@ msgid ""
 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
 "Lorem Ipsum has been the industry's standard dummy text ever since the "
 "1500s, when an unknown printer took a galley of type and scrambled it to "
-"make a type specimen book. It has survived not only five centuries, but also"
-" the leap into electronic typesetting, remaining essentially unchanged. It "
+"make a type specimen book. It has survived not only five centuries, but also "
+"the leap into electronic typesetting, remaining essentially unchanged. It "
 "was popularised in the 1960s with the release of Letraset sheets containing "
 "Lorem Ipsum passages, and more recently with desktop publishing software "
 "like Aldus PageMaker including versions of Lorem Ipsum."
 msgstr ""
+"Lorem Ipsum este pur și simplu un text fals al industriei de tipărire și de "
+"tipărire. Lorem Ipsum a fost textul fals standard al industriei încă din "
+"anii 1500, când o imprimantă necunoscută a luat o bucătărie de tipărit și a "
+"amestecat-o pentru a face o carte cu specimene de tipar. A supraviețuit nu "
+"numai cinci secole, ci și saltului în compunerea electronică, rămânând în "
+"esență neschimbat. A fost popularizat în anii 1960 odată cu lansarea foilor "
+"Letraset care conțin pasaje Lorem Ipsum și, mai recent, cu software-ul de "
+"publicare desktop precum Aldus PageMaker, inclusiv versiuni de Lorem Ipsum."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__message_main_attachment_id
@@ -1915,11 +1985,6 @@ msgstr "Manager"
 #, python-format
 msgid "Manager of employee %s is not set."
 msgstr "Managager Angajat %s nu este setat."
-
-#. module: hr
-#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
-msgid "Marc Demo"
-msgstr "Marc Demo"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__marital
@@ -2052,7 +2117,7 @@ msgstr "Negociază și contractează"
 #: model_terms:ir.ui.view,arch_db:hr.hr_employee_view_graph
 #: model_terms:ir.ui.view,arch_db:hr.hr_employee_view_pivot
 msgid "New Employees Over Time"
-msgstr ""
+msgstr "Noi angajați de-a lungul timpului"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__newly_hired
@@ -2097,7 +2162,7 @@ msgstr "Dorit"
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.open_view_categ_form
 msgid "No Tags found ! Let's create one"
-msgstr ""
+msgstr "Nu au fost găsite etichete! Haide să creăm una"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -2109,8 +2174,8 @@ msgstr ""
 #: model_terms:hr.job,website_description:hr.job_trainee
 msgid "No dumb managers, no stupid tools to use, no rigid working hours"
 msgstr ""
-"Fără manageri proști, fără instrumente stupide de folosit, fără ore de lucru"
-" rigide"
+"Fără manageri proști, fără instrumente stupide de folosit, fără ore de lucru "
+"rigide"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -2195,11 +2260,13 @@ msgstr "Numărul angajatilor noi pe care planuiti sa ii recrutati."
 #: model_terms:ir.actions.act_window,help:hr.hr_department_tree_action
 msgid ""
 "Odoo's department structure is used to manage all documents\n"
-"                    related to employees by departments: expenses, timesheets,\n"
+"                    related to employees by departments: expenses, "
+"timesheets,\n"
 "                    leaves, recruitments, etc."
 msgstr ""
 "Odoo's department structure is used to manage all documents\n"
-"                    legate de angajați pe departamente: cheltuieli, fișe de timp,\n"
+"                    legate de angajați pe departamente: cheltuieli, fișe de "
+"timp,\n"
 "                    concedii, recrutări etc."
 
 #. module: hr
@@ -2209,19 +2276,21 @@ msgid ""
 "                related to employees by departments: expenses, timesheets,\n"
 "                time off, recruitments, etc."
 msgstr ""
-"Structura departamentului Odoo este utilizată pentru a gestiona toate documentele\n"
-"               legate de angajați pe departamente: cheltuieli, fișe de timp,\n"
+"Structura departamentului Odoo este utilizată pentru a gestiona toate "
+"documentele\n"
+"               legate de angajați pe departamente: cheltuieli, fișe de "
+"timp,\n"
 "                timp liber, recrutări etc."
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_work_location__location_type__office
 msgid "Office"
-msgstr ""
+msgstr "Birou"
 
 #. module: hr
 #: model:res.groups,name:hr.group_hr_user
 msgid "Officer: Manage all employees"
-msgstr ""
+msgstr "Ofițer: Gestionați toți angajații"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.mail_activity_plan_action
@@ -2234,7 +2303,7 @@ msgstr "Planuri de On/Offboarding"
 #: code:addons/hr/static/src/core/web/thread_actions.js:0
 #, python-format
 msgid "Open Profile"
-msgstr ""
+msgstr "Deschide Profil"
 
 #. module: hr
 #. odoo-python
@@ -2276,8 +2345,8 @@ msgstr "Cod PIN"
 #: model:ir.model.fields,help:hr.field_hr_employee__pin
 #: model:ir.model.fields,help:hr.field_res_users__pin
 msgid ""
-"PIN used to Check In/Out in the Kiosk Mode of the Attendance application (if"
-" enabled in Configuration) and to change the cashier in the Point of Sale "
+"PIN used to Check In/Out in the Kiosk Mode of the Attendance application (if "
+"enabled in Configuration) and to change the cashier in the Point of Sale "
 "application."
 msgstr ""
 "PIN folosit pentru Check In/Out în modul Kiosk al aplicației de prezență "
@@ -2297,7 +2366,7 @@ msgstr "Cale părinte"
 #. module: hr
 #: model:hr.contract.type,name:hr.contract_type_part_time
 msgid "Part-Time"
-msgstr ""
+msgstr "Cu jumătate de normă"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__user_partner_id
@@ -2370,7 +2439,7 @@ msgstr "Evoluție personală"
 #: code:addons/hr/models/res_users.py:0
 #, python-format
 msgid "Personal information update."
-msgstr ""
+msgstr "Actualizarea informațiilor personale."
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
@@ -2397,6 +2466,8 @@ msgid ""
 "Plan %(plan_names)s cannot use a department as it is used only for employee "
 "plans."
 msgstr ""
+"Planul %(plan_names)s nu poate folosi un departament, deoarece este folosit "
+"doar pentru planurile angajaților."
 
 #. module: hr
 #. odoo-python
@@ -2406,6 +2477,9 @@ msgid ""
 "Plan activities %(template_names)s cannot use coach, manager or employee "
 "responsible as it is used only for employee plans."
 msgstr ""
+"Planificarea activităților%(template_names)s nu pot folosi antrenor, manager "
+"sau angajat responsabil, deoarece este folosit doar pentru planurile "
+"angajaților."
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.view_department_form
@@ -2435,17 +2509,19 @@ msgid ""
 "Policy to post a message on the document using the mailgateway.\n"
 "- everyone: everyone can post\n"
 "- partners: only authenticated partners\n"
-"- followers: only followers of the related document or members of following channels\n"
+"- followers: only followers of the related document or members of following "
+"channels\n"
 msgstr ""
 "Politica de a posta un mesaj pe document folosind mailgateway.\n"
 "- toată lumea: toată lumea poate posta\n"
 "- parteneri: numai parteneri autentificați\n"
-"- adepți: numai adepți ai documentului aferent sau membri ai canalelor următoare\n"
+"- adepți: numai adepți ai documentului aferent sau membri ai canalelor "
+"următoare\n"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
 msgid "Presence Control"
-msgstr ""
+msgstr "Controlul prezenței"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
@@ -2490,7 +2566,7 @@ msgstr "Adresă privată"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__private_car_plate
 msgid "Private Car Plate"
-msgstr ""
+msgstr "Numărul plăcuței mașinii private"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__private_city
@@ -2554,7 +2630,7 @@ msgstr "Cod Poștal Privat"
 #. module: hr
 #: model:hr.department,name:hr.dep_ps
 msgid "Professional Services"
-msgstr ""
+msgstr "Servicii profesionale"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__employee_properties
@@ -2580,7 +2656,7 @@ msgstr "Calificați nevoile clientului"
 #. module: hr
 #: model:hr.department,name:hr.dep_rd_be
 msgid "R&D USA"
-msgstr ""
+msgstr "R&D SUA"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department__rating_ids
@@ -2603,8 +2679,7 @@ msgstr "Sunteți pregătit să recrutezi mai eficient?"
 #: model_terms:hr.job,website_description:hr.job_marketing
 #: model_terms:hr.job,website_description:hr.job_trainee
 msgid "Real responsibilities and challenges in a fast evolving company"
-msgstr ""
-"Responsabilități și provocări reale într-o companie cu evoluție rapidă"
+msgstr "Responsabilități și provocări reale într-o companie cu evoluție rapidă"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_departure_reason__name
@@ -2614,7 +2689,7 @@ msgstr "Motiv"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_departure_reason__reason_code
 msgid "Reason Code"
-msgstr ""
+msgstr "Cod motiv"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_config_recruitment
@@ -2661,7 +2736,7 @@ msgstr "Numele utilizatorului asociat resursei pentru a-i gestiona accesul."
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_homeworking
 msgid "Remote Work"
-msgstr ""
+msgstr "Lucru de la distanță"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.hr_menu_hr_reports
@@ -2758,7 +2833,7 @@ msgstr "Școală"
 #. module: hr
 #: model:hr.contract.type,name:hr.contract_type_seasonal
 msgid "Seasonal"
-msgstr ""
+msgstr "Sezonier"
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_employee__coach_id
@@ -2804,7 +2879,7 @@ msgstr "Afișează iconița Hr"
 #: code:addons/hr/static/src/components/department_chart/department_chart.xml:0
 #, python-format
 msgid "Show employees"
-msgstr ""
+msgstr "Arată angajații"
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__single
@@ -2828,9 +2903,11 @@ msgid "Social Security Number"
 msgstr "Numar Asigurare Sociala"
 
 #. module: hr
-#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
-msgid "Software Developer"
-msgstr ""
+#. odoo-python
+#: code:addons/hr/models/hr_employee_base.py:0
+#, python-format
+msgid "Some employee already have a work contact"
+msgstr "Unii angajați au deja un contact de serviciu"
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -2864,7 +2941,7 @@ msgstr "Dată început"
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
 #: model_terms:ir.ui.view,arch_db:hr.view_employee_form
 msgid "State"
-msgstr "Stare"
+msgstr "Județ"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
@@ -2983,11 +3060,23 @@ msgstr ""
 #. module: hr
 #: model_terms:hr.job,description:hr.job_marketing
 msgid ""
-"The Marketing Manager defines the mid- to long-term marketing strategy for his covered market segments in the World.\n"
-"              He develops and monitors the annual budget in collaboration with Sales.\n"
-"              He defines the products and customers portfolio according to the marketing plan.\n"
-"              This mission requires strong collaboration with Technical Service and Sales."
+"The Marketing Manager defines the mid- to long-term marketing strategy for "
+"his covered market segments in the World.\n"
+"              He develops and monitors the annual budget in collaboration "
+"with Sales.\n"
+"              He defines the products and customers portfolio according to "
+"the marketing plan.\n"
+"              This mission requires strong collaboration with Technical "
+"Service and Sales."
 msgstr ""
+"Managerul de marketing definește strategia de marketing pe termen mediu și "
+"lung pentru segmentele sale de piață acoperite din lume.\n"
+"              Elaboreaza si monitorizeaza bugetul anual in colaborare cu "
+"Vanzari.\n"
+"              El definește portofoliul de produse și clienți conform "
+"planului de marketing.\n"
+"              Această misiune necesită o colaborare puternică cu Serviciul "
+"Tehnic și Vânzări."
 
 #. module: hr
 #. odoo-python
@@ -3029,13 +3118,15 @@ msgid ""
 "The fields %r you try to read is not available on the public employee "
 "profile."
 msgstr ""
+"Câmpurile %r pe care încercați să le citiți nu sunt disponibile în profilul "
+"angajatului public."
 
 #. module: hr
 #. odoo-python
 #: code:addons/hr/models/res_users.py:0
 #, python-format
 msgid "The following fields were modified by %s"
-msgstr ""
+msgstr "Următoarele câmpuri au fost modificate de către %s"
 
 #. module: hr
 #. odoo-python
@@ -3056,7 +3147,7 @@ msgstr ""
 #: code:addons/hr/models/mail_activity_plan_template.py:0
 #, python-format
 msgid "The user of %s's coach is not set."
-msgstr ""
+msgstr "Utilizatorul antrenorului %s nu este setat."
 
 #. module: hr
 #: model:res.groups,comment:hr.group_hr_user
@@ -3102,7 +3193,7 @@ msgstr ""
 #: code:addons/hr/models/mail_activity_plan_template.py:0
 #, python-format
 msgid "Those responsible types are limited to Employee plans."
-msgstr ""
+msgstr "Aceste tipuri responsabile sunt limitate la planurile pentru angajați."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__tz
@@ -3123,13 +3214,12 @@ msgstr "Pentru definire"
 #: code:addons/hr/models/hr_employee.py:0
 #, python-format
 msgid ""
-"To avoid multi company issues (losing the access to your previous contracts,"
-" leaves, ...), you should create another employee in the new company "
-"instead."
+"To avoid multi company issues (losing the access to your previous contracts, "
+"leaves, ...), you should create another employee in the new company instead."
 msgstr ""
 "Pentru a evita problemele de companie multiplă (pierderea accesului la "
-"contractele anterioare, concediile, ...), ar trebui să creați un alt angajat"
-" în noua companie."
+"contractele anterioare, concediile, ...), ar trebui să creați un alt angajat "
+"în noua companie."
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_to_define
@@ -3192,7 +3282,7 @@ msgstr "Mesaje necitite"
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.open_view_categ_form
 msgid "Use tags to categorize your Employees."
-msgstr ""
+msgstr "Folosiți etichete pentru a vă clasifica angajații."
 
 #. module: hr
 #: model:ir.model,name:hr.model_res_users
@@ -3212,7 +3302,7 @@ msgstr "Partener Utilizator"
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_job_view_kanban
 msgid "Vacancies:"
-msgstr ""
+msgstr "Locuri vacante:"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_ip_list
@@ -3236,13 +3326,13 @@ msgstr "Permis de muncă valabil pentru Belgia"
 #: code:addons/hr/static/src/components/avatar_card/avatar_card_popover_patch.xml:0
 #, python-format
 msgid "View profile"
-msgstr ""
+msgstr "Vezi profil"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__visa_expire
 #: model:ir.model.fields,field_description:hr.field_res_users__visa_expire
 msgid "Visa Expiration Date"
-msgstr ""
+msgstr "Data de expirare a vizei"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__visa_no
@@ -3262,13 +3352,21 @@ msgstr "Atenție"
 msgid ""
 "We are currently looking for someone like that to join our Consultant team."
 msgstr ""
+"În prezent, căutăm pe cineva similar să se alăture echipei noastre de "
+"consultanți."
 
 #. module: hr
 #: model_terms:hr.job,description:hr.job_developer
 msgid ""
 "We are currently looking for someone like that to join our Web team.\n"
-"                Someone who can snap out of coding and perform analysis or meet clients to explain the technical possibilities that can meet their needs."
+"                Someone who can snap out of coding and perform analysis or "
+"meet clients to explain the technical possibilities that can meet their "
+"needs."
 msgstr ""
+"În prezent, căutăm pe cineva similar să se alăture echipei noastre Web.\n"
+"                Cineva care poate să iasă din cod și să efectueze analize "
+"sau să se întâlnească cu clienții pentru a le explica posibilitățile tehnice "
+"care le pot satisface nevoile."
 
 #. module: hr
 #: model_terms:hr.job,website_description:hr.job_ceo
@@ -3300,8 +3398,8 @@ msgid ""
 "Whether the employee is a member of the active user's department or one of "
 "it's child department."
 msgstr ""
-"Indica daca angajatul este membru al departamentului activ al utilizatorului"
-" sau al unui departament copil."
+"Indica daca angajatul este membru al departamentului activ al utilizatorului "
+"sau al unui departament copil."
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__widower
@@ -3313,19 +3411,26 @@ msgstr "Vaduv"
 #: model_terms:ir.actions.act_window,help:hr.open_view_employee_list_my
 msgid ""
 "With just a quick glance on the Odoo employee screen, you\n"
-"                    can easily find all the information you need for each person;\n"
+"                    can easily find all the information you need for each "
+"person;\n"
 "                    contact data, job position, availability, etc."
 msgstr ""
+"Cu doar o privire rapidă pe ecranul angajatului Odoo, tu\n"
+"                   poți găsi cu ușurință toate informațiile de care ai "
+"nevoie pentru fiecare persoană;\n"
+"                  date de contact, poziție, disponibilitate etc."
 
 #. module: hr
 #: model_terms:ir.actions.act_window,help:hr.hr_employee_public_action
 msgid ""
 "With just a quick glance on the Odoo employee screen, you\n"
-"                can easily find all the information you need for each person;\n"
+"                can easily find all the information you need for each "
+"person;\n"
 "                contact data, job position, availability, etc."
 msgstr ""
 "Cu o privire rapidă pe ecranul angajaților Odoo, puteți\n"
-"                găsi cu ușurință toate informațiile de care aveți nevoie pentru fiecare persoană;\n"
+"                găsi cu ușurință toate informațiile de care aveți nevoie "
+"pentru fiecare persoană;\n"
 "                date de contact, poziția postului, disponibilitate etc"
 
 #. module: hr
@@ -3370,13 +3475,13 @@ msgstr "Informații lucru"
 #: model_terms:ir.ui.view,arch_db:hr.hr_work_location_form_view
 #: model_terms:ir.ui.view,arch_db:hr.hr_work_location_tree_view
 msgid "Work Location"
-msgstr "Loc muncă"
+msgstr "Locație de muncă"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.hr_work_location_action
 #: model:ir.ui.menu,name:hr.menu_hr_work_location_tree
 msgid "Work Locations"
-msgstr "Locuri muncă"
+msgstr "Locații de muncă"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__mobile_phone
@@ -3430,18 +3535,18 @@ msgstr "Program de lucru"
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_resource_calendar_view
 msgid "Working Schedules"
-msgstr ""
+msgstr "Programe de lucru"
 
 #. module: hr
 #. odoo-python
 #: code:addons/hr/models/res_users.py:0
 #, python-format
 msgid ""
-"You are only allowed to update your preferences. Please contact a HR officer"
-" to update other information."
+"You are only allowed to update your preferences. Please contact a HR officer "
+"to update other information."
 msgstr ""
-"Vi se permite doar să vă actualizați preferințele. Vă rugăm să contactați un"
-" responsabil cu resurse umane pentru a actualiza alte informații."
+"Vi se permite doar să vă actualizați preferințele. Vă rugăm să contactați un "
+"responsabil cu resurse umane pentru a actualiza alte informații."
 
 #. module: hr
 #. odoo-javascript
@@ -3467,19 +3572,48 @@ msgstr "Nu aveți acces la acest document."
 #. module: hr
 #: model_terms:hr.job,description:hr.job_trainee
 msgid ""
-"You participate to the update of our tutorial tools and pre-sales tools after the launch of a new version of Odoo. Indeed, any new version of the software brings significant improvements in terms of functionalities, ergonomics and configuration.\n"
-"You will have to become familiar with the existing tools (books, class supports, Odoo presentation’s slides, commercial tools),\n"
-"to participate to the update of those tools in order to make them appropriate for the new version of the software and, for sure,\n"
+"You participate to the update of our tutorial tools and pre-sales tools "
+"after the launch of a new version of Odoo. Indeed, any new version of the "
+"software brings significant improvements in terms of functionalities, "
+"ergonomics and configuration.\n"
+"You will have to become familiar with the existing tools (books, class "
+"supports, Odoo presentation’s slides, commercial tools),\n"
+"to participate to the update of those tools in order to make them "
+"appropriate for the new version of the software and, for sure,\n"
 "to suggest improvements in order to cover the new domains of the software.\n"
-"You join the Implementation Assistance department. This team of 3 people go with Odoo’s clients in the set up of the software. Your role will be\n"
-"to animate webinars in order to show the different functionalities of the software.\n"
+"You join the Implementation Assistance department. This team of 3 people go "
+"with Odoo’s clients in the set up of the software. Your role will be\n"
+"to animate webinars in order to show the different functionalities of the "
+"software.\n"
 "to be involved in the support of the customers and\n"
 "to answer to their questions.\n"
 "You help the support manager to set up new support services by\n"
 "being involved in the treatment of new cases,\n"
 "contributing to the set up of a new politic,\n"
-"being involved into satisfaction surveys in order to have a better knowledge of how the support given is seen by the customers."
+"being involved into satisfaction surveys in order to have a better knowledge "
+"of how the support given is seen by the customers."
 msgstr ""
+"Participați la actualizarea instrumentelor noastre tutoriale și a "
+"instrumentelor de pre-vânzare după lansarea unei noi versiuni de Odoo. Într-"
+"adevăr, orice versiune nouă a software-ului aduce îmbunătățiri semnificative "
+"în ceea ce privește funcționalitățile, ergonomia și configurația.\n"
+"Va trebui să vă familiarizați cu instrumentele existente (cărți, suporturi "
+"de clasă, diapozitive de prezentare Odoo, instrumente comerciale),\n"
+"să participați la actualizarea acelor instrumente pentru a le face adecvate "
+"pentru noua versiune a software-ului și, cu siguranță,\n"
+"să sugerați îmbunătățiri pentru a acoperi noile domenii ale software-ului.\n"
+"Vă alăturați departamentului de asistență la implementare. Această echipă de "
+"3 persoane merge cu clienții Odoo în configurarea software-ului. Rolul tău "
+"va fi\n"
+"de a anima webinarii și a arăta diferitele funcționalități ale software-"
+"ului.\n"
+"să fii implicat în sprijinul clienților și\n"
+"să răspunzi la întrebările acestora.\n"
+"Ajuți managerul de asistență să creeze noi servicii de asistență prin\n"
+"implicat în tratarea cazurilor noi,\n"
+"contribuind la constituirea unei noi politici,\n"
+"fiind implicat în sondaje de satisfacție pentru a avea o mai bună cunoaștere "
+"a modului în care suportul acordat este văzut de clienți."
 
 #. module: hr
 #. odoo-python
@@ -3491,10 +3625,28 @@ msgstr "Ar trebui să selectați cel puțin o opțiune Advanced Presence Control
 #. module: hr
 #: model_terms:hr.job,description:hr.job_cto
 msgid ""
-"You will take part in the consulting services we provide to our partners and customers: design, analysis, development, testing, project management, support/coaching. You will work autonomously as well as coordinate and supervise small distributed development teams for some projects. Optionally, you will deliver Odoo training sessions to partners and customers (8-10 people/session). You will report to the Head of Professional Services and work closely with all developers and consultants.\n"
+"You will take part in the consulting services we provide to our partners and "
+"customers: design, analysis, development, testing, project management, "
+"support/coaching. You will work autonomously as well as coordinate and "
+"supervise small distributed development teams for some projects. Optionally, "
+"you will deliver Odoo training sessions to partners and customers (8-10 "
+"people/session). You will report to the Head of Professional Services and "
+"work closely with all developers and consultants.\n"
 "\n"
-"The job is located in Grand-Rosière (1367), Belgium (between Louvain-La-Neuve and Namur)."
+"The job is located in Grand-Rosière (1367), Belgium (between Louvain-La-"
+"Neuve and Namur)."
 msgstr ""
+"Veți participa la serviciile de consultanță pe care le oferim partenerilor "
+"și clienților noștri: proiectare, analiză, dezvoltare, testare, management "
+"de proiect, suport/coaching. Veți lucra în mod autonom, precum și să "
+"coordonați și să supravegheați echipe mici de dezvoltare distribuite pentru "
+"unele proiecte. Opțional, veți oferi sesiuni de instruire Odoo partenerilor "
+"și clienților (8-10 persoane/sesiune). Veți raporta șefului serviciilor "
+"profesionale și veți lucra îndeaproape cu toți dezvoltatorii și "
+"consultanții.\n"
+"\n"
+"Postul este situat în Grand-Rosière (1367), Belgia (între Louvain-La-Neuve "
+"și Namur)."
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
@@ -3534,4 +3686,4 @@ msgstr "limitat la angajați"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee__work_permit_name
 msgid "work_permit_name"
-msgstr ""
+msgstr "work_permit_name"

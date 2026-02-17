@@ -11,13 +11,16 @@ from odoo.addons.website_hr_recruitment.controllers.main import WebsiteHrRecruit
 @odoo.tests.tagged('post_install', '-at_install')
 class TestWebsiteHrRecruitmentForm(odoo.tests.HttpCase):
     def test_tour(self):
+        department = self.env['hr.department'].create({'name': 'guru team'})
         job_guru = self.env['hr.job'].create({
             'name': 'Guru',
             'is_published': True,
+            'department_id': department.id,
         })
         job_intern = self.env['hr.job'].create({
             'name': 'Internship',
             'is_published': True,
+            'department_id': department.id,
         })
         self.start_tour(self.env['website'].get_client_action_url('/jobs'), 'model_required_field_should_have_action_name', login='admin')
 
@@ -32,14 +35,14 @@ class TestWebsiteHrRecruitmentForm(odoo.tests.HttpCase):
         guru_applicant = capt.records[0]
         self.assertEqual(guru_applicant.partner_name, 'John Smith')
         self.assertEqual(guru_applicant.email_from, 'john@smith.com')
-        self.assertEqual(guru_applicant.partner_mobile, '118.218')
+        self.assertEqual(guru_applicant.partner_phone, '118.218')
         self.assertEqual(html2plaintext(guru_applicant.description), '### [GURU] HR RECRUITMENT TEST DATA ###')
         self.assertEqual(guru_applicant.job_id, job_guru)
 
         internship_applicant = capt.records[1]
         self.assertEqual(internship_applicant.partner_name, 'Jack Doe')
         self.assertEqual(internship_applicant.email_from, 'jack@doe.com')
-        self.assertEqual(internship_applicant.partner_mobile, '118.712')
+        self.assertEqual(internship_applicant.partner_phone, '118.712')
         self.assertEqual(html2plaintext(internship_applicant.description), '### HR [INTERN] RECRUITMENT TEST DATA ###')
         self.assertEqual(internship_applicant.job_id, job_intern)
 

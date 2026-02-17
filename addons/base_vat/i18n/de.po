@@ -1,31 +1,30 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* base_vat
-# 
+#
 # Translators:
 # Wil Odoo, 2023
 # Larissa Manderfeld, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2026-02-12 18:36+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
 "Last-Translator: Larissa Manderfeld, 2024\n"
 "Language-Team: German (https://app.transifex.com/odoo/teams/41243/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_vat
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
-msgid ""
-"10XXXXXXXXY or 20XXXXXXXXY or 15XXXXXXXXY or 16XXXXXXXXY or 17XXXXXXXXY"
+msgid "10XXXXXXXXY or 20XXXXXXXXY or 15XXXXXXXXY or 16XXXXXXXXY or 17XXXXXXXXY"
 msgstr ""
 "10XXXXXXXXY oder 20XXXXXXXXY oder 15XXXXXXXXY oder 16XXXXXXXXY oder "
 "17XXXXXXXXY"
@@ -34,8 +33,22 @@ msgstr ""
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
+msgid "11111111111 (NIN) or 2222222222 (VKN)"
+msgstr ""
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
 msgid "1792060346001 or 1792060346"
 msgstr "1792060346001 oder 1792060346"
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid "3101012009"
+msgstr "3101012009"
 
 #. module: base_vat
 #. odoo-python
@@ -64,8 +77,7 @@ msgstr "AR200-5536168-2 oder 20055361682"
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid "CHE-123.456.788 TVA or CHE-123.456.788 MWST or CHE-123.456.788 IVA"
-msgstr ""
-"CHE-123.456.788 TVA oder CHE-123.456.788 MWST oder CHE-123.456.788 IVA"
+msgstr "CHE-123.456.788 TVA oder CHE-123.456.788 MWST oder CHE-123.456.788 IVA"
 
 #. module: base_vat
 #. odoo-python
@@ -92,8 +104,8 @@ msgid ""
 "Connection with the VIES server failed. The VAT number %s could not be "
 "validated."
 msgstr ""
-"Verbindung mit dem MIAS-Server fehlgeschlagen. Die USt-IdNr. %s konnte nicht"
-" validiert werden."
+"Verbindung mit dem MIAS-Server fehlgeschlagen. Die USt-IdNr. %s konnte nicht "
+"validiert werden."
 
 #. module: base_vat
 #: model:ir.model,name:base_vat.model_res_partner
@@ -123,6 +135,16 @@ msgstr ""
 "überprüft."
 
 #. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
+msgid ""
+"Example: '219999830019' (format: 12 digits, all numbers, valid check digit)"
+msgstr ""
+"Beispiel: „219999830019“ (Format: 12 Ziffern, alle Zahlen, gültige "
+"Prüfziffer)"
+
+#. module: base_vat
 #: model:ir.model,name:base_vat.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Steuerposition"
@@ -148,8 +170,8 @@ msgid ""
 "depend upon the output of the verification by the European VIES Service."
 msgstr ""
 "Wenn dieses Kontrollkästchen angekreuzt ist, wir die entsprechende "
-"Standardsteuerposition vom Ergebnis der Verifizierung durch den europäischen"
-" MIAS-Dienst abhängen."
+"Standardsteuerposition vom Ergebnis der Verifizierung durch den europäischen "
+"MIAS-Dienst abhängen."
 
 #. module: base_vat
 #: model:ir.model.fields,field_description:base_vat.field_res_partner__vies_valid
@@ -169,13 +191,6 @@ msgstr "MXGODE561231GR8 oder GODE561231GR8"
 #: model:ir.model.fields,field_description:base_vat.field_res_users__perform_vies_validation
 msgid "Perform Vies Validation"
 msgstr "MIAS-Validierung durchführen"
-
-#. module: base_vat
-#. odoo-python
-#: code:addons/base_vat/models/res_partner.py:0
-#, python-format
-msgid "TR1234567890 (VERGINO) or TR17291716060 (TCKIMLIKNO)"
-msgstr "TR1234567890 (VERGINO) oder TR17291716060 (TCKIMLIKNO)"
 
 #. module: base_vat
 #: model_terms:ir.ui.view,arch_db:base_vat.view_partner_base_vat_form
@@ -198,10 +213,12 @@ msgstr ""
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid ""
-"The %(vat_label)s number [%(wrong_vat)s] for %(record_label)s does not seem to be valid. \n"
+"The %(vat_label)s number [%(wrong_vat)s] for %(record_label)s does not seem "
+"to be valid. \n"
 "Note: the expected format is %(expected_format)s"
 msgstr ""
-"Die %(vat_label)s-Nummer [%(wrong_vat)s] für %(record_label)s scheint nicht gültig zu sein. \n"
+"Die %(vat_label)s-Nummer [%(wrong_vat)s] für %(record_label)s scheint nicht "
+"gültig zu sein. \n"
 "Notiz: das erwartete Format ist %(expected_format)s"
 
 #. module: base_vat
@@ -216,19 +233,32 @@ msgstr "Die USt-IdNr. %s konnte nicht vom MIAS-Server ausgewertet werden."
 #: code:addons/base_vat/models/account_fiscal_position.py:0
 #, python-format
 msgid ""
-"The country detected for this foreign VAT number does not match the one set "
-"on this fiscal position."
+"The country detected for this foreign VAT number does not match any of the "
+"countries composing the country group set on this fiscal position."
 msgstr ""
-"Das für diese ausländische MwSt.-Nummer ermittelte Land stimmt nicht mit dem"
-" Land überein, das in dieser Steuerposition angegeben ist."
+"Das für diese ausländische MwSt.-Nummer ermittelte Land stimmt mit keinem "
+"der Länder überein, aus denen sich die Ländergruppe für diese Steuerposition "
+"zusammensetzt."
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/account_fiscal_position.py:0
+#, python-format
+msgid ""
+"The country of the foreign VAT number could not be detected. Please assign a "
+"country to the fiscal position or set a country group"
+msgstr ""
+"Das Land der ausländischen MwSt.-Nummer konnte nicht erkannt werden. Bitte "
+"weisen Sie der Steuerposition ein Land zu oder legen Sie eine Ländergruppe "
+"fest"
 
 #. module: base_vat
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
 msgid ""
-"The request for VAT validation was not processed. VIES service has responded"
-" with the following error: %s"
+"The request for VAT validation was not processed. VIES service has responded "
+"with the following error: %s"
 msgstr ""
 "Die Anfrage zur MwSt.-Validierung wurde nicht verarbeitet. Der MIAS-Dienst "
 "hat folgenden Fehler zurückgegeben: %s"
@@ -261,6 +291,15 @@ msgstr "Durch MIAS zu prüfende MwSt."
 #. odoo-python
 #: code:addons/base_vat/models/res_partner.py:0
 #, python-format
+msgid "XXXXXXXXX [9 digits] and it should respect the Luhn algorithm checksum"
+msgstr ""
+"XXXXXXXXX [9 Ziffern] und es sollte die Prüfsumme des Luhn-Algorithmus "
+"einhalten"
+
+#. module: base_vat
+#. odoo-python
+#: code:addons/base_vat/models/res_partner.py:0
+#, python-format
 msgid "either 11 digits for CPF or 14 digits for CNPJ"
 msgstr "entweder 11 Ziffern für CPF oder 14 Ziffern für CNPJ"
 
@@ -277,3 +316,7 @@ msgstr "Steuerposition [%s]"
 #, python-format
 msgid "partner [%s]"
 msgstr "Partner [%s]"
+
+#, python-format
+#~ msgid "17291716060 (NIN) or 1729171602 (VKN)"
+#~ msgstr "17291716060 (NIN) oder 1729171602 (VKN)"

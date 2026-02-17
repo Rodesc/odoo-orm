@@ -1,23 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* website_forum
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# Thi Huong Nguyen, 2024
-# 
+# Thi Huong Nguyen, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 10:46+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Thi Huong Nguyen, 2024\n"
+"Last-Translator: Thi Huong Nguyen, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/odoo/teams/41243/vi/)\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: website_forum
@@ -29,7 +29,6 @@ msgstr "Cờ"
 
 #. module: website_forum
 #. odoo-javascript
-#: code:addons/website_forum/static/src/js/website_forum.js:0
 #: code:addons/website_forum/static/src/js/website_forum.js:0
 #, python-format
 msgid " Flagged"
@@ -144,7 +143,6 @@ msgstr "Cần có %d karma để phản đối. "
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
-#: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "%d karma required to edit a post."
 msgstr "Cần có %d karma để chỉnh sửa một bài đăng. "
@@ -152,14 +150,12 @@ msgstr "Cần có %d karma để chỉnh sửa một bài đăng. "
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
-#: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "%d karma required to flag a post."
 msgstr "Cần có %d karma để gắn cờ một bài đăng. "
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/controllers/website_forum.py:0
 #: code:addons/website_forum/controllers/website_forum.py:0
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
@@ -251,19 +247,23 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid ""
 "<b class=\"d-block \">This answer has been flagged</b>\n"
-"                            As a moderator, you can either validate or reject this answer."
+"                            As a moderator, you can either validate or "
+"reject this answer."
 msgstr ""
 "<b class=\"d-block \">Câu trả lời này đã được gắn cờ</b>\n"
-"                            Với tư cách là người kiểm duyệt, bạn có thể xác nhận hoặc từ chối câu trả lời này."
+"                            Với tư cách là người kiểm duyệt, bạn có thể xác "
+"nhận hoặc từ chối câu trả lời này."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid ""
 "<b class=\"d-block\">You have a pending post</b>\n"
-"                        Please wait for a moderator to validate your previous post to be allowed replying questions."
+"                        Please wait for a moderator to validate your "
+"previous post to be allowed replying questions."
 msgstr ""
 "<b class=\"d-block\">Bạn có bài đăng đang chờ</b>\n"
-"                        Vui lòng chờ người điều hành xác nhận bài đăng trước đó của bạn để được phép trả lời câu hỏi. "
+"                        Vui lòng chờ người điều hành xác nhận bài đăng trước "
+"đó của bạn để được phép trả lời câu hỏi. "
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -282,8 +282,8 @@ msgid ""
 "<b>Answers should not add or expand questions</b>. Instead, either edit the "
 "question or add a comment."
 msgstr ""
-"<b>Câu trả lời không nên thêm vào hoặc mở rộng câu hỏi</b>. Thay vào đó, hãy"
-" sửa câu hỏi hoặc thêm bình luận. "
+"<b>Câu trả lời không nên thêm vào hoặc mở rộng câu hỏi</b>. Thay vào đó, hãy "
+"sửa câu hỏi hoặc thêm bình luận. "
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -301,8 +301,8 @@ msgstr ""
 msgid ""
 "<b>Answers should not start debates</b> This community Q&amp;A is not a "
 "discussion group. Please avoid holding debates in your answers as they tend "
-"to dilute the essence of questions and answers. For brief discussions please"
-" use commenting facility."
+"to dilute the essence of questions and answers. For brief discussions please "
+"use commenting facility."
 msgstr ""
 "<b>Câu trả lời không nên gây tranh luận</b> Mục Hỏi&amp;Đáp cộng đồng không "
 "phải là nhóm thảo luận. Hãy tránh gây tranh luận trong câu trả lời vì như "
@@ -315,8 +315,8 @@ msgstr ""
 msgid ""
 "<b>Answers shouldn't just point to other Questions</b>. Instead add a "
 "question comment indication \"Possible duplicate of...\". However, it's ok "
-"to include links to other questions or answers providing relevant additional"
-" information."
+"to include links to other questions or answers providing relevant additional "
+"information."
 msgstr ""
 "<b> Câu trả lời không nên chỉ hướng vào các câu hỏi khác </b>. Thay vào đó "
 "hãy thêm một dấu hiệu nhận xét câu hỏi \"Có thể trùng lặp ...\". Tuy nhiên, "
@@ -327,22 +327,22 @@ msgstr ""
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"<b>Answers shouldn't just point to other questions</b>.Instead add a comment"
-" indicating <i>\"Possible duplicate of...\"</i>. However, it's fine to "
+"<b>Answers shouldn't just point to other questions</b>.Instead add a comment "
+"indicating <i>\"Possible duplicate of...\"</i>. However, it's fine to "
 "include links to other questions or answers providing relevant additional "
 "information."
 msgstr ""
 "<b> Câu trả lời không nên chỉ hướng vào các câu hỏi khác </b>. Thay vào đó "
-"hãy thêm một bình luận chỉ ra \"Có thể trùng với...\". Tuy nhiên, bạn có thể"
-" bao gồm các liên kết đến các câu hỏi hoặc câu trả lời khác cung cấp thông "
+"hãy thêm một bình luận chỉ ra \"Có thể trùng với...\". Tuy nhiên, bạn có thể "
+"bao gồm các liên kết đến các câu hỏi hoặc câu trả lời khác cung cấp thông "
 "tin bổ sung có liên quan."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"<b>Answers shouldn't just provide a link a solution</b>. Instead provide the"
-" solution description text in your answer, even if it's just a copy/paste. "
+"<b>Answers shouldn't just provide a link a solution</b>. Instead provide the "
+"solution description text in your answer, even if it's just a copy/paste. "
 "Links are welcome, but should be complementary to answer, referring sources "
 "or additional reading."
 msgstr ""
@@ -356,8 +356,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
 "<b>Before you ask - please make sure to search for a similar question.</b> "
-"You can search questions by their title or tags. It’s also OK to answer your"
-" own question."
+"You can search questions by their title or tags. It’s also OK to answer your "
+"own question."
 msgstr ""
 "<b>Trước khi hỏi - hãy bảo đảm đã tìm kiếm câu hỏi tương tự.</b> Bạn có thể "
 "tìm kiếm câu hỏi dựa vào tiêu đề hoặc thẻ. Bạn cũng có thể tự trả lời câu "
@@ -367,8 +367,8 @@ msgstr ""
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"<b>Please avoid asking questions that are too subjective and "
-"argumentative</b> or not relevant to this community."
+"<b>Please avoid asking questions that are too subjective and argumentative</"
+"b> or not relevant to this community."
 msgstr ""
 "<b>Hãy tránh hỏi câu hỏi quá chủ quan và gây nhiều tranh cãi</b> hoặc không "
 "liên quan tới cộng đồng này. "
@@ -376,15 +376,22 @@ msgstr ""
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_answer
 msgid ""
-"<b>Please try to give a substantial answer.</b> If you wanted to comment on the question or answer, just\n"
-"            <b>use the commenting tool.</b> Please remember that you can always <b>revise your answers</b>\n"
-"            - no need to answer the same question twice. Also, please <b>don't forget to vote</b>\n"
+"<b>Please try to give a substantial answer.</b> If you wanted to comment on "
+"the question or answer, just\n"
+"            <b>use the commenting tool.</b> Please remember that you can "
+"always <b>revise your answers</b>\n"
+"            - no need to answer the same question twice. Also, please "
+"<b>don't forget to vote</b>\n"
 "            - it really helps to select the best questions and answers!"
 msgstr ""
-"<b>Cố gắng đưa ra câu trả lời đầy đủ.</b> Nếu bạn muốn bình luận về câu hỏi hoặc câu trả lời, hãy \n"
-"            <b>sử dụng công cụ bình luận.</b> Hãy nhớ rằng bạn luôn có thể <b>chỉnh sửa câu trả lời</b>\n"
-"            - không cần trả lời một câu hỏi hai lần. Và vui lòng <b>bình chọn</b>\n"
-"            - đây là cách hiệu quả để chọn câu hỏi và câu trả lời có ích nhất!"
+"<b>Cố gắng đưa ra câu trả lời đầy đủ.</b> Nếu bạn muốn bình luận về câu hỏi "
+"hoặc câu trả lời, hãy \n"
+"            <b>sử dụng công cụ bình luận.</b> Hãy nhớ rằng bạn luôn có thể "
+"<b>chỉnh sửa câu trả lời</b>\n"
+"            - không cần trả lời một câu hỏi hai lần. Và vui lòng <b>bình "
+"chọn</b>\n"
+"            - đây là cách hiệu quả để chọn câu hỏi và câu trả lời có ích "
+"nhất!"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.faq_karma
@@ -401,10 +408,12 @@ msgstr "<b>Bạn đã có một bài đăng đang chờ.</b><br/>"
 #: model_terms:ir.ui.view,arch_db:website_forum.contact
 msgid ""
 "<b>|</b>\n"
-"                    <span class=\"fa fa-trophy o-text-gold ms-2\" role=\"img\" aria-label=\"Gold badge\" title=\"Gold badge\"/>"
+"                    <span class=\"fa fa-trophy o-text-gold ms-2\" "
+"role=\"img\" aria-label=\"Gold badge\" title=\"Gold badge\"/>"
 msgstr ""
 "<b>|</b>\n"
-"                    <span class=\"fa fa-trophy o-text-gold ms-2\" role=\"img\" aria-label=\"Huy hiệu vàng\" title=\"Huy hiệu vàng\"/>"
+"                    <span class=\"fa fa-trophy o-text-gold ms-2\" "
+"role=\"img\" aria-label=\"Huy hiệu vàng\" title=\"Huy hiệu vàng\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -465,7 +474,8 @@ msgstr "<i class=\"fa fa-check fa-fw me-1\"/>Hãy kiểm tra chính tả và th�
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
-msgid "<i class=\"fa fa-check fa-fw me-1\"/>Try searching for one or two words."
+msgid ""
+"<i class=\"fa fa-check fa-fw me-1\"/>Try searching for one or two words."
 msgstr "<i class=\"fa fa-check fa-fw me-1\"/>Hãy thử tìm kiếm một hoặc hai từ."
 
 #. module: website_forum
@@ -481,7 +491,8 @@ msgstr "<i class=\"fa fa-check\"/> Chấp nhận"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.edit_post
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
-msgid "<i class=\"fa fa-check\"/> How to configure TPS and TVQ's canadian taxes?"
+msgid ""
+"<i class=\"fa fa-check\"/> How to configure TPS and TVQ's canadian taxes?"
 msgstr ""
 "<i class=\"fa fa-check\"/> Cách định cấu hình thuế Canada của TPS và TVQ? "
 
@@ -544,10 +555,12 @@ msgstr "<i class=\"fa fa-lightbulb-o\"/> Mẹo: hãy cân nhắc thêm một ví
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid ""
 "<i class=\"fa fa-pencil\"/>\n"
-"                                Edit<span class=\"d-none d-lg-inline\"> your answer</span>"
+"                                Edit<span class=\"d-none d-lg-inline\"> your "
+"answer</span>"
 msgstr ""
 "<i class=\"fa fa-pencil\"/>\n"
-"                                Sửa<span class=\"d-none d-lg-inline\"> câu trả lời</span>"
+"                                Sửa<span class=\"d-none d-lg-inline\"> câu "
+"trả lời</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.display_post
@@ -590,8 +603,8 @@ msgstr ""
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid ""
-"<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Positive"
-" votes\" title=\"Positive votes\"/>"
+"<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Positive "
+"votes\" title=\"Positive votes\"/>"
 msgstr ""
 "<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Bình "
 "chọn ủng hộ\" title=\"Bình chọn ủng hộ\"/>"
@@ -608,8 +621,8 @@ msgid ""
 "<i class=\"fa fa-times\"/> Good morning to all! Please, can someone help "
 "solve my tax computation problem in Canada? Thanks!"
 msgstr ""
-"<i class=\"fa fa-times\"/> Xin chào mọi người! Có ai giúp tôi giải quyết vấn"
-" đề tính thuế ở Canada không? Cảm ơn nhiều!"
+"<i class=\"fa fa-times\"/> Xin chào mọi người! Có ai giúp tôi giải quyết vấn "
+"đề tính thuế ở Canada không? Cảm ơn nhiều!"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.show_flag_validator
@@ -647,8 +660,8 @@ msgid ""
 "<i class=\"oi oi-arrow-right display-inline-block\"/> Return to questions "
 "list"
 msgstr ""
-"<i class=\"oi oi-arrow-right display-inline-block\"/> Quay lại danh sách câu"
-" hỏi"
+"<i class=\"oi oi-arrow-right display-inline-block\"/> Quay lại danh sách câu "
+"hỏi"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_sub_nav
@@ -792,7 +805,7 @@ msgstr "Truy cập bị từ chối"
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__message_needaction
 #: model:ir.model.fields,field_description:website_forum.field_forum_tag__message_needaction
 msgid "Action Needed"
-msgstr "Hành động cần thiết"
+msgstr "Tác vụ cần thiết"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__active
@@ -1099,7 +1112,6 @@ msgstr "Giá trị \"tag_char\" \"%(tag_char)s\" không hợp lệ"
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/controllers/website_forum.py:0
 #: code:addons/website_forum/controllers/website_forum.py:0
 #, python-format
 msgid "Bad Request"
@@ -1726,9 +1738,9 @@ msgid ""
 "Field to keep track of a post's last activity. Updated whenever it is "
 "replied to, or when a comment is added on the post or one of its replies."
 msgstr ""
-"Trường để theo dõi hoạt động cuối cùng của bài viết. Cập nhật bất cứ khi nào"
-" bài viết được trả lời hay khi một bình luận được thêm vào bài viết hoặc một"
-" trong những câu trả lời của bài viết đó."
+"Trường để theo dõi hoạt động cuối cùng của bài viết. Cập nhật bất cứ khi nào "
+"bài viết được trả lời hay khi một bình luận được thêm vào bài viết hoặc một "
+"trong những câu trả lời của bài viết đó."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
@@ -1820,14 +1832,13 @@ msgid ""
 msgstr ""
 "Ví dụ, nếu bạn hỏi một câu hỏi thú vị hoặc đưa ra một câu trả lời hữu ích, "
 "nội dung của bạn sẽ được ủng hộ. Trái lại, câu trả lời gây hiểu lầm sẽ bị "
-"phản đối. Mỗi phiếu ủng hộ sẽ mang lại 10 điểm, và mỗi phiếu phản đối sẽ trừ"
-" đi 10 điểm. Giới hạn điểm có thể tích lũy cho 1 câu hỏi hoặc câu trả lời "
-"mỗi ngày là 200 điểm. Bảng phía cuối giải thích yêu cầu điểm danh tiếng cho "
-"mỗi loại nhiệm vụ kiểm duyệt. "
+"phản đối. Mỗi phiếu ủng hộ sẽ mang lại 10 điểm, và mỗi phiếu phản đối sẽ trừ "
+"đi 10 điểm. Giới hạn điểm có thể tích lũy cho 1 câu hỏi hoặc câu trả lời mỗi "
+"ngày là 200 điểm. Bảng phía cuối giải thích yêu cầu điểm danh tiếng cho mỗi "
+"loại nhiệm vụ kiểm duyệt. "
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/models/website.py:0
 #: code:addons/website_forum/models/website.py:0
 #: model:ir.actions.act_url,name:website_forum.action_open_forum
 #: model:ir.model,name:website_forum.model_forum_forum
@@ -2074,7 +2085,8 @@ msgid ""
 "            them."
 msgstr ""
 "Nếu bạn đóng bài đăng này, nó sẽ bị ẩn cho hầu hết người dùng. Chỉ có\n"
-"             Người dùng có karma cao có thể thấy các bài viết đã đóng để kiểm duyệt\n"
+"             Người dùng có karma cao có thể thấy các bài viết đã đóng để "
+"kiểm duyệt\n"
 "             chúng"
 
 #. module: website_forum
@@ -2082,16 +2094,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
 "If you fit in one of these example or if your motivation for asking the "
-"question is “I would like to participate in a discussion about ______”, then"
-" you should not be asking here but on our mailing lists. However, if your "
+"question is “I would like to participate in a discussion about ______”, then "
+"you should not be asking here but on our mailing lists. However, if your "
 "motivation is “I would like others to explain ______ to me”, then you are "
 "probably OK."
 msgstr ""
 "Nếu câu hỏi của bạn thuộc một trong những ví dụ trên hoặc mục đích của bạn "
 "là hỏi câu như “Tôi muốn tham gia thảo luận về ______”, thì bạn không nên "
-"hỏi ở đây mà nên gửi vào danh sách gửi thư. Tuy nhiên, nếu mục đích của bạn "
-"là “Tôi muốn mọi người giải thích______ cho tôi” thì bạn có thể hỏi tại đây."
-" "
+"hỏi ở đây mà nên gửi vào danh sách liên hệ. Tuy nhiên, nếu mục đích của bạn "
+"là “Tôi muốn mọi người giải thích______ cho tôi” thì bạn có thể hỏi tại đây. "
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.mark_as_offensive
@@ -2100,8 +2111,10 @@ msgid ""
 "            users having a high karma can see offensive posts to moderate\n"
 "            them."
 msgstr ""
-"Nếu bạn đánh dấu bài viết này là phản cảm, nó sẽ bị ẩn với hầu hết người dùng. Chỉ\n"
-"            người dùng có karma cao có thể thấy các bài viết phản cảm để kiểm duyệt\n"
+"Nếu bạn đánh dấu bài viết này là phản cảm, nó sẽ bị ẩn với hầu hết người "
+"dùng. Chỉ\n"
+"            người dùng có karma cao có thể thấy các bài viết phản cảm để "
+"kiểm duyệt\n"
 "            chúng."
 
 #. module: website_forum
@@ -2490,7 +2503,7 @@ msgstr "Câu hỏi đáng chú ý"
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__message_needaction_counter
 #: model:ir.model.fields,field_description:website_forum.field_forum_tag__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Số lượng hành động"
+msgstr "Số lượng tác vụ"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_tag__posts_count
@@ -2592,8 +2605,7 @@ msgstr "Nội dung đơn giản"
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
 msgid ""
-"Please wait for a moderator to validate your previous post before "
-"continuing."
+"Please wait for a moderator to validate your previous post before continuing."
 msgstr ""
 "Hãy chờ người điều hành xác nhận bài đăng trước của bạn trước khi tiếp tục. "
 
@@ -2724,11 +2736,13 @@ msgstr "Public"
 msgid ""
 "Public: Forum is public\n"
 "Signed In: Forum is visible for signed in users\n"
-"Some users: Forum and their content are hidden for non members of selected group"
+"Some users: Forum and their content are hidden for non members of selected "
+"group"
 msgstr ""
 "Công khai: Diễn đàn công khai\n"
 "Đăng nhập: Diễn đàn chỉ hiển thị cho người đã đăng nhập\n"
-"Một số người dùng: Diễn đàn và nội dung chỉ hiển thị cho người không phải thành viên của nhóm được chọn "
+"Một số người dùng: Diễn đàn và nội dung chỉ hiển thị cho người không phải "
+"thành viên của nhóm được chọn "
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_25
@@ -2868,7 +2882,6 @@ msgstr "Đánh giá"
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/models/forum_post.py:0
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Re: %s"
@@ -3072,17 +3085,17 @@ msgid ""
 "Share and discuss the best content and new marketing ideas, build your "
 "professional profile and become a better marketer together."
 msgstr ""
-"Chia sẻ và thảo luận về nội dung hấp dẫn nhất cũng như các ý tưởng marketing"
-" mới, tạo dựng hồ sơ chuyên nghiệp của bạn và cùng nhau trở thành chuyên "
-"viên marketing tài giỏi hơn."
+"Chia sẻ và thảo luận về nội dung hấp dẫn nhất cũng như các ý tưởng marketing "
+"mới, tạo dựng hồ sơ chuyên nghiệp của bạn và cùng nhau trở thành chuyên viên "
+"marketing tài giỏi hơn."
 
 #. module: website_forum
 #. odoo-javascript
 #: code:addons/website_forum/static/src/xml/public_templates.xml:0
 #, python-format
 msgid ""
-"Share this content to increase your chances to be featured on the front page"
-" and attract more visitors."
+"Share this content to increase your chances to be featured on the front page "
+"and attract more visitors."
 msgstr ""
 "Chia sẻ nội dung này để tăng cơ hội được xuất hiện trên trang nhất và thu "
 "hút nhiều khách truy cập hơn."
@@ -3179,8 +3192,7 @@ msgstr "Rất tiếc, chúng tôi không tìm thấy kết quả nào"
 #, python-format
 msgid "Sorry, you cannot select your own posts as best answer"
 msgstr ""
-"Rất tiếc, bạn không thể chọn bài viết của chính mình làm câu trả lời hay "
-"nhất"
+"Rất tiếc, bạn không thể chọn bài viết của chính mình làm câu trả lời hay nhất"
 
 #. module: website_forum
 #. odoo-javascript
@@ -3307,8 +3319,8 @@ msgid ""
 "The goal of this site is create a relevant knowledge base that would answer "
 "questions related to Odoo."
 msgstr ""
-"Mục tiêu của trang này là tạo cơ sở kiến thức phù hợp có thể trả lời các câu"
-" hỏi liên quan tới Odoo. "
+"Mục tiêu của trang này là tạo cơ sở kiến thức phù hợp có thể trả lời các câu "
+"hỏi liên quan tới Odoo. "
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -3340,15 +3352,15 @@ msgstr "Không có thẻ nào khớp với tìm kiếm đã chọn."
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 #: model_terms:ir.ui.view,arch_db:website_forum.faq_karma
 msgid ""
-"Therefore questions and answers can be edited like wiki pages by experienced"
-" users of this site in order to improve the overall quality of the knowledge"
-" base content. Such privileges are granted based on user karma level: you "
+"Therefore questions and answers can be edited like wiki pages by experienced "
+"users of this site in order to improve the overall quality of the knowledge "
+"base content. Such privileges are granted based on user karma level: you "
 "will be able to do the same once your karma gets high enough."
 msgstr ""
 "Do vậy những người dùng kinh nghiệm của trang đều có thể chỉnh sửa câu hỏi "
-"và câu trả lời giống như các trang wiki để tăng chất lượng nói chung của nội"
-" dung kiến thức cơ sở. Những đặc quyền này được cấp theo mức điểm karma: bạn"
-" sẽ có quyền này khi có đủ điểm karma. "
+"và câu trả lời giống như các trang wiki để tăng chất lượng nói chung của nội "
+"dung kiến thức cơ sở. Những đặc quyền này được cấp theo mức điểm karma: bạn "
+"sẽ có quyền này khi có đủ điểm karma. "
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -3357,8 +3369,8 @@ msgid ""
 "This community is for professional and enthusiast users, partners and "
 "programmers. You can ask questions about:"
 msgstr ""
-"Cộng đồng này được xây dựng dành cho người dùng nhiệt tình và chuyên nghiệp,"
-" đối tác và lập trình viên. Bạn có thể hỏi các câu hỏi về: "
+"Cộng đồng này được xây dựng dành cho người dùng nhiệt tình và chuyên nghiệp, "
+"đối tác và lập trình viên. Bạn có thể hỏi các câu hỏi về: "
 
 #. module: website_forum
 #: model:forum.forum,description:website_forum.forum_help
@@ -3369,8 +3381,8 @@ msgid ""
 msgstr ""
 "Cộng đồng này dành cho các chuyên gia và những người đam mê các sản phẩm và "
 "dịch vụ của chúng tôi. Chia sẻ và thảo luận về nội dung tốt nhất và ý tưởng "
-"tiếp thị mới, xây dựng hồ sơ chuyên nghiệp của bạn và trở thành một nhà tiếp"
-" thị tốt hơn cùng nhau."
+"tiếp thị mới, xây dựng hồ sơ chuyên nghiệp của bạn và trở thành một nhà tiếp "
+"thị tốt hơn cùng nhau."
 
 #. module: website_forum
 #: model:ir.model.fields,help:website_forum.field_forum_forum__relevancy_post_vote
@@ -3380,8 +3392,8 @@ msgid ""
 "the post creation"
 msgstr ""
 "Công thức này được sử dụng để sắp xếp theo mức độ liên quan. Biến số 'bình "
-"chọn' biểu thị số lượt bình chọn cho một bài viết và 'ngày' là số ngày kể từ"
-" khi tạo bài viết"
+"chọn' biểu thị số lượt bình chọn cho một bài viết và 'ngày' là số ngày kể từ "
+"khi tạo bài viết"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.header
@@ -3411,10 +3423,12 @@ msgstr "Bài viết này đang chờ xác thực"
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid ""
 "This post is currently awaiting moderation and is not published yet.<br/>\n"
-"                    As a moderator you can either <b>Accept</b> or <b>Reject</b> this post."
+"                    As a moderator you can either <b>Accept</b> or "
+"<b>Reject</b> this post."
 msgstr ""
 "Bài viết này vẫn đang chờ kiểm duyệt và chưa được đăng.<br/>\n"
-"                    Là người kiểm duyệt, bạn có thể <b>Chấp nhận</b> hoặc <b>Từ chối</b> bài viết."
+"                    Là người kiểm duyệt, bạn có thể <b>Chấp nhận</b> hoặc "
+"<b>Từ chối</b> bài viết."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -3516,7 +3530,7 @@ msgstr "Tổng lượt bình chọn"
 #. module: website_forum
 #: model:ir.model,name:website_forum.model_gamification_karma_tracking
 msgid "Track Karma Changes"
-msgstr "Track Karma Changes"
+msgstr "Theo dõi thay đổi karma"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
@@ -3784,7 +3798,7 @@ msgid ""
 "are gradually assigned to the users based on those points."
 msgstr ""
 "Khi một câu hỏi hay câu trả lời được ủng hộ, người dùng đã đăng câu hỏi/câu "
-"trả lời này sẽ nhận được điểm, gọi là \"điểm karma\". Đây là thước đo tương "
+"trả lời này sẽ nhận được điểm, gọi là \"điểm karma\". Đây là chỉ số tương "
 "đối về độ tin cậy của cộng đồng đối với người dùng. Các nhiệm vụ kiểm duyệt "
 "khác nhau sẽ dần được giao cho người dùng dựa vào điểm số này. "
 
@@ -3877,12 +3891,12 @@ msgstr "Bạn phải có đủ điểm karma để sửa thẻ. "
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"You should only ask practical, answerable questions based on actual problems"
-" that you face. Chatty, open-ended questions diminish the usefulness of this"
-" site and push other questions off the front page."
+"You should only ask practical, answerable questions based on actual problems "
+"that you face. Chatty, open-ended questions diminish the usefulness of this "
+"site and push other questions off the front page."
 msgstr ""
-"Bạn chỉ nên hỏi những câu hỏi thực tế và có thể trả lời được dựa trên vấn đề"
-" bạn thực sự gặp phải. Các câu hỏi kiểu trò chuyện hay mở làm giảm tính hữu "
+"Bạn chỉ nên hỏi những câu hỏi thực tế và có thể trả lời được dựa trên vấn đề "
+"bạn thực sự gặp phải. Các câu hỏi kiểu trò chuyện hay mở làm giảm tính hữu "
 "ích của trang này và đẩy các câu hỏi khác khỏi trang đầu. "
 
 #. module: website_forum
@@ -4093,7 +4107,7 @@ msgstr ""
 #: code:addons/website_forum/static/src/js/website_forum.js:0
 #, python-format
 msgid "karma is required to perform this action. "
-msgstr "karma cần phải có để thực hiện hành động này."
+msgstr "karma cần phải có để thực hiện tác vụ này."
 
 #. module: website_forum
 #. odoo-javascript
@@ -4215,8 +4229,7 @@ msgstr ""
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid "what's the best way to use Odoo for a specific business need,"
-msgstr ""
-"cách tốt nhất để sử dụng Odoo để phù hợp với nhu cầu của doanh nghiệp,"
+msgstr "cách tốt nhất để sử dụng Odoo để phù hợp với nhu cầu của doanh nghiệp,"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.author_box
@@ -4230,13 +4243,13 @@ msgid ""
 "your answer is provided along with the question, and you expect more "
 "answers: “I use ______ for ______, what do you use?”"
 msgstr ""
-"câu trả lời của bạn được cung cấp cùng với câu hỏi và bạn mong đợi nhiều câu"
-" trả lời hơn: Tôi sử dụng ______ cho ______, còn bạn?"
+"câu trả lời của bạn được cung cấp cùng với câu hỏi và bạn mong đợi nhiều câu "
+"trả lời hơn: Tôi sử dụng ______ cho ______, còn bạn?"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.faq_karma
 msgid "your biography can be seen as tooltip"
-msgstr "tiểu sử của bạn sẽ có thể xem ở tooltip"
+msgstr "tiểu sử của bạn sẽ có thể xem ở chú thích"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.follow

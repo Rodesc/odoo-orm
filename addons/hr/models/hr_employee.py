@@ -238,6 +238,11 @@ class HrEmployeePrivate(models.Model):
         self.flush_recordset(field_names)
         public = self.env['hr.employee.public'].browse(self._ids)
         public.fetch(field_names)
+        # make sure all related fields from employee are in cache
+        for field_name in field_names:
+            field = self.env['hr.employee.public']._fields[field_name]
+            if field.related and field.related_field.model_name == 'hr.employee':
+                public.mapped(field_name)
         self._copy_cache_from(public, field_names)
 
     def _check_private_fields(self, field_names):
@@ -318,7 +323,7 @@ class HrEmployeePrivate(models.Model):
         else:
             self_sudo = self
 
-        if self_sudo.check_access_rights('read', raise_exception=False):
+        if self_sudo.user_has_groups('hr.group_hr_user'):
             return super(HrEmployeePrivate, self).get_formview_id(access_uid=access_uid)
         # Hardcode the form view for public employee
         return self.env.ref('hr.hr_employee_public_view_form').id
@@ -331,7 +336,7 @@ class HrEmployeePrivate(models.Model):
         else:
             self_sudo = self
 
-        if not self_sudo.check_access_rights('read', raise_exception=False):
+        if not self_sudo.user_has_groups('hr.group_hr_user'):
             res['res_model'] = 'hr.employee.public'
 
         return res
@@ -359,9 +364,20 @@ class HrEmployeePrivate(models.Model):
         if self.resource_calendar_id and not self.tz:
             self.tz = self.resource_calendar_id.tz
 
+    def _remove_work_contact_id(self, user, employee_company):
+        """ Remove work_contact_id for previous employee if the user is assigned to a new employee """
+        employee_company = employee_company or self.company_id.id
+        # For employees with a user_id, the constraint (user can't be linked to multiple employees) is triggered
+        old_partner_employee_ids = user.partner_id.employee_ids.filtered(lambda e:
+            not e.user_id
+            and e.company_id.id == employee_company
+            and e != self
+        )
+        old_partner_employee_ids.work_contact_id = None
+
     def _sync_user(self, user, employee_has_image=False):
         vals = dict(
-            work_contact_id=user.partner_id.id,
+            work_contact_id=user.partner_id.id if user else self.work_contact_id.id,
             user_id=user.id,
         )
         if not employee_has_image:
@@ -390,11 +406,13 @@ class HrEmployeePrivate(models.Model):
                 user = self.env['res.users'].browse(vals['user_id'])
                 vals.update(self._sync_user(user, bool(vals.get('image_1920'))))
                 vals['name'] = vals.get('name', user.name)
+                self._remove_work_contact_id(user, vals.get('company_id'))
         employees = super().create(vals_list)
         # Sudo in case HR officer doesn't have the Contact Creation group
         employees.filtered(lambda e: not e.work_contact_id).sudo()._create_work_contacts()
         for employee_sudo in employees.sudo():
-            if not employee_sudo.image_1920:
+            # creating 'svg/xml' attachments requires specific rights
+            if not employee_sudo.image_1920 and self.env['ir.ui.view'].sudo(False).check_access_rights('write', raise_exception=False):
                 employee_sudo.image_1920 = employee_sudo._avatar_generate_svg()
                 employee_sudo.work_contact_id.image_1920 = employee_sudo.image_1920
         if self.env.context.get('salary_simulation'):
@@ -434,10 +452,11 @@ class HrEmployeePrivate(models.Model):
             self.message_unsubscribe(self.work_contact_id.ids)
             if vals['work_contact_id']:
                 self._message_subscribe([vals['work_contact_id']])
-        if 'user_id' in vals:
+        if vals.get('user_id'):
             # Update the profile pictures with user, except if provided
-            vals.update(self._sync_user(self.env['res.users'].browse(vals['user_id']),
-                                        (bool(all(emp.image_1920 for emp in self)))))
+            user = self.env['res.users'].browse(vals['user_id'])
+            vals.update(self._sync_user(user, (bool(all(emp.image_1920 for emp in self)))))
+            self._remove_work_contact_id(user, vals.get('company_id'))
         if 'work_permit_expiration_date' in vals:
             vals['work_permit_scheduled_activity'] = False
         res = super(HrEmployeePrivate, self).write(vals)
@@ -448,9 +467,10 @@ class HrEmployeePrivate(models.Model):
                 ('subscription_department_ids', 'in', department_id)
             ])._subscribe_users_automatically()
         if vals.get('departure_description'):
-            self.message_post(body=_(
-                'Additional Information: \n %(description)s',
-                description=vals.get('departure_description')))
+            for employee in self:
+                employee.message_post(body=_(
+                    'Additional Information: \n %(description)s',
+                    description=vals.get('departure_description')))
         return res
 
     def unlink(self):
@@ -479,7 +499,7 @@ class HrEmployeePrivate(models.Model):
             employee_fields_to_empty = self._get_employee_m2o_to_empty_on_archived_employees()
             user_fields_to_empty = self._get_user_m2o_to_empty_on_archived_employees()
             employee_domain = [[(field, 'in', archived_employees.ids)] for field in employee_fields_to_empty]
-            user_domain = [[(field, 'in', archived_employees.user_id.ids) for field in user_fields_to_empty]]
+            user_domain = [[(field, 'in', archived_employees.user_id.ids)] for field in user_fields_to_empty]
             employees = self.env['hr.employee'].search(expression.OR(employee_domain + user_domain))
             for employee in employees:
                 for field in employee_fields_to_empty:
@@ -528,6 +548,14 @@ class HrEmployeePrivate(models.Model):
         # Returns a dict {employee_id: tz}
         return {emp.id: emp._get_tz() for emp in self}
 
+    def _employee_attendance_intervals(self, start, stop, lunch=False):
+        self.ensure_one()
+        calendar = self.resource_calendar_id or self.company_id.resource_calendar_id
+        if not lunch:
+            return self._get_expected_attendances(start, stop)
+        else:
+            return calendar._attendance_intervals_batch(start, stop, self.resource_id, lunch=True)[self.resource_id.id]
+
     def _get_expected_attendances(self, date_from, date_to):
         self.ensure_one()
         employee_timezone = timezone(self.tz) if self.tz else None
@@ -537,8 +565,9 @@ class HrEmployeePrivate(models.Model):
                                 date_to,
                                 tz=employee_timezone,
                                 resources=self.resource_id,
+                                compute_leaves=True,
                                 domain=[('company_id', 'in', [False, self.company_id.id])])[self.resource_id.id]
-        return calendar._get_attendance_intervals_days_data(calendar_intervals)
+        return calendar_intervals
 
     def _get_calendar_attendances(self, date_from, date_to):
         self.ensure_one()

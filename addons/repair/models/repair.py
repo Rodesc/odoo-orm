@@ -82,7 +82,6 @@ class Repair(models.Model):
     product_uom_category_id = fields.Many2one(related='product_id.uom_id.category_id')
     lot_id = fields.Many2one(
         'stock.lot', 'Lot/Serial',
-        default=False,
         compute="compute_lot_id", store=True,
         domain="[('product_id','=', product_id), ('company_id', '=', company_id)]", check_company=True,
         help="Products repaired are all belonging to this lot")
@@ -192,7 +191,7 @@ class Repair(models.Model):
             if (repair.product_id and repair.lot_id and repair.lot_id.product_id != repair.product_id) or not repair.product_id:
                 repair.lot_id = False
 
-    @api.depends('user_id', 'company_id')
+    @api.depends('company_id')
     def _compute_picking_type_id(self):
         picking_type_by_company = self._get_picking_type()
         for ro in self:
@@ -285,11 +284,23 @@ class Repair(models.Model):
                 'warning': {'title': _("Warning"), 'message': _("Note that the warehouses of the return and repair locations don't match!")},
             }
 
+    @api.model
+    def default_get(self, fields_list):
+        # Adds the picking_id if it comes from a return. Avoids having a default_picking_id pollute the context for further move creation.
+        res = super().default_get(fields_list)
+        if 'picking_id' not in res and 'picking_id' in fields_list and 'default_repair_picking_id' in self.env.context:
+            res['picking_id'] = self.env.context.get('default_repair_picking_id')
+        if 'lot_id' not in res and 'lot_id' in fields_list and 'default_repair_lot_id' in self.env.context:
+            res['lot_id'] = self.env.context.get('default_repair_lot_id')
+        return res
+
     @api.model_create_multi
     def create(self, vals_list):
         # We generate a standard reference
         for vals in vals_list:
-            picking_type = self.env['stock.picking.type'].browse(vals.get('picking_type_id', self.default_get('picking_type_id')))
+            picking_type = self.env['stock.picking.type'].browse(
+                vals.get('picking_type_id', self.default_get(['picking_type_id'])['picking_type_id'])
+            )
             if 'picking_type_id' not in vals:
                 vals['picking_type_id'] = picking_type.id
             if not vals.get('name', False) or vals['name'] == 'New':
@@ -320,7 +331,7 @@ class Repair(models.Model):
 
     @api.ondelete(at_uninstall=False)
     def _unlink_except_confirmed(self):
-        repairs_to_cancel = self.filtered(lambda ro: ro.state not in ('draft', 'cancel'))
+        repairs_to_cancel = self.filtered(lambda ro: ro.state != 'cancel')
         repairs_to_cancel.action_repair_cancel()
 
     def action_assign(self):
@@ -372,9 +383,6 @@ class Repair(models.Model):
         Writes repair order state to 'Repaired'.
         @return: True
         """
-        # Clean the context to get rid of residual default_* keys that could cause issues
-        # during the creation of stock.move.
-        self = self.with_context(clean_context(self._context))
 
         precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
         product_move_vals = []
@@ -416,6 +424,7 @@ class Repair(models.Model):
                 'location_id': repair.location_id.id,
                 'location_dest_id': repair.location_id.id,
                 'picked': True,
+                'picking_id': False,
                 'move_line_ids': [(0, 0, {
                     'product_id': repair.product_id.id,
                     'lot_id': repair.lot_id.id,
@@ -442,10 +451,6 @@ class Repair(models.Model):
                 repair.move_id = move_id
         all_moves = self.move_ids + product_moves
         all_moves._action_done(cancel_backorder=True)
-
-        for sale_line in self.move_ids.sale_line_id:
-            price_unit = sale_line.price_unit
-            sale_line.write({'product_uom_qty': sale_line.qty_delivered, 'price_unit': price_unit})
 
         self.state = 'done'
         return True

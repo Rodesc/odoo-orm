@@ -27,7 +27,7 @@ class AsyncHTTPHandler(logging.Handler):
     be handle in future flushes"""
     _FLUSH_INTERVAL = 0.5
     """How much seconds it will sleep before checking for new logs to send"""
-    _REQUEST_TIMEOUT = 0.5
+    _REQUEST_TIMEOUT = 10
     """Amount of seconds to wait per log to send before timeout"""
     _DELAY_BEFORE_NO_SERVER_LOG = 5 * 60  # 5 minutes
     """Minimum delay in seconds before we log a server disconnection.
@@ -65,7 +65,7 @@ class AsyncHTTPHandler(logging.Handler):
 
     def _flush_logs(self, odoo_session):
         def convert_to_byte(s):
-            return bytes(s, encoding="ascii") + b'<log/>\n'
+            return bytes(s, encoding="utf-8") + b'<log/>\n'
 
         def convert_server_line(log_level, line_formatted):
             return convert_to_byte(f"{log_level},{line_formatted}")
@@ -105,8 +105,8 @@ class AsyncHTTPHandler(logging.Handler):
             if not self._next_disconnection_time or now >= self._next_disconnection_time:
                 _logger.info("Connection with the server to send the logs failed. It is likely down: %s", request_errors)
                 self._next_disconnection_time = now + self._DELAY_BEFORE_NO_SERVER_LOG
-        except Exception as _:
-            _logger.exception('Unexpected error happened while sending logs to server')
+        except Exception:  # noqa: BLE001
+            _logger.error('Unexpected error happened while sending logs to server')
 
     def emit(self, record):
         # This is important that this method is as fast as possible.

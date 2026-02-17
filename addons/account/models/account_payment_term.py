@@ -66,7 +66,16 @@ class AccountPaymentTerm(models.Model):
                 discount_amount_currency = (total_amount - untaxed_amount) * percentage
             else:
                 discount_amount_currency = total_amount * percentage
-            return self.currency_id.round(total_amount - discount_amount_currency)
+            amount_due = self.currency_id.round(total_amount - discount_amount_currency)
+            if self.env.context.get('active_model') == 'account.move' and (active_id := self.env.context.get('active_id')):
+                move = self.env['account.move'].browse(active_id)
+                cash_rounding = move.invoice_cash_rounding_id
+                currency = move.currency_id
+                if cash_rounding:
+                    cash_rounding_difference = cash_rounding.compute_difference(currency, amount_due)
+                    if not currency.is_zero(cash_rounding_difference):
+                        amount_due = self.currency_id.round(amount_due + cash_rounding_difference)
+            return amount_due
         return total_amount
 
     @api.depends('company_id')
@@ -83,7 +92,7 @@ class AccountPaymentTerm(models.Model):
     @api.depends('line_ids')
     def _compute_example_invalid(self):
         for payment_term in self:
-            payment_term.example_invalid = len(payment_term.line_ids) <= 1
+            payment_term.example_invalid = not payment_term.line_ids
 
     @api.depends('currency_id', 'example_amount', 'example_date', 'line_ids.value', 'line_ids.value_amount', 'line_ids.nb_days', 'early_discount', 'discount_percentage', 'discount_days')
     def _compute_example_preview(self):
@@ -144,7 +153,7 @@ class AccountPaymentTerm(models.Model):
             results['amount'] += term['foreign_amount']
         return amount_by_date
 
-    @api.constrains('line_ids')
+    @api.constrains('line_ids', 'early_discount')
     def _check_lines(self):
         round_precision = self.env['decimal.precision'].precision_get('Payment Terms')
         for terms in self:
@@ -159,7 +168,7 @@ class AccountPaymentTerm(models.Model):
             if terms.early_discount and terms.discount_days <= 0:
                 raise ValidationError(_("The Early Payment Discount days must be strictly positive."))
 
-    def _compute_terms(self, date_ref, currency, company, tax_amount, tax_amount_currency, sign, untaxed_amount, untaxed_amount_currency):
+    def _compute_terms(self, date_ref, currency, company, tax_amount, tax_amount_currency, sign, untaxed_amount, untaxed_amount_currency, cash_rounding=None):
         """Get the distribution of this payment term.
         :param date_ref: The move date to take into account
         :param currency: the move's currency
@@ -169,6 +178,10 @@ class AccountPaymentTerm(models.Model):
         :param untaxed_amount: the signed untaxed amount for the move
         :param untaxed_amount_currency: the signed untaxed amount for the move in the move's currency
         :param sign: the sign of the move
+        :param cash_rounding: the cash rounding that should be applied (or None).
+            We assume that the input total in move currency (tax_amount_currency + untaxed_amount_currency) is already cash rounded.
+            The cash rounding does not change the totals: Consider the sum of all the computed payment term amounts in move / company currency.
+            It is the same as the input total in move / company currency.
         :return (list<tuple<datetime.date,tuple<float,float>>>): the amount in the company's currency and
             the document's currency, respectively for each required payment date
         """
@@ -176,6 +189,7 @@ class AccountPaymentTerm(models.Model):
         company_currency = company.currency_id
         total_amount = tax_amount + untaxed_amount
         total_amount_currency = tax_amount_currency + untaxed_amount_currency
+        rate = abs(total_amount_currency / total_amount) if total_amount else 0.0
 
         pay_term = {
             'total_amount': total_amount,
@@ -195,7 +209,12 @@ class AccountPaymentTerm(models.Model):
                 pay_term['discount_balance'] = company_currency.round(total_amount * (1 - discount_percentage))
                 pay_term['discount_amount_currency'] = currency.round(total_amount_currency * (1 - discount_percentage))
 
-        rate = abs(total_amount_currency / total_amount) if total_amount else 0.0
+            if cash_rounding:
+                cash_rounding_difference_currency = cash_rounding.compute_difference(currency, pay_term['discount_amount_currency'])
+                if not currency.is_zero(cash_rounding_difference_currency):
+                    pay_term['discount_amount_currency'] += cash_rounding_difference_currency
+                    pay_term['discount_balance'] = company_currency.round(pay_term['discount_amount_currency'] / rate) if rate else 0.0
+
         residual_amount = total_amount
         residual_amount_currency = total_amount_currency
 
@@ -206,8 +225,9 @@ class AccountPaymentTerm(models.Model):
                 'foreign_amount': 0,
             }
 
-            if i == len(self.line_ids) - 1:
-                # The last line is always the balance, no matter the type
+            # The last line is always the balance, no matter the type
+            on_balance_line = i == len(self.line_ids) - 1
+            if on_balance_line:
                 term_vals['company_amount'] = residual_amount
                 term_vals['foreign_amount'] = residual_amount_currency
             elif line.value == 'fixed':
@@ -220,6 +240,16 @@ class AccountPaymentTerm(models.Model):
                 line_amount_currency = currency.round(total_amount_currency * (line.value_amount / 100.0))
                 term_vals['company_amount'] = line_amount
                 term_vals['foreign_amount'] = line_amount_currency
+
+            if cash_rounding and not on_balance_line:
+                # The value `residual_amount_currency` is always cash rounded (in case of cash rounding).
+                #   * We assume `total_amount_currency` is cash rounded.
+                #   * We only subtract cash rounded amounts.
+                # Thus the balance line is cash rounded.
+                cash_rounding_difference_currency = cash_rounding.compute_difference(currency, term_vals['foreign_amount'])
+                if not currency.is_zero(cash_rounding_difference_currency):
+                    term_vals['foreign_amount'] += cash_rounding_difference_currency
+                    term_vals['company_amount'] = company_currency.round(term_vals['foreign_amount'] / rate) if rate else 0.0
 
             residual_amount -= term_vals['company_amount']
             residual_amount_currency -= term_vals['foreign_amount']
@@ -248,6 +278,12 @@ class AccountPaymentTerm(models.Model):
         if not date_ref:
             return None
         return format_date(self.env, self._get_last_discount_date(date_ref))
+
+    def copy(self, default=None):
+        default = dict(default or {})
+        default['name'] = _('%s (copy)', self.name)
+        return super().copy(default)
+
 
 class AccountPaymentTermLine(models.Model):
     _name = "account.payment.term.line"
